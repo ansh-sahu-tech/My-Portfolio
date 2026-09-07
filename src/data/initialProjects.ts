@@ -1,0 +1,133 @@
+import type { Project } from '../types';
+
+export const initialProjects: Project[] = [
+  {
+    id: 'proj-1',
+    title: 'AI Driver Awareness System',
+    slug: 'ai-driver-awareness-system',
+    category: 'AI / Computer Vision',
+    filterCategory: 'Computer Vision',
+    description: 'An AI-powered driver monitoring system designed to improve road safety by detecting driver drowsiness, distraction and reduced attention in real time.',
+    problem: 'Driver fatigue and micro-sleep distractions contribute to a high percentage of road vehicular accidents worldwide. Traditional warning devices lack intelligent real-time spatial facial tracking.',
+    solution: 'Engineered an edge-ready computer vision pipeline utilizing facial landmark estimation to compute Eye Aspect Ratio (EAR) and head-pose orientation, triggering low-latency multi-stage alerts.',
+    features: [
+      'Real-time Eye Aspect Ratio (EAR) calculation for micro-sleep & drowsiness detection',
+      'Head pose & gaze estimation to identify road distraction',
+      'Yawn frequency and facial fatigue pattern recognition',
+      'Immediate audio-visual alert triggers and telemetry log dispatch',
+      'Optimized lightweight inference for standard webcam/embedded devices'
+    ],
+    technologies: ['Python', 'OpenCV', 'Computer Vision', 'Machine Learning', 'AI', 'Dlib', 'NumPy'],
+    architecture: 'Webcam Stream → Frame Preprocessing → Facial Landmark Detection (68 points) → EAR/MAR Metric Calculation → Temporal Threshold Evaluation → Audio Alert & Telemetry Dispatch',
+    process: [
+      'Implemented real-time video stream ingestion and frame equalization using OpenCV.',
+      'Extracted facial coordinates using 68-point facial landmark predictors.',
+      'Derived EAR (Eye Aspect Ratio) mathematical thresholding to distinguish natural blinks from micro-sleep closures.',
+      'Benchmarked frame latency to ensure continuous 30+ FPS operation on consumer hardware.'
+    ],
+    results: 'Achieved robust real-time detection with minimal false alarms under varying cabin lighting conditions.',
+    githubUrl: 'https://github.com/Anshsahu275-max',
+    liveUrl: undefined,
+    imageUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80',
+    featured: true,
+    published: true,
+    createdAt: '2025-01-15T10:00:00.000Z',
+    updatedAt: '2025-02-10T14:30:00.000Z',
+  },
+  {
+    id: 'proj-2',
+    title: 'Student Performance Prediction',
+    slug: 'student-performance-prediction',
+    category: 'Machine Learning',
+    filterCategory: 'AI/ML',
+    description: 'A predictive machine learning pipeline designed to analyze academic metrics, study patterns, and socio-demographic indicators to forecast student performance and identify at-risk academic outcomes.',
+    problem: 'Educational institutions often identify struggling students only after exam failures occur, when corrective intervention is difficult to implement.',
+    solution: 'Built a supervised machine learning regression and classification pipeline that evaluates study habits, attendance, and assignment metrics to provide early indicators of final grades.',
+    features: [
+      'Exploratory Data Analysis (EDA) uncovering key correlation metrics in academic success',
+      'Multi-model benchmarking using Scikit-learn regressors and classifiers',
+      'Automated feature scaling and categorical encoding pipelines',
+      'Interactive risk indicator dashboard with performance trajectory visualization'
+    ],
+    technologies: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib', 'Seaborn'],
+    architecture: 'Raw Academic Dataset → Data Cleaning & Missing Value Imputation → Feature Engineering & Correlation Matrix → Supervised Model Training → Prediction Scoring',
+    process: [
+      'Conducted extensive EDA on demographic, behavioral, and academic performance datasets.',
+      'Implemented one-hot encoding and robust scaling on multi-variable inputs.',
+      'Trained and evaluated linear regression, decision tree, and ensemble models.',
+      'Visualized feature importance to highlight the highest-impact factors influencing academic success.'
+    ],
+    results: 'Demonstrated clear predictive correlation between continuous study engagement metrics and final performance scores.',
+    githubUrl: 'https://github.com/Anshsahu275-max',
+    liveUrl: undefined,
+    imageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80',
+    featured: true,
+    published: true,
+    createdAt: '2024-11-20T10:00:00.000Z',
+    updatedAt: '2024-12-05T12:00:00.000Z',
+  },
+  {
+    id: 'proj-3',
+    title: 'Heart Disease Prediction',
+    slug: 'heart-disease-prediction',
+    category: 'Machine Learning / Data Science',
+    filterCategory: 'Data Science',
+    description: 'A clinical diagnostic predictive model that leverages historical patient cardiovascular metrics to determine heart disease risk with high recall and precision.',
+    problem: 'Early cardiovascular diagnosis requires rapid multi-parameter synthesis from complex clinical biomarkers like resting blood pressure, cholesterol levels, and ECG results.',
+    solution: 'Developed an end-to-end data science diagnostic pipeline comparing Logistic Regression, Random Forest, and Support Vector Classifiers to maximize early anomaly sensitivity.',
+    features: [
+      'Clinical feature engineering across patient cardiovascular biomarkers',
+      'Comparative evaluation between Logistic Regression and Random Forest models',
+      'ROC-AUC analysis, confusion matrices, and precision-recall tuning',
+      'Feature importance rank isolating cholesterol vs. max heart rate impacts'
+    ],
+    technologies: ['Python', 'Pandas', 'Scikit-learn', 'Logistic Regression', 'Random Forest', 'Matplotlib'],
+    architecture: 'Patient Biometrics Input → Outlier Treatment & Normalization → Train/Test Split (Stratified) → Ensemble Classification → Risk Probability Scoring',
+    process: [
+      'Preprocessed clinical patient datasets, addressing skewed distributions and missing clinical markers.',
+      'Evaluated hyperparameter configurations using GridSearchCV cross-validation.',
+      'Analyzed confusion matrices with a deliberate optimization priority towards reducing false negatives.',
+      'Generated clinical feature ranking diagrams with Matplotlib.'
+    ],
+    results: 'Delivered a dependable baseline classification model with balanced precision and high recall on clinical test sets.',
+    githubUrl: 'https://github.com/Anshsahu275-max',
+    liveUrl: undefined,
+    imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+    featured: true,
+    published: true,
+    createdAt: '2024-09-10T08:00:00.000Z',
+    updatedAt: '2024-10-15T16:00:00.000Z',
+  },
+  {
+    id: 'proj-4',
+    title: 'Swagatam Vijay Bakers',
+    slug: 'swagatam-vijay-bakers',
+    category: 'Web Development',
+    filterCategory: 'Web Development',
+    description: 'A modern, responsive e-commerce web platform engineered for a premier bakery business, featuring catalog navigation, dynamic product showcase, and streamlined customer inquiry workflows.',
+    problem: 'The bakery required a modern digital storefront to present daily artisanal menus, accept direct customer custom cake inquiries, and deliver lightning-fast mobile performance.',
+    solution: 'Constructed a modern React application powered by TypeScript and Tailwind CSS, deployed on Vercel with responsive design and interactive product filtering.',
+    features: [
+      'Fast, responsive product catalog with categorized confectionery views',
+      'Custom cake inquiry generator with live dietary and flavor options',
+      'Modern glassmorphic UI design system optimized for mobile touchscreens',
+      'Automated deployment pipeline and global edge delivery via Vercel'
+    ],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel', 'Framer Motion'],
+    architecture: 'React SPA → Tailwind Utility Layer → Component Hierarchy → Vercel Edge CDN Deployment',
+    process: [
+      'Created custom responsive layout components matching brand aesthetic.',
+      'Implemented client-side filtering for fast menu item categorization.',
+      'Optimized image assets and web fonts for instant mobile load times.',
+      'Deployed production build to Vercel with automated CI/CD branch previews.'
+    ],
+    results: 'Deployed a production-grade web platform with fast load speeds and an intuitive user experience.',
+    githubUrl: 'https://github.com/Anshsahu275-max',
+    liveUrl: 'https://swagatam-vijay-bakers.vercel.app',
+    imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80',
+    featured: false,
+    published: true,
+    createdAt: '2024-08-01T12:00:00.000Z',
+    updatedAt: '2024-08-25T14:00:00.000Z',
+  }
+];
