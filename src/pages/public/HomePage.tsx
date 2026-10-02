@@ -4,17 +4,21 @@ import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
   FileDown, 
-  Mail, 
   MapPin, 
-  GraduationCap, 
-  Code2, 
-  Layers, 
-  Sparkles, 
-  FolderGit2, 
-  User, 
-  FileText,
-  BrainCircuit
+  GraduationCap,
+  FileText
 } from 'lucide-react';
+import {
+  RealFrontendIcon,
+  RealAiBrainIcon,
+  RealSpeedRocketIcon,
+  RealUserAvatarIcon,
+  RealTechSkillsIcon,
+  RealProjectsFolderIcon,
+  RealEducationCapIcon,
+  RealResumeDocIcon,
+  RealContactMailIcon
+} from '../../components/common/RealisticIcons';
 import { useData } from '../../context/DataContext';
 import { Button } from '../../components/common/Button';
 import { Badge } from '../../components/common/Badge';
@@ -29,17 +33,17 @@ export const HomePage: React.FC = () => {
   const corePillars = [
     {
       title: 'Modern Frontend Engineering',
-      icon: <Code2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      icon: <RealFrontendIcon size={42} />,
       description: 'Building modular, accessible, and responsive user interfaces with React, Next.js, TypeScript, and Tailwind CSS.'
     },
     {
       title: 'Algorithmic & AI Foundation',
-      icon: <BrainCircuit className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
+      icon: <RealAiBrainIcon size={42} />,
       description: 'Applying strong computational logic, data structure discipline, and AI/ML intuition to solve real engineering problems.'
     },
     {
       title: 'Speed & Clean Architecture',
-      icon: <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+      icon: <RealSpeedRocketIcon size={42} />,
       description: 'Prioritizing readable code, fast load times, semantic HTML, and fluid user interactions across all devices.'
     }
   ];
@@ -50,7 +54,7 @@ export const HomePage: React.FC = () => {
       title: 'About Ansh',
       category: 'Biography & Mindset',
       description: 'Academic background at Sanskriti University, core focus areas, and pragmatic engineering philosophy.',
-      icon: <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      icon: <RealUserAvatarIcon size={42} />,
       path: '/about',
       actionText: 'View Bio & Philosophy'
     },
@@ -58,7 +62,7 @@ export const HomePage: React.FC = () => {
       title: 'Technical Skills',
       category: 'Stack & Capabilities',
       description: 'Categorized breakdown of competencies across frontend frameworks, development workflows, and AI/ML tools.',
-      icon: <Layers className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
+      icon: <RealTechSkillsIcon size={42} />,
       path: '/skills',
       actionText: 'Explore Skills Matrix'
     },
@@ -66,7 +70,7 @@ export const HomePage: React.FC = () => {
       title: 'Featured Projects',
       category: 'Production Systems',
       description: 'Curated projects spanning computer vision safety systems, responsive web applications, and predictive ML models.',
-      icon: <FolderGit2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+      icon: <RealProjectsFolderIcon size={42} />,
       path: '/projects',
       actionText: 'Browse All Projects'
     },
@@ -74,7 +78,7 @@ export const HomePage: React.FC = () => {
       title: 'University Education',
       category: 'Academics (2023–2027)',
       description: 'Formal B.Tech CSE (AI & ML) studies at Sanskriti University, core coursework, and foundational curricula.',
-      icon: <GraduationCap className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      icon: <RealEducationCapIcon size={42} />,
       path: '/education',
       actionText: 'View Academic Details'
     },
@@ -82,7 +86,7 @@ export const HomePage: React.FC = () => {
       title: 'Curriculum Vitae',
       category: 'Resume & Credentials',
       description: 'Comprehensive resume summary formatted for recruiters, with instant browser preview and PDF download.',
-      icon: <FileText className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
+      icon: <RealResumeDocIcon size={42} />,
       path: '/resume',
       actionText: 'Inspect Web Resume'
     },
@@ -90,7 +94,7 @@ export const HomePage: React.FC = () => {
       title: 'Get In Touch',
       category: 'Direct Inquiries',
       description: 'Send a direct message or connect across email, phone, GitHub, and LinkedIn for roles or projects.',
-      icon: <Mail className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+      icon: <RealContactMailIcon size={42} />,
       path: '/contact',
       actionText: 'Open Contact Form'
     }
@@ -258,12 +262,12 @@ export const HomePage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {corePillars.map((pillar, idx) => (
                 <ScrollReveal key={pillar.title} delay={idx * 0.08}>
-                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 hover:-translate-y-1 transition-all duration-300 ease-out space-y-3 h-full flex flex-col justify-between">
-                    <div className="space-y-3">
-                      <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 flex items-center justify-center">
+                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 hover:-translate-y-1 transition-all duration-300 ease-out space-y-4 h-full flex flex-col justify-between group">
+                    <div className="space-y-4">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/40 dark:from-slate-800/90 dark:to-slate-850 border border-slate-200/90 dark:border-slate-700/80 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 group-hover:shadow-md transition-all duration-300">
                         {pillar.icon}
                       </div>
-                      <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                         {pillar.title}
                       </h3>
                       <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -297,14 +301,14 @@ export const HomePage: React.FC = () => {
                 <ScrollReveal key={item.title} delay={idx * 0.06}>
                   <Link
                     to={item.path}
-                    className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-blue-500/40 dark:hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                    className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-blue-500/40 dark:hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                   >
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 group-hover:scale-105 transition-transform duration-200">
+                        <div className="w-13 h-13 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100/80 dark:from-slate-800 dark:to-slate-850 border border-slate-200/90 dark:border-slate-700/80 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 group-hover:shadow-md transition-all duration-300">
                           {item.icon}
                         </div>
-                        <span className="text-[11px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded-md border border-blue-200/50 dark:border-blue-800/50">
+                        <span className="text-[11px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md border border-blue-200/50 dark:border-blue-800/50">
                           {item.category}
                         </span>
                       </div>
