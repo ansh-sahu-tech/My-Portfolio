@@ -598,12 +598,18 @@ export const HomePage: React.FC = () => {
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 5)) && (
             <EditorialSlideCard
               id="experience"
-              imageSrc="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80"
-              imageAlt="Notebook, Coffee & Desk Setup"
+              imageSrc="/experience.png"
+              imageAlt="Developer Workspace Setup with Laptop and Notes"
               categoryTitle="Track Record"
               titleRust="EXPERIENCE"
               activeSection="experience"
               signature="By Ansh Sahu"
+              frameShape="architectural"
+              aspectClass="aspect-[275/183]"
+              badgeText="Engineering Track"
+              subBadgeText="hands-on execution"
+              caption="Workstation • Research & Development"
+              tagText="Active Development"
             >
               <div className="space-y-4">
                 {/* 2-Column Layout matching Larana Inc & Salford & Co in screenshot */}
