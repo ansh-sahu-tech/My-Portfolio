@@ -106,13 +106,14 @@
     position: relative;
   }
 
-  /* Terracotta canvas background matching screenshot */
+  /* Deep Teal canvas background matching user's exact screenshot #14696c */
+  .teal-canvas,
   .terracotta-canvas {
-    background-color: #a75a32;
+    background-color: #14696c;
     background-image: 
-      radial-gradient(circle at 15% 20%, rgba(188, 114, 76, 0.4) 0%, transparent 40%),
-      radial-gradient(circle at 85% 80%, rgba(138, 68, 35, 0.5) 0%, transparent 50%),
-      linear-gradient(160deg, #b05f35 0%, #9c512a 50%, #87421e 100%);
+      radial-gradient(circle at 15% 20%, rgba(30, 138, 142, 0.35) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(11, 62, 65, 0.5) 0%, transparent 50%),
+      linear-gradient(160deg, #18777b 0%, #14696c 50%, #0e4c4f 100%);
   }
 
   /* Cameo Oval Frame with double border & subtle glow */

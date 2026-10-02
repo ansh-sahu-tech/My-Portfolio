@@ -96,7 +96,7 @@ export const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen terracotta-canvas text-stone-900 font-sans pb-24 select-text">
+    <div className="w-full min-h-screen teal-canvas text-stone-900 font-sans pb-24 select-text">
       {/* ========================================================
           TOP PRESENTATION CONTROLLER & VIEW SWITCHER
           ======================================================== */}
@@ -104,7 +104,7 @@ export const HomePage: React.FC = () => {
         <div className="pointer-events-auto flex items-center justify-between bg-[#fcfaf7]/95 backdrop-blur-md border border-[#e5d4bf] px-4 py-2 rounded-full shadow-lg">
           <div className="flex items-center gap-2 text-xs font-semibold text-stone-700">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="hidden sm:inline font-serif italic text-sm text-[#b85b2c]">
+            <span className="hidden sm:inline font-serif italic text-sm text-[#14696c] font-bold">
               Ansh Sahu
             </span>
             <span className="hidden sm:inline text-stone-400">•</span>
@@ -119,7 +119,7 @@ export const HomePage: React.FC = () => {
               onClick={() => setViewMode('stream')}
               className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 font-medium ${
                 viewMode === 'stream'
-                  ? 'bg-[#a75a32] text-white shadow-sm font-semibold'
+                  ? 'bg-[#14696c] text-white shadow-sm font-semibold'
                   : 'text-stone-700 hover:text-stone-950'
               }`}
               title="Editorial Scroll View"
@@ -132,7 +132,7 @@ export const HomePage: React.FC = () => {
               onClick={() => setViewMode('collage')}
               className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 font-medium ${
                 viewMode === 'collage'
-                  ? 'bg-[#a75a32] text-white shadow-sm font-semibold'
+                  ? 'bg-[#14696c] text-white shadow-sm font-semibold'
                   : 'text-stone-700 hover:text-stone-950'
               }`}
               title="Overview Deck Collage (as in Screenshot)"
@@ -145,7 +145,7 @@ export const HomePage: React.FC = () => {
               onClick={() => setViewMode('slide')}
               className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 font-medium ${
                 viewMode === 'slide'
-                  ? 'bg-[#a75a32] text-white shadow-sm font-semibold'
+                  ? 'bg-[#14696c] text-white shadow-sm font-semibold'
                   : 'text-stone-700 hover:text-stone-950'
               }`}
               title="Step-by-step Presentation Slide Mode"

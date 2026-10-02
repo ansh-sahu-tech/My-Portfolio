@@ -12,7 +12,7 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
       {/* 1. Large Top Hero Slide Card */}
       <div
         onClick={() => onSelectCard('hero')}
-        className="cursor-pointer group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#fbf7f1] border border-[#e4d5c0] shadow-[0_12px_36px_-6px_rgba(45,18,5,0.35)] transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_20px_45px_-6px_rgba(45,18,5,0.45)]"
+        className="cursor-pointer group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#fbf7f1] border border-[#e4d5c0] shadow-[0_12px_36px_-6px_rgba(6,36,38,0.4)] transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_20px_45px_-6px_rgba(6,36,38,0.55)]"
       >
         <div className="grid grid-cols-12 min-h-[220px] sm:min-h-[280px]">
           {/* Left Cameo Frame */}

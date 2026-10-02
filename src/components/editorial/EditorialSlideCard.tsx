@@ -39,7 +39,7 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative w-full max-w-5xl mx-auto rounded-3xl sm:rounded-[32px] overflow-hidden bg-[#fcfaf6] border border-[#e8ddcc] shadow-[0_16px_50px_-10px_rgba(65,28,10,0.22)] transition-all duration-300 hover:shadow-[0_22px_60px_-10px_rgba(65,28,10,0.3)] ${className}`}
+      className={`relative w-full max-w-5xl mx-auto rounded-3xl sm:rounded-[32px] overflow-hidden bg-[#fcfaf6] border border-[#e8ddcc] shadow-[0_16px_50px_-10px_rgba(6,36,38,0.35)] transition-all duration-300 hover:shadow-[0_22px_60px_-10px_rgba(6,36,38,0.45)] ${className}`}
     >
       {/* Delicate outer card frame accents */}
       <div className="absolute top-3 left-4 z-20 pointer-events-none">

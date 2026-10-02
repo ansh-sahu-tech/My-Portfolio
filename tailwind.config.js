@@ -8,6 +8,19 @@ export default {
   theme: {
     extend: {
       colors: {
+        deepteal: {
+          50: '#f0f9f9',
+          100: '#daf1f2',
+          200: '#b8e3e5',
+          300: '#86cfd3',
+          400: '#4fb2b8',
+          500: '#2c939a',
+          600: '#14696c', // Exact user screenshot hex
+          700: '#125a5d',
+          800: '#12494c',
+          900: '#133e40',
+          950: '#062426',
+        },
         terracotta: {
           50: '#fdf8f5',
           100: '#f9eee8',
@@ -15,7 +28,7 @@ export default {
           300: '#e7c0aa',
           400: '#d89c7d',
           500: '#c2744d',
-          600: '#a75a32', // Matches image background & primary rust
+          600: '#a75a32',
           700: '#8e4827',
           800: '#743d23',
           900: '#603520',
