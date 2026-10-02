@@ -8,6 +8,34 @@ export default {
   theme: {
     extend: {
       colors: {
+        terracotta: {
+          50: '#fdf8f5',
+          100: '#f9eee8',
+          200: '#f3dccf',
+          300: '#e7c0aa',
+          400: '#d89c7d',
+          500: '#c2744d',
+          600: '#a75a32', // Matches image background & primary rust
+          700: '#8e4827',
+          800: '#743d23',
+          900: '#603520',
+          950: '#351a0e',
+        },
+        cream: {
+          50: '#fdfcf9',
+          100: '#fbf7f1', // Card background
+          200: '#f5eee3',
+          300: '#eae0cf',
+          400: '#dacbba',
+          500: '#c5b19b',
+        },
+        warmgold: {
+          200: '#f3e3ce',
+          300: '#e7cca9',
+          400: '#d4ad7c',
+          500: '#c08e54',
+          600: '#a5733f',
+        },
         brand: {
           50: '#eff6ff',
           100: '#dbeafe',
@@ -15,7 +43,7 @@ export default {
           300: '#93c5fd',
           400: '#60a5fa',
           500: '#3b82f6',
-          600: '#2563eb', // Core professional accent
+          600: '#2563eb',
           700: '#1d4ed8',
           800: '#1e40af',
           900: '#1e3a8a',
@@ -36,13 +64,18 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Courier New', 'monospace'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Oswald', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        signature: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       boxShadow: {
         'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)',
-        'card': '0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04)',
-        'card-hover': '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04)',
+        'card': '0 4px 20px -2px rgba(88, 41, 16, 0.08), 0 2px 6px -1px rgba(88, 41, 16, 0.04)',
+        'card-hover': '0 20px 35px -5px rgba(88, 41, 16, 0.14), 0 10px 15px -5px rgba(88, 41, 16, 0.08)',
+        'deck-card': '0 10px 30px -4px rgba(45, 18, 5, 0.22), 0 4px 12px -2px rgba(45, 18, 5, 0.15)',
+        'deck-card-hover': '0 25px 45px -5px rgba(45, 18, 5, 0.35), 0 12px 20px -4px rgba(45, 18, 5, 0.2)',
       }
     },
   },

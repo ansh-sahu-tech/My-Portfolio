@@ -1,444 +1,898 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
   FileDown, 
+  Mail, 
+  Phone, 
   MapPin, 
+  ExternalLink, 
+  Copy, 
+  Check, 
+  Sparkles, 
+  Grid, 
+  Layers, 
+  ChevronRight, 
+  ChevronLeft,
   GraduationCap,
-  FileText
+  Code2,
+  Cpu,
+  CheckCircle2
 } from 'lucide-react';
-import {
-  RealFrontendIcon,
-  RealAiBrainIcon,
-  RealSpeedRocketIcon,
-  RealUserAvatarIcon,
-  RealTechSkillsIcon,
-  RealProjectsFolderIcon,
-  RealEducationCapIcon,
-  RealResumeDocIcon,
-  RealContactMailIcon
-} from '../../components/common/RealisticIcons';
 import { useData } from '../../context/DataContext';
-import { Button } from '../../components/common/Button';
-import { Badge } from '../../components/common/Badge';
-import { SectionHeader } from '../../components/common/SectionHeader';
-import { ScrollReveal } from '../../components/common/ScrollReveal';
-import { GithubIcon, LinkedinIcon, SocialTooltip } from '../../components/common/SocialIcons';
+import { useToast } from '../../context/ToastContext';
+import { EditorialSlideCard } from '../../components/editorial/EditorialSlideCard';
+import { DeckGridCollage } from '../../components/editorial/DeckGridCollage';
+import { SparkleStar } from '../../components/editorial/SparkleStar';
+import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
 
 export const HomePage: React.FC = () => {
   const { settings } = useData();
+  const { showToast } = useToast();
 
-  // Core Engineering Pillars (Home exclusive)
-  const corePillars = [
+  // View modes: 'stream' (smooth scroll editorial cards) vs 'collage' (the exact overview collage from the screenshot) vs 'slide' (step-by-step presentation)
+  const [viewMode, setViewMode] = useState<'stream' | 'collage' | 'slide'>('stream');
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [activeProjectTab, setActiveProjectTab] = useState(0);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  const handleCopy = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(label);
+    showToast(`Copied ${label} to clipboard!`, 'info');
+    setTimeout(() => setCopiedField(null), 2000);
+  };
+
+  const scrollToCard = (id: string) => {
+    setViewMode('stream');
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 50);
+  };
+
+  const featuredProjects = [
     {
-      title: 'Modern Frontend Engineering',
-      icon: <RealFrontendIcon size={42} />,
-      description: 'Building modular, accessible, and responsive user interfaces with React, Next.js, TypeScript, and Tailwind CSS.'
+      title: 'AI Driver Awareness System',
+      category: 'Computer Vision & AI Safety',
+      tech: ['Python', 'OpenCV', 'Computer Vision', 'NumPy'],
+      summary: 'Real-time fatigue, drowsiness, and road distraction monitoring system using facial landmark analysis (EAR/MAR metrics).',
+      github: 'https://github.com/Anshsahu275-max',
+      demo: 'https://github.com/Anshsahu275-max',
+      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80'
     },
     {
-      title: 'Algorithmic & AI Foundation',
-      icon: <RealAiBrainIcon size={42} />,
-      description: 'Applying strong computational logic, data structure discipline, and AI/ML intuition to solve real engineering problems.'
+      title: 'Sacha Sauda',
+      category: 'Frontend Web Application',
+      tech: ['React', 'JavaScript', 'Tailwind CSS', 'REST APIs'],
+      summary: 'Responsive grocery e-commerce storefront with dynamic catalog filtering, instant cart management, and seamless mobile checkout.',
+      github: 'https://github.com/Anshsahu275-max',
+      demo: 'https://sacha-sauda.vercel.app',
+      image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80'
     },
     {
-      title: 'Speed & Clean Architecture',
-      icon: <RealSpeedRocketIcon size={42} />,
-      description: 'Prioritizing readable code, fast load times, semantic HTML, and fluid user interactions across all devices.'
+      title: 'Student Performance Prediction',
+      category: 'Machine Learning Pipeline',
+      tech: ['Python', 'Scikit-learn', 'Pandas', 'Data Analysis'],
+      summary: 'Supervised ML model evaluating study habits, attendance, and continuous assessment data to forecast academic performance.',
+      github: 'https://github.com/Anshsahu275-max',
+      demo: 'https://github.com/Anshsahu275-max',
+      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80'
     }
   ];
 
-  // Portfolio Section Hub (Direct gateways to each separate section)
-  const portfolioSections = [
-    {
-      title: 'About Ansh',
-      category: 'Biography & Mindset',
-      description: 'Academic background at Sanskriti University, core focus areas, and pragmatic engineering philosophy.',
-      icon: <RealUserAvatarIcon size={42} />,
-      path: '/about',
-      actionText: 'View Bio & Philosophy'
-    },
-    {
-      title: 'Technical Skills',
-      category: 'Stack & Capabilities',
-      description: 'Categorized breakdown of competencies across frontend frameworks, development workflows, and AI/ML tools.',
-      icon: <RealTechSkillsIcon size={42} />,
-      path: '/skills',
-      actionText: 'Explore Skills Matrix'
-    },
-    {
-      title: 'Featured Projects',
-      category: 'Production Systems',
-      description: 'Curated projects spanning computer vision safety systems, responsive web applications, and predictive ML models.',
-      icon: <RealProjectsFolderIcon size={42} />,
-      path: '/projects',
-      actionText: 'Browse All Projects'
-    },
-    {
-      title: 'University Education',
-      category: 'Academics (2023–2027)',
-      description: 'Formal B.Tech CSE (AI & ML) studies at Sanskriti University, core coursework, and foundational curricula.',
-      icon: <RealEducationCapIcon size={42} />,
-      path: '/education',
-      actionText: 'View Academic Details'
-    },
-    {
-      title: 'Curriculum Vitae',
-      category: 'Resume & Credentials',
-      description: 'Comprehensive resume summary formatted for recruiters, with instant browser preview and PDF download.',
-      icon: <RealResumeDocIcon size={42} />,
-      path: '/resume',
-      actionText: 'Inspect Web Resume'
-    },
-    {
-      title: 'Get In Touch',
-      category: 'Direct Inquiries',
-      description: 'Send a direct message or connect across email, phone, GitHub, and LinkedIn for roles or projects.',
-      icon: <RealContactMailIcon size={42} />,
-      path: '/contact',
-      actionText: 'Open Contact Form'
-    }
+  const slideIds = [
+    'hero',
+    'about',
+    'vision',
+    'education',
+    'skills',
+    'experience',
+    'projects',
+    'contact',
+    'thanks'
   ];
 
   return (
-    <div className="space-y-12 sm:space-y-16 pb-16 font-sans">
+    <div className="w-full min-h-screen terracotta-canvas text-stone-900 font-sans pb-24 select-text">
       {/* ========================================================
-          1. HERO SECTION (REDESIGNED EDITORIAL HOMEPAGE HERO)
+          TOP PRESENTATION CONTROLLER & VIEW SWITCHER
           ======================================================== */}
-      <section className="pt-2 sm:pt-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl bg-[#090d16] border border-slate-800 shadow-2xl overflow-hidden text-white transition-all duration-300">
-            {/* Ambient Background Glows */}
-            <div 
-              aria-hidden="true" 
-              className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" 
-            />
-            <div 
-              aria-hidden="true" 
-              className="absolute top-1/2 -right-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" 
-            />
+      <div className="sticky top-20 z-30 max-w-5xl mx-auto px-4 pt-3 pb-2 mb-4 pointer-events-none">
+        <div className="pointer-events-auto flex items-center justify-between bg-[#fcfaf7]/95 backdrop-blur-md border border-[#e5d4bf] px-4 py-2 rounded-full shadow-lg">
+          <div className="flex items-center gap-2 text-xs font-semibold text-stone-700">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="hidden sm:inline font-serif italic text-sm text-[#b85b2c]">
+              Ansh Sahu
+            </span>
+            <span className="hidden sm:inline text-stone-400">•</span>
+            <span className="text-[11px] uppercase tracking-wider text-stone-600">
+              Creative Portfolio Deck
+            </span>
+          </div>
 
-            <div className="relative z-10 p-6 sm:p-10 lg:p-12 xl:p-16">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-                {/* Left Column: Editorial Introduction & Identity */}
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="lg:col-span-7 space-y-6"
-                >
-                  {/* Status & Role Pill (Matching reference tag concept) */}
-                  <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs sm:text-sm font-semibold tracking-wider uppercase text-slate-200 shadow-inner">
-                    <span className="w-2 h-2 rounded-sm bg-blue-500 shadow-sm shadow-blue-500/50" />
-                    <span>FRONTEND DEVELOPER</span>
-                    <span className="text-slate-600">•</span>
-                    <span className="text-emerald-400 font-medium normal-case sm:uppercase flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      Available for Roles
-                    </span>
-                  </div>
+          {/* View Mode Toggle Buttons */}
+          <div className="flex items-center gap-1 bg-[#f3ebdE] p-1 rounded-full text-xs">
+            <button
+              onClick={() => setViewMode('stream')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 font-medium ${
+                viewMode === 'stream'
+                  ? 'bg-[#a75a32] text-white shadow-sm font-semibold'
+                  : 'text-stone-700 hover:text-stone-950'
+              }`}
+              title="Editorial Scroll View"
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span className="text-[11px]">Stream</span>
+            </button>
 
-                  {/* Main Headline Hierarchy (Inspired by reference 3-tier bold typographic stack) */}
-                  <div className="space-y-3">
-                    <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black uppercase tracking-tight leading-[1.05]">
-                      <span className="block text-white">HI, I'M ANSH</span>
-                      <span className="block text-slate-400/90 font-extrabold">FRONTEND</span>
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">
-                        DEVELOPER
-                      </span>
-                    </h1>
+            <button
+              onClick={() => setViewMode('collage')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 font-medium ${
+                viewMode === 'collage'
+                  ? 'bg-[#a75a32] text-white shadow-sm font-semibold'
+                  : 'text-stone-700 hover:text-stone-950'
+              }`}
+              title="Overview Deck Collage (as in Screenshot)"
+            >
+              <Grid className="w-3.5 h-3.5" />
+              <span className="text-[11px]">Deck Collage</span>
+            </button>
 
-                    {/* Academic & Location Subtitle */}
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1 text-xs sm:text-sm font-medium text-slate-300/90">
-                      <div className="flex items-center gap-1.5">
-                        <GraduationCap className="w-4 h-4 text-blue-400 shrink-0" />
-                        <span>B.Tech CSE (AI & ML) • Sanskriti University (2023–2027)</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-slate-400">
-                        <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                        <span>Mathura, UP, India</span>
-                      </div>
-                    </div>
-                  </div>
+            <button
+              onClick={() => setViewMode('slide')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 font-medium ${
+                viewMode === 'slide'
+                  ? 'bg-[#a75a32] text-white shadow-sm font-semibold'
+                  : 'text-stone-700 hover:text-stone-950'
+              }`}
+              title="Step-by-step Presentation Slide Mode"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span className="text-[11px]">Slide Mode</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
-                  {/* Short Introduction Description */}
-                  <p className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-xl leading-relaxed">
-                    I build clean, responsive, and high-performance web applications using React, Next.js, and modern CSS, backed by a strong foundation in computer science and AI/ML.
-                  </p>
+      {/* ========================================================
+          VIEW MODE 1: DECK GRID COLLAGE (THE EXACT SCREENSHOT VIEW)
+          ======================================================== */}
+      {viewMode === 'collage' && (
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-4">
+          <div className="text-center mb-6 text-white space-y-1">
+            <p className="text-xs uppercase tracking-widest text-[#f5eee3] font-semibold flex items-center justify-center gap-1.5">
+              <SparkleStar size={12} color="#f5eee3" />
+              <span>Full Portfolio Presentation Deck</span>
+              <SparkleStar size={12} color="#f5eee3" />
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-[#fdfcf9]">
+              Creative Editorial Overview
+            </h2>
+            <p className="text-xs text-[#f5eee3]/90">
+              Click any card to read full details and interact directly with projects & links
+            </p>
+          </div>
 
-                  {/* CTA Buttons */}
-                  <div className="flex flex-wrap items-center gap-3 pt-2">
-                    <Link to="/projects">
-                      <Button size="lg" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
-                        View Projects
-                      </Button>
-                    </Link>
+          <DeckGridCollage onSelectCard={scrollToCard} />
+        </div>
+      )}
 
-                    <a
-                      href="/resume.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button 
-                        size="lg" 
-                        variant="secondary" 
-                        icon={<FileDown className="w-4 h-4" />}
-                        className="bg-slate-800/90 hover:bg-slate-700 text-slate-100 border-slate-700 shadow-sm"
-                      >
-                        Download Resume
-                      </Button>
-                    </a>
-
-                    <Link to="/contact">
-                      <Button 
-                        size="lg" 
-                        variant="outline"
-                        className="border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 hover:bg-slate-800/50"
-                      >
-                        Contact Me
-                      </Button>
-                    </Link>
-                  </div>
-
-                  {/* Direct Social Links */}
-                  <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-slate-800 text-xs text-slate-400">
-                    <span className="font-semibold text-slate-400 mr-1">Profiles:</span>
-                    
-                    <SocialTooltip label="View GitHub Profile">
-                      <a
-                        href={settings.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                      >
-                        <GithubIcon size={14} />
-                        <span>GitHub</span>
-                      </a>
-                    </SocialTooltip>
-
-                    <SocialTooltip label="View LinkedIn Profile">
-                      <a
-                        href={settings.linkedinUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                      >
-                        <LinkedinIcon size={14} className="text-blue-400" />
-                        <span>LinkedIn</span>
-                      </a>
-                    </SocialTooltip>
-                  </div>
-                </motion.div>
-
-                {/* Right Column: Profile Image with Abstract Orb & Floating Badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                  className="lg:col-span-5 flex justify-center lg:justify-end"
-                >
-                  <div className="relative w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[380px] flex items-center justify-center">
-                    {/* Abstract Circular Orb Backdrop (Inspired by reference halo) */}
-                    <div 
-                      aria-hidden="true" 
-                      className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 w-60 h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-amber-600/75 via-rose-700/50 to-blue-700/40 blur-xl opacity-80 pointer-events-none transform -rotate-12"
-                    />
-                    <div 
-                      aria-hidden="true" 
-                      className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full bg-gradient-to-tr from-amber-600 via-orange-600/70 to-indigo-900/50 border border-white/10 shadow-2xl pointer-events-none transform -rotate-6"
-                    />
-
-                    {/* Profile Image Frame */}
-                    <div className="relative z-10 w-full aspect-[4/5] rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900 group">
-                      <img
-                        src="/ansh-profile.jpg"
-                        alt="Ansh - Frontend Developer"
-                        className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
-                      />
-                      
-                      {/* Bottom Image Gradient Overlay for Depth */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
-
-                      {/* Floating Info Tag inside bottom of photo */}
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-slate-900/90 backdrop-blur-md border border-slate-700/70 py-1.5 px-3 rounded-xl shadow-lg">
-                        <div>
-                          <p className="text-xs font-bold text-white leading-tight">Ansh</p>
-                          <p className="text-[10px] text-blue-400 font-medium">B.Tech CSE (AI & ML)</p>
-                        </div>
-                        <span className="text-[10px] font-semibold text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
-                          2023–2027
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Prominent Floating Circular CTA Badge (Direct homage to "HIRE ME NOW" badge in reference) */}
-                    <Link
-                      to="/contact"
-                      className="absolute -bottom-4 -left-4 sm:-bottom-5 sm:-left-6 z-20 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white shadow-xl shadow-orange-950/50 flex flex-col items-center justify-center p-2 text-center group cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
-                      aria-label="Hire Ansh - Go to Contact Page"
-                    >
-                      <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider leading-tight text-white group-hover:tracking-widest transition-all">
-                        HIRE ME
-                      </span>
-                      <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wide text-amber-100">
-                        NOW
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5 mt-0.5 text-white transform -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-                    </Link>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Lower Typographic Visual Element (Inspired by the massive "PORTIX WILLSON" signature typography) */}
-              <div 
-                aria-hidden="true" 
-                className="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-slate-800/80 overflow-hidden select-none pointer-events-none"
+      {/* ========================================================
+          VIEW MODE 2: SLIDE PRESENTATION MODE
+          ======================================================== */}
+      {viewMode === 'slide' && (
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-4 space-y-4">
+          <div className="flex items-center justify-between text-white text-xs font-semibold px-2">
+            <span>Slide {activeSlideIndex + 1} of {slideIds.length}</span>
+            <div className="flex items-center gap-2">
+              <button
+                disabled={activeSlideIndex === 0}
+                onClick={() => setActiveSlideIndex((prev) => Math.max(0, prev - 1))}
+                className="p-1.5 rounded-full bg-white/20 hover:bg-white/30 disabled:opacity-30 disabled:pointer-events-none text-white transition-colors"
+                aria-label="Previous Slide"
               >
-                <div className="w-full flex items-center justify-between">
-                  <span className="text-4xl sm:text-6xl md:text-7xl lg:text-[7.5rem] xl:text-[9.5rem] font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white/25 via-white/10 to-transparent leading-none whitespace-nowrap">
-                    ANSH SAHU
-                  </span>
-                  <span className="hidden sm:inline-block text-xs uppercase tracking-widest text-slate-500 font-bold border border-slate-800 px-3 py-1 rounded-full">
-                    PORTFOLIO 2026
-                  </span>
-                </div>
-              </div>
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                disabled={activeSlideIndex === slideIds.length - 1}
+                onClick={() => setActiveSlideIndex((prev) => Math.min(slideIds.length - 1, prev + 1))}
+                className="p-1.5 rounded-full bg-white/20 hover:bg-white/30 disabled:opacity-30 disabled:pointer-events-none text-white transition-colors"
+                aria-label="Next Slide"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
-      </section>
+      )}
 
       {/* ========================================================
-          2. CORE ENGINEERING PILLARS (HOME EXCLUSIVE)
+          EDITORIAL CARDS STREAM / SLIDES CONTAINER
           ======================================================== */}
-      <section>
-        <ScrollReveal>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeader
-              badge="Engineering Focus"
-              badgeVariant="brand"
-              title="Core"
-              highlightText="Technical Pillars"
-              description="A balanced developer profile combining modern frontend implementation with an algorithmic computer science foundation."
-            />
+      {(viewMode === 'stream' || viewMode === 'slide') && (
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16 pt-2">
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {corePillars.map((pillar, idx) => (
-                <ScrollReveal key={pillar.title} delay={idx * 0.08}>
-                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 hover:-translate-y-1 transition-all duration-300 ease-out space-y-4 h-full flex flex-col justify-between group">
-                    <div className="space-y-4">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/40 dark:from-slate-800/90 dark:to-slate-850 border border-slate-200/90 dark:border-slate-700/80 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 group-hover:shadow-md transition-all duration-300">
-                        {pillar.icon}
-                      </div>
-                      <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        {pillar.description}
-                      </p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
+          {/* ----------------------------------------------------
+              CARD 1: CREATIVE PORTFOLIO (HERO)
+              ---------------------------------------------------- */}
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 0)) && (
+            <EditorialSlideCard
+              id="hero"
+              imageSrc="/ansh-profile.jpg"
+              imageAlt="Ansh - Frontend Developer"
+              categoryTitle="Editorial Portfolio 2026"
+              titleRust="CREATIVE"
+              titleBlack="PORTFOLIO"
+              activeSection="hero"
+              signature="By Ansh Sahu"
+            >
+              <div className="space-y-4">
+                {/* Role Pill */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3ebdE] border border-[#d8c3a9] text-xs font-semibold text-[#8e4827]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#c2744d]" />
+                  <span>FRONTEND DEVELOPER</span>
+                  <span className="text-stone-400">•</span>
+                  <span className="font-normal text-stone-600">B.Tech CSE (AI & ML)</span>
+                </div>
 
-      {/* ========================================================
-          3. EXPLORE DEDICATED SECTIONS (GATEWAY DIRECTORY)
-          ======================================================== */}
-      <section>
-        <ScrollReveal>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeader
-              badge="Portfolio Directory"
-              badgeVariant="brand"
-              title="Dedicated"
-              highlightText="Section Information"
-              description="Each navbar section contains its own separate, comprehensive information. Select any area below to explore."
-            />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {portfolioSections.map((item, idx) => (
-                <ScrollReveal key={item.title} delay={idx * 0.06}>
-                  <Link
-                    to={item.path}
-                    className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-blue-500/40 dark:hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                  >
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="w-13 h-13 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100/80 dark:from-slate-800 dark:to-slate-850 border border-slate-200/90 dark:border-slate-700/80 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 group-hover:shadow-md transition-all duration-300">
-                          {item.icon}
-                        </div>
-                        <span className="text-[11px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md border border-blue-200/50 dark:border-blue-800/50">
-                          {item.category}
-                        </span>
-                      </div>
-
-                      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-                        {item.title}
-                      </h3>
-
-                      <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    <div className="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-blue-400 group-hover:translate-x-0.5 transition-transform duration-200">
-                      <span>{item.actionText}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
-                  </Link>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* ========================================================
-          4. CALL TO ACTION BANNER (HOME EXCLUSIVE)
-          ======================================================== */}
-      <section>
-        <ScrollReveal>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 text-white border border-slate-800 rounded-2xl p-8 sm:p-12 shadow-md relative overflow-hidden">
-              <div className="relative z-10 max-w-3xl space-y-4">
-                <Badge variant="brand" size="md">
-                  Let's Build Something Great
-                </Badge>
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                  Looking for a dedicated Frontend Developer?
-                </h2>
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                  I am available for full-time frontend roles, internships, and collaborative software engineering projects. Reach out directly or review my complete resume.
+                {/* Subtitle & Bio */}
+                <p className="text-sm sm:text-base text-stone-700 leading-relaxed">
+                  Hi, I'm <strong className="font-bold text-stone-900">Ansh</strong>. I craft clean, responsive, and high-performance web applications using React, Next.js, and modern CSS, backed by a disciplined foundation in computer science and applied AI/ML at <strong className="font-semibold text-stone-900">Sanskriti University</strong>.
                 </p>
 
+                {/* CTAs */}
                 <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <Link to="/contact">
-                    <Button size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
-                      Contact Ansh
-                    </Button>
-                  </Link>
+                  <a
+                    href="#projects"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToCard('projects');
+                    }}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#a75a32] hover:bg-[#8e4827] text-white text-xs sm:text-sm font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    <span>Explore Projects</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
 
-                  <Link to="/resume">
-                    <Button size="md" variant="secondary" icon={<FileText className="w-4 h-4" />}>
-                      View Online Resume
-                    </Button>
+                  <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-[#d8c3a9] hover:bg-[#faf4ec] text-stone-800 text-xs sm:text-sm font-semibold transition-all duration-200 shadow-sm"
+                  >
+                    <FileDown className="w-3.5 h-3.5 text-[#a75a32]" />
+                    <span>Download CV</span>
+                  </a>
+
+                  <a
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToCard('contact');
+                    }}
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-stone-700 hover:text-stone-950 hover:bg-[#f3ebdE] text-xs sm:text-sm font-semibold transition-colors"
+                  >
+                    <span>Contact Me</span>
+                  </a>
+                </div>
+
+                {/* Social Quick Profiles */}
+                <div className="flex items-center gap-2 pt-2 border-t border-[#e8ddcc]/80 text-xs text-stone-600">
+                  <span className="font-semibold text-stone-500 mr-1">Profiles:</span>
+                  <a
+                    href={settings.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-[#dfd2be] hover:bg-[#f6efe4] text-stone-800 font-medium transition-all"
+                  >
+                    <GithubIcon size={13} />
+                    <span>GitHub</span>
+                  </a>
+                  <a
+                    href={settings.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-[#dfd2be] hover:bg-[#f6efe4] text-[#8e4827] font-medium transition-all"
+                  >
+                    <LinkedinIcon size={13} />
+                    <span>LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+            </EditorialSlideCard>
+          )}
+
+          {/* ----------------------------------------------------
+              CARD 2: ABOUT ME
+              ---------------------------------------------------- */}
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 1)) && (
+            <EditorialSlideCard
+              id="about"
+              imageSrc="/ansh-profile.jpg"
+              imageAlt="About Ansh"
+              categoryTitle="Biography & Mindset"
+              titleRust="ABOUT ME"
+              activeSection="about"
+              signature="By Ansh Sahu"
+            >
+              <div className="space-y-4">
+                <p className="text-stone-700 text-sm sm:text-[14.5px] leading-relaxed">
+                  I am a passionate <strong className="font-semibold text-stone-900">Frontend Developer</strong> currently in my undergraduate studies at <strong className="font-semibold text-stone-900">Sanskriti University</strong>, specializing in Computer Science Engineering (Artificial Intelligence & Machine Learning).
+                </p>
+
+                <p className="text-stone-700 text-xs sm:text-sm leading-relaxed">
+                  My technical philosophy focuses on building fast, accessible, and user-centric interfaces. I combine clean CSS architecture and modern React design patterns with rigorous computational logic, bringing precision to every interface I construct.
+                </p>
+
+                {/* Two-Column Facts */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white border border-[#e4d5c0] shadow-sm space-y-1">
+                    <p className="text-[11px] font-bold text-[#8e4827] uppercase tracking-wider flex items-center gap-1.5">
+                      <GraduationCap className="w-3.5 h-3.5" />
+                      Academic Studies
+                    </p>
+                    <p className="text-xs font-semibold text-stone-800">
+                      Sanskriti University (2023–2027)
+                    </p>
+                    <p className="text-[11px] text-stone-500">
+                      B.Tech CSE (AI & ML) • Mathura, UP
+                    </p>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-white border border-[#e4d5c0] shadow-sm space-y-1">
+                    <p className="text-[11px] font-bold text-[#8e4827] uppercase tracking-wider flex items-center gap-1.5">
+                      <Code2 className="w-3.5 h-3.5" />
+                      Core Specialties
+                    </p>
+                    <p className="text-xs font-semibold text-stone-800">
+                      React, Next.js, Tailwind CSS
+                    </p>
+                    <p className="text-[11px] text-stone-500">
+                      Computer Vision & RESTful APIs
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <Link
+                    to="/about"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#a75a32] hover:text-[#743d23] transition-colors"
+                  >
+                    <span>Read Full Bio & Engineering Principles</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
+            </EditorialSlideCard>
+          )}
 
-              {/* Subtle background decoration */}
-              <div 
-                aria-hidden="true" 
-                className="absolute -right-10 -bottom-10 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" 
-              />
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
+          {/* ----------------------------------------------------
+              CARD 3: VISION & MISSION
+              ---------------------------------------------------- */}
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 2)) && (
+            <EditorialSlideCard
+              id="vision"
+              imageSrc="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=800&q=80"
+              imageAlt="Vision & Mission Artwork"
+              categoryTitle="Philosophy & Future"
+              titleRust="VISION"
+              titleBlack="MISSION"
+              activeSection="about"
+              signature="By Ansh Sahu"
+            >
+              <div className="space-y-4">
+                {/* Vision Block */}
+                <div className="space-y-1 p-3.5 rounded-xl bg-white/70 border border-[#e8ddcc]">
+                  <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#18181b] flex items-center gap-1.5">
+                    <SparkleStar size={13} color="#a75a32" />
+                    <span>VISION</span>
+                  </h4>
+                  <p className="text-xs sm:text-[13.5px] text-stone-700 leading-relaxed">
+                    To engineer scalable, human-centered web experiences where elegant aesthetic precision seamlessly merges with high-speed computational intelligence and zero-latency user flows.
+                  </p>
+                </div>
+
+                {/* Mission Block */}
+                <div className="space-y-1 p-3.5 rounded-xl bg-white/70 border border-[#e8ddcc]">
+                  <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#b85b2c] flex items-center gap-1.5">
+                    <SparkleStar size={13} color="#b85b2c" />
+                    <span>MISSION</span>
+                  </h4>
+                  <p className="text-xs sm:text-[13.5px] text-stone-700 leading-relaxed">
+                    Bridging the divide between modern frontend engineering and applied artificial intelligence—crafting modular, accessible applications that solve real-world problems with clarity, speed, and clean code standards.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-4 text-xs text-stone-600 pt-1 font-medium">
+                  <span className="flex items-center gap-1 text-[#8e4827]">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Clean Code Pragmatism
+                  </span>
+                  <span className="flex items-center gap-1 text-[#8e4827]">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Mobile-First Fluidity
+                  </span>
+                </div>
+              </div>
+            </EditorialSlideCard>
+          )}
+
+          {/* ----------------------------------------------------
+              CARD 4: EDUCATION
+              ---------------------------------------------------- */}
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 3)) && (
+            <EditorialSlideCard
+              id="education"
+              imageSrc="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80"
+              imageAlt="University Campus Architecture"
+              categoryTitle="Formal Qualifications"
+              titleRust="EDUCATION"
+              activeSection="education"
+              signature="By Ansh Sahu"
+            >
+              <div className="space-y-4">
+                {/* 2-Column Layout matching screenshot */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Column 1: Institution */}
+                  <div className="space-y-2 p-3.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <div className="text-[11px] font-bold text-[#a75a32] uppercase tracking-wider">
+                      2023 — 2027
+                    </div>
+                    <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-stone-900 leading-snug">
+                      SANSKRITI UNIVERSITY
+                    </h4>
+                    <p className="text-xs text-stone-700 font-medium">
+                      B.Tech in Computer Science & Engineering
+                    </p>
+                    <p className="text-[11px] text-stone-500">
+                      Specialization in Artificial Intelligence & Machine Learning (AI & ML)
+                    </p>
+                    <p className="text-[10px] text-stone-400">
+                      Mathura, Uttar Pradesh, India
+                    </p>
+                  </div>
+
+                  {/* Column 2: Core Coursework Foundation */}
+                  <div className="space-y-2 p-3.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <div className="text-[11px] font-bold text-[#a75a32] uppercase tracking-wider">
+                      CORE RIGOR
+                    </div>
+                    <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-stone-900 leading-snug">
+                      CURRICULUM
+                    </h4>
+                    <ul className="text-xs text-stone-600 space-y-1">
+                      <li className="flex items-center gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-[#c2744d]" />
+                        Data Structures & Algorithms
+                      </li>
+                      <li className="flex items-center gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-[#c2744d]" />
+                        Web Technologies & Engineering
+                      </li>
+                      <li className="flex items-center gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-[#c2744d]" />
+                        Computer Vision & Image Processing
+                      </li>
+                      <li className="flex items-center gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-[#c2744d]" />
+                        Database Management Systems
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="pt-1">
+                  <Link
+                    to="/education"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#a75a32] hover:text-[#743d23] transition-colors"
+                  >
+                    <span>View Complete Academic Details</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </EditorialSlideCard>
+          )}
+
+          {/* ----------------------------------------------------
+              CARD 5: SKILL
+              ---------------------------------------------------- */}
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 4)) && (
+            <EditorialSlideCard
+              id="skills"
+              imageSrc="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+              imageAlt="Tech Workspace & Development"
+              categoryTitle="Capabilities Matrix"
+              titleRust="SKILL"
+              titleBlack="CAPABILITIES"
+              activeSection="skills"
+              signature="By Ansh Sahu"
+            >
+              <div className="space-y-4">
+                {/* 2-Column Layout matching screenshot */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Column 1: Frontend */}
+                  <div className="space-y-2.5 p-3.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-stone-900 border-b border-[#ebdcc8] pb-1.5 flex items-center justify-between">
+                      <span>FRONTEND & UI</span>
+                      <Code2 className="w-3.5 h-3.5 text-[#a75a32]" />
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {['React', 'Next.js', 'JavaScript (ES6+)', 'Tailwind CSS', 'HTML5', 'CSS3', 'Responsive Design'].map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2 py-0.5 rounded-md bg-[#faf5ed] border border-[#e2d5c3] text-[11px] font-semibold text-stone-800"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-[11px] text-stone-600 leading-relaxed pt-1">
+                      Component architecture, accessible state management, and modern CSS layout patterns.
+                    </p>
+                  </div>
+
+                  {/* Column 2: AI/ML & Engineering */}
+                  <div className="space-y-2.5 p-3.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#b85b2c] border-b border-[#ebdcc8] pb-1.5 flex items-center justify-between">
+                      <span>AI/ML & DEV TOOLS</span>
+                      <Cpu className="w-3.5 h-3.5 text-[#b85b2c]" />
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {['Python', 'Computer Vision', 'OpenCV', 'Pandas', 'Git', 'GitHub', 'REST APIs'].map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2 py-0.5 rounded-md bg-[#faf5ed] border border-[#e2d5c3] text-[11px] font-semibold text-stone-800"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-[11px] text-stone-600 leading-relaxed pt-1">
+                      Real-time facial landmark estimation, statistical pipelines, and atomic git collaboration.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-1">
+                  <Link
+                    to="/skills"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#a75a32] hover:text-[#743d23] transition-colors"
+                  >
+                    <span>Explore Comprehensive Skills Matrix</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </EditorialSlideCard>
+          )}
+
+          {/* ----------------------------------------------------
+              CARD 6: EXPERIENCE
+              ---------------------------------------------------- */}
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 5)) && (
+            <EditorialSlideCard
+              id="experience"
+              imageSrc="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80"
+              imageAlt="Notebook, Coffee & Desk Setup"
+              categoryTitle="Track Record"
+              titleRust="EXPERIENCE"
+              activeSection="experience"
+              signature="By Ansh Sahu"
+            >
+              <div className="space-y-4">
+                {/* 2-Column Layout matching Larana Inc & Salford & Co in screenshot */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Col 1 */}
+                  <div className="space-y-2 p-3.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <div className="text-[11px] font-bold text-[#a75a32] uppercase tracking-wider">
+                      2023 — 2027
+                    </div>
+                    <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-stone-900 leading-snug">
+                      SANSKRITI UNIVERSITY
+                    </h4>
+                    <p className="text-xs font-semibold text-[#8e4827]">
+                      B.Tech Project Lead (Academic)
+                    </p>
+                    <p className="text-xs text-stone-600 leading-relaxed">
+                      Hands-on execution of computer vision pipelines, real-time safety monitoring models, and full-stack software development projects in academic labs.
+                    </p>
+                  </div>
+
+                  {/* Col 2 */}
+                  <div className="space-y-2 p-3.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <div className="text-[11px] font-bold text-[#a75a32] uppercase tracking-wider">
+                      2023 — PRESENT
+                    </div>
+                    <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-stone-900 leading-snug">
+                      INDEPENDENT RESEARCH
+                    </h4>
+                    <p className="text-xs font-semibold text-[#8e4827]">
+                      AI & Software Development
+                    </p>
+                    <p className="text-xs text-stone-600 leading-relaxed">
+                      Building production-grade client apps like Sacha Sauda, machine learning forecasting algorithms, and continuous mastery of modern web architecture.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-1">
+                  <Link
+                    to="/experience"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#a75a32] hover:text-[#743d23] transition-colors"
+                  >
+                    <span>Inspect Complete Experience Details</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </EditorialSlideCard>
+          )}
+
+          {/* ----------------------------------------------------
+              CARD 7: 2024–2026 PROJECTS
+              ---------------------------------------------------- */}
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 6)) && (
+            <EditorialSlideCard
+              id="projects"
+              imageSrc="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
+              imageAlt="Featured Project"
+              categoryTitle="Showcase & Engineering"
+              titleRust="2024–2026"
+              titleBlack="PROJECTS"
+              activeSection="portfolio"
+              signature="By Ansh Sahu"
+            >
+              <div className="space-y-4">
+                {/* Project Selector Tabs */}
+                <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+                  {featuredProjects.map((p, idx) => (
+                    <button
+                      key={p.title}
+                      onClick={() => setActiveProjectTab(idx)}
+                      className={`px-3 py-1.5 rounded-lg whitespace-nowrap font-medium transition-all ${
+                        activeProjectTab === idx
+                          ? 'bg-[#a75a32] text-white shadow-sm font-semibold'
+                          : 'bg-white border border-[#e4d5c0] text-stone-700 hover:bg-[#faf4ec]'
+                      }`}
+                    >
+                      {p.title}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Active Project Highlight Box */}
+                {featuredProjects[activeProjectTab] && (
+                  <div className="p-4 rounded-xl bg-white border border-[#e4d5c0] shadow-sm space-y-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#ebdcc8] pb-2">
+                      <div>
+                        <h4 className="font-display font-bold uppercase tracking-tight text-lg text-stone-900">
+                          {featuredProjects[activeProjectTab].title}
+                        </h4>
+                        <span className="text-[11px] text-[#8e4827] font-semibold">
+                          {featuredProjects[activeProjectTab].category}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={featuredProjects[activeProjectTab].github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#faf5ed] border border-[#dfd2be] text-[11px] font-semibold text-stone-700 hover:text-stone-950 transition-colors"
+                        >
+                          <GithubIcon size={12} />
+                          <span>Code</span>
+                        </a>
+
+                        <a
+                          href={featuredProjects[activeProjectTab].demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#a75a32] text-white text-[11px] font-semibold hover:bg-[#8e4827] transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          <span>Live</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                      {featuredProjects[activeProjectTab].summary}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {featuredProjects[activeProjectTab].tech.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2 py-0.5 rounded bg-[#f7efe4] text-[10px] font-semibold text-[#8e4827]"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="pt-1">
+                  <Link
+                    to="/projects"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#a75a32] hover:text-[#743d23] transition-colors"
+                  >
+                    <span>Browse All Projects in Full Gallery</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </EditorialSlideCard>
+          )}
+
+          {/* ----------------------------------------------------
+              CARD 8: LET'S COLLABORATE (CONTACT)
+              ---------------------------------------------------- */}
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 7)) && (
+            <EditorialSlideCard
+              id="contact"
+              imageSrc="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=800&q=80"
+              imageAlt="Telephone and Aesthetic Workspace"
+              categoryTitle="Direct Inquiries"
+              titleRust="LET'S"
+              titleBlack="COLLABORATE"
+              activeSection="contact"
+              signature="By Ansh Sahu"
+            >
+              <div className="space-y-4">
+                <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                  I am available for full-time frontend roles, internships, and high-impact engineering projects. Feel free to connect directly via any channel:
+                </p>
+
+                {/* 4 Icon rows exactly like the screenshot */}
+                <div className="space-y-2.5 pt-1">
+                  {/* Phone */}
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#18181b] text-white flex items-center justify-center shrink-0">
+                        <Phone className="w-4 h-4" />
+                      </div>
+                      <span className="text-xs sm:text-sm font-semibold text-stone-800">
+                        {settings.phone}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => handleCopy(settings.phone, 'Phone number')}
+                      className="p-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-[#f6eee3] transition-colors"
+                      title="Copy Phone"
+                    >
+                      {copiedField === 'Phone number' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
+
+                  {/* Email */}
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#18181b] text-white flex items-center justify-center shrink-0">
+                        <Mail className="w-4 h-4" />
+                      </div>
+                      <span className="text-xs sm:text-sm font-semibold text-stone-800 break-all">
+                        {settings.email}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => handleCopy(settings.email, 'Email address')}
+                      className="p-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-[#f6eee3] transition-colors"
+                      title="Copy Email"
+                    >
+                      {copiedField === 'Email address' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
+
+                  {/* GitHub */}
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#18181b] text-white flex items-center justify-center shrink-0">
+                        <GithubIcon size={16} />
+                      </div>
+                      <span className="text-xs sm:text-sm font-semibold text-stone-800">
+                        github.com/Anshsahu275-max
+                      </span>
+                    </div>
+                    <a
+                      href={settings.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-[#f6eee3] transition-colors"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+
+                  {/* Location */}
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-[#e4d5c0] shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#18181b] text-white flex items-center justify-center shrink-0">
+                        <MapPin className="w-4 h-4" />
+                      </div>
+                      <span className="text-xs sm:text-sm font-semibold text-stone-800">
+                        Mathura, Uttar Pradesh, India
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-stone-400 uppercase tracking-widest font-semibold pr-2">
+                      Location
+                    </span>
+                  </div>
+                </div>
+
+                <div className="pt-1">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#a75a32] text-white text-xs font-semibold hover:bg-[#8e4827] shadow-sm transition-all"
+                  >
+                    <span>Open Direct Contact Form</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </EditorialSlideCard>
+          )}
+
+          {/* ----------------------------------------------------
+              CARD 9: THANKS YOU
+              ---------------------------------------------------- */}
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 8)) && (
+            <EditorialSlideCard
+              id="thanks"
+              imageSrc="/ansh-profile.jpg"
+              imageAlt="Ansh - Thank you"
+              categoryTitle="Closing Appreciation"
+              titleRust="THANKS"
+              titleBlack="YOU"
+              activeSection="contact"
+              signature="By Ansh Sahu"
+            >
+              <div className="space-y-4">
+                <p className="text-sm sm:text-base text-stone-800 font-medium leading-relaxed">
+                  Thank you for taking the time to view my portfolio presentation.
+                </p>
+
+                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                  I am actively preparing for frontend engineering opportunities where I can apply modern React architecture, algorithmic rigor, and responsive UX design to build meaningful software.
+                </p>
+
+                <div className="flex flex-wrap items-center gap-3 pt-3">
+                  <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#a75a32] hover:bg-[#8e4827] text-white text-xs sm:text-sm font-semibold shadow-sm transition-all"
+                  >
+                    <FileDown className="w-3.5 h-3.5" />
+                    <span>Download Complete Resume</span>
+                  </a>
+
+                  <a
+                    href={settings.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-[#dfd2be] hover:bg-[#f6eee3] text-stone-800 text-xs sm:text-sm font-semibold transition-all"
+                  >
+                    <LinkedinIcon size={14} className="text-[#8e4827]" />
+                    <span>Connect on LinkedIn</span>
+                  </a>
+
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-stone-700 hover:text-stone-950 hover:bg-[#f6eee3] text-xs font-semibold"
+                  >
+                    <span>Send Message</span>
+                  </Link>
+                </div>
+              </div>
+            </EditorialSlideCard>
+          )}
+
+        </div>
+      )}
     </div>
   );
 };

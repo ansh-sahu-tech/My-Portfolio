@@ -25,7 +25,7 @@ export const PublicLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 selection:bg-blue-100 selection:text-blue-900 font-sans">
+    <div className="min-h-screen flex flex-col terracotta-canvas text-stone-900 selection:bg-[#ecd7ca] selection:text-[#743d23] font-sans">
       {/* Command Palette for quick access */}
       <CommandPalette
         isOpen={commandPaletteOpen}

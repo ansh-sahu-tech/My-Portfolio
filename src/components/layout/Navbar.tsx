@@ -51,8 +51,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
         isScrolled
-          ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-sm py-3'
-          : 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-b border-slate-200/50 dark:border-slate-800/50 py-4'
+          ? 'bg-[#fcfaf7]/95 backdrop-blur-md border-b border-[#e4d4bf] shadow-[0_4px_20px_-4px_rgba(45,18,5,0.08)] py-3'
+          : 'bg-[#fcfaf7]/85 backdrop-blur-sm border-b border-[#ebdcc8]/70 py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,16 +60,16 @@ export const Navbar: React.FC<NavbarProps> = () => {
           {/* Brand Logo / Identity */}
           <Link
             to="/"
-            className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-0.5"
+            className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a75a32] rounded-lg p-0.5"
           >
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm tracking-tight shadow-sm group-hover:bg-blue-700 group-hover:scale-105 active:scale-95 transition-all duration-200">
+            <div className="w-8 h-8 rounded-lg bg-[#a75a32] flex items-center justify-center text-white font-bold text-sm tracking-tight shadow-sm group-hover:bg-[#8e4827] group-hover:scale-105 active:scale-95 transition-all duration-200">
               A
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-slate-900 dark:text-white text-base tracking-tight leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+              <span className="font-bold text-stone-900 text-base tracking-tight leading-tight group-hover:text-[#a75a32] transition-colors duration-200">
                 Ansh
               </span>
-              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-tight">
+              <span className="text-[11px] font-medium text-stone-500 leading-tight">
                 Frontend Developer
               </span>
             </div>
@@ -83,10 +83,10 @@ export const Navbar: React.FC<NavbarProps> = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative px-2.5 lg:px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+                  className={`relative px-2.5 lg:px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a75a32] ${
                     active
-                      ? 'text-blue-600 dark:text-blue-400 font-semibold'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60'
+                      ? 'text-[#a75a32] font-bold'
+                      : 'text-stone-600 hover:text-stone-950 hover:bg-[#f4ece1]'
                   }`}
                   aria-current={active ? 'page' : undefined}
                 >
@@ -94,14 +94,14 @@ export const Navbar: React.FC<NavbarProps> = () => {
                   {active && (
                     <motion.div
                       layoutId="navbar-active-pill"
-                      className="absolute inset-0 bg-blue-50/90 dark:bg-blue-950/60 rounded-lg -z-10 border border-blue-200/60 dark:border-blue-800/60"
+                      className="absolute inset-0 bg-[#f4ece1] rounded-lg -z-10 border border-[#dfd2be]"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
                   {active && (
                     <motion.span
                       layoutId="navbar-active-line"
-                      className="absolute -bottom-1 left-3 right-3 h-[2px] bg-blue-600 dark:bg-blue-400 rounded-full"
+                      className="absolute -bottom-1 left-3 right-3 h-[2px] bg-[#a75a32] rounded-full"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -113,13 +113,13 @@ export const Navbar: React.FC<NavbarProps> = () => {
           {/* Right Action Icons & Buttons */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Social Tooltip Links */}
-            <div className="hidden sm:flex items-center gap-1.5 border-r border-slate-200 dark:border-slate-800 pr-3">
+            <div className="hidden sm:flex items-center gap-1.5 border-r border-[#e2d5c3] pr-3">
               <SocialTooltip label="GitHub Profile">
                 <a
                   href={settings.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-all duration-200"
+                  className="p-2 rounded-lg text-stone-600 hover:text-stone-950 hover:bg-[#f4ece1] hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#a75a32] focus-visible:outline-none transition-all duration-200"
                   aria-label="Ansh on GitHub"
                 >
                   <GithubIcon size={18} />
@@ -131,7 +131,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
                   href={settings.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-all duration-200"
+                  className="p-2 rounded-lg text-stone-600 hover:text-[#a75a32] hover:bg-[#f4ece1] hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#a75a32] focus-visible:outline-none transition-all duration-200"
                   aria-label="Ansh on LinkedIn"
                 >
                   <LinkedinIcon size={18} />
@@ -146,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
               rel="noopener noreferrer"
               className="hidden sm:inline-flex"
             >
-              <Button size="sm" variant="secondary" icon={<FileDown className="w-3.5 h-3.5" />}>
+              <Button size="sm" variant="primary" className="bg-[#a75a32] hover:bg-[#8e4827] text-white border-0 shadow-sm" icon={<FileDown className="w-3.5 h-3.5" />}>
                 Resume
               </Button>
             </a>
