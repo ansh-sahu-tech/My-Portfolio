@@ -123,7 +123,7 @@ export const initialProjects: Project[] = [
     results: 'Delivered a production web application with fast load times and positive client feedback.',
     githubUrl: 'https://github.com/Anshsahu275-max',
     liveUrl: 'https://swagatam-vijay-bakers.vercel.app',
-    imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/bakery-project.png',
     featured: true,
     published: true,
     createdAt: '2024-08-01T12:00:00.000Z',

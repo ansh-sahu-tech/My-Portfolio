@@ -31,6 +31,8 @@ export const storageService = {
           imageUrl = '/ai-driver-awareness.png';
         } else if ((p.id === 'proj-3' || p.slug === 'student-performance-prediction') && (imageUrl?.includes('photo-1434030216411') || !imageUrl)) {
           imageUrl = '/student-performance-prediction.png';
+        } else if ((p.id === 'proj-4' || p.slug === 'swagatam-vijay-bakers') && (imageUrl?.includes('photo-1509440159') || !imageUrl)) {
+          imageUrl = '/bakery-project.png';
         }
         return {
           ...p,
