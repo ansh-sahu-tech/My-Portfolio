@@ -97,11 +97,11 @@ export const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16 font-sans">
+    <div className="space-y-12 sm:space-y-16 pb-16 font-sans">
       {/* ========================================================
           1. HERO SECTION (HOME DETAILS ONLY)
           ======================================================== */}
-      <section className="pt-4 sm:pt-8">
+      <section className="pt-2 sm:pt-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* Left Column: Hero Intro */}
@@ -241,11 +241,6 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Section Divider */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
-        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
-      </div>
-
       {/* ========================================================
           2. CORE ENGINEERING PILLARS (HOME EXCLUSIVE)
           ======================================================== */}
@@ -282,11 +277,6 @@ export const HomePage: React.FC = () => {
           </div>
         </ScrollReveal>
       </section>
-
-      {/* Section Divider */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
-        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
-      </div>
 
       {/* ========================================================
           3. EXPLORE DEDICATED SECTIONS (GATEWAY DIRECTORY)
@@ -339,11 +329,6 @@ export const HomePage: React.FC = () => {
           </div>
         </ScrollReveal>
       </section>
-
-      {/* Section Divider */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
-        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
-      </div>
 
       {/* ========================================================
           4. CALL TO ACTION BANNER (HOME EXCLUSIVE)
