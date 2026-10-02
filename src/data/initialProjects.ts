@@ -91,7 +91,7 @@ export const initialProjects: Project[] = [
     results: 'Demonstrated strong predictive accuracy connecting regular engagement metrics with final academic outcomes.',
     githubUrl: 'https://github.com/Anshsahu275-max',
     liveUrl: 'https://github.com/Anshsahu275-max',
-    imageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/student-performance-prediction.png',
     featured: true,
     published: true,
     createdAt: '2024-11-20T10:00:00.000Z',

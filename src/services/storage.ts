@@ -25,11 +25,19 @@ export const storageService = {
         return initialProjects;
       }
       const parsed: Project[] = JSON.parse(data);
-      return parsed.map((p) => ({
-        ...p,
-        githubUrl: !p.githubUrl || p.githubUrl === 'YOUR_GITHUB_URL' ? 'https://github.com/Anshsahu275-max' : p.githubUrl,
-        imageUrl: (p.id === 'proj-1' || p.slug === 'ai-driver-awareness-system') && (p.imageUrl?.includes('photo-1549399542') || !p.imageUrl) ? '/ai-driver-awareness.png' : p.imageUrl
-      }));
+      return parsed.map((p) => {
+        let imageUrl = p.imageUrl;
+        if ((p.id === 'proj-1' || p.slug === 'ai-driver-awareness-system') && (imageUrl?.includes('photo-1549399542') || !imageUrl)) {
+          imageUrl = '/ai-driver-awareness.png';
+        } else if ((p.id === 'proj-3' || p.slug === 'student-performance-prediction') && (imageUrl?.includes('photo-1434030216411') || !imageUrl)) {
+          imageUrl = '/student-performance-prediction.png';
+        }
+        return {
+          ...p,
+          githubUrl: !p.githubUrl || p.githubUrl === 'YOUR_GITHUB_URL' ? 'https://github.com/Anshsahu275-max' : p.githubUrl,
+          imageUrl
+        };
+      });
     } catch {
       return initialProjects;
     }

@@ -79,7 +79,7 @@ export const HomePage: React.FC = () => {
       summary: 'Supervised ML model evaluating study habits, attendance, and continuous assessment data to forecast academic performance.',
       github: 'https://github.com/Anshsahu275-max',
       demo: 'https://github.com/Anshsahu275-max',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80'
+      image: '/student-performance-prediction.png'
     }
   ];
 
@@ -667,18 +667,36 @@ export const HomePage: React.FC = () => {
             <EditorialSlideCard
               id="projects"
               imageSrc={featuredProjects[activeProjectTab]?.image || '/ai-driver-awareness.png'}
-              imageAlt={featuredProjects[activeProjectTab]?.title || 'AI Driver Awareness System'}
+              imageAlt={featuredProjects[activeProjectTab]?.title || 'Featured Project'}
               categoryTitle="Showcase & Engineering"
               titleRust="2024–2026"
               titleBlack="PROJECTS"
               activeSection="portfolio"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-[738/387]"
-              badgeText="Computer Vision & AI"
-              subBadgeText="driver safety"
-              caption={featuredProjects[activeProjectTab]?.title || 'AI Driver Awareness System'}
-              tagText="Edge AI Project"
+              aspectClass={
+                activeProjectTab === 2
+                  ? 'aspect-[675/453]'
+                  : activeProjectTab === 1
+                  ? 'aspect-[16/10]'
+                  : 'aspect-[738/387]'
+              }
+              badgeText={featuredProjects[activeProjectTab]?.category || 'Engineering Project'}
+              subBadgeText={
+                activeProjectTab === 2
+                  ? 'predictive analytics'
+                  : activeProjectTab === 1
+                  ? 'web application'
+                  : 'driver safety'
+              }
+              caption={featuredProjects[activeProjectTab]?.title || 'Featured Project'}
+              tagText={
+                activeProjectTab === 2
+                  ? 'Scikit-Learn ML'
+                  : activeProjectTab === 1
+                  ? 'React Storefront'
+                  : 'Edge AI System'
+              }
             >
               <div className="space-y-4">
                 {/* Project Selector Tabs */}
