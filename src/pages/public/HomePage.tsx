@@ -25,6 +25,7 @@ import { EditorialSlideCard } from '../../components/editorial/EditorialSlideCar
 import { DeckGridCollage } from '../../components/editorial/DeckGridCollage';
 import { SparkleStar } from '../../components/editorial/SparkleStar';
 import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
+import { getRealisticSkillIcon } from '../../components/skills/RealisticSkillIcons';
 
 export const HomePage: React.FC = () => {
   const { settings } = useData();
@@ -70,7 +71,7 @@ export const HomePage: React.FC = () => {
       summary: 'Responsive grocery e-commerce storefront with dynamic catalog filtering, instant cart management, and seamless mobile checkout.',
       github: 'https://github.com/Anshsahu275-max',
       demo: 'https://sacha-sauda.vercel.app',
-      image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80'
+      image: '/sacha-sauda.png'
     },
     {
       title: 'Student Performance Prediction',
@@ -546,9 +547,10 @@ export const HomePage: React.FC = () => {
                       {['React', 'Next.js', 'JavaScript (ES6+)', 'Tailwind CSS', 'HTML5', 'CSS3', 'Responsive Design'].map((skill) => (
                         <span
                           key={skill}
-                          className="px-2 py-0.5 rounded-md bg-[#faf5ed] border border-[#e2d5c3] text-[11px] font-semibold text-stone-800"
+                          className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#faf5ed] border border-[#e2d5c3] text-[11px] font-semibold text-stone-800 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:bg-[#f5ede0] transition-colors"
                         >
-                          {skill}
+                          {getRealisticSkillIcon(skill, undefined, 14)}
+                          <span>{skill}</span>
                         </span>
                       ))}
                     </div>
@@ -567,9 +569,10 @@ export const HomePage: React.FC = () => {
                       {['Python', 'Computer Vision', 'OpenCV', 'Pandas', 'Git', 'GitHub', 'REST APIs'].map((skill) => (
                         <span
                           key={skill}
-                          className="px-2 py-0.5 rounded-md bg-[#faf5ed] border border-[#e2d5c3] text-[11px] font-semibold text-stone-800"
+                          className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#faf5ed] border border-[#e2d5c3] text-[11px] font-semibold text-stone-800 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:bg-[#f5ede0] transition-colors"
                         >
-                          {skill}
+                          {getRealisticSkillIcon(skill, undefined, 14)}
+                          <span>{skill}</span>
                         </span>
                       ))}
                     </div>
@@ -678,7 +681,7 @@ export const HomePage: React.FC = () => {
                 activeProjectTab === 2
                   ? 'aspect-[675/453]'
                   : activeProjectTab === 1
-                  ? 'aspect-[16/10]'
+                  ? 'aspect-[515/388]'
                   : 'aspect-[738/387]'
               }
               badgeText={featuredProjects[activeProjectTab]?.category || 'Engineering Project'}
@@ -686,7 +689,7 @@ export const HomePage: React.FC = () => {
                 activeProjectTab === 2
                   ? 'predictive analytics'
                   : activeProjectTab === 1
-                  ? 'web application'
+                  ? 'data mart & e-commerce'
                   : 'driver safety'
               }
               caption={featuredProjects[activeProjectTab]?.title || 'Featured Project'}
@@ -694,7 +697,7 @@ export const HomePage: React.FC = () => {
                 activeProjectTab === 2
                   ? 'Scikit-Learn ML'
                   : activeProjectTab === 1
-                  ? 'React Storefront'
+                  ? 'Data Mart Architecture'
                   : 'Edge AI System'
               }
             >

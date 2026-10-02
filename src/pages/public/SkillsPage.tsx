@@ -1,15 +1,15 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  Search, 
-  Code2, 
-  Cpu, 
-  Layers, 
-  GitBranch
-} from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { ScrollReveal } from '../../components/common/ScrollReveal';
 import { SkillCard } from '../../components/skills/SkillCard';
+import { 
+  RealisticReactIcon, 
+  RealisticGitIcon, 
+  RealisticMlIcon,
+  RealisticNextjsIcon 
+} from '../../components/skills/RealisticSkillIcons';
 
 export const SkillsPage: React.FC = () => {
   const { skills } = useData();
@@ -17,10 +17,10 @@ export const SkillsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const categories = [
-    { label: 'All Skills', value: 'All', icon: <Layers className="w-4 h-4" /> },
-    { label: 'Frontend', value: 'Frontend', icon: <Code2 className="w-4 h-4 text-blue-600 dark:text-blue-400" /> },
-    { label: 'Development', value: 'Development', icon: <GitBranch className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> },
-    { label: 'AI/ML', value: 'AI/ML', icon: <Cpu className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
+    { label: 'All Skills', value: 'All', icon: <RealisticNextjsIcon size={16} /> },
+    { label: 'Frontend', value: 'Frontend', icon: <RealisticReactIcon size={16} /> },
+    { label: 'Development', value: 'Development', icon: <RealisticGitIcon size={16} /> },
+    { label: 'AI/ML', value: 'AI/ML', icon: <RealisticMlIcon size={16} /> },
   ];
 
   const filteredSkills = useMemo(() => {

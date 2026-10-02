@@ -59,7 +59,7 @@ export const initialProjects: Project[] = [
     results: 'Created a fast, clean, user-friendly shopping experience with instant page loads and zero layout shifts.',
     githubUrl: 'https://github.com/Anshsahu275-max',
     liveUrl: 'https://sacha-sauda.vercel.app',
-    imageUrl: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/sacha-sauda.png',
     featured: true,
     published: true,
     createdAt: '2024-12-10T09:00:00.000Z',
