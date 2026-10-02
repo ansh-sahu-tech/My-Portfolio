@@ -78,6 +78,25 @@ export const HomePage: React.FC = () => {
     }
   };
 
+  // Smooth scroll helper with exact navbar offset
+  const scrollToSection = (id: string) => {
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      const navbarOffset = 75;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - navbarOffset;
+      window.history.pushState(null, '', `/#${id}`);
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth',
+      });
+    }
+  };
+
   // 4 Designated Strong Projects
   const targetProjectSlugs = [
     'ai-driver-awareness-system',
@@ -131,7 +150,7 @@ export const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-20 sm:space-y-28 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16">
       {/* ========================================================
           1. HOME SECTION
           - Short introduction
@@ -139,7 +158,7 @@ export const HomePage: React.FC = () => {
           - B.Tech CSE AI&ML
           - Main CTA buttons
           ======================================================== */}
-      <section id="home" className="pt-4 sm:pt-10 scroll-mt-24">
+      <section id="home" className="pt-4 sm:pt-8 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* Left Column: Hero Intro */}
@@ -179,7 +198,7 @@ export const HomePage: React.FC = () => {
                   href="#projects"
                   onClick={(e) => {
                     e.preventDefault();
-                    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToSection('projects');
                   }}
                 >
                   <Button size="lg" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
@@ -201,7 +220,7 @@ export const HomePage: React.FC = () => {
                   href="#contact"
                   onClick={(e) => {
                     e.preventDefault();
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToSection('contact');
                   }}
                 >
                   <Button size="lg" variant="outline">
@@ -210,11 +229,11 @@ export const HomePage: React.FC = () => {
                 </a>
               </div>
 
-              {/* Direct Social & Contact Channels */}
+              {/* Direct Social Links */}
               <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-slate-200/80 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400">
-                <span className="font-semibold text-slate-500 mr-1">Connect:</span>
+                <span className="font-semibold text-slate-500 mr-1">Profiles:</span>
                 
-                <SocialTooltip label="View GitHub">
+                <SocialTooltip label="View GitHub Profile">
                   <a
                     href={settings.githubUrl}
                     target="_blank"
@@ -226,7 +245,7 @@ export const HomePage: React.FC = () => {
                   </a>
                 </SocialTooltip>
 
-                <SocialTooltip label="View LinkedIn">
+                <SocialTooltip label="View LinkedIn Profile">
                   <a
                     href={settings.linkedinUrl}
                     target="_blank"
@@ -235,26 +254,6 @@ export const HomePage: React.FC = () => {
                   >
                     <LinkedinIcon size={14} className="text-blue-600 dark:text-blue-400" />
                     <span>LinkedIn</span>
-                  </a>
-                </SocialTooltip>
-
-                <SocialTooltip label="Send Direct Email">
-                  <a
-                    href={`mailto:${settings.email}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                  >
-                    <Mail className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                    <span>Email</span>
-                  </a>
-                </SocialTooltip>
-
-                <SocialTooltip label="Call Contact Number">
-                  <a
-                    href={`tel:${settings.phone}`}
-                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                  >
-                    <Phone className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span>{settings.phone}</span>
                   </a>
                 </SocialTooltip>
               </div>
@@ -311,6 +310,11 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
+        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
+      </div>
+
       {/* ========================================================
           2. ABOUT SECTION
           - Only personal/professional introduction
@@ -363,11 +367,11 @@ export const HomePage: React.FC = () => {
 
                 <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-2 hover:-translate-y-0.5">
                   <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 text-xs font-semibold uppercase tracking-wider">
-                    <GraduationCap className="w-4 h-4" />
-                    <span>Academic Foundation</span>
+                    <BrainCircuit className="w-4 h-4" />
+                    <span>Algorithmic Mindset</span>
                   </div>
                   <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Undergraduate B.Tech CSE (AI & ML) studies at Sanskriti University (2023–2027), fostering analytical thinking, algorithmic discipline, and software engineering rigor.
+                    Applying computational logic and data structure fundamentals to structure robust application state, optimize render cycles, and manage complex asynchronous operations.
                   </p>
                 </div>
 
@@ -385,6 +389,11 @@ export const HomePage: React.FC = () => {
           </div>
         </ScrollReveal>
       </section>
+
+      {/* Section Divider */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
+        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
+      </div>
 
       {/* ========================================================
           3. SKILLS SECTION
@@ -444,6 +453,11 @@ export const HomePage: React.FC = () => {
         </ScrollReveal>
       </section>
 
+      {/* Section Divider */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
+        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
+      </div>
+
       {/* ========================================================
           4. PROJECTS SECTION
           - Only projects
@@ -477,6 +491,11 @@ export const HomePage: React.FC = () => {
           </div>
         </ScrollReveal>
       </section>
+
+      {/* Section Divider */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
+        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
+      </div>
 
       {/* ========================================================
           5. EDUCATION SECTION
@@ -572,6 +591,11 @@ export const HomePage: React.FC = () => {
           </div>
         </ScrollReveal>
       </section>
+
+      {/* Section Divider */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
+        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
+      </div>
 
       {/* ========================================================
           6. CONTACT SECTION
@@ -755,6 +779,11 @@ export const HomePage: React.FC = () => {
         </ScrollReveal>
       </section>
 
+      {/* Section Divider */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
+        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
+      </div>
+
       {/* ========================================================
           7. RESUME SECTION
           - Direct Resume View/Download
@@ -816,26 +845,26 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Quick Credentials Summary Card */}
+              {/* Recruiter-focused Document Specifications */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                 <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
-                  <span className="font-semibold text-slate-900 dark:text-white block">Education</span>
+                  <span className="font-semibold text-slate-900 dark:text-white block">Document Format</span>
                   <p className="text-slate-600 dark:text-slate-400">
-                    Sanskriti University • B.Tech in CSE (AI & ML), 2023–2027
+                    Standard Single-Page PDF, ATS-friendly format optimized for recruiter and engineering review
                   </p>
                 </div>
 
                 <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
-                  <span className="font-semibold text-slate-900 dark:text-white block">Specialization</span>
+                  <span className="font-semibold text-slate-900 dark:text-white block">Target Roles</span>
                   <p className="text-slate-600 dark:text-slate-400">
-                    Frontend Engineering, React Component Architecture, Applied AI/ML
+                    Frontend Developer, React / Web Developer, Software Engineer Intern
                   </p>
                 </div>
 
                 <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
-                  <span className="font-semibold text-slate-900 dark:text-white block">Availability</span>
+                  <span className="font-semibold text-slate-900 dark:text-white block">Candidate Status</span>
                   <p className="text-emerald-600 dark:text-emerald-400 font-semibold">
-                    Open for Frontend Developer Roles & Internships
+                    Immediate availability for full-time roles & engineering internships
                   </p>
                 </div>
               </div>

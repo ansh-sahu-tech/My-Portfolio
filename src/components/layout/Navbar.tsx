@@ -18,33 +18,68 @@ export const Navbar: React.FC<NavbarProps> = () => {
   const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
   const navigate = useNavigate();
+  const isClickScrolling = React.useRef(false);
+  const clickTimeoutRef = React.useRef<number | null>(null);
 
+  // Exact smooth scrolling with fixed navbar offset
+  const scrollToTargetSection = (id: string, smooth = true) => {
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+      return;
+    }
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const navbarOffset = 75;
+    const elementPosition = el.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - navbarOffset;
+
+    window.scrollTo({
+      top: Math.max(0, offsetPosition),
+      behavior: smooth ? 'smooth' : 'auto',
+    });
+  };
+
+  // Scroll listener with focal zone detection
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 15);
 
       if (location.pathname === '/') {
+        // If smooth scroll was triggered by click, prevent scroll events from overriding active section
+        if (isClickScrolling.current) return;
+
         // Top of page
         if (window.scrollY < 80) {
           setActiveSection('home');
           return;
         }
 
-        // Bottom of page detection for resume
-        const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 70;
-        if (isBottom) {
-          setActiveSection('resume');
-          return;
+        // Bottom of page check
+        const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 30;
+        if (isAtBottom) {
+          const resumeEl = document.getElementById('resume');
+          if (resumeEl) {
+            const rect = resumeEl.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+              setActiveSection('resume');
+              return;
+            }
+          }
         }
 
-        const sections = ['resume', 'contact', 'education', 'projects', 'skills', 'about', 'home'];
-        const scrollPosition = window.scrollY + 140;
+        // Focal point reading zone (130px from top, below navbar)
+        const focalOffset = 130;
+        const sectionOrder = ['home', 'about', 'skills', 'projects', 'education', 'contact', 'resume'];
 
-        for (const sectionId of sections) {
+        for (const sectionId of sectionOrder) {
           const el = document.getElementById(sectionId);
-          if (el && scrollPosition >= el.offsetTop) {
-            setActiveSection(sectionId);
-            break;
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= focalOffset && rect.bottom > focalOffset) {
+              setActiveSection(sectionId);
+              return;
+            }
           }
         }
       }
@@ -54,6 +89,23 @@ export const Navbar: React.FC<NavbarProps> = () => {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
+
+  // Handle hash scrolling on page mount or hash change
+  useEffect(() => {
+    if (location.pathname === '/' && location.hash) {
+      const targetId = location.hash.replace('#', '');
+      isClickScrolling.current = true;
+      setActiveSection(targetId);
+      const timer = setTimeout(() => {
+        scrollToTargetSection(targetId, true);
+        const resetTimer = setTimeout(() => {
+          isClickScrolling.current = false;
+        }, 850);
+        return () => clearTimeout(resetTimer);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -70,16 +122,21 @@ export const Navbar: React.FC<NavbarProps> = () => {
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: typeof navLinks[0]) => {
+    e.preventDefault();
+
     if (location.pathname === '/') {
-      e.preventDefault();
-      const target = document.getElementById(link.id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-        setActiveSection(link.id);
-      } else if (link.id === 'home') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setActiveSection('home');
+      isClickScrolling.current = true;
+      setActiveSection(link.id);
+
+      window.history.pushState(null, '', link.id === 'home' ? '/' : `/#${link.id}`);
+      scrollToTargetSection(link.id, true);
+
+      if (clickTimeoutRef.current) {
+        window.clearTimeout(clickTimeoutRef.current);
       }
+      clickTimeoutRef.current = window.setTimeout(() => {
+        isClickScrolling.current = false;
+      }, 850);
     } else {
       if (link.id === 'home') {
         navigate('/');
@@ -92,6 +149,9 @@ export const Navbar: React.FC<NavbarProps> = () => {
   const isLinkActive = (id: string, path: string) => {
     if (location.pathname === '/') {
       return activeSection === id;
+    }
+    if (location.pathname === `/${id}`) {
+      return true;
     }
     return location.pathname === path;
   };
@@ -109,9 +169,19 @@ export const Navbar: React.FC<NavbarProps> = () => {
           {/* Brand Logo / Identity */}
           <Link
             to="/"
-            onClick={() => {
+            onClick={(e) => {
               if (location.pathname === '/') {
+                e.preventDefault();
+                isClickScrolling.current = true;
+                setActiveSection('home');
+                window.history.pushState(null, '', '/');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (clickTimeoutRef.current) {
+                  window.clearTimeout(clickTimeoutRef.current);
+                }
+                clickTimeoutRef.current = window.setTimeout(() => {
+                  isClickScrolling.current = false;
+                }, 850);
               }
             }}
             className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-0.5"
