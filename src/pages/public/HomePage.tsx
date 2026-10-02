@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
   FileDown, 
@@ -12,7 +13,6 @@ import {
   Layers,
   Cpu,
   Send,
-  CheckCircle2,
   Sparkles,
   Palette,
   FileCode,
@@ -23,7 +23,10 @@ import {
   Smartphone,
   BrainCircuit,
   Eye,
-  BarChart2
+  BarChart2,
+  BookOpen,
+  FileText,
+  ExternalLink
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { useToast } from '../../context/ToastContext';
@@ -75,14 +78,28 @@ export const HomePage: React.FC = () => {
     }
   };
 
-  // Filter the 4 designated strong projects
-  const displayProjects = projects.filter((p) => p.published).slice(0, 4);
+  // 4 Designated Strong Projects
+  const targetProjectSlugs = [
+    'ai-driver-awareness-system',
+    'sacha-sauda',
+    'student-performance-prediction',
+    'swagatam-vijay-bakers',
+  ];
 
-  // Skills organized into the 3 exact requested categories
+  const displayProjects = useMemo(() => {
+    const matched = targetProjectSlugs
+      .map((slug) => projects.find((p) => p.slug === slug || p.id === slug))
+      .filter((p): p is Project => !!p && p.published);
+
+    if (matched.length >= 4) return matched;
+    const remaining = projects.filter((p) => p.published && !matched.some((m) => m.id === p.id));
+    return [...matched, ...remaining].slice(0, 4);
+  }, [projects]);
+
+  // Clean categorized technical skills without unnecessary descriptions
   const skillCategories = [
     {
       name: 'Frontend',
-      description: 'Building responsive, accessible, and high-performance user interfaces',
       skills: [
         { name: 'HTML', icon: <Code2 className="w-4 h-4 text-blue-600 dark:text-blue-400" /> },
         { name: 'CSS', icon: <Palette className="w-4 h-4 text-blue-600 dark:text-blue-400" /> },
@@ -94,7 +111,6 @@ export const HomePage: React.FC = () => {
     },
     {
       name: 'Development',
-      description: 'Version control, API communication, and responsive engineering standards',
       skills: [
         { name: 'Git', icon: <GitBranch className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> },
         { name: 'GitHub', icon: <GithubIcon size={16} className="text-emerald-600 dark:text-emerald-400" /> },
@@ -104,7 +120,6 @@ export const HomePage: React.FC = () => {
     },
     {
       name: 'AI/ML',
-      description: 'Algorithmic problem-solving, computer vision, and predictive data modeling',
       skills: [
         { name: 'Python', icon: <Code2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
         { name: 'Machine Learning', icon: <Cpu className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
@@ -118,12 +133,16 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-20 sm:space-y-28 pb-16">
       {/* ========================================================
-          1. HERO SECTION
+          1. HOME SECTION
+          - Short introduction
+          - Frontend Developer identity
+          - B.Tech CSE AI&ML
+          - Main CTA buttons
           ======================================================== */}
       <section id="home" className="pt-4 sm:pt-10 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            {/* Left Column: Hero Text */}
+            {/* Left Column: Hero Intro */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -144,17 +163,17 @@ export const HomePage: React.FC = () => {
                   <br />
                   Frontend Developer.
                 </h1>
-                <p className="text-sm sm:text-base font-medium text-slate-500 dark:text-slate-400">
+                <p className="text-sm sm:text-base font-semibold text-slate-500 dark:text-slate-400">
                   B.Tech in Computer Science & Engineering (AI & ML) • Sanskriti University (2023–2027)
                 </p>
               </div>
 
-              {/* Short Professional Intro */}
+              {/* Short Introduction */}
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-                I specialize in crafting clean, accessible, and fast web experiences using modern React, Next.js, and Tailwind CSS. Backed by a strong academic foundation in algorithms, computer vision, and machine learning.
+                I build clean, responsive, and high-performance web applications using React, Next.js, and modern CSS, backed by a strong foundation in computer science and AI/ML.
               </p>
 
-              {/* Primary Call-to-Action Buttons */}
+              {/* Main CTA Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="#projects"
@@ -177,9 +196,21 @@ export const HomePage: React.FC = () => {
                     Download Resume
                   </Button>
                 </a>
+
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  <Button size="lg" variant="outline">
+                    Contact Me
+                  </Button>
+                </a>
               </div>
 
-              {/* Direct Social & Contact Links */}
+              {/* Direct Social & Contact Channels */}
               <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-slate-200/80 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400">
                 <span className="font-semibold text-slate-500 mr-1">Connect:</span>
                 
@@ -229,7 +260,7 @@ export const HomePage: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Right Column: Clean Profile Card */}
+            {/* Right Column: Profile Card */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -237,7 +268,6 @@ export const HomePage: React.FC = () => {
               className="lg:col-span-5 flex justify-center lg:justify-end"
             >
               <div className="w-full max-w-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-5 hover:-translate-y-1 group">
-                {/* Photo Container */}
                 <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-100 dark:border-slate-800">
                   <img
                     src="/ansh-profile.jpg"
@@ -251,7 +281,6 @@ export const HomePage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Identity Summary */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <div>
@@ -284,6 +313,10 @@ export const HomePage: React.FC = () => {
 
       {/* ========================================================
           2. ABOUT SECTION
+          - Only personal/professional introduction
+          - B.Tech CSE AI&ML background
+          - Frontend development focus
+          - No project details or skill lists
           ======================================================== */}
       <section id="about" className="scroll-mt-24">
         <ScrollReveal>
@@ -291,73 +324,60 @@ export const HomePage: React.FC = () => {
             <SectionHeader
               badge="About Me"
               badgeVariant="brand"
-              title="Clean Code &"
-              highlightText="User-Centric Interfaces"
-              description="A concise overview of my background, technical philosophy, and how I bridge modern frontend engineering with data-driven AI systems."
+              title="Professional"
+              highlightText="Introduction & Focus"
+              description="Personal background and engineering mindset bridging modern frontend development with a strong computer science foundation."
             />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Bio Details */}
+              {/* Professional Introduction */}
               <div className="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-4 hover:-translate-y-0.5">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                  Frontend Developer with AI Foundations
+                  Frontend Developer with Computer Science & AI/ML Background
                 </h3>
                 
                 <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  I am an undergraduate Computer Science & Engineering student at Sanskriti University (2023–2027) with a core focus on **Frontend Development** and practical applications of **Artificial Intelligence & Machine Learning**.
+                  I am an undergraduate Computer Science & Engineering student at Sanskriti University (2023–2027) with a dedicated focus on frontend web development.
                 </p>
 
                 <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  My day-to-day engineering revolves around writing maintainable TypeScript & React components, building fluid responsive layouts with Tailwind CSS, and integrating clean RESTful APIs. Because of my AI/ML coursework, I bring strong algorithmic intuition, rigorous debugging habits, and an understanding of data pipelines to every web application I build.
+                  My primary focus is crafting responsive, accessible, and fast web experiences. I concentrate on writing clean, modular component code, building fluid layouts with modern CSS, and implementing smooth, user-centric interactions.
                 </p>
 
-                <div className="pt-3 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600 dark:text-slate-400">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                    <span>Responsive, mobile-first design</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                    <span>Component-driven React architecture</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                    <span>Semantic, accessible HTML & WCAG</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                    <span>Algorithmic problem solving & Python</span>
-                  </div>
-                </div>
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Through my B.Tech coursework in Artificial Intelligence & Machine Learning, I bring strong algorithmic intuition, analytical problem-solving habits, and an understanding of data flows to every web application I build.
+                </p>
               </div>
 
-              {/* Key Strengths & Academic Snapshot */}
+              {/* Core Focus Cards - No project details or skill lists */}
               <div className="lg:col-span-5 space-y-4">
-                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-3 hover:-translate-y-0.5">
+                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-2 hover:-translate-y-0.5">
                   <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-xs font-semibold uppercase tracking-wider">
-                    <GraduationCap className="w-4 h-4" />
-                    <span>Current Education</span>
+                    <Code2 className="w-4 h-4" />
+                    <span>Frontend Engineering Focus</span>
                   </div>
-                  <h4 className="text-base font-bold text-slate-900 dark:text-white">
-                    Sanskriti University, Mathura
-                  </h4>
                   <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    B.Tech in Computer Science & Engineering (Specialization in AI & Machine Learning). 
-                    Expected graduation in 2027.
+                    Dedicated to component-driven architectures, responsive mobile-first design, and clean web standards that prioritize user accessibility and speed.
                   </p>
-                  <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500">
-                    <span>Batch: 2023 — 2027</span>
-                    <span className="font-medium text-emerald-600 dark:text-emerald-400">Enrolled & Active</span>
-                  </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-3 hover:-translate-y-0.5">
-                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-semibold uppercase tracking-wider">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Engineering Philosophy</span>
+                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-2 hover:-translate-y-0.5">
+                  <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 text-xs font-semibold uppercase tracking-wider">
+                    <GraduationCap className="w-4 h-4" />
+                    <span>Academic Foundation</span>
                   </div>
                   <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    "Prioritizing clarity over unnecessary complexity. Fast load times, responsive layouts that never break on mobile, and semantic accessibility for all users."
+                    Undergraduate B.Tech CSE (AI & ML) studies at Sanskriti University (2023–2027), fostering analytical thinking, algorithmic discipline, and software engineering rigor.
+                  </p>
+                </div>
+
+                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-2 hover:-translate-y-0.5">
+                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+                    <Sparkles className="w-4 h-4" />
+                    <span>Development Philosophy</span>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Writing maintainable, well-structured code with fast load times, semantic HTML, and intuitive design that solves real user needs.
                   </p>
                 </div>
               </div>
@@ -368,16 +388,20 @@ export const HomePage: React.FC = () => {
 
       {/* ========================================================
           3. SKILLS SECTION
+          - Only technical skills
+          - Frontend, Development and AI/ML skills
+          - Clean categorized layout
+          - No unnecessary descriptions
           ======================================================== */}
       <section id="skills" className="scroll-mt-24">
         <ScrollReveal>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeader
-              badge="Technical Matrix"
+              badge="Technical Skills"
               badgeVariant="brand"
               title="Skills &"
-              highlightText="Core Technologies"
-              description="Categorized breakdown of the frontend libraries, development workflows, and AI/ML tools I actively use."
+              highlightText="Technical Stack"
+              description="Clean categorized breakdown of technical competencies across frontend, development, and AI/ML."
             />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -387,7 +411,7 @@ export const HomePage: React.FC = () => {
                     className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full group"
                   >
                     <div>
-                      <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                      <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100 dark:border-slate-800">
                         <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                           {category.name}
                         </h3>
@@ -396,11 +420,7 @@ export const HomePage: React.FC = () => {
                         </Badge>
                       </div>
 
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 mb-4 leading-relaxed">
-                        {category.description}
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-2.5">
                         {category.skills.map((skill) => (
                           <div
                             key={skill.name}
@@ -426,16 +446,22 @@ export const HomePage: React.FC = () => {
 
       {/* ========================================================
           4. PROJECTS SECTION
+          - Only projects
+          - AI Driver Awareness System
+          - Sacha Sauda
+          - Student Performance Prediction
+          - One additional strong existing project if suitable (Swagatam Vijay Bakers)
+          - Screenshot, short description, tech stack, GitHub and Live Demo
           ======================================================== */}
       <section id="projects" className="scroll-mt-24">
         <ScrollReveal>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeader
-              badge="Selected Work"
+              badge="Selected Projects"
               badgeVariant="brand"
               title="Featured"
               highlightText="Projects & Systems"
-              description="Four strong projects showcasing real-time Computer Vision safety, responsive e-commerce web applications, and predictive machine learning modeling."
+              description="Curated projects showcasing real-time Computer Vision safety, responsive e-commerce web applications, and predictive machine learning modeling."
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
@@ -454,6 +480,10 @@ export const HomePage: React.FC = () => {
 
       {/* ========================================================
           5. EDUCATION SECTION
+          - Only education details
+          - B.Tech CSE AI&ML
+          - Sanskriti University
+          - 2023–2027
           ======================================================== */}
       <section id="education" className="scroll-mt-24">
         <ScrollReveal>
@@ -463,12 +493,13 @@ export const HomePage: React.FC = () => {
               badgeVariant="brand"
               title="Education &"
               highlightText="University Foundation"
-              description="Specialized undergraduate studies focusing on computer science, web engineering, and artificial intelligence architectures."
+              description="Undergraduate academic credentials and formal engineering studies at Sanskriti University."
             />
 
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out hover:-translate-y-0.5">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out hover:-translate-y-0.5 space-y-6">
+              {/* Institution Header */}
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                       Sanskriti University
@@ -488,7 +519,7 @@ export const HomePage: React.FC = () => {
                 <div className="flex flex-col sm:flex-row md:flex-col items-start md:items-end gap-1.5 text-xs text-slate-500 font-medium">
                   <div className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-blue-600" />
-                    <span>2023 — 2027 (Expected)</span>
+                    <span>Session: 2023 — 2027 (Expected)</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <MapPin className="w-3.5 h-3.5 text-emerald-600" />
@@ -497,10 +528,12 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider">
-                    Core Relevant Coursework
+              {/* Core Relevant Coursework */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                <div className="md:col-span-8 space-y-2.5">
+                  <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                    <BookOpen className="w-3.5 h-3.5 text-blue-600" />
+                    Core Academic Curriculum
                   </h4>
                   <div className="flex flex-wrap gap-1.5">
                     {[
@@ -508,11 +541,11 @@ export const HomePage: React.FC = () => {
                       'Web Technologies & Development',
                       'Database Management Systems (DBMS)',
                       'Object-Oriented Programming (OOP)',
-                      'Computer Networks',
                       'Operating Systems',
+                      'Computer Networks',
                       'Machine Learning & Deep Learning',
-                      'Computer Vision & Image Processing',
-                      'Probability & Statistics'
+                      'Computer Vision',
+                      'Discrete Mathematics & Statistics'
                     ].map((course) => (
                       <span
                         key={course}
@@ -524,24 +557,15 @@ export const HomePage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider">
-                    Practical Highlights & Focus
+                <div className="md:col-span-4 space-y-2.5">
+                  <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                    <GraduationCap className="w-3.5 h-3.5 text-emerald-600" />
+                    Degree Details
                   </h4>
-                  <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
-                      <span>Hands-on implementation of responsive web interfaces and client-side single page applications.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
-                      <span>Edge computer vision engineering with OpenCV for real-time driver fatigue monitoring.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
-                      <span>Supervised predictive analytics and exploratory data analysis using Python and Scikit-learn.</span>
-                    </li>
-                  </ul>
+                  <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                    <p className="font-semibold text-slate-900 dark:text-white">Full-Time Undergraduate Degree</p>
+                    <p>Rigorous computer science foundation combined with modern AI & machine learning curricula.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -551,6 +575,10 @@ export const HomePage: React.FC = () => {
 
       {/* ========================================================
           6. CONTACT SECTION
+          - Only contact information
+          - Contact form
+          - Email, phone, GitHub and LinkedIn
+          - No unrelated content
           ======================================================== */}
       <section id="contact" className="scroll-mt-24">
         <ScrollReveal>
@@ -560,18 +588,18 @@ export const HomePage: React.FC = () => {
               badgeVariant="brand"
               title="Let's"
               highlightText="Get In Touch"
-              description="Whether you have an internship opportunity, frontend role, or project inquiry, I would love to connect."
+              description="Whether you have an internship opportunity, frontend role, or project inquiry, reach out directly."
             />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Direct Contact Cards */}
+              {/* Direct Contact Information */}
               <div className="lg:col-span-5 space-y-4">
                 <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-4 hover:-translate-y-0.5">
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     Direct Information
                   </h3>
                   <p className="text-xs text-slate-500 dark:text-slate-400">
-                    Feel free to reach out via email, phone, or connect directly on LinkedIn.
+                    Feel free to reach out via email, phone, or connect directly on LinkedIn and GitHub.
                   </p>
 
                   <div className="space-y-3 pt-2">
@@ -639,7 +667,7 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Recruiter / Visitor Message Form */}
+              {/* Message Form */}
               <div className="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
                   Send a Message
@@ -727,6 +755,95 @@ export const HomePage: React.FC = () => {
         </ScrollReveal>
       </section>
 
+      {/* ========================================================
+          7. RESUME SECTION
+          - Direct Resume View/Download
+          - Recruiter-friendly summary & actions
+          ======================================================== */}
+      <section id="resume" className="scroll-mt-24">
+        <ScrollReveal>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeader
+              badge="Resume"
+              badgeVariant="brand"
+              title="Curriculum"
+              highlightText="Vitae & Credentials"
+              description="Direct resume access with options to view in browser or download as a formatted PDF."
+            />
+
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100 dark:border-slate-800">
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                      <FileText className="w-4 h-4" />
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                      Ansh — Resume
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                    Frontend Developer • B.Tech CSE (AI & ML), Sanskriti University (2023–2027)
+                  </p>
+                </div>
+
+                {/* Direct Action Buttons */}
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button size="md" variant="primary" icon={<ExternalLink className="w-4 h-4" />} iconPosition="right">
+                      View PDF
+                    </Button>
+                  </a>
+
+                  <a
+                    href="/resume.pdf"
+                    download="Ansh_Frontend_Developer_Resume.pdf"
+                  >
+                    <Button size="md" variant="secondary" icon={<FileDown className="w-4 h-4" />}>
+                      Download Resume
+                    </Button>
+                  </a>
+
+                  <Link to="/resume">
+                    <Button size="md" variant="outline" icon={<FileText className="w-4 h-4" />}>
+                      Web Resume
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Quick Credentials Summary Card */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+                  <span className="font-semibold text-slate-900 dark:text-white block">Education</span>
+                  <p className="text-slate-600 dark:text-slate-400">
+                    Sanskriti University • B.Tech in CSE (AI & ML), 2023–2027
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+                  <span className="font-semibold text-slate-900 dark:text-white block">Specialization</span>
+                  <p className="text-slate-600 dark:text-slate-400">
+                    Frontend Engineering, React Component Architecture, Applied AI/ML
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+                  <span className="font-semibold text-slate-900 dark:text-white block">Availability</span>
+                  <p className="text-emerald-600 dark:text-emerald-400 font-semibold">
+                    Open for Frontend Developer Roles & Internships
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
       {/* Project Detail Modal */}
       <ProjectDetailModal
         project={selectedProject}
@@ -736,3 +853,5 @@ export const HomePage: React.FC = () => {
     </div>
   );
 };
+
+export default HomePage;

@@ -30,14 +30,14 @@ export const Navbar: React.FC<NavbarProps> = () => {
           return;
         }
 
-        // Bottom of page detection for contact
+        // Bottom of page detection for resume
         const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 70;
         if (isBottom) {
-          setActiveSection('contact');
+          setActiveSection('resume');
           return;
         }
 
-        const sections = ['contact', 'projects', 'skills', 'about', 'home'];
+        const sections = ['resume', 'contact', 'education', 'projects', 'skills', 'about', 'home'];
         const scrollPosition = window.scrollY + 140;
 
         for (const sectionId of sections) {
@@ -64,7 +64,9 @@ export const Navbar: React.FC<NavbarProps> = () => {
     { name: 'About', id: 'about', path: '/#about' },
     { name: 'Skills', id: 'skills', path: '/#skills' },
     { name: 'Projects', id: 'projects', path: '/#projects' },
+    { name: 'Education', id: 'education', path: '/#education' },
     { name: 'Contact', id: 'contact', path: '/#contact' },
+    { name: 'Resume', id: 'resume', path: '/#resume' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: typeof navLinks[0]) => {
@@ -128,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
           </Link>
 
           {/* Desktop Navigation Links with Active Indicator */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+          <nav className="hidden md:flex items-center gap-0.5 lg:gap-1" aria-label="Main Navigation">
             {navLinks.map((link) => {
               const active = isLinkActive(link.id, link.path);
               return (
@@ -136,7 +138,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
                   key={link.id}
                   href={link.path}
                   onClick={(e) => handleNavClick(e, link)}
-                  className={`relative px-3.5 py-1.5 rounded-lg text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+                  className={`relative px-2.5 lg:px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
                     active
                       ? 'text-blue-600 dark:text-blue-400 font-semibold'
                       : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60'

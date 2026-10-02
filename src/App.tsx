@@ -16,6 +16,7 @@ import { ProjectsPage } from './pages/public/ProjectsPage';
 import { ProjectDetailPage } from './pages/public/ProjectDetailPage';
 import { ExperiencePage } from './pages/public/ExperiencePage';
 import { CertificatesPage } from './pages/public/CertificatesPage';
+import { EducationPage } from './pages/public/EducationPage';
 import { ContactPage } from './pages/public/ContactPage';
 import { ResumePage } from './pages/public/ResumePage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -47,6 +48,7 @@ export function App() {
                   <Route path="/projects/:slug" element={<ProjectDetailPage />} />
                   <Route path="/experience" element={<ExperiencePage />} />
                   <Route path="/certificates" element={<CertificatesPage />} />
+                  <Route path="/education" element={<EducationPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/resume" element={<ResumePage />} />
                 </Route>

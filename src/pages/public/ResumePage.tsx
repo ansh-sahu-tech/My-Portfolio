@@ -1,13 +1,13 @@
-import React from 'react';
 import { 
   FileDown, 
   Printer, 
   Mail, 
   Phone,
   GraduationCap, 
-  Code2,
-  Layers,
-  MapPin
+  Code2, 
+  Layers, 
+  MapPin,
+  ExternalLink
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { Button } from '../../components/common/Button';
@@ -48,7 +48,13 @@ export const ResumePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <Button size="sm" variant="outline" icon={<ExternalLink className="w-3.5 h-3.5" />}>
+                View PDF
+              </Button>
+            </a>
+
             <Button size="sm" variant="secondary" onClick={handlePrint} icon={<Printer className="w-3.5 h-3.5" />}>
               Print
             </Button>
