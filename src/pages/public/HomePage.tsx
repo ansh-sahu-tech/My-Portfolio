@@ -103,144 +103,207 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-12 sm:space-y-16 pb-16 font-sans">
       {/* ========================================================
-          1. HERO SECTION (HOME DETAILS ONLY)
+          1. HERO SECTION (REDESIGNED EDITORIAL HOMEPAGE HERO)
           ======================================================== */}
       <section className="pt-2 sm:pt-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            {/* Left Column: Hero Intro */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="lg:col-span-7 space-y-6"
-            >
-              {/* Status Badge */}
-              <div className="inline-flex items-center">
-                <Badge variant="live" size="md" pulse>
-                  Available for Frontend Developer Roles
-                </Badge>
-              </div>
+          <div className="relative rounded-3xl bg-[#090d16] border border-slate-800 shadow-2xl overflow-hidden text-white transition-all duration-300">
+            {/* Ambient Background Glows */}
+            <div 
+              aria-hidden="true" 
+              className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" 
+            />
+            <div 
+              aria-hidden="true" 
+              className="absolute top-1/2 -right-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" 
+            />
 
-              {/* Main Headline */}
-              <div className="space-y-2">
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-                  Hi, I'm <span className="text-blue-600 dark:text-blue-400">Ansh</span>.
-                  <br />
-                  Frontend Developer.
-                </h1>
-                <p className="text-sm sm:text-base font-semibold text-slate-500 dark:text-slate-400">
-                  B.Tech in Computer Science & Engineering (AI & ML) • Sanskriti University (2023–2027)
-                </p>
-              </div>
-
-              {/* Short Introduction */}
-              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-                I build clean, responsive, and high-performance web applications using React, Next.js, and modern CSS, backed by a strong foundation in computer science and AI/ML.
-              </p>
-
-              {/* Main CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Link to="/projects">
-                  <Button size="lg" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
-                    View Projects
-                  </Button>
-                </Link>
-
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <div className="relative z-10 p-6 sm:p-10 lg:p-12 xl:p-16">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+                {/* Left Column: Editorial Introduction & Identity */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="lg:col-span-7 space-y-6"
                 >
-                  <Button size="lg" variant="secondary" icon={<FileDown className="w-4 h-4" />}>
-                    Download Resume
-                  </Button>
-                </a>
-
-                <Link to="/contact">
-                  <Button size="lg" variant="outline">
-                    Contact Me
-                  </Button>
-                </Link>
-              </div>
-
-              {/* Direct Social Links */}
-              <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-slate-200/80 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400">
-                <span className="font-semibold text-slate-500 mr-1">Profiles:</span>
-                
-                <SocialTooltip label="View GitHub Profile">
-                  <a
-                    href={settings.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                  >
-                    <GithubIcon size={14} />
-                    <span>GitHub</span>
-                  </a>
-                </SocialTooltip>
-
-                <SocialTooltip label="View LinkedIn Profile">
-                  <a
-                    href={settings.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                  >
-                    <LinkedinIcon size={14} className="text-blue-600 dark:text-blue-400" />
-                    <span>LinkedIn</span>
-                  </a>
-                </SocialTooltip>
-              </div>
-            </motion.div>
-
-            {/* Right Column: Profile Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="lg:col-span-5 flex justify-center lg:justify-end"
-            >
-              <div className="w-full max-w-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-5 hover:-translate-y-1 group">
-                <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-100 dark:border-slate-800">
-                  <img
-                    src="/ansh-profile.jpg"
-                    alt="Ansh - Frontend Developer"
-                    className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute bottom-3 left-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border border-slate-200 dark:border-slate-700 py-1 px-2.5 rounded-md shadow-sm">
-                    <p className="text-[11px] font-semibold text-slate-800 dark:text-slate-200">
-                      Sanskriti University • 2023–2027
-                    </p>
+                  {/* Status & Role Pill (Matching reference tag concept) */}
+                  <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs sm:text-sm font-semibold tracking-wider uppercase text-slate-200 shadow-inner">
+                    <span className="w-2 h-2 rounded-sm bg-blue-500 shadow-sm shadow-blue-500/50" />
+                    <span>FRONTEND DEVELOPER</span>
+                    <span className="text-slate-600">•</span>
+                    <span className="text-emerald-400 font-medium normal-case sm:uppercase flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Available for Roles
+                    </span>
                   </div>
+
+                  {/* Main Headline Hierarchy (Inspired by reference 3-tier bold typographic stack) */}
+                  <div className="space-y-3">
+                    <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black uppercase tracking-tight leading-[1.05]">
+                      <span className="block text-white">HI, I'M ANSH</span>
+                      <span className="block text-slate-400/90 font-extrabold">FRONTEND</span>
+                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">
+                        DEVELOPER
+                      </span>
+                    </h1>
+
+                    {/* Academic & Location Subtitle */}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1 text-xs sm:text-sm font-medium text-slate-300/90">
+                      <div className="flex items-center gap-1.5">
+                        <GraduationCap className="w-4 h-4 text-blue-400 shrink-0" />
+                        <span>B.Tech CSE (AI & ML) • Sanskriti University (2023–2027)</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-slate-400">
+                        <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span>Mathura, UP, India</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Short Introduction Description */}
+                  <p className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-xl leading-relaxed">
+                    I build clean, responsive, and high-performance web applications using React, Next.js, and modern CSS, backed by a strong foundation in computer science and AI/ML.
+                  </p>
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-wrap items-center gap-3 pt-2">
+                    <Link to="/projects">
+                      <Button size="lg" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+                        View Projects
+                      </Button>
+                    </Link>
+
+                    <a
+                      href="/resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button 
+                        size="lg" 
+                        variant="secondary" 
+                        icon={<FileDown className="w-4 h-4" />}
+                        className="bg-slate-800/90 hover:bg-slate-700 text-slate-100 border-slate-700 shadow-sm"
+                      >
+                        Download Resume
+                      </Button>
+                    </a>
+
+                    <Link to="/contact">
+                      <Button 
+                        size="lg" 
+                        variant="outline"
+                        className="border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 hover:bg-slate-800/50"
+                      >
+                        Contact Me
+                      </Button>
+                    </Link>
+                  </div>
+
+                  {/* Direct Social Links */}
+                  <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-slate-800 text-xs text-slate-400">
+                    <span className="font-semibold text-slate-400 mr-1">Profiles:</span>
+                    
+                    <SocialTooltip label="View GitHub Profile">
+                      <a
+                        href={settings.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+                      >
+                        <GithubIcon size={14} />
+                        <span>GitHub</span>
+                      </a>
+                    </SocialTooltip>
+
+                    <SocialTooltip label="View LinkedIn Profile">
+                      <a
+                        href={settings.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+                      >
+                        <LinkedinIcon size={14} className="text-blue-400" />
+                        <span>LinkedIn</span>
+                      </a>
+                    </SocialTooltip>
+                  </div>
+                </motion.div>
+
+                {/* Right Column: Profile Image with Abstract Orb & Floating Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  className="lg:col-span-5 flex justify-center lg:justify-end"
+                >
+                  <div className="relative w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[380px] flex items-center justify-center">
+                    {/* Abstract Circular Orb Backdrop (Inspired by reference halo) */}
+                    <div 
+                      aria-hidden="true" 
+                      className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 w-60 h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-amber-600/75 via-rose-700/50 to-blue-700/40 blur-xl opacity-80 pointer-events-none transform -rotate-12"
+                    />
+                    <div 
+                      aria-hidden="true" 
+                      className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full bg-gradient-to-tr from-amber-600 via-orange-600/70 to-indigo-900/50 border border-white/10 shadow-2xl pointer-events-none transform -rotate-6"
+                    />
+
+                    {/* Profile Image Frame */}
+                    <div className="relative z-10 w-full aspect-[4/5] rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900 group">
+                      <img
+                        src="/ansh-profile.jpg"
+                        alt="Ansh - Frontend Developer"
+                        className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+                      />
+                      
+                      {/* Bottom Image Gradient Overlay for Depth */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
+
+                      {/* Floating Info Tag inside bottom of photo */}
+                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-slate-900/90 backdrop-blur-md border border-slate-700/70 py-1.5 px-3 rounded-xl shadow-lg">
+                        <div>
+                          <p className="text-xs font-bold text-white leading-tight">Ansh</p>
+                          <p className="text-[10px] text-blue-400 font-medium">B.Tech CSE (AI & ML)</p>
+                        </div>
+                        <span className="text-[10px] font-semibold text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
+                          2023–2027
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Prominent Floating Circular CTA Badge (Direct homage to "HIRE ME NOW" badge in reference) */}
+                    <Link
+                      to="/contact"
+                      className="absolute -bottom-4 -left-4 sm:-bottom-5 sm:-left-6 z-20 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white shadow-xl shadow-orange-950/50 flex flex-col items-center justify-center p-2 text-center group cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                      aria-label="Hire Ansh - Go to Contact Page"
+                    >
+                      <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider leading-tight text-white group-hover:tracking-widest transition-all">
+                        HIRE ME
+                      </span>
+                      <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wide text-amber-100">
+                        NOW
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 mt-0.5 text-white transform -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                    </Link>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Lower Typographic Visual Element (Inspired by the massive "PORTIX WILLSON" signature typography) */}
+              <div 
+                aria-hidden="true" 
+                className="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-slate-800/80 overflow-hidden select-none pointer-events-none"
+              >
+                <div className="w-full flex items-center justify-between">
+                  <span className="text-4xl sm:text-6xl md:text-7xl lg:text-[7.5rem] xl:text-[9.5rem] font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white/25 via-white/10 to-transparent leading-none whitespace-nowrap">
+                    ANSH SAHU
+                  </span>
+                  <span className="hidden sm:inline-block text-xs uppercase tracking-widest text-slate-500 font-bold border border-slate-800 px-3 py-1 rounded-full">
+                    PORTFOLIO 2026
+                  </span>
                 </div>
-
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h2 className="text-xl font-bold text-slate-900 dark:text-white">Ansh</h2>
-                      <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold">
-                        Frontend Developer
-                      </p>
-                    </div>
-                    <Badge variant="brand" size="sm">
-                      B.Tech CSE
-                    </Badge>
-                  </div>
-
-                  <div className="pt-2 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 space-y-1.5">
-                    <div className="flex items-center gap-2">
-                      <GraduationCap className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                      <span>Specialization: AI & Machine Learning</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span>Mathura, Uttar Pradesh, India</span>
-                    </div>
-                  </div>
-                </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
