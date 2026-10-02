@@ -436,12 +436,15 @@ export const HomePage: React.FC = () => {
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 3)) && (
             <EditorialSlideCard
               id="education"
-              imageSrc="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80"
-              imageAlt="University Campus Architecture"
+              imageSrc="/sanskriti-university.png"
+              imageAlt="Sanskriti University Mathura Campus Facade"
               categoryTitle="Formal Qualifications"
               titleRust="EDUCATION"
               activeSection="education"
               signature="By Ansh Sahu"
+              frameShape="architectural"
+              caption="Sanskriti University • Mathura, UP"
+              badgeText="Campus Architecture"
             >
               <div className="space-y-4">
                 {/* 2-Column Layout matching screenshot */}

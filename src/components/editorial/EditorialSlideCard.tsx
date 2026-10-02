@@ -17,6 +17,11 @@ interface EditorialSlideCardProps {
   className?: string;
   signature?: string;
   sparklePosition?: 'title-right' | 'title-left' | 'top-right';
+  frameShape?: 'oval' | 'architectural' | 'landscape';
+  aspectClass?: string;
+  imageClassName?: string;
+  caption?: string;
+  badgeText?: string;
 }
 
 export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
@@ -30,7 +35,12 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
   children,
   className = '',
   signature = 'By Ansh Sahu',
-  sparklePosition = 'title-right'
+  sparklePosition = 'title-right',
+  frameShape = 'oval',
+  aspectClass,
+  imageClassName,
+  caption,
+  badgeText
 }) => {
   return (
     <motion.section
@@ -61,6 +71,11 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
           <CameoOvalFrame
             imageSrc={imageSrc}
             imageAlt={imageAlt}
+            frameShape={frameShape}
+            aspectClass={aspectClass}
+            imageClassName={imageClassName}
+            caption={caption}
+            badgeText={badgeText}
           />
         </div>
 

@@ -87,6 +87,25 @@ export const EducationPage: React.FC = () => {
             </div>
           </div>
 
+          {/* University Campus Architectural Feature */}
+          <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 p-2 sm:p-2.5 shadow-sm group">
+            <div className="w-full aspect-[738/294] max-h-[340px] rounded-xl overflow-hidden relative shadow-inner bg-slate-100 dark:bg-slate-900">
+              <img
+                src="/sanskriti-university.png"
+                alt="Sanskriti University Main Campus Facade, Mathura"
+                loading="lazy"
+                className="w-full h-full object-cover object-center filter contrast-[1.03] brightness-[1.01] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+
+              {/* Campus Location Tag Overlay */}
+              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs font-semibold shadow-lg">
+                <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                <span>Sanskriti University — Main Campus Facade, Mathura, UP</span>
+              </div>
+            </div>
+          </div>
+
           {/* Academic Overview & Core Coursework */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left: Coursework List */}
