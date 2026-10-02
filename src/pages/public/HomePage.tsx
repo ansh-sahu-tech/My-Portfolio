@@ -1,164 +1,107 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
   FileDown, 
   Mail, 
-  Phone, 
   MapPin, 
   GraduationCap, 
-  Calendar,
-  Code2,
-  Layers,
-  Cpu,
-  Send,
-  Sparkles,
-  Palette,
-  FileCode,
-  Atom,
-  Wind,
-  GitBranch,
-  Network,
-  Smartphone,
-  BrainCircuit,
-  Eye,
-  BarChart2,
-  BookOpen,
+  Code2, 
+  Layers, 
+  Sparkles, 
+  FolderGit2, 
+  User, 
   FileText,
-  ExternalLink
+  BrainCircuit
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
-import { useToast } from '../../context/ToastContext';
 import { Button } from '../../components/common/Button';
 import { Badge } from '../../components/common/Badge';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { ScrollReveal } from '../../components/common/ScrollReveal';
-import { ProjectCard } from '../../components/projects/ProjectCard';
-import { ProjectDetailModal } from '../../components/projects/ProjectDetailModal';
 import { GithubIcon, LinkedinIcon, SocialTooltip } from '../../components/common/SocialIcons';
-import type { Project } from '../../types';
 
 export const HomePage: React.FC = () => {
-  const { settings, projects, addMessage } = useData();
-  const { showToast } = useToast();
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const { settings } = useData();
 
-  // Contact Form State
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Form submission handler
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
-      showToast('Please fill in your name, email and message.', 'error');
-      return;
+  // Core Engineering Pillars (Home exclusive)
+  const corePillars = [
+    {
+      title: 'Modern Frontend Engineering',
+      icon: <Code2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      description: 'Building modular, accessible, and responsive user interfaces with React, Next.js, TypeScript, and Tailwind CSS.'
+    },
+    {
+      title: 'Algorithmic & AI Foundation',
+      icon: <BrainCircuit className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
+      description: 'Applying strong computational logic, data structure discipline, and AI/ML intuition to solve real engineering problems.'
+    },
+    {
+      title: 'Speed & Clean Architecture',
+      icon: <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+      description: 'Prioritizing readable code, fast load times, semantic HTML, and fluid user interactions across all devices.'
     }
-
-    setIsSubmitting(true);
-    try {
-      await addMessage({
-        name: formState.name,
-        email: formState.email,
-        subject: formState.subject || 'Portfolio Inquiry',
-        message: formState.message,
-      });
-      showToast('Thank you! Your message has been sent successfully.', 'success');
-      setFormState({ name: '', email: '', subject: '', message: '' });
-    } catch {
-      showToast('Failed to send message. Please try again or email directly.', 'error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  // Smooth scroll helper with exact navbar offset
-  const scrollToSection = (id: string) => {
-    if (id === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    const el = document.getElementById(id);
-    if (el) {
-      const navbarOffset = 75;
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - navbarOffset;
-      window.history.pushState(null, '', `/#${id}`);
-      window.scrollTo({
-        top: Math.max(0, offsetPosition),
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  // 4 Designated Strong Projects
-  const targetProjectSlugs = [
-    'ai-driver-awareness-system',
-    'sacha-sauda',
-    'student-performance-prediction',
-    'swagatam-vijay-bakers',
   ];
 
-  const displayProjects = useMemo(() => {
-    const matched = targetProjectSlugs
-      .map((slug) => projects.find((p) => p.slug === slug || p.id === slug))
-      .filter((p): p is Project => !!p && p.published);
-
-    if (matched.length >= 4) return matched;
-    const remaining = projects.filter((p) => p.published && !matched.some((m) => m.id === p.id));
-    return [...matched, ...remaining].slice(0, 4);
-  }, [projects]);
-
-  // Clean categorized technical skills without unnecessary descriptions
-  const skillCategories = [
+  // Portfolio Section Hub (Direct gateways to each separate section)
+  const portfolioSections = [
     {
-      name: 'Frontend',
-      skills: [
-        { name: 'HTML', icon: <Code2 className="w-4 h-4 text-blue-600 dark:text-blue-400" /> },
-        { name: 'CSS', icon: <Palette className="w-4 h-4 text-blue-600 dark:text-blue-400" /> },
-        { name: 'JavaScript', icon: <FileCode className="w-4 h-4 text-blue-600 dark:text-blue-400" /> },
-        { name: 'React', icon: <Atom className="w-4 h-4 text-blue-600 dark:text-blue-400" /> },
-        { name: 'Next.js', icon: <Layers className="w-4 h-4 text-blue-600 dark:text-blue-400" /> },
-        { name: 'Tailwind CSS', icon: <Wind className="w-4 h-4 text-blue-600 dark:text-blue-400" /> },
-      ]
+      title: 'About Ansh',
+      category: 'Biography & Mindset',
+      description: 'Academic background at Sanskriti University, core focus areas, and pragmatic engineering philosophy.',
+      icon: <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      path: '/about',
+      actionText: 'View Bio & Philosophy'
     },
     {
-      name: 'Development',
-      skills: [
-        { name: 'Git', icon: <GitBranch className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> },
-        { name: 'GitHub', icon: <GithubIcon size={16} className="text-emerald-600 dark:text-emerald-400" /> },
-        { name: 'REST APIs', icon: <Network className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> },
-        { name: 'Responsive Design', icon: <Smartphone className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> },
-      ]
+      title: 'Technical Skills',
+      category: 'Stack & Capabilities',
+      description: 'Categorized breakdown of competencies across frontend frameworks, development workflows, and AI/ML tools.',
+      icon: <Layers className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
+      path: '/skills',
+      actionText: 'Explore Skills Matrix'
     },
     {
-      name: 'AI/ML',
-      skills: [
-        { name: 'Python', icon: <Code2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
-        { name: 'Machine Learning', icon: <Cpu className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
-        { name: 'Artificial Intelligence', icon: <BrainCircuit className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
-        { name: 'Computer Vision', icon: <Eye className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
-        { name: 'Data Analysis', icon: <BarChart2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
-      ]
+      title: 'Featured Projects',
+      category: 'Production Systems',
+      description: 'Curated projects spanning computer vision safety systems, responsive web applications, and predictive ML models.',
+      icon: <FolderGit2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+      path: '/projects',
+      actionText: 'Browse All Projects'
+    },
+    {
+      title: 'University Education',
+      category: 'Academics (2023–2027)',
+      description: 'Formal B.Tech CSE (AI & ML) studies at Sanskriti University, core coursework, and foundational curricula.',
+      icon: <GraduationCap className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      path: '/education',
+      actionText: 'View Academic Details'
+    },
+    {
+      title: 'Curriculum Vitae',
+      category: 'Resume & Credentials',
+      description: 'Comprehensive resume summary formatted for recruiters, with instant browser preview and PDF download.',
+      icon: <FileText className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
+      path: '/resume',
+      actionText: 'Inspect Web Resume'
+    },
+    {
+      title: 'Get In Touch',
+      category: 'Direct Inquiries',
+      description: 'Send a direct message or connect across email, phone, GitHub, and LinkedIn for roles or projects.',
+      icon: <Mail className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+      path: '/contact',
+      actionText: 'Open Contact Form'
     }
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16 font-sans">
       {/* ========================================================
-          1. HOME SECTION
-          - Short introduction
-          - Frontend Developer identity
-          - B.Tech CSE AI&ML
-          - Main CTA buttons
+          1. HERO SECTION (HOME DETAILS ONLY)
           ======================================================== */}
-      <section id="home" className="pt-4 sm:pt-8 scroll-mt-24">
+      <section className="pt-4 sm:pt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* Left Column: Hero Intro */}
@@ -194,17 +137,11 @@ export const HomePage: React.FC = () => {
 
               {/* Main CTA Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <a
-                  href="#projects"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection('projects');
-                  }}
-                >
+                <Link to="/projects">
                   <Button size="lg" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
                     View Projects
                   </Button>
-                </a>
+                </Link>
 
                 <a
                   href="/resume.pdf"
@@ -216,17 +153,11 @@ export const HomePage: React.FC = () => {
                   </Button>
                 </a>
 
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection('contact');
-                  }}
-                >
+                <Link to="/contact">
                   <Button size="lg" variant="outline">
                     Contact Me
                   </Button>
-                </a>
+                </Link>
               </div>
 
               {/* Direct Social Links */}
@@ -316,136 +247,92 @@ export const HomePage: React.FC = () => {
       </div>
 
       {/* ========================================================
-          2. ABOUT SECTION
-          - Only personal/professional introduction
-          - B.Tech CSE AI&ML background
-          - Frontend development focus
-          - No project details or skill lists
+          2. CORE ENGINEERING PILLARS (HOME EXCLUSIVE)
           ======================================================== */}
-      <section id="about" className="scroll-mt-24">
+      <section>
         <ScrollReveal>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeader
-              badge="About Me"
+              badge="Engineering Focus"
               badgeVariant="brand"
-              title="Professional"
-              highlightText="Introduction & Focus"
-              description="Personal background and engineering mindset bridging modern frontend development with a strong computer science foundation."
-            />
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Professional Introduction */}
-              <div className="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-4 hover:-translate-y-0.5">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                  Frontend Developer with Computer Science & AI/ML Background
-                </h3>
-                
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  I am an undergraduate Computer Science & Engineering student at Sanskriti University (2023–2027) with a dedicated focus on frontend web development.
-                </p>
-
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  My primary focus is crafting responsive, accessible, and fast web experiences. I concentrate on writing clean, modular component code, building fluid layouts with modern CSS, and implementing smooth, user-centric interactions.
-                </p>
-
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Through my B.Tech coursework in Artificial Intelligence & Machine Learning, I bring strong algorithmic intuition, analytical problem-solving habits, and an understanding of data flows to every web application I build.
-                </p>
-              </div>
-
-              {/* Core Focus Cards - No project details or skill lists */}
-              <div className="lg:col-span-5 space-y-4">
-                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-2 hover:-translate-y-0.5">
-                  <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-xs font-semibold uppercase tracking-wider">
-                    <Code2 className="w-4 h-4" />
-                    <span>Frontend Engineering Focus</span>
-                  </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Dedicated to component-driven architectures, responsive mobile-first design, and clean web standards that prioritize user accessibility and speed.
-                  </p>
-                </div>
-
-                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-2 hover:-translate-y-0.5">
-                  <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 text-xs font-semibold uppercase tracking-wider">
-                    <BrainCircuit className="w-4 h-4" />
-                    <span>Algorithmic Mindset</span>
-                  </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Applying computational logic and data structure fundamentals to structure robust application state, optimize render cycles, and manage complex asynchronous operations.
-                  </p>
-                </div>
-
-                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-2 hover:-translate-y-0.5">
-                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-semibold uppercase tracking-wider">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Development Philosophy</span>
-                  </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Writing maintainable, well-structured code with fast load times, semantic HTML, and intuitive design that solves real user needs.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Section Divider */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
-        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
-      </div>
-
-      {/* ========================================================
-          3. SKILLS SECTION
-          - Only technical skills
-          - Frontend, Development and AI/ML skills
-          - Clean categorized layout
-          - No unnecessary descriptions
-          ======================================================== */}
-      <section id="skills" className="scroll-mt-24">
-        <ScrollReveal>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeader
-              badge="Technical Skills"
-              badgeVariant="brand"
-              title="Skills &"
-              highlightText="Technical Stack"
-              description="Clean categorized breakdown of technical competencies across frontend, development, and AI/ML."
+              title="Core"
+              highlightText="Technical Pillars"
+              description="A balanced developer profile combining modern frontend implementation with an algorithmic computer science foundation."
             />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {skillCategories.map((category, idx) => (
-                <ScrollReveal key={category.name} delay={idx * 0.08}>
-                  <div
-                    className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full group"
+              {corePillars.map((pillar, idx) => (
+                <ScrollReveal key={pillar.title} delay={idx * 0.08}>
+                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 hover:-translate-y-1 transition-all duration-300 ease-out space-y-3 h-full flex flex-col justify-between">
+                    <div className="space-y-3">
+                      <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 flex items-center justify-center">
+                        {pillar.icon}
+                      </div>
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                        {pillar.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        {pillar.description}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* Section Divider */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
+        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
+      </div>
+
+      {/* ========================================================
+          3. EXPLORE DEDICATED SECTIONS (GATEWAY DIRECTORY)
+          ======================================================== */}
+      <section>
+        <ScrollReveal>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeader
+              badge="Portfolio Directory"
+              badgeVariant="brand"
+              title="Dedicated"
+              highlightText="Section Information"
+              description="Each navbar section contains its own separate, comprehensive information. Select any area below to explore."
+            />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {portfolioSections.map((item, idx) => (
+                <ScrollReveal key={item.title} delay={idx * 0.06}>
+                  <Link
+                    to={item.path}
+                    className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-blue-500/40 dark:hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                   >
-                    <div>
-                      <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100 dark:border-slate-800">
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-                          {category.name}
-                        </h3>
-                        <Badge variant="brand" size="sm">
-                          {category.skills.length} Skills
-                        </Badge>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 group-hover:scale-105 transition-transform duration-200">
+                          {item.icon}
+                        </div>
+                        <span className="text-[11px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded-md border border-blue-200/50 dark:border-blue-800/50">
+                          {item.category}
+                        </span>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-2.5">
-                        {category.skills.map((skill) => (
-                          <div
-                            key={skill.name}
-                            className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/60 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-white dark:hover:bg-slate-800 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 cursor-default group/skill"
-                          >
-                            <span className="shrink-0 transition-transform duration-200 group-hover/skill:scale-110">
-                              {skill.icon}
-                            </span>
-                            <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover/skill:text-blue-600 dark:group-hover/skill:text-blue-400 transition-colors duration-200">
-                              {skill.name}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
-                  </div>
+
+                    <div className="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-blue-400 group-hover:translate-x-0.5 transition-transform duration-200">
+                      <span>{item.actionText}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </Link>
                 </ScrollReveal>
               ))}
             </div>
@@ -459,426 +346,47 @@ export const HomePage: React.FC = () => {
       </div>
 
       {/* ========================================================
-          4. PROJECTS SECTION
-          - Only projects
-          - AI Driver Awareness System
-          - Sacha Sauda
-          - Student Performance Prediction
-          - One additional strong existing project if suitable (Swagatam Vijay Bakers)
-          - Screenshot, short description, tech stack, GitHub and Live Demo
+          4. CALL TO ACTION BANNER (HOME EXCLUSIVE)
           ======================================================== */}
-      <section id="projects" className="scroll-mt-24">
+      <section>
         <ScrollReveal>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeader
-              badge="Selected Projects"
-              badgeVariant="brand"
-              title="Featured"
-              highlightText="Projects & Systems"
-              description="Curated projects showcasing real-time Computer Vision safety, responsive e-commerce web applications, and predictive machine learning modeling."
-            />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              {displayProjects.map((project, idx) => (
-                <ScrollReveal key={project.id} delay={idx * 0.08}>
-                  <ProjectCard
-                    project={project}
-                    onOpenDetails={(p) => setSelectedProject(p)}
-                  />
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Section Divider */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
-        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
-      </div>
-
-      {/* ========================================================
-          5. EDUCATION SECTION
-          - Only education details
-          - B.Tech CSE AI&ML
-          - Sanskriti University
-          - 2023–2027
-          ======================================================== */}
-      <section id="education" className="scroll-mt-24">
-        <ScrollReveal>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeader
-              badge="Academics"
-              badgeVariant="brand"
-              title="Education &"
-              highlightText="University Foundation"
-              description="Undergraduate academic credentials and formal engineering studies at Sanskriti University."
-            />
-
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out hover:-translate-y-0.5 space-y-6">
-              {/* Institution Header */}
-              <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                      Sanskriti University
-                    </h3>
-                    <Badge variant="brand" size="sm">
-                      Active Student
-                    </Badge>
-                  </div>
-                  <p className="text-base font-semibold text-blue-600 dark:text-blue-400">
-                    Bachelor of Technology (B.Tech) — Computer Science & Engineering
-                  </p>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                    Specialization: Artificial Intelligence & Machine Learning (AI & ML)
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row md:flex-col items-start md:items-end gap-1.5 text-xs text-slate-500 font-medium">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Session: 2023 — 2027 (Expected)</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Mathura, Uttar Pradesh, India</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Core Relevant Coursework */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-                <div className="md:col-span-8 space-y-2.5">
-                  <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-                    <BookOpen className="w-3.5 h-3.5 text-blue-600" />
-                    Core Academic Curriculum
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {[
-                      'Data Structures & Algorithms',
-                      'Web Technologies & Development',
-                      'Database Management Systems (DBMS)',
-                      'Object-Oriented Programming (OOP)',
-                      'Operating Systems',
-                      'Computer Networks',
-                      'Machine Learning & Deep Learning',
-                      'Computer Vision',
-                      'Discrete Mathematics & Statistics'
-                    ].map((course) => (
-                      <span
-                        key={course}
-                        className="text-xs px-2.5 py-1 rounded-md bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-700 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-700/80 transition-all duration-150 cursor-default"
-                      >
-                        {course}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="md:col-span-4 space-y-2.5">
-                  <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-                    <GraduationCap className="w-3.5 h-3.5 text-emerald-600" />
-                    Degree Details
-                  </h4>
-                  <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 text-xs text-slate-600 dark:text-slate-400 space-y-1">
-                    <p className="font-semibold text-slate-900 dark:text-white">Full-Time Undergraduate Degree</p>
-                    <p>Rigorous computer science foundation combined with modern AI & machine learning curricula.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Section Divider */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
-        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
-      </div>
-
-      {/* ========================================================
-          6. CONTACT SECTION
-          - Only contact information
-          - Contact form
-          - Email, phone, GitHub and LinkedIn
-          - No unrelated content
-          ======================================================== */}
-      <section id="contact" className="scroll-mt-24">
-        <ScrollReveal>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeader
-              badge="Contact"
-              badgeVariant="brand"
-              title="Let's"
-              highlightText="Get In Touch"
-              description="Whether you have an internship opportunity, frontend role, or project inquiry, reach out directly."
-            />
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Direct Contact Information */}
-              <div className="lg:col-span-5 space-y-4">
-                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-4 hover:-translate-y-0.5">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                    Direct Information
-                  </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
-                    Feel free to reach out via email, phone, or connect directly on LinkedIn and GitHub.
-                  </p>
-
-                  <div className="space-y-3 pt-2">
-                    <a
-                      href={`mailto:${settings.email}`}
-                      className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 hover:bg-blue-50/50 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 group active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                    >
-                      <div className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform duration-200">
-                        <Mail className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] font-medium text-slate-400">Email Address</p>
-                        <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-                          {settings.email}
-                        </p>
-                      </div>
-                    </a>
-
-                    <a
-                      href={`tel:${settings.phone}`}
-                      className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 hover:bg-emerald-50/50 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 group active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                    >
-                      <div className="w-9 h-9 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-105 transition-transform duration-200">
-                        <Phone className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] font-medium text-slate-400">Phone</p>
-                        <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
-                          {settings.phone}
-                        </p>
-                      </div>
-                    </a>
-
-                    <div className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
-                      <div className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400">
-                        <MapPin className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] font-medium text-slate-400">Location</p>
-                        <p className="text-xs font-semibold text-slate-800 dark:text-slate-200">
-                          Mathura, Uttar Pradesh, India
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
-                    <a
-                      href={settings.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 py-2 px-3 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                    >
-                      <GithubIcon size={14} /> GitHub
-                    </a>
-                    <a
-                      href={settings.linkedinUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 py-2 px-3 rounded-lg bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 border border-blue-200/60 dark:border-blue-800/60 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                    >
-                      <LinkedinIcon size={14} /> LinkedIn
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Message Form */}
-              <div className="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
-                  Send a Message
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mb-5">
-                  Have a question or role in mind? Drop a message below and I will respond promptly.
+            <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 text-white border border-slate-800 rounded-2xl p-8 sm:p-12 shadow-md relative overflow-hidden">
+              <div className="relative z-10 max-w-3xl space-y-4">
+                <Badge variant="brand" size="md">
+                  Let's Build Something Great
+                </Badge>
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                  Looking for a dedicated Frontend Developer?
+                </h2>
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                  I am available for full-time frontend roles, internships, and collaborative software engineering projects. Reach out directly or review my complete resume.
                 </p>
 
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                      <label htmlFor="contact-name" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                        Your Name <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        id="contact-name"
-                        type="text"
-                        required
-                        placeholder="Jane Doe"
-                        value={formState.name}
-                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        className="w-full px-3 py-2 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-200"
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <label htmlFor="contact-email" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                        Your Email <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        id="contact-email"
-                        type="email"
-                        required
-                        placeholder="jane@example.com"
-                        value={formState.email}
-                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        className="w-full px-3 py-2 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-200"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-1">
-                    <label htmlFor="contact-subject" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                      Subject
-                    </label>
-                    <input
-                      id="contact-subject"
-                      type="text"
-                      placeholder="Frontend Developer Role / Opportunity"
-                      value={formState.subject}
-                      onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                      className="w-full px-3 py-2 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-200"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label htmlFor="contact-message" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                      Message <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      rows={4}
-                      required
-                      placeholder="Hi Ansh, I saw your portfolio and would like to discuss..."
-                      value={formState.message}
-                      onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      className="w-full px-3 py-2 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-200 resize-y"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="md"
-                    isLoading={isSubmitting}
-                    icon={<Send className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />}
-                    className="w-full sm:w-auto"
-                  >
-                    Send Message
-                  </Button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Section Divider */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-hidden="true">
-        <div className="border-t border-slate-200/70 dark:border-slate-800/70" />
-      </div>
-
-      {/* ========================================================
-          7. RESUME SECTION
-          - Direct Resume View/Download
-          - Recruiter-friendly summary & actions
-          ======================================================== */}
-      <section id="resume" className="scroll-mt-24">
-        <ScrollReveal>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeader
-              badge="Resume"
-              badgeVariant="brand"
-              title="Curriculum"
-              highlightText="Vitae & Credentials"
-              description="Direct resume access with options to view in browser or download as a formatted PDF."
-            />
-
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-6">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100 dark:border-slate-800">
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                      <FileText className="w-4 h-4" />
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                      Ansh — Resume
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-                    Frontend Developer • B.Tech CSE (AI & ML), Sanskriti University (2023–2027)
-                  </p>
-                </div>
-
-                {/* Direct Action Buttons */}
-                <div className="flex flex-wrap items-center gap-3">
-                  <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button size="md" variant="primary" icon={<ExternalLink className="w-4 h-4" />} iconPosition="right">
-                      View PDF
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <Link to="/contact">
+                    <Button size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+                      Contact Ansh
                     </Button>
-                  </a>
-
-                  <a
-                    href="/resume.pdf"
-                    download="Ansh_Frontend_Developer_Resume.pdf"
-                  >
-                    <Button size="md" variant="secondary" icon={<FileDown className="w-4 h-4" />}>
-                      Download Resume
-                    </Button>
-                  </a>
+                  </Link>
 
                   <Link to="/resume">
-                    <Button size="md" variant="outline" icon={<FileText className="w-4 h-4" />}>
-                      Web Resume
+                    <Button size="md" variant="secondary" icon={<FileText className="w-4 h-4" />}>
+                      View Online Resume
                     </Button>
                   </Link>
                 </div>
               </div>
 
-              {/* Recruiter-focused Document Specifications */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
-                  <span className="font-semibold text-slate-900 dark:text-white block">Document Format</span>
-                  <p className="text-slate-600 dark:text-slate-400">
-                    Standard Single-Page PDF, ATS-friendly format optimized for recruiter and engineering review
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
-                  <span className="font-semibold text-slate-900 dark:text-white block">Target Roles</span>
-                  <p className="text-slate-600 dark:text-slate-400">
-                    Frontend Developer, React / Web Developer, Software Engineer Intern
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
-                  <span className="font-semibold text-slate-900 dark:text-white block">Candidate Status</span>
-                  <p className="text-emerald-600 dark:text-emerald-400 font-semibold">
-                    Immediate availability for full-time roles & engineering internships
-                  </p>
-                </div>
-              </div>
+              {/* Subtle background decoration */}
+              <div 
+                aria-hidden="true" 
+                className="absolute -right-10 -bottom-10 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" 
+              />
             </div>
           </div>
         </ScrollReveal>
       </section>
-
-      {/* Project Detail Modal */}
-      <ProjectDetailModal
-        project={selectedProject}
-        isOpen={!!selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
     </div>
   );
 };

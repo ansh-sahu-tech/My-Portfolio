@@ -1,52 +1,21 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Mail, Shield } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { GithubIcon, LinkedinIcon, SocialTooltip } from '../common/SocialIcons';
 
 export const Footer: React.FC = () => {
   const { settings } = useData();
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About', path: '/#about' },
-    { name: 'Skills', path: '/#skills' },
-    { name: 'Projects', path: '/#projects' },
-    { name: 'Education', path: '/#education' },
-    { name: 'Contact', path: '/#contact' },
-    { name: 'Resume', path: '/#resume' },
+    { name: 'About', path: '/about' },
+    { name: 'Skills', path: '/skills' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Education', path: '/education' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'Resume', path: '/resume' },
   ];
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    e.preventDefault();
-    if (path.startsWith('/#')) {
-      const sectionId = path.replace('/#', '');
-      if (location.pathname === '/') {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const navbarOffset = 75;
-          const elementPosition = el.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.scrollY - navbarOffset;
-          window.history.pushState(null, '', `/#${sectionId}`);
-          window.scrollTo({
-            top: Math.max(0, offsetPosition),
-            behavior: 'smooth',
-          });
-        }
-      } else {
-        navigate(`/#${sectionId}`);
-      }
-    } else if (path === '/') {
-      if (location.pathname === '/') {
-        window.history.pushState(null, '', '/');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        navigate('/');
-      }
-    }
-  };
 
   return (
     <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 transition-colors">
@@ -71,14 +40,13 @@ export const Footer: React.FC = () => {
           {/* Quick Nav Links */}
           <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-medium text-slate-600 dark:text-slate-400">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.path}
-                onClick={(e) => handleNavClick(e, link.path)}
+                to={link.path}
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -139,3 +107,5 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
+
+export default Footer;
