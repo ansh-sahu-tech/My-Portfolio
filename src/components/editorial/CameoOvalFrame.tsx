@@ -12,19 +12,24 @@ export interface CameoOvalFrameProps {
   imageClassName?: string;
   caption?: string;
   badgeText?: string;
+  subBadgeText?: string;
+  tagText?: string;
 }
 
 export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
   imageSrc,
   imageAlt,
   className = '',
-  aspectClass = 'aspect-[3/4] max-w-[260px] sm:max-w-[290px]',
+  aspectClass,
   frameShape = 'oval',
   imageClassName = '',
   caption,
-  badgeText
+  badgeText,
+  subBadgeText,
+  tagText
 }) => {
   if (frameShape === 'architectural' || frameShape === 'landscape') {
+    const currentAspect = aspectClass || 'aspect-[4/3]';
     return (
       <div className={`relative flex flex-col items-center justify-center p-3 sm:p-5 w-full max-w-[340px] sm:max-w-[370px] mx-auto ${className}`}>
         {/* Decorative Golden Wire Curves */}
@@ -49,13 +54,15 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
           <div className="flex items-center justify-between px-2 pb-2 text-[10px] font-bold uppercase tracking-wider text-[#9f572f]">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#c2744d]" />
-              {badgeText || 'Campus Architecture'}
+              {badgeText || 'Philosophy & Future'}
             </span>
-            <span className="text-stone-400 font-serif italic lowercase text-[11px]">Mathura, India</span>
+            {subBadgeText && (
+              <span className="text-stone-400 font-serif italic lowercase text-[11px]">{subBadgeText}</span>
+            )}
           </div>
 
           {/* Inner solid caramel/gold border containing image */}
-          <div className="w-full aspect-[738/294] rounded-xl sm:rounded-[18px] overflow-hidden border-[2px] border-[#b97a4e] shadow-md bg-stone-900/10 relative group">
+          <div className={`w-full ${currentAspect} rounded-xl sm:rounded-[18px] overflow-hidden border-[2px] border-[#b97a4e] shadow-md bg-stone-900/10 relative group`}>
             <img
               src={imageSrc}
               alt={imageAlt}
@@ -73,7 +80,9 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
                 <MapPin className="w-3.5 h-3.5 text-[#b85b2c] shrink-0" />
                 <span>{caption}</span>
               </div>
-              <span className="text-[10px] text-stone-400 font-mono font-medium">B.Tech Campus</span>
+              {tagText && (
+                <span className="text-[10px] text-stone-400 font-mono font-medium">{tagText}</span>
+              )}
             </div>
           )}
         </div>
@@ -81,6 +90,7 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
     );
   }
 
+  const ovalAspect = aspectClass || 'aspect-[3/4] max-w-[260px] sm:max-w-[290px]';
   return (
     <div className={`relative flex items-center justify-center p-4 sm:p-6 w-full ${className}`}>
       {/* Decorative Golden Wire Curves at bottom */}
@@ -100,7 +110,7 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
       </div>
 
       {/* Outer concentric thin gold ring */}
-      <div className={`relative z-10 w-full ${aspectClass} p-2 rounded-[130px] border border-[#d8b082]/70 shadow-sm bg-white/30 backdrop-blur-[2px] transition-transform duration-500 hover:scale-[1.02]`}>
+      <div className={`relative z-10 w-full ${ovalAspect} p-2 rounded-[130px] border border-[#d8b082]/70 shadow-sm bg-white/30 backdrop-blur-[2px] transition-transform duration-500 hover:scale-[1.02]`}>
         {/* Inner solid caramel/gold border containing image */}
         <div className="w-full h-full rounded-[120px] overflow-hidden border-[2.5px] border-[#b97a4e] shadow-md bg-stone-100 relative group">
           <img

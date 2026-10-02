@@ -387,13 +387,19 @@ export const HomePage: React.FC = () => {
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 2)) && (
             <EditorialSlideCard
               id="vision"
-              imageSrc="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=800&q=80"
-              imageAlt="Vision & Mission Artwork"
+              imageSrc="/vision-mission.png"
+              imageAlt="Mission, Vision & Core Value Wooden Blocks"
               categoryTitle="Philosophy & Future"
               titleRust="VISION"
               titleBlack="MISSION"
               activeSection="about"
               signature="By Ansh Sahu"
+              frameShape="architectural"
+              aspectClass="aspect-[623/491]"
+              badgeText="Core Philosophy"
+              subBadgeText="guiding principles"
+              caption="Vision • Mission • Core Values"
+              tagText="Engineering Ethos"
             >
               <div className="space-y-4">
                 {/* Vision Block */}
@@ -443,8 +449,11 @@ export const HomePage: React.FC = () => {
               activeSection="education"
               signature="By Ansh Sahu"
               frameShape="architectural"
+              aspectClass="aspect-[738/294]"
               caption="Sanskriti University • Mathura, UP"
               badgeText="Campus Architecture"
+              subBadgeText="mathura, india"
+              tagText="B.Tech Campus"
             >
               <div className="space-y-4">
                 {/* 2-Column Layout matching screenshot */}

@@ -22,6 +22,8 @@ interface EditorialSlideCardProps {
   imageClassName?: string;
   caption?: string;
   badgeText?: string;
+  subBadgeText?: string;
+  tagText?: string;
 }
 
 export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
@@ -40,7 +42,9 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
   aspectClass,
   imageClassName,
   caption,
-  badgeText
+  badgeText,
+  subBadgeText,
+  tagText
 }) => {
   return (
     <motion.section
@@ -76,6 +80,8 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
             imageClassName={imageClassName}
             caption={caption}
             badgeText={badgeText}
+            subBadgeText={subBadgeText}
+            tagText={tagText}
           />
         </div>
 
