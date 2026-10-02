@@ -2,255 +2,264 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
   GraduationCap, 
-  BrainCircuit, 
   Eye, 
-  BarChart3, 
   ArrowRight, 
   FileDown, 
   MapPin, 
   Calendar, 
-  Layers,
-  Cpu,
-  Target,
-  Sparkles,
-  Mail,
-  Phone
+  Layers, 
+  Cpu, 
+  Target, 
+  Mail, 
+  Phone, 
+  Code2 
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { SectionHeader } from '../../components/common/SectionHeader';
-import { GlassCard } from '../../components/common/GlassCard';
 import { Button } from '../../components/common/Button';
-import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
+import { ScrollReveal } from '../../components/common/ScrollReveal';
+import { GithubIcon, LinkedinIcon, SocialTooltip } from '../../components/common/SocialIcons';
 
 export const AboutPage: React.FC = () => {
   const { settings } = useData();
 
   const focusAreas = [
     {
-      title: 'Artificial Intelligence',
-      icon: <BrainCircuit className="w-5 h-5 text-cyan-400" />,
-      desc: 'Developing autonomous decision architectures, intelligent heuristics, and heuristic search algorithms.'
+      title: 'Frontend Engineering',
+      icon: <Code2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      desc: 'Developing responsive, accessible single-page applications with React, Next.js, and Tailwind CSS.'
     },
     {
-      title: 'Machine Learning',
-      icon: <Cpu className="w-5 h-5 text-indigo-400" />,
-      desc: 'Training supervised and unsupervised predictive pipelines with Scikit-learn, optimizing hyper-parameters, and preventing overfitting.'
+      title: 'AI & Machine Learning Foundations',
+      icon: <Cpu className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
+      desc: 'Supervised predictive modeling, data cleaning with Pandas & NumPy, and algorithmic problem-solving.'
     },
     {
       title: 'Computer Vision',
-      icon: <Eye className="w-5 h-5 text-emerald-400" />,
-      desc: 'Real-time video processing, facial landmark estimation (EAR/MAR), head pose tracking, and edge detection.'
+      icon: <Eye className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+      desc: 'Real-time video processing, facial landmark estimation (EAR/MAR), and edge-optimized camera inference.'
     },
     {
-      title: 'Data Analytics & EDA',
-      icon: <BarChart3 className="w-5 h-5 text-amber-400" />,
-      desc: 'Rigorous exploratory data analysis, statistical correlation matrices, missing value strategies, and clear visualization.'
+      title: 'Component Architecture & APIs',
+      icon: <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      desc: 'Designing reusable, type-safe components, integrating RESTful backends, and optimizing rendering speed.'
     }
   ];
 
   const engineeringPrinciples = [
     {
-      title: 'Real-World Problem Solving',
-      desc: 'AI is most powerful when directly solving tangible human challenges—such as preventing drowsy driving accidents or detecting health risks early.'
+      title: 'Clean, Pragmatic Code',
+      desc: 'Prioritizing readable, maintainable, and well-structured code over clever but brittle hacks.'
     },
     {
-      title: 'Performance & Low Latency',
-      desc: 'Optimizing inference speed and memory footprint so models run smoothly on edge devices and consumer web browsers without prohibitive cloud overhead.'
+      title: 'Mobile-First Responsiveness',
+      desc: 'Ensuring layouts, touch targets, and typography feel natural and fluid across every screen size.'
     },
     {
-      title: 'Reproducible & Clean Code',
-      desc: 'Treating machine learning like disciplined software engineering with modular data pipelines, deterministic seeds, and strict versioning.'
+      title: 'Continuous Growth',
+      desc: 'Actively mastering modern web standards, algorithms, and applied machine learning architectures.'
     }
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 font-sans">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 font-sans pb-16">
       {/* 1. Header */}
-      <SectionHeader
-        badge="About The Engineer"
-        badgeVariant="cyan"
-        title="More Than Code."
-        highlightText="I Build Intelligent Systems."
-        description="A deeper look into my background, academic journey at Sanskriti University, core AI/ML focus areas, and technical philosophy."
-      />
+      <ScrollReveal>
+        <SectionHeader
+          badge="About Me"
+          badgeVariant="brand"
+          title="Frontend Developer with"
+          highlightText="AI/ML Foundations"
+          description="A deeper look into my background, academic studies at Sanskriti University, core focus areas, and technical philosophy."
+        />
+      </ScrollReveal>
 
       {/* 2. Main Profile Overview Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left: Bio & Academic Info Card */}
-        <div className="lg:col-span-7 space-y-6">
-          <GlassCard className="p-6 sm:p-8 border-slate-800 space-y-6" glowColor="cyan">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-              <div className="relative shrink-0">
-                <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl overflow-hidden border-2 border-cyan-400/60 p-0.5 bg-gradient-to-br from-cyan-400 via-indigo-500 to-emerald-400 shadow-[0_0_35px_rgba(6,182,212,0.4)]">
-                  <img
-                    src="/ansh-profile.jpg"
-                    alt="Ansh - AI/ML Engineer"
-                    className="w-full h-full object-cover object-top rounded-[22px]"
-                  />
-                </div>
-                <span className="absolute -bottom-1.5 -right-1.5 px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-500/50 text-[10px] font-mono font-bold shadow-lg">
-                  ACTIVE
-                </span>
-              </div>
-
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-2xl font-bold text-white">{settings.name}</h3>
-                  <Sparkles className="w-4 h-4 text-cyan-400" />
-                </div>
-                <p className="text-xs font-mono text-cyan-400 font-semibold">{settings.role}</p>
-                <p className="text-xs text-slate-400 font-medium">
-                  {settings.university} • Class of {settings.graduationYear}
-                </p>
-                <div className="flex flex-wrap items-center gap-2 pt-1.5">
-                  <a
-                    href={settings.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700/60 text-[11px] font-mono transition-colors flex items-center gap-1.5"
-                  >
-                    <GithubIcon size={12} />
-                    <span>GitHub</span>
-                  </a>
-
-                  <a
-                    href={settings.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2.5 py-1 rounded-lg bg-blue-950/60 hover:bg-blue-900/60 text-blue-300 border border-blue-500/30 text-[11px] font-mono transition-colors flex items-center gap-1.5"
-                  >
-                    <LinkedinIcon size={12} />
-                    <span>LinkedIn</span>
-                  </a>
-
-                  <a
-                    href={`mailto:${settings.email}`}
-                    className="px-2.5 py-1 rounded-lg bg-indigo-950/60 hover:bg-indigo-900/60 text-indigo-300 border border-indigo-500/30 text-[11px] font-mono transition-colors flex items-center gap-1.5"
-                    title={settings.email}
-                  >
-                    <Mail className="w-3 h-3 text-indigo-400" />
-                    <span>Email</span>
-                  </a>
-
-                  <a
-                    href={`tel:${settings.phone}`}
-                    className="px-2.5 py-1 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 text-[11px] font-mono transition-colors flex items-center gap-1.5"
-                    title={settings.phone}
-                  >
-                    <Phone className="w-3 h-3 text-emerald-400" />
-                    <span>{settings.phone}</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Hello! I'm <strong className="text-white">Ansh</strong>, an enthusiastic AI/ML Engineer currently pursuing my <strong className="text-cyan-300">B.Tech in Computer Science & Engineering with specialization in Artificial Intelligence and Machine Learning</strong> at <strong className="text-indigo-300">Sanskriti University</strong> (Class of 2027).
-            </p>
-
-            <p className="text-slate-400 text-sm leading-relaxed">
-              My engineering journey centers around bridging mathematical machine learning theory with production-quality software. From crafting real-time facial landmark detection algorithms for road safety to training diagnostic risk classifiers and building SaaS dashboard interfaces, I strive to make intelligent software tangible, robust, and accessible.
-            </p>
-
-            {/* Key Academic Specs */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <div className="p-3.5 rounded-xl bg-[#070b14] border border-slate-800 space-y-1">
-                <span className="text-[11px] font-mono text-slate-400 uppercase flex items-center gap-1.5">
-                  <GraduationCap className="w-3.5 h-3.5 text-cyan-400" /> Degree & Major
-                </span>
-                <p className="text-xs font-semibold text-white">B.Tech CSE (AI & ML)</p>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-[#070b14] border border-slate-800 space-y-1">
-                <span className="text-[11px] font-mono text-slate-400 uppercase flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-indigo-400" /> University & Location
-                </span>
-                <p className="text-xs font-semibold text-white">Sanskriti University, Mathura</p>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-[#070b14] border border-slate-800 space-y-1">
-                <span className="text-[11px] font-mono text-slate-400 uppercase flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-emerald-400" /> Timeline
-                </span>
-                <p className="text-xs font-semibold text-white">2023 — 2027 (Expected)</p>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-[#070b14] border border-slate-800 space-y-1">
-                <span className="text-[11px] font-mono text-slate-400 uppercase flex items-center gap-1.5">
-                  <Target className="w-3.5 h-3.5 text-amber-400" /> Current Status
-                </span>
-                <p className="text-xs font-semibold text-emerald-300">Open for Internships</p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-800">
-              <Link to="/contact">
-                <Button size="md" variant="gradient" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
-                  Get in Touch
-                </Button>
-              </Link>
-              <Link to="/resume">
-                <Button size="md" variant="secondary" icon={<FileDown className="w-4 h-4" />}>
-                  Download Resume
-                </Button>
-              </Link>
-            </div>
-          </GlassCard>
-        </div>
-
-        {/* Right: Focus Areas Grid */}
-        <div className="lg:col-span-5 space-y-4">
-          <h3 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
-            <Layers className="w-4 h-4 text-cyan-400" />
-            Core Specialization Focus
-          </h3>
-
-          <div className="space-y-3">
-            {focusAreas.map((area, idx) => (
-              <GlassCard
-                key={idx}
-                className="p-4 border-slate-800 hover:border-cyan-500/30 transition-all"
-                glowColor="cyan"
-              >
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-[#070b14] border border-slate-800 shrink-0">
-                    {area.icon}
+      <ScrollReveal delay={0.1}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left: Bio & Academic Info Card */}
+          <div className="lg:col-span-7">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-6 hover:-translate-y-0.5 group">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+                <div className="relative shrink-0">
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 shadow-sm">
+                    <img
+                      src="/ansh-profile.jpg"
+                      alt="Ansh - Frontend Developer"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
                   </div>
+                </div>
+
+                <div className="space-y-1.5">
                   <div>
-                    <h4 className="text-sm font-bold text-white">{area.title}</h4>
-                    <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                      {area.desc}
-                    </p>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{settings.name}</h3>
+                    <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">Frontend Developer</p>
+                  </div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {settings.university} • B.Tech CSE (AI & ML) 2023–2027
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-2 pt-1.5">
+                    <SocialTooltip label="GitHub">
+                      <a
+                        href={settings.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1.5"
+                      >
+                        <GithubIcon size={13} />
+                        <span>GitHub</span>
+                      </a>
+                    </SocialTooltip>
+
+                    <SocialTooltip label="LinkedIn">
+                      <a
+                        href={settings.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 border border-blue-200/60 dark:border-blue-800/60 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1.5"
+                      >
+                        <LinkedinIcon size={13} />
+                        <span>LinkedIn</span>
+                      </a>
+                    </SocialTooltip>
+
+                    <SocialTooltip label="Email">
+                      <a
+                        href={`mailto:${settings.email}`}
+                        className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1.5"
+                      >
+                        <Mail className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                        <span>Email</span>
+                      </a>
+                    </SocialTooltip>
+
+                    <SocialTooltip label="Phone">
+                      <a
+                        href={`tel:${settings.phone}`}
+                        className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1.5"
+                      >
+                        <Phone className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                        <span>{settings.phone}</span>
+                      </a>
+                    </SocialTooltip>
                   </div>
                 </div>
-              </GlassCard>
+              </div>
+
+              <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                Hello! I'm <strong className="text-slate-900 dark:text-white">Ansh</strong>, an undergraduate Computer Science student at <strong className="text-slate-900 dark:text-white">Sanskriti University</strong> specializing in Artificial Intelligence and Machine Learning (Class of 2027).
+              </p>
+
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                My primary passion is **Frontend Development** — constructing responsive, accessible, and fast web applications using React, Next.js, and modern CSS. My coursework in AI & ML provides me with a rigorous mathematical and algorithmic foundation, enabling me to handle complex state, data flows, and intelligent features with confidence.
+              </p>
+
+              {/* Key Academic Specs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1 hover:border-slate-300 dark:hover:border-slate-600 transition-colors">
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                    <GraduationCap className="w-3.5 h-3.5 text-blue-600" /> Degree & Major
+                  </span>
+                  <p className="text-xs font-bold text-slate-900 dark:text-white">B.Tech CSE (AI & ML)</p>
+                </div>
+
+                <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1 hover:border-slate-300 dark:hover:border-slate-600 transition-colors">
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-emerald-600" /> University & Location
+                  </span>
+                  <p className="text-xs font-bold text-slate-900 dark:text-white">Sanskriti University, Mathura</p>
+                </div>
+
+                <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1 hover:border-slate-300 dark:hover:border-slate-600 transition-colors">
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-blue-600" /> Timeline
+                  </span>
+                  <p className="text-xs font-bold text-slate-900 dark:text-white">2023 — 2027 (Expected)</p>
+                </div>
+
+                <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1 hover:border-slate-300 dark:hover:border-slate-600 transition-colors">
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                    <Target className="w-3.5 h-3.5 text-emerald-600" /> Current Status
+                  </span>
+                  <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400">Open for Frontend Roles</p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+                <Link to="/contact">
+                  <Button size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+                    Get in Touch
+                  </Button>
+                </Link>
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <Button size="md" variant="secondary" icon={<FileDown className="w-4 h-4" />}>
+                    Download Resume
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Focus Areas Grid */}
+          <div className="lg:col-span-5 space-y-4">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+              <Layers className="w-4 h-4 text-blue-600" />
+              Core Focus Areas
+            </h3>
+
+            <div className="space-y-3">
+              {focusAreas.map((area, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 hover:-translate-y-0.5 transition-all duration-300 ease-out"
+                >
+                  <div className="flex items-start gap-3.5">
+                    <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shrink-0">
+                      {area.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900 dark:text-white">{area.title}</h4>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                        {area.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      {/* 3. Engineering Philosophy & Approach */}
+      <ScrollReveal delay={0.15}>
+        <div className="space-y-6 pt-4">
+          <SectionHeader
+            badge="Philosophy"
+            badgeVariant="brand"
+            title="Pragmatic"
+            highlightText="Engineering Approach"
+            description="The practical engineering principles guiding my development work."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {engineeringPrinciples.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 hover:-translate-y-1 transition-all duration-300 ease-out space-y-3"
+              >
+                <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-xs">
+                  0{idx + 1}
+                </div>
+                <h4 className="text-base font-bold text-slate-900 dark:text-white">{item.title}</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{item.desc}</p>
+              </div>
             ))}
           </div>
         </div>
-      </div>
-
-      {/* 3. Engineering Philosophy & Approach */}
-      <div className="space-y-6 pt-6">
-        <SectionHeader
-          badge="Philosophy"
-          badgeVariant="indigo"
-          title="How I Approach"
-          highlightText="Engineering & AI"
-          description="Disciplined practices guiding every line of model code and user interface."
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {engineeringPrinciples.map((item, idx) => (
-            <GlassCard key={idx} className="p-6 border-slate-800 space-y-3" glowColor="indigo">
-              <div className="w-8 h-8 rounded-lg bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 flex items-center justify-center font-mono font-bold text-xs">
-                0{idx + 1}
-              </div>
-              <h4 className="text-base font-bold text-white">{item.title}</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
-            </GlassCard>
-          ))}
-        </div>
-      </div>
+      </ScrollReveal>
     </div>
   );
 };

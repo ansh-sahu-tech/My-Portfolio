@@ -131,7 +131,7 @@ export const AdminSettingsPage: React.FC = () => {
             </div>
 
             <div className="space-y-1">
-              <label className="font-medium text-slate-300">GitHub Profile URL (or YOUR_GITHUB_URL)</label>
+              <label className="font-medium text-slate-300">GitHub Profile URL</label>
               <input
                 type="text"
                 value={formData.githubUrl}
@@ -141,7 +141,7 @@ export const AdminSettingsPage: React.FC = () => {
             </div>
 
             <div className="space-y-1">
-              <label className="font-medium text-slate-300">LinkedIn URL (or YOUR_LINKEDIN_URL)</label>
+              <label className="font-medium text-slate-300">LinkedIn Profile URL</label>
               <input
                 type="text"
                 value={formData.linkedinUrl}

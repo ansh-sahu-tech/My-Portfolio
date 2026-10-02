@@ -1,163 +1,277 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
-import { 
-  Command, 
-  Menu, 
-  X, 
-  FileDown 
-} from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, FileDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useData } from '../../context/DataContext';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { Button } from '../common/Button';
+import { GithubIcon, LinkedinIcon, SocialTooltip } from '../common/SocialIcons';
 
 interface NavbarProps {
-  onOpenCommandPalette: () => void;
+  onOpenCommandPalette?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
+  const { settings } = useData();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
+
+      if (location.pathname === '/') {
+        // Top of page
+        if (window.scrollY < 80) {
+          setActiveSection('home');
+          return;
+        }
+
+        // Bottom of page detection for contact
+        const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 70;
+        if (isBottom) {
+          setActiveSection('contact');
+          return;
+        }
+
+        const sections = ['contact', 'projects', 'skills', 'about', 'home'];
+        const scrollPosition = window.scrollY + 140;
+
+        for (const sectionId of sections) {
+          const el = document.getElementById(sectionId);
+          if (el && scrollPosition >= el.offsetTop) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Skills', path: '/skills' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Experience', path: '/experience' },
-    { name: 'Certificates', path: '/certificates' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Home', id: 'home', path: '/' },
+    { name: 'About', id: 'about', path: '/#about' },
+    { name: 'Skills', id: 'skills', path: '/#skills' },
+    { name: 'Projects', id: 'projects', path: '/#projects' },
+    { name: 'Contact', id: 'contact', path: '/#contact' },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: typeof navLinks[0]) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      const target = document.getElementById(link.id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(link.id);
+      } else if (link.id === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setActiveSection('home');
+      }
+    } else {
+      if (link.id === 'home') {
+        navigate('/');
+      } else {
+        navigate(`/#${link.id}`);
+      }
+    }
+  };
+
+  const isLinkActive = (id: string, path: string) => {
+    if (location.pathname === '/') {
+      return activeSection === id;
+    }
+    return location.pathname === path;
+  };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
         isScrolled
-          ? 'bg-[#070b14]/85 backdrop-blur-xl border-b border-slate-800/80 shadow-lg shadow-black/20 py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-sm py-3'
+          : 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-b border-slate-200/50 dark:border-slate-800/50 py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 via-indigo-500 to-emerald-500 p-[1.5px] shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all">
-              <div className="w-full h-full bg-[#070b14] rounded-[10px] flex items-center justify-center">
-                <span className="font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 text-sm">
-                  A_
-                </span>
-              </div>
+          {/* Brand Logo / Identity */}
+          <Link
+            to="/"
+            onClick={() => {
+              if (location.pathname === '/') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+            className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-0.5"
+          >
+            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm tracking-tight shadow-sm group-hover:bg-blue-700 group-hover:scale-105 active:scale-95 transition-all duration-200">
+              A
             </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-white text-base tracking-tight font-sans group-hover:text-cyan-300 transition-colors">
-                  Ansh<span className="text-cyan-400">.dev</span>
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping inline-block" />
-              </div>
-              <p className="text-[10px] font-mono text-slate-400 hidden sm:block">AI / ML Engineer</p>
+            <div className="flex flex-col">
+              <span className="font-bold text-slate-900 dark:text-white text-base tracking-tight leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                Ansh
+              </span>
+              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-tight">
+                Frontend Developer
+              </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 p-1 bg-[#0b101c]/70 border border-slate-800/80 rounded-2xl backdrop-blur-md">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                className={({ isActive }) =>
-                  `px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${
-                    isActive
-                      ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm shadow-cyan-950/40'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
-                  }`
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
+          {/* Desktop Navigation Links with Active Indicator */}
+          <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+            {navLinks.map((link) => {
+              const active = isLinkActive(link.id, link.path);
+              return (
+                <a
+                  key={link.id}
+                  href={link.path}
+                  onClick={(e) => handleNavClick(e, link)}
+                  className={`relative px-3.5 py-1.5 rounded-lg text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+                    active
+                      ? 'text-blue-600 dark:text-blue-400 font-semibold'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60'
+                  }`}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {link.name}
+                  {active && (
+                    <motion.div
+                      layoutId="navbar-active-pill"
+                      className="absolute inset-0 bg-blue-50/90 dark:bg-blue-950/60 rounded-lg -z-10 border border-blue-200/60 dark:border-blue-800/60"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  {active && (
+                    <motion.span
+                      layoutId="navbar-active-line"
+                      className="absolute -bottom-1 left-3 right-3 h-[2px] bg-blue-600 dark:bg-blue-400 rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </nav>
 
-          {/* Right Action Buttons */}
-          <div className="flex items-center gap-2.5">
-            <button
-              onClick={onOpenCommandPalette}
-              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-cyan-300 text-xs transition-all font-mono shadow-sm"
-              title="Quick Command Palette (Ctrl+K)"
-            >
-              <Command className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="text-slate-300">Cmd</span>
-              <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400 border border-slate-700">
-                Ctrl+K
-              </kbd>
-            </button>
+          {/* Right Action Icons & Buttons */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Social Tooltip Links */}
+            <div className="hidden sm:flex items-center gap-1.5 border-r border-slate-200 dark:border-slate-800 pr-3">
+              <SocialTooltip label="GitHub Profile">
+                <a
+                  href={settings.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-all duration-200"
+                  aria-label="Ansh on GitHub"
+                >
+                  <GithubIcon size={18} />
+                </a>
+              </SocialTooltip>
 
-            <Link to="/resume" className="hidden sm:block">
-              <Button size="sm" variant="cyber" icon={<FileDown className="w-3.5 h-3.5" />}>
+              <SocialTooltip label="LinkedIn Profile">
+                <a
+                  href={settings.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-all duration-200"
+                  aria-label="Ansh on LinkedIn"
+                >
+                  <LinkedinIcon size={18} />
+                </a>
+              </SocialTooltip>
+            </div>
+
+            {/* Resume Action */}
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex"
+            >
+              <Button size="sm" variant="secondary" icon={<FileDown className="w-3.5 h-3.5" />}>
                 Resume
               </Button>
-            </Link>
+            </a>
 
             <ThemeToggle />
 
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 lg:hidden border border-slate-800 transition-colors"
+              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 md:hidden active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-all duration-200"
               aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Dropdown Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-3 p-4 bg-[#0b101c]/95 border border-slate-800 rounded-2xl backdrop-blur-2xl shadow-2xl space-y-3 animate-in fade-in slide-in-from-top-3 duration-200">
-            <div className="grid grid-cols-2 gap-1.5">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.path}
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `px-3 py-2 rounded-xl text-xs font-medium transition-all flex items-center justify-between ${
-                      isActive
-                        ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30'
-                        : 'text-slate-300 hover:bg-slate-800'
-                    }`
-                  }
-                >
-                  <span>{link.name}</span>
-                </NavLink>
-              ))}
-            </div>
+          <div className="md:hidden mt-3 p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-lg space-y-2 animate-in fade-in duration-150">
+            <nav className="flex flex-col space-y-1" aria-label="Mobile Navigation">
+              {navLinks.map((link) => {
+                const active = isLinkActive(link.id, link.path);
+                return (
+                  <a
+                    key={link.id}
+                    href={link.path}
+                    onClick={(e) => {
+                      handleNavClick(e, link);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
+                      active
+                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 font-semibold'
+                        : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    {active && <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400" />}
+                  </a>
+                );
+              })}
+            </nav>
 
-            <div className="pt-3 border-t border-slate-800 flex items-center justify-between gap-2">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenCommandPalette();
-                }}
-                className="flex-1 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300 flex items-center justify-center gap-2"
+            <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
+              <a
+                href={settings.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-95 flex items-center justify-center gap-1.5 transition-all"
               >
-                <Command className="w-3.5 h-3.5" /> Command Palette
-              </button>
-
-              <Link to="/resume" className="flex-1">
-                <Button size="sm" variant="primary" className="w-full" icon={<FileDown className="w-3.5 h-3.5" />}>
+                <GithubIcon size={15} /> GitHub
+              </a>
+              <a
+                href={settings.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-95 flex items-center justify-center gap-1.5 transition-all"
+              >
+                <LinkedinIcon size={15} /> LinkedIn
+              </a>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1"
+              >
+                <Button size="sm" variant="primary" className="w-full text-xs" icon={<FileDown className="w-3.5 h-3.5" />}>
                   Resume
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         )}

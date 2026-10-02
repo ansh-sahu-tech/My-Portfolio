@@ -12,15 +12,15 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('ansh_dev_theme_v1') as Theme;
-    return saved || 'dark';
+    const saved = localStorage.getItem('ansh_dev_theme_v2') as Theme;
+    return saved || 'light';
   });
 
-  const [actualTheme, setActualTheme] = useState<'dark' | 'light'>('dark');
+  const [actualTheme, setActualTheme] = useState<'dark' | 'light'>('light');
 
   useEffect(() => {
     const root = document.documentElement;
-    localStorage.setItem('ansh_dev_theme_v1', theme);
+    localStorage.setItem('ansh_dev_theme_v2', theme);
 
     const updateTheme = () => {
       let active: 'dark' | 'light' = 'dark';

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import type { ProjectCategory } from '../../types';
 
 interface ProjectFilterProps {
@@ -16,7 +15,7 @@ export const ProjectFilter: React.FC<ProjectFilterProps> = ({
   counts,
 }) => {
   return (
-    <div className="flex flex-wrap items-center gap-2 p-1.5 bg-[#0a0f1d] border border-slate-800 rounded-2xl w-fit">
+    <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl w-fit border border-slate-200/80 dark:border-slate-700/80">
       {categories.map((category) => {
         const isSelected = activeCategory === category;
         const count = counts ? counts[category] : undefined;
@@ -25,24 +24,19 @@ export const ProjectFilter: React.FC<ProjectFilterProps> = ({
           <button
             key={category}
             onClick={() => onSelectCategory(category)}
-            className={`relative px-4 py-2 rounded-xl text-xs font-medium transition-all flex items-center gap-2 z-10 select-none ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ease-out flex items-center gap-1.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
               isSelected
-                ? 'text-cyan-200 font-semibold'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                ? 'bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-800/50'
             }`}
           >
-            {isSelected && (
-              <motion.div
-                layoutId="activeFilterPill"
-                className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-cyan-500/10 border border-cyan-500/40 rounded-xl shadow-lg shadow-cyan-950/50 -z-10"
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              />
-            )}
             <span>{category}</span>
             {count !== undefined && (
               <span
-                className={`text-[10px] font-mono px-1.5 py-0.2 rounded-md ${
-                  isSelected ? 'bg-cyan-400/20 text-cyan-300' : 'bg-slate-800 text-slate-400'
+                className={`text-[10px] px-1.5 py-0.5 rounded-md ${
+                  isSelected 
+                    ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400' 
+                    : 'bg-slate-200/80 dark:bg-slate-700 text-slate-500 dark:text-slate-400'
                 }`}
               >
                 {count}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -13,65 +13,31 @@ interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const GlassCard: React.FC<GlassCardProps> = ({
   children,
-  glowOnHover = true,
-  glowColor = 'cyan',
   variant = 'default',
   interactive = false,
   className,
   ...props
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!glowOnHover || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  const glowColors = {
-    cyan: 'rgba(6, 182, 212, 0.12)',
-    indigo: 'rgba(99, 102, 241, 0.12)',
-    emerald: 'rgba(16, 185, 129, 0.12)',
-    purple: 'rgba(168, 85, 247, 0.12)',
-  };
-
   const variants = {
-    default: 'bg-[#0b101c]/80 border border-slate-800/80 backdrop-blur-xl',
-    solid: 'bg-[#0d1424] border border-slate-800 backdrop-blur-none',
-    subtle: 'bg-[#080d1a]/50 border border-slate-800/40 backdrop-blur-md',
-    borderless: 'bg-[#0b101c]/60 border-0 backdrop-blur-lg',
+    default: 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm',
+    solid: 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm',
+    subtle: 'bg-slate-50 dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800',
+    borderless: 'bg-white dark:bg-slate-900 border-0',
   };
 
   return (
     <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className={twMerge(
         clsx(
-          'relative rounded-2xl overflow-hidden transition-all duration-300',
+          'rounded-xl transition-all duration-300 ease-out',
           variants[variant],
-          interactive && 'hover:-translate-y-1 hover:border-slate-700 cursor-pointer shadow-xl hover:shadow-cyan-950/20',
+          interactive && 'hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-slate-950/40 hover:border-slate-300 dark:hover:border-slate-700 active:scale-[0.99] active:translate-y-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500',
           className
         )
       )}
       {...props}
     >
-      {glowOnHover && isHovered && (
-        <div
-          className="pointer-events-none absolute -inset-px transition-opacity duration-300"
-          style={{
-            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, ${glowColors[glowColor]}, transparent 70%)`,
-          }}
-        />
-      )}
-      <div className="relative z-10">{children}</div>
+      {children}
     </div>
   );
 };

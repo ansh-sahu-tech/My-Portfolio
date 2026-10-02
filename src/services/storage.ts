@@ -6,14 +6,14 @@ import { initialCertificates } from '../data/initialCertificates';
 import { defaultSettings } from '../data/defaultSettings';
 
 const STORAGE_KEYS = {
-  PROJECTS: 'ansh_dev_projects_v1',
-  SKILLS: 'ansh_dev_skills_v1',
-  EXPERIENCE: 'ansh_dev_experience_v1',
-  CERTIFICATES: 'ansh_dev_certificates_v1',
-  MESSAGES: 'ansh_dev_messages_v1',
-  SETTINGS: 'ansh_dev_settings_v1',
-  THEME: 'ansh_dev_theme_v1',
-  AUTH: 'ansh_dev_auth_v1',
+  PROJECTS: 'ansh_dev_projects_v2',
+  SKILLS: 'ansh_dev_skills_v2',
+  EXPERIENCE: 'ansh_dev_experience_v2',
+  CERTIFICATES: 'ansh_dev_certificates_v2',
+  MESSAGES: 'ansh_dev_messages_v2',
+  SETTINGS: 'ansh_dev_settings_v2',
+  THEME: 'ansh_dev_theme_v2',
+  AUTH: 'ansh_dev_auth_v2',
 };
 
 export const storageService = {
@@ -125,20 +125,29 @@ export const storageService = {
         return defaultSettings;
       }
       const parsed = JSON.parse(data);
-      // Ensure verified updated contact details are applied if previous placeholders were saved
-      if (!parsed.linkedinUrl || parsed.linkedinUrl === 'YOUR_LINKEDIN_URL') {
+      let modified = false;
+      // Ensure verified updated contact details are applied if previous placeholders or outdated URLs were saved
+      if (!parsed.linkedinUrl || parsed.linkedinUrl === 'YOUR_LINKEDIN_URL' || parsed.linkedinUrl.includes('54a3422b4')) {
         parsed.linkedinUrl = defaultSettings.linkedinUrl;
+        modified = true;
       }
       if (!parsed.githubUrl || parsed.githubUrl === 'YOUR_GITHUB_URL') {
         parsed.githubUrl = defaultSettings.githubUrl;
+        modified = true;
       }
       if (!parsed.email || parsed.email === 'YOUR_EMAIL') {
         parsed.email = defaultSettings.email;
+        modified = true;
       }
       if (!parsed.phone || parsed.phone === 'YOUR_PHONE') {
         parsed.phone = defaultSettings.phone;
+        modified = true;
       }
-      return { ...defaultSettings, ...parsed };
+      const merged = { ...defaultSettings, ...parsed };
+      if (modified) {
+        localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(merged));
+      }
+      return merged;
     } catch {
       return defaultSettings;
     }

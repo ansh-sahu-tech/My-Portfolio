@@ -1,157 +1,106 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Mail, 
-  Phone,
-  ShieldAlert, 
-  ArrowUpRight 
-} from 'lucide-react';
+import { Mail, Shield } from 'lucide-react';
 import { useData } from '../../context/DataContext';
-import { Badge } from '../common/Badge';
-import { GithubIcon, LinkedinIcon } from '../common/SocialIcons';
+import { GithubIcon, LinkedinIcon, SocialTooltip } from '../common/SocialIcons';
 
 export const Footer: React.FC = () => {
   const { settings } = useData();
 
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/#about' },
+    { name: 'Skills', path: '/#skills' },
+    { name: 'Projects', path: '/#projects' },
+    { name: 'Education', path: '/#education' },
+    { name: 'Contact', path: '/#contact' },
+  ];
+
   return (
-    <footer className="relative z-10 bg-[#04070e] border-t border-slate-800/80 pt-16 pb-12 overflow-hidden font-sans">
+    <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          {/* Col 1: Brand & Bio */}
-          <div className="md:col-span-2 space-y-4">
-            <Link to="/" className="inline-flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-indigo-500 p-[1.5px]">
-                <div className="w-full h-full bg-[#070b14] rounded-[6px] flex items-center justify-center font-mono font-bold text-cyan-400 text-xs">
-                  A_
-                </div>
-              </div>
-              <span className="font-extrabold text-white text-lg tracking-tight">
-                Ansh<span className="text-cyan-400">.dev</span>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Identity & Academic Context */}
+          <div className="text-center md:text-left space-y-1">
+            <div className="flex items-center justify-center md:justify-start gap-2">
+              <span className="font-bold text-slate-900 dark:text-white text-base">
+                Ansh
               </span>
-            </Link>
-
-            <p className="text-sm text-slate-400 max-w-md leading-relaxed">
-              AI/ML Engineer & Computer Science student at Sanskriti University specializing in Computer Vision pipelines, predictive machine learning models, and modern SaaS developer platforms.
-            </p>
-
-            <div className="flex items-center gap-3 pt-2">
-              <Badge variant="live" size="sm" pulse>
-                AI Node Online • All Systems Nominal
-              </Badge>
+              <span className="text-slate-300 dark:text-slate-600">•</span>
+              <span className="text-sm text-slate-600 dark:text-slate-400">
+                Frontend Developer
+              </span>
             </div>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              B.Tech CSE (AI & ML) • Sanskriti University (2023–2027)
+            </p>
           </div>
 
-          {/* Col 2: Navigation */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider">
-              Navigation
-            </h4>
-            <ul className="space-y-2 text-sm text-slate-400 font-medium">
-              <li>
-                <Link to="/about" className="hover:text-cyan-400 transition-colors">
-                  About Ansh
-                </Link>
-              </li>
-              <li>
-                <Link to="/skills" className="hover:text-cyan-400 transition-colors">
-                  Skills Matrix
-                </Link>
-              </li>
-              <li>
-                <Link to="/projects" className="hover:text-cyan-400 transition-colors">
-                  Projects & Case Studies
-                </Link>
-              </li>
-              <li>
-                <Link to="/experience" className="hover:text-cyan-400 transition-colors">
-                  Experience & Education
-                </Link>
-              </li>
-              <li>
-                <Link to="/certificates" className="hover:text-cyan-400 transition-colors">
-                  Certificates
-                </Link>
-              </li>
-              <li>
-                <Link to="/resume" className="hover:text-cyan-400 transition-colors">
-                  Resume
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Quick Nav Links */}
+          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-medium text-slate-600 dark:text-slate-400">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.path}
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
 
-          {/* Col 3: Connect & Admin */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider">
-              Connect
-            </h4>
-            <ul className="space-y-2 text-sm text-slate-400 font-medium">
-              <li>
-                <Link to="/contact" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>Send Message</span>
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${settings.email}`}
-                  className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
-                >
-                  <Mail className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>{settings.email}</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${settings.phone}`}
-                  className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
-                >
-                  <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>{settings.phone}</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={settings.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
-                >
-                  <GithubIcon size={14} className="text-slate-300" />
-                  <span>GitHub (@Anshsahu275-max)</span>
-                  <ArrowUpRight className="w-3 h-3 text-slate-500" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={settings.linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
-                >
-                  <LinkedinIcon size={14} className="text-blue-400" />
-                  <span>LinkedIn Profile</span>
-                  <ArrowUpRight className="w-3 h-3 text-slate-500" />
-                </a>
-              </li>
-              <li className="pt-2 border-t border-slate-800/80">
-                <Link to="/admin" className="text-xs text-slate-500 hover:text-slate-300 transition-colors flex items-center gap-1.5 font-mono">
-                  <ShieldAlert className="w-3.5 h-3.5 text-rose-500/80" />
-                  <span>Admin CMS Console</span>
-                </Link>
-              </li>
-            </ul>
+          {/* Connect Icons & Admin */}
+          <div className="flex items-center gap-3">
+            <SocialTooltip label="GitHub Profile">
+              <a
+                href={settings.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                aria-label="GitHub Profile"
+              >
+                <GithubIcon size={17} />
+              </a>
+            </SocialTooltip>
+
+            <SocialTooltip label="LinkedIn Profile">
+              <a
+                href={settings.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                aria-label="LinkedIn Profile"
+              >
+                <LinkedinIcon size={17} />
+              </a>
+            </SocialTooltip>
+
+            <SocialTooltip label="Direct Email">
+              <a
+                href={`mailto:${settings.email}`}
+                className="p-2 rounded-lg text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                aria-label="Direct Email"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            </SocialTooltip>
+
+            <SocialTooltip label="CMS Admin">
+              <Link
+                to="/admin"
+                className="p-2 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                aria-label="Admin CMS Console"
+              >
+                <Shield className="w-3.5 h-3.5" />
+              </Link>
+            </SocialTooltip>
           </div>
         </div>
 
-        {/* Bottom copyright line */}
-        <div className="pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>
-            © {new Date().getFullYear()} Ansh. All rights reserved. • Sanskriti University (2023–2027)
-          </p>
-          <div className="flex items-center gap-2 font-mono text-[11px] text-slate-400">
-            <span>Built with React, TS, Tailwind & Framer Motion</span>
-          </div>
+        {/* Minimal Copyright */}
+        <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+          <p>© {new Date().getFullYear()} Ansh. All rights reserved.</p>
+          <p className="mt-1 sm:mt-0">Built with React, TypeScript & Tailwind CSS</p>
         </div>
       </div>
     </footer>

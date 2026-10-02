@@ -3,7 +3,7 @@ import { Badge } from './Badge';
 
 interface SectionHeaderProps {
   badge?: string;
-  badgeVariant?: 'cyan' | 'emerald' | 'indigo' | 'amber' | 'rose' | 'live';
+  badgeVariant?: 'cyan' | 'emerald' | 'indigo' | 'amber' | 'rose' | 'live' | 'brand';
   title: string;
   highlightText?: string;
   description?: string;
@@ -13,7 +13,7 @@ interface SectionHeaderProps {
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
   badge,
-  badgeVariant = 'cyan',
+  badgeVariant = 'brand',
   title,
   highlightText,
   description,
@@ -21,20 +21,20 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   action,
 }) => {
   return (
-    <div className={`mb-12 ${align === 'center' ? 'text-center mx-auto max-w-3xl' : 'max-w-3xl'}`}>
+    <div className={`mb-10 ${align === 'center' ? 'text-center mx-auto max-w-3xl' : 'max-w-3xl'}`}>
       <div className={`flex flex-wrap items-center gap-4 ${align === 'center' ? 'justify-center' : 'justify-between'}`}>
         <div>
           {badge && (
-            <div className="mb-3">
+            <div className="mb-2.5">
               <Badge variant={badgeVariant} size="md">
                 {badge}
               </Badge>
             </div>
           )}
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
             {title}{' '}
             {highlightText && (
-              <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent">
+              <span className="text-blue-600 dark:text-blue-400">
                 {highlightText}
               </span>
             )}
@@ -44,7 +44,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       </div>
 
       {description && (
-        <p className="mt-4 text-base sm:text-lg text-slate-400 leading-relaxed">
+        <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
           {description}
         </p>
       )}

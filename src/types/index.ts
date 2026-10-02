@@ -1,5 +1,6 @@
 export type ProjectCategory = 
   | 'All'
+  | 'Frontend'
   | 'AI/ML'
   | 'Computer Vision'
   | 'Data Science'
@@ -10,7 +11,7 @@ export interface Project {
   title: string;
   slug: string;
   category: string;
-  filterCategory: 'AI/ML' | 'Computer Vision' | 'Data Science' | 'Web Development';
+  filterCategory: 'Frontend' | 'AI/ML' | 'Computer Vision' | 'Data Science' | 'Web Development';
   description: string;
   problem?: string;
   solution?: string;
@@ -29,11 +30,13 @@ export interface Project {
 }
 
 export type SkillCategory = 
+  | 'Frontend'
+  | 'Development'
+  | 'AI/ML'
   | 'Programming'
   | 'Machine Learning'
   | 'AI & Computer Vision'
-  | 'Data'
-  | 'Development';
+  | 'Data';
 
 export interface Skill {
   id: string;

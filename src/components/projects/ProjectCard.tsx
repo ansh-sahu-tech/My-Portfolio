@@ -1,15 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  ExternalLink, 
-  ArrowRight, 
-  Sparkles, 
-  Eye 
-} from 'lucide-react';
+import { ExternalLink, Info } from 'lucide-react';
 import type { Project } from '../../types';
-import { GlassCard } from '../common/GlassCard';
-import { Badge } from '../common/Badge';
-import { TechBadge } from './TechBadge';
 import { useData } from '../../context/DataContext';
 import { GithubIcon } from '../common/SocialIcons';
 
@@ -21,124 +12,118 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails }) => {
   const { settings } = useData();
 
-  const githubHref = project.githubUrl !== 'YOUR_GITHUB_URL'
+  const githubHref = project.githubUrl && project.githubUrl !== 'YOUR_GITHUB_URL'
     ? project.githubUrl
-    : (settings.githubUrl !== 'YOUR_GITHUB_URL' ? settings.githubUrl : '#');
+    : (settings.githubUrl || 'https://github.com/Anshsahu275-max');
+
+  const liveHref = project.liveUrl && project.liveUrl !== '#'
+    ? project.liveUrl
+    : (project.githubUrl || githubHref);
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.3 }}
-      className="h-full"
-    >
-      <GlassCard
-        className="h-full flex flex-col justify-between border-slate-800/90 hover:border-cyan-500/40 group overflow-hidden"
-        glowColor="cyan"
-      >
-        <div>
-          {/* Project Image Header */}
-          <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900">
-            <img
-              src={project.imageUrl}
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            {/* Dark gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b101c] via-[#0b101c]/40 to-transparent" />
+    <article className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-lg dark:hover:shadow-slate-950/40 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 ease-out flex flex-col h-full hover:-translate-y-1.5">
+      {/* Real Project Image with Subtle Zoom on Hover */}
+      <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 border-b border-slate-100 dark:border-slate-800">
+        <img
+          src={project.imageUrl}
+          alt={project.title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+        />
 
-            {/* Badges on top */}
-            <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-              <Badge variant="cyan" size="sm">
-                {project.category}
-              </Badge>
+        {/* Subtle hover gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-              {project.featured && (
-                <Badge variant="amber" size="sm" icon={<Sparkles className="w-3 h-3 text-amber-300" />}>
-                  Featured
-                </Badge>
-              )}
-            </div>
-
-            {/* Quick Inspect Floating Action */}
-            <button
-              onClick={() => onOpenDetails(project)}
-              className="absolute bottom-3 right-3 px-3 py-1.5 rounded-lg bg-black/60 hover:bg-cyan-500 text-white hover:text-slate-950 text-xs font-mono backdrop-blur-md border border-white/10 transition-all flex items-center gap-1.5 opacity-0 group-hover:opacity-100"
-            >
-              <Eye className="w-3.5 h-3.5" /> Quick View
-            </button>
-          </div>
-
-          {/* Card Body */}
-          <div className="p-5 sm:p-6 space-y-4">
-            <div>
-              <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors tracking-tight">
-                {project.title}
-              </h3>
-              <p className="text-xs text-slate-400 mt-2 line-clamp-3 leading-relaxed">
-                {project.description}
-              </p>
-            </div>
-
-            {/* Tech Badges */}
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {project.technologies.slice(0, 5).map((tech) => (
-                <TechBadge key={tech} tech={tech} />
-              ))}
-              {project.technologies.length > 5 && (
-                <span className="text-[10px] font-mono text-slate-400 px-1.5 py-0.5 rounded bg-slate-800 self-center">
-                  +{project.technologies.length - 5}
-                </span>
-              )}
-            </div>
-          </div>
+        {/* Category Pill Tag */}
+        <div className="absolute top-3 left-3">
+          <span className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 shadow-sm backdrop-blur-sm transition-transform duration-200 group-hover:scale-105 inline-block">
+            {project.category}
+          </span>
         </div>
 
-        {/* Card Footer Actions */}
-        <div className="p-5 sm:p-6 pt-0 mt-auto border-t border-slate-800/60 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <a
-              href={githubHref}
-              target="_blank"
-              rel="noreferrer"
-              onClick={(e) => {
-                if (githubHref === '#') {
-                  e.preventDefault();
-                  alert('GitHub placeholder: YOUR_GITHUB_URL');
-                }
-              }}
-              className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 transition-colors flex items-center justify-center"
-              title="View on GitHub"
-            >
-              <GithubIcon size={16} />
-            </a>
+        {/* Quick Details Trigger Button */}
+        <button
+          onClick={() => onOpenDetails(project)}
+          className="absolute top-3 right-3 p-1.5 rounded-md bg-white/95 dark:bg-slate-900/95 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200/80 dark:border-slate-700/80 shadow-sm backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-all"
+          title="View Project Overview"
+          aria-label={`View details for ${project.title}`}
+        >
+          <Info className="w-3.5 h-3.5" />
+        </button>
 
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 transition-colors"
-                title="View Live Demo"
+        {/* Hover Reveal: Quick View Action Pill */}
+        <div className="absolute bottom-3 right-3 opacity-0 translate-y-1.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-out">
+          <button
+            type="button"
+            onClick={() => onOpenDetails(project)}
+            className="px-2.5 py-1 text-[11px] font-semibold rounded-md bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 shadow-md backdrop-blur-sm flex items-center gap-1.5 hover:text-blue-600 dark:hover:text-blue-400 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-all"
+            aria-label={`Quick overview for ${project.title}`}
+          >
+            <Info className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+            <span>Quick View</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Card Content */}
+      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+            {project.title}
+          </h3>
+
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+            {project.description}
+          </p>
+        </div>
+
+        {/* Technology Stack Tags */}
+        <div className="pt-2">
+          <div className="flex flex-wrap gap-1.5">
+            {project.technologies.map((tech) => (
+              <span
+                key={tech}
+                className="text-[11px] font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60 transition-colors duration-150 hover:border-slate-400 dark:hover:border-slate-600"
               >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            )}
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => onOpenDetails(project)}
-              className="px-3 py-1.5 rounded-xl text-xs font-semibold text-cyan-300 hover:text-white bg-cyan-950/50 hover:bg-cyan-900/60 border border-cyan-500/30 transition-all flex items-center gap-1"
-            >
-              <span>Case Study</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+                {tech}
+              </span>
+            ))}
           </div>
         </div>
-      </GlassCard>
-    </motion.div>
+
+        {/* Card Actions: Live Demo + GitHub */}
+        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-2 mt-auto">
+          {liveHref ? (
+            <a
+              href={liveHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/btn inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-700 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+              <span>Live Demo</span>
+            </a>
+          ) : (
+            <button
+              onClick={() => onOpenDetails(project)}
+              className="group/btn inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-700 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+              <span>Overview</span>
+            </button>
+          )}
+
+          <a
+            href={githubHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group/btn inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-700 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+          >
+            <GithubIcon size={14} className="text-slate-800 dark:text-slate-200 transition-transform duration-200 group-hover/btn:scale-110" />
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
+    </article>
   );
 };

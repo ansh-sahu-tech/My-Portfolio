@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
-import { NeuralGridBackground } from '../ai-telemetry/NeuralGridBackground';
 import { CommandPalette } from '../command/CommandPalette';
 
 export const PublicLayout: React.FC = () => {
@@ -20,25 +19,22 @@ export const PublicLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#070b14] text-slate-100 relative selection:bg-cyan-500/30 selection:text-cyan-200">
-      {/* Dynamic Visual Grid & Lighting Layer */}
-      <NeuralGridBackground />
-
-      {/* Global Command Center */}
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 selection:bg-blue-100 selection:text-blue-900 font-sans">
+      {/* Command Palette for quick access */}
       <CommandPalette
         isOpen={commandPaletteOpen}
         onClose={() => setCommandPaletteOpen(false)}
       />
 
-      {/* Public Navbar */}
+      {/* Sticky Navbar */}
       <Navbar onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
 
-      {/* Main Content Viewport */}
-      <main className="flex-1 relative z-10 pt-24 pb-16">
+      {/* Main Content Area */}
+      <main className="flex-1 pt-20">
         <Outlet />
       </main>
 
-      {/* Public Footer */}
+      {/* Compact Footer */}
       <Footer />
     </div>
   );
