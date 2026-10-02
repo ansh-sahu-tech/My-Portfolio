@@ -297,9 +297,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
               <div className="w-16 sm:w-20 aspect-[3/4] p-1 rounded-[40px] border border-[#d8b082] bg-white/40">
                 <div className="w-full h-full rounded-[36px] overflow-hidden border-[1.5px] border-[#b97a4e]">
                   <img
-                    src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=400&q=80"
+                    src="/collaborate.png"
                     alt="Collaborate"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>

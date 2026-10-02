@@ -117,7 +117,7 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
             src={imageSrc}
             alt={imageAlt}
             loading="lazy"
-            className="w-full h-full object-cover object-top filter contrast-[1.03] transition-transform duration-700 ease-out group-hover:scale-105"
+            className={`w-full h-full object-cover filter contrast-[1.03] transition-transform duration-700 ease-out group-hover:scale-105 ${imageClassName || 'object-top'}`}
           />
           {/* Subtle soft gradient sheen */}
           <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent pointer-events-none" />

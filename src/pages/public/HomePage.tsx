@@ -791,13 +791,14 @@ export const HomePage: React.FC = () => {
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 7)) && (
             <EditorialSlideCard
               id="contact"
-              imageSrc="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=800&q=80"
-              imageAlt="Telephone and Aesthetic Workspace"
+              imageSrc="/collaborate.png"
+              imageAlt="Let's Work Together - Collaborate"
               categoryTitle="Direct Inquiries"
               titleRust="LET'S"
               titleBlack="COLLABORATE"
               activeSection="contact"
               signature="By Ansh Sahu"
+              imageClassName="object-center"
             >
               <div className="space-y-4">
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
