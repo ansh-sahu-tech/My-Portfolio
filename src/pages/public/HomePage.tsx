@@ -61,7 +61,7 @@ export const HomePage: React.FC = () => {
       summary: 'Real-time fatigue, drowsiness, and road distraction monitoring system using facial landmark analysis (EAR/MAR metrics).',
       github: 'https://github.com/Anshsahu275-max',
       demo: 'https://github.com/Anshsahu275-max',
-      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80'
+      image: '/ai-driver-awareness.png'
     },
     {
       title: 'Sacha Sauda',
@@ -666,13 +666,19 @@ export const HomePage: React.FC = () => {
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 6)) && (
             <EditorialSlideCard
               id="projects"
-              imageSrc="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
-              imageAlt="Featured Project"
+              imageSrc={featuredProjects[activeProjectTab]?.image || '/ai-driver-awareness.png'}
+              imageAlt={featuredProjects[activeProjectTab]?.title || 'AI Driver Awareness System'}
               categoryTitle="Showcase & Engineering"
               titleRust="2024–2026"
               titleBlack="PROJECTS"
               activeSection="portfolio"
               signature="By Ansh Sahu"
+              frameShape="architectural"
+              aspectClass="aspect-[738/387]"
+              badgeText="Computer Vision & AI"
+              subBadgeText="driver safety"
+              caption={featuredProjects[activeProjectTab]?.title || 'AI Driver Awareness System'}
+              tagText="Edge AI Project"
             >
               <div className="space-y-4">
                 {/* Project Selector Tabs */}

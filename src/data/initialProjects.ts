@@ -27,7 +27,7 @@ export const initialProjects: Project[] = [
     results: 'Delivered reliable real-time detection with minimal false alarms under varying cabin lighting conditions.',
     githubUrl: 'https://github.com/Anshsahu275-max',
     liveUrl: 'https://github.com/Anshsahu275-max',
-    imageUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/ai-driver-awareness.png',
     featured: true,
     published: true,
     createdAt: '2025-01-15T10:00:00.000Z',

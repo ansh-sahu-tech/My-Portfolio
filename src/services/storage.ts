@@ -27,7 +27,8 @@ export const storageService = {
       const parsed: Project[] = JSON.parse(data);
       return parsed.map((p) => ({
         ...p,
-        githubUrl: !p.githubUrl || p.githubUrl === 'YOUR_GITHUB_URL' ? 'https://github.com/Anshsahu275-max' : p.githubUrl
+        githubUrl: !p.githubUrl || p.githubUrl === 'YOUR_GITHUB_URL' ? 'https://github.com/Anshsahu275-max' : p.githubUrl,
+        imageUrl: (p.id === 'proj-1' || p.slug === 'ai-driver-awareness-system') && (p.imageUrl?.includes('photo-1549399542') || !p.imageUrl) ? '/ai-driver-awareness.png' : p.imageUrl
       }));
     } catch {
       return initialProjects;
