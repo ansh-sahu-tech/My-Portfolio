@@ -222,7 +222,7 @@ export const HomePage: React.FC = () => {
             <EditorialSlideCard
               id="hero"
               imageSrc="/ansh-profile.jpg"
-              imageAlt="Ansh - Frontend Developer"
+              imageAlt="Ansh Sahu - Software Engineer &amp; Developer"
               categoryTitle="Editorial Portfolio 2026"
               titleRust="CREATIVE"
               titleBlack="PORTFOLIO"
@@ -230,17 +230,29 @@ export const HomePage: React.FC = () => {
               signature="By Ansh Sahu"
             >
               <div className="space-y-4">
+                {/* Primary H1 for Search Engine Ranking */}
+                <div className="space-y-1">
+                  <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-stone-900">
+                    Ansh Sahu <span className="text-stone-300 font-normal">|</span> <span className="text-[#a75a32]">Software Engineer</span>
+                  </h1>
+                  <p className="text-xs font-mono font-medium text-stone-600 tracking-wide">
+                    ansh.developer • Software Engineer &amp; Developer • Sanskriti University
+                  </p>
+                </div>
+
                 {/* Role Pill */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3ebdE] border border-[#d8c3a9] text-xs font-semibold text-[#8e4827]">
+                <div className="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-[#f3ebdE] border border-[#d8c3a9] text-xs font-semibold text-[#8e4827]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c2744d]" />
+                  <span>SOFTWARE ENGINEER</span>
+                  <span className="text-stone-400">•</span>
                   <span>FRONTEND DEVELOPER</span>
                   <span className="text-stone-400">•</span>
-                  <span className="font-normal text-stone-600">B.Tech CSE (AI & ML)</span>
+                  <span className="font-normal text-stone-600">B.Tech CSE (AI &amp; ML)</span>
                 </div>
 
                 {/* Subtitle & Bio */}
                 <p className="text-sm sm:text-base text-stone-700 leading-relaxed">
-                  Hi, I'm <strong className="font-bold text-stone-900">Ansh</strong>. I craft clean, responsive, and high-performance web applications using React, Next.js, and modern CSS, backed by a disciplined foundation in computer science and applied AI/ML at <strong className="font-semibold text-stone-900">Sanskriti University</strong>.
+                  Hi, I'm <strong className="font-bold text-stone-900">Ansh Sahu</strong> (<strong>ansh.developer</strong>). I am a dedicated <strong className="font-semibold text-stone-900">Software Engineer</strong> crafting clean, responsive, and high-performance web applications using React, Next.js, TypeScript, and modern CSS, backed by a disciplined foundation in computer science and applied AI/ML at <strong className="font-semibold text-stone-900">Sanskriti University</strong>.
                 </p>
 
                 {/* CTAs */}
@@ -312,7 +324,7 @@ export const HomePage: React.FC = () => {
             <EditorialSlideCard
               id="about"
               imageSrc="/ansh-profile.jpg"
-              imageAlt="About Ansh"
+              imageAlt="About Ansh Sahu - Software Engineer"
               categoryTitle="Biography & Mindset"
               titleRust="ABOUT ME"
               activeSection="about"
@@ -320,7 +332,7 @@ export const HomePage: React.FC = () => {
             >
               <div className="space-y-4">
                 <p className="text-stone-700 text-sm sm:text-[14.5px] leading-relaxed">
-                  I am a passionate <strong className="font-semibold text-stone-900">Frontend Developer</strong> currently in my undergraduate studies at <strong className="font-semibold text-stone-900">Sanskriti University</strong>, specializing in Computer Science Engineering (Artificial Intelligence & Machine Learning).
+                  I am a passionate <strong className="font-semibold text-stone-900">Software Engineer &amp; Frontend Developer</strong> currently in my undergraduate studies at <strong className="font-semibold text-stone-900">Sanskriti University</strong>, specializing in Computer Science Engineering (Artificial Intelligence &amp; Machine Learning).
                 </p>
 
                 <p className="text-stone-700 text-xs sm:text-sm leading-relaxed">

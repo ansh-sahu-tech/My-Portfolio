@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, 
@@ -22,6 +22,12 @@ export const ProjectDetailPage: React.FC = () => {
   const navigate = useNavigate();
 
   const project = slug ? getProjectBySlug(slug) : undefined;
+
+  useEffect(() => {
+    if (project) {
+      document.title = `${project.title} | Ansh Sahu (ansh.developer) Software Engineering`;
+    }
+  }, [project]);
 
   if (!project) {
     return (

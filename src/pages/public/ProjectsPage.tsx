@@ -54,11 +54,12 @@ export const ProjectsPage: React.FC = () => {
       {/* 1. Header */}
       <ScrollReveal>
         <SectionHeader
+          headingTag="h1"
           badge="Selected Projects"
           badgeVariant="brand"
-          title="Featured"
-          highlightText="Web & AI Systems"
-          description="Explore strong projects spanning responsive web platforms, computer vision applications, and predictive machine learning models."
+          title="Ansh Sahu | Software Engineering"
+          highlightText="Projects &amp; Systems"
+          description="Explore high-impact projects spanning responsive web platforms, computer vision applications, and predictive machine learning models built by Ansh Sahu (ansh.developer)."
         />
       </ScrollReveal>
 

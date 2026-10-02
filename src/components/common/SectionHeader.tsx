@@ -9,6 +9,7 @@ interface SectionHeaderProps {
   description?: string;
   align?: 'left' | 'center';
   action?: React.ReactNode;
+  headingTag?: 'h1' | 'h2';
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
@@ -19,7 +20,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   description,
   align = 'left',
   action,
+  headingTag = 'h2',
 }) => {
+  const HeadingTag = headingTag;
   return (
     <div className={`mb-10 ${align === 'center' ? 'text-center mx-auto max-w-3xl' : 'max-w-3xl'}`}>
       <div className={`flex flex-wrap items-center gap-4 ${align === 'center' ? 'justify-center' : 'justify-between'}`}>
@@ -31,14 +34,14 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
               </Badge>
             </div>
           )}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+          <HeadingTag className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
             {title}{' '}
             {highlightText && (
               <span className="text-blue-600 dark:text-blue-400">
                 {highlightText}
               </span>
             )}
-          </h2>
+          </HeadingTag>
         </div>
         {action && <div className="mt-2 sm:mt-0">{action}</div>}
       </div>

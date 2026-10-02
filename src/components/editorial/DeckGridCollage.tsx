@@ -57,7 +57,7 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
 
             <div className="flex items-center justify-between text-[11px] sm:text-xs pt-2 border-t border-[#e2d5c3]">
               <span className="text-[10px] text-stone-500 uppercase tracking-widest font-semibold">
-                Click to explore
+                Software Engineer • ansh.developer
               </span>
               <span className="font-serif italic text-stone-800 font-medium">
                 By Ansh Sahu
@@ -80,7 +80,7 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                 <div className="w-full h-full rounded-[36px] overflow-hidden border-[1.5px] border-[#b97a4e]">
                   <img
                     src="/ansh-profile.jpg"
-                    alt="About Ansh"
+                    alt="About Ansh Sahu"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -95,7 +95,7 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                   ABOUT ME
                 </h4>
                 <p className="text-[10px] sm:text-xs text-stone-600 line-clamp-2 mt-1">
-                  Frontend Developer & B.Tech CSE (AI & ML) student at Sanskriti University.
+                  Software Engineer &amp; Developer • B.Tech CSE (AI &amp; ML) at Sanskriti University.
                 </p>
               </div>
               <div className="flex justify-end pt-1 border-t border-[#e2d5c3] text-[10px] font-serif italic text-stone-700">

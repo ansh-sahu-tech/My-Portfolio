@@ -33,11 +33,12 @@ export const EducationPage: React.FC = () => {
       {/* 1. Section Header */}
       <ScrollReveal>
         <SectionHeader
+          headingTag="h1"
           badge="Academics"
           badgeVariant="brand"
-          title="Education &"
+          title="Ansh Sahu | Education &amp;"
           highlightText="University Foundation"
-          description="Formal undergraduate engineering education at Sanskriti University, specializing in Artificial Intelligence and Machine Learning."
+          description="Formal undergraduate Computer Science &amp; Engineering (AI &amp; ML) education at Sanskriti University (2023–2027) undertaken by Ansh Sahu (ansh.developer)."
         />
       </ScrollReveal>
 

@@ -68,11 +68,12 @@ export const ContactPage: React.FC = () => {
       {/* 1. Header */}
       <ScrollReveal>
         <SectionHeader
+          headingTag="h1"
           badge="Contact"
           badgeVariant="brand"
-          title="Get In"
-          highlightText="Touch"
-          description="Have a question about a project, an internship opportunity, or frontend role? Send a message directly or connect across channels."
+          title="Connect with"
+          highlightText="Ansh Sahu"
+          description="Have a question about a software engineering project, internship opportunity, or developer collaboration? Reach out to Ansh Sahu (ansh.developer) directly."
         />
       </ScrollReveal>
 

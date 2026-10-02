@@ -139,8 +139,20 @@ export const storageService = {
         parsed.email = defaultSettings.email;
         modified = true;
       }
-      if (!parsed.phone || parsed.phone === 'YOUR_PHONE') {
-        parsed.phone = defaultSettings.phone;
+      if (!parsed.name || parsed.name === 'Ansh') {
+        parsed.name = defaultSettings.name;
+        modified = true;
+      }
+      if (!parsed.role || parsed.role === 'Frontend Developer') {
+        parsed.role = defaultSettings.role;
+        modified = true;
+      }
+      if (!parsed.brand || parsed.brand === 'Ansh') {
+        parsed.brand = defaultSettings.brand;
+        modified = true;
+      }
+      if (!parsed.positioning || parsed.positioning.startsWith('Frontend Developer')) {
+        parsed.positioning = defaultSettings.positioning;
         modified = true;
       }
       const merged = { ...defaultSettings, ...parsed };

@@ -33,11 +33,12 @@ export const CertificatesPage: React.FC = () => {
       {/* 1. Header */}
       <ScrollReveal>
         <SectionHeader
+          headingTag="h1"
           badge="Credentials"
           badgeVariant="brand"
-          title="Technical"
-          highlightText="Certificates & Accreditations"
-          description="Verified course credentials and technical specializations completed during my undergraduate studies."
+          title="Ansh Sahu | Technical"
+          highlightText="Certificates &amp; Accreditations"
+          description="Verified course credentials, AI/ML accreditations, and software engineering certificates completed by Ansh Sahu (ansh.developer)."
         />
       </ScrollReveal>
 

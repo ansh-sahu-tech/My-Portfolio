@@ -25,15 +25,15 @@ export const Footer: React.FC = () => {
           <div className="text-center md:text-left space-y-1">
             <div className="flex items-center justify-center md:justify-start gap-2">
               <span className="font-bold text-stone-900 text-base">
-                Ansh
+                Ansh Sahu
               </span>
               <span className="text-stone-300">•</span>
               <span className="text-sm font-semibold text-[#8e4827]">
-                Frontend Developer
+                Software Engineer &amp; Developer
               </span>
             </div>
             <p className="text-xs text-stone-500">
-              B.Tech CSE (AI & ML) • Sanskriti University (2023–2027)
+              ansh.developer • B.Tech CSE (AI &amp; ML) • Sanskriti University (2023–2027)
             </p>
           </div>
 

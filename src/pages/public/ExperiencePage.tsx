@@ -18,11 +18,12 @@ export const ExperiencePage: React.FC = () => {
       {/* 1. Header */}
       <ScrollReveal>
         <SectionHeader
+          headingTag="h1"
           badge="Timeline"
           badgeVariant="brand"
-          title="Experience &"
-          highlightText="Education Journey"
-          description="A clear and transparent record of my university studies at Sanskriti University and hands-on software development projects."
+          title="Ansh Sahu | Experience &amp;"
+          highlightText="Engineering Milestones"
+          description="A clear and transparent record of software engineering projects, computer science studies at Sanskriti University, and technical milestones by Ansh Sahu (ansh.developer)."
         />
       </ScrollReveal>
 

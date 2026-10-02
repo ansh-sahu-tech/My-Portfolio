@@ -67,10 +67,10 @@ export const Navbar: React.FC<NavbarProps> = () => {
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-stone-900 text-base tracking-tight leading-tight group-hover:text-[#a75a32] transition-colors duration-200">
-                Ansh
+                Ansh Sahu
               </span>
               <span className="text-[11px] font-medium text-stone-500 leading-tight">
-                Frontend Developer
+                Software Engineer
               </span>
             </div>
           </Link>

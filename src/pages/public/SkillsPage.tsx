@@ -40,11 +40,12 @@ export const SkillsPage: React.FC = () => {
       {/* 1. Header */}
       <ScrollReveal>
         <SectionHeader
-          badge="Skills & Technologies"
+          headingTag="h1"
+          badge="Skills &amp; Technologies"
           badgeVariant="brand"
-          title="Technical"
-          highlightText="Stack & Capabilities"
-          description="Comprehensive breakdown of the frontend libraries, developer workflows, and machine learning foundations I utilize."
+          title="Ansh Sahu | Software Engineer"
+          highlightText="Stack &amp; Capabilities"
+          description="Comprehensive breakdown of the frontend libraries, developer workflows, and machine learning foundations utilized by Ansh Sahu (ansh.developer)."
         />
       </ScrollReveal>
 
