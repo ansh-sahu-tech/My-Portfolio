@@ -25,7 +25,7 @@ export const ResumePage: React.FC = () => {
   const handleDownloadPdf = () => {
     const link = document.createElement('a');
     link.href = settings.resumeUrl || '/resume.pdf';
-    link.download = 'Ansh_Frontend_Developer_Resume.pdf';
+    link.download = 'Ansh_Sahu_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
