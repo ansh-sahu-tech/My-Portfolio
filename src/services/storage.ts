@@ -6,7 +6,7 @@ import { initialCertificates } from '../data/initialCertificates';
 import { defaultSettings } from '../data/defaultSettings';
 
 const STORAGE_KEYS = {
-  PROJECTS: 'ansh_dev_projects_v3',
+  PROJECTS: 'ansh_dev_projects_v4',
   SKILLS: 'ansh_dev_skills_v2',
   EXPERIENCE: 'ansh_dev_experience_v2',
   CERTIFICATES: 'ansh_dev_certificates_v3',

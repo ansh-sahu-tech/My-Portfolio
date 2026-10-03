@@ -245,12 +245,12 @@ function generateResume() {
   );
 
   renderProject(
-    'Sacha Sauda - Grocery E-Commerce Platform',
+    'Sacha Sauda - Home & Construction Marketplace',
     'React, JavaScript, Tailwind CSS, REST APIs, Responsive Design',
     [
-      'Developed a modern, mobile-first e-commerce web platform for groceries and daily essentials with instant page loads and zero layout shifts.',
-      'Implemented dynamic client-side filtering, debounced search, and state-driven cart mechanics with real-time price updates.',
-      'Integrated RESTful service communication for product catalog availability, achieving high test coverage and WCAG accessibility.'
+      'Architected a modern marketplace for home and construction needs to explore properties, building materials, home products, and services.',
+      'Engineered a clean and responsive interface optimized for fast product discovery, intuitive category browsing, and streamlined customer enquiries.',
+      'Delivered a simple, practical, and professional user experience with sub-second page transitions and mobile-first accessibility.'
     ],
     { label: 'Live Demo | GitHub', url: 'https://sacha-sauda.vercel.app' }
   );

@@ -66,9 +66,9 @@ export const HomePage: React.FC = () => {
     },
     {
       title: 'Sacha Sauda',
-      category: 'Frontend Web Application',
+      category: 'Home & Construction Marketplace',
       tech: ['React', 'JavaScript', 'Tailwind CSS', 'REST APIs'],
-      summary: 'Responsive grocery e-commerce storefront with dynamic catalog filtering, instant cart management, and seamless mobile checkout.',
+      summary: 'Modern marketplace for home and construction needs to explore properties, building materials, home products, and services with fast discovery and enquiries.',
       github: 'https://github.com/Anshsahu275-max',
       demo: 'https://sacha-sauda.vercel.app',
       image: '/sacha-sauda.png'
