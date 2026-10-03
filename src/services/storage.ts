@@ -6,7 +6,7 @@ import { initialCertificates } from '../data/initialCertificates';
 import { defaultSettings } from '../data/defaultSettings';
 
 const STORAGE_KEYS = {
-  PROJECTS: 'ansh_dev_projects_v4',
+  PROJECTS: 'ansh_dev_projects_v5',
   SKILLS: 'ansh_dev_skills_v2',
   EXPERIENCE: 'ansh_dev_experience_v2',
   CERTIFICATES: 'ansh_dev_certificates_v3',
@@ -27,18 +27,30 @@ export const storageService = {
       const parsed: Project[] = JSON.parse(data);
       return parsed.map((p) => {
         let imageUrl = p.imageUrl;
+        let liveUrl = p.liveUrl;
+        let githubUrl = p.githubUrl;
+
         if (p.id === 'proj-1' || p.slug === 'ai-driver-awareness-system') {
           imageUrl = '/ai-driver-awareness.png';
+          githubUrl = 'https://github.com/ansh-sahu-tech/AI-Driver-Safety-Awareness-System';
+          liveUrl = 'https://github.com/ansh-sahu-tech/AI-Driver-Safety-Awareness-System';
         } else if (p.id === 'proj-2' || p.slug === 'sacha-sauda') {
           imageUrl = '/sacha-sauda.png';
+          liveUrl = 'https://sacha-sauda-five.vercel.app/';
         } else if (p.id === 'proj-3' || p.slug === 'student-performance-prediction') {
           imageUrl = '/student-performance-prediction.png';
         } else if (p.id === 'proj-4' || p.slug === 'swagatam-vijay-bakers') {
           imageUrl = '/bakery-project.png';
+          liveUrl = 'https://bakery-taupe-six.vercel.app/';
+        } else if (p.id === 'proj-5' || p.slug === 'developer-portfolio-2026') {
+          imageUrl = '/ansh-profile.jpg';
+          liveUrl = 'https://sahuansh-portfolio-2026.vercel.app/';
+          githubUrl = 'https://github.com/ansh-sahu-tech/My-Portfolio';
         }
         return {
           ...p,
-          githubUrl: !p.githubUrl || p.githubUrl === 'YOUR_GITHUB_URL' ? 'https://github.com/Anshsahu275-max' : p.githubUrl,
+          liveUrl: liveUrl || p.liveUrl,
+          githubUrl: !githubUrl || githubUrl === 'YOUR_GITHUB_URL' ? 'https://github.com/Anshsahu275-max' : githubUrl,
           imageUrl: imageUrl || '/ai-driver-awareness.png'
         };
       });

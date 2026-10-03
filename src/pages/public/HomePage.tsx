@@ -61,8 +61,8 @@ export const HomePage: React.FC = () => {
       category: 'Computer Vision & AI Safety',
       tech: ['Python', 'OpenCV', 'Computer Vision', 'NumPy'],
       summary: 'Real-time fatigue, drowsiness, and road distraction monitoring system using facial landmark analysis (EAR/MAR metrics).',
-      github: 'https://github.com/Anshsahu275-max',
-      demo: 'https://github.com/Anshsahu275-max',
+      github: 'https://github.com/ansh-sahu-tech/AI-Driver-Safety-Awareness-System',
+      demo: 'https://github.com/ansh-sahu-tech/AI-Driver-Safety-Awareness-System',
       image: '/ai-driver-awareness.png'
     },
     {
@@ -71,7 +71,7 @@ export const HomePage: React.FC = () => {
       tech: ['React', 'JavaScript', 'Tailwind CSS', 'REST APIs'],
       summary: 'Modern marketplace for home and construction needs to explore properties, building materials, home products, and services with fast discovery and enquiries.',
       github: 'https://github.com/Anshsahu275-max',
-      demo: 'https://sacha-sauda.vercel.app',
+      demo: 'https://sacha-sauda-five.vercel.app/',
       image: '/sacha-sauda.png'
     },
     {
@@ -89,8 +89,17 @@ export const HomePage: React.FC = () => {
       tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
       summary: 'Production artisanal bakery web storefront featuring catalog navigation, dynamic product showcase, and streamlined inquiry workflows.',
       github: 'https://github.com/Anshsahu275-max',
-      demo: 'https://swagatam-vijay-bakers.vercel.app',
+      demo: 'https://bakery-taupe-six.vercel.app/',
       image: '/bakery-project.png'
+    },
+    {
+      title: 'Developer Portfolio 2026',
+      category: 'Frontend & UI Engineering',
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Vercel'],
+      summary: 'Official interactive developer portfolio featuring editorial presentation layouts, dark-mode design system, dynamic project filtering, and automated resume compilation.',
+      github: 'https://github.com/ansh-sahu-tech/My-Portfolio',
+      demo: 'https://sahuansh-portfolio-2026.vercel.app/',
+      image: '/ansh-profile.jpg'
     }
   ];
 
@@ -652,7 +661,9 @@ export const HomePage: React.FC = () => {
               aspectClass="aspect-[4/3]"
               badgeText={featuredProjects[activeProjectTab]?.category || 'Engineering Project'}
               subBadgeText={
-                activeProjectTab === 3
+                activeProjectTab === 4
+                  ? 'developer portfolio'
+                  : activeProjectTab === 3
                   ? 'artisanal bakery'
                   : activeProjectTab === 2
                   ? 'predictive analytics'
@@ -662,7 +673,9 @@ export const HomePage: React.FC = () => {
               }
               caption={featuredProjects[activeProjectTab]?.title || 'Featured Project'}
               tagText={
-                activeProjectTab === 3
+                activeProjectTab === 4
+                  ? 'Vercel Production'
+                  : activeProjectTab === 3
                   ? 'React Production'
                   : activeProjectTab === 2
                   ? 'Scikit-Learn ML'

@@ -241,7 +241,7 @@ function generateResume() {
       'Implemented 68-point facial landmark tracking to calculate Eye Aspect Ratio (EAR) and head-pose orientation for millisecond alert triggers.',
       'Optimized frame preprocessing and mathematical thresholding to ensure 30+ FPS execution on standard webcams with low latency.'
     ],
-    { label: 'GitHub Repository', url: 'https://github.com/Anshsahu275-max' }
+    { label: 'GitHub Repository', url: 'https://github.com/ansh-sahu-tech/AI-Driver-Safety-Awareness-System' }
   );
 
   renderProject(
@@ -252,7 +252,7 @@ function generateResume() {
       'Engineered a clean and responsive interface optimized for fast product discovery, intuitive category browsing, and streamlined customer enquiries.',
       'Delivered a simple, practical, and professional user experience with sub-second page transitions and mobile-first accessibility.'
     ],
-    { label: 'Live Demo | GitHub', url: 'https://sacha-sauda.vercel.app' }
+    { label: 'Live Demo', url: 'https://sacha-sauda-five.vercel.app/' }
   );
 
   renderProject(
@@ -274,7 +274,7 @@ function generateResume() {
       'Architected reusable, accessible UI component hierarchy optimized for smartphones, touchscreens, and cross-browser reliability.',
       'Deployed production application to Vercel with automated CI/CD branch builds and optimized asset delivery.'
     ],
-    { label: 'Live Demo | GitHub', url: 'https://swagatam-vijay-bakers.vercel.app' }
+    { label: 'Live Demo', url: 'https://bakery-taupe-six.vercel.app/' }
   );
 
   // 6. CERTIFICATIONS & SPECIALIZATIONS

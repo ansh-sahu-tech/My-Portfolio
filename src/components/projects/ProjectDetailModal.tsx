@@ -61,6 +61,8 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 target.src = '/student-performance-prediction.png';
               } else if (project.id === 'proj-4' || project.slug === 'swagatam-vijay-bakers') {
                 target.src = '/bakery-project.png';
+              } else if (project.id === 'proj-5' || project.slug === 'developer-portfolio-2026') {
+                target.src = '/ansh-profile.jpg';
               }
             }}
             className="w-full h-full object-cover object-center"
