@@ -293,9 +293,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
           className="cursor-pointer group relative rounded-2xl overflow-hidden bg-[#fbf7f1] border border-[#e4d5c0] shadow-md transition-all duration-300 hover:scale-[1.015] hover:shadow-xl"
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
-            <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-3 relative">
-              <div className="w-16 sm:w-20 aspect-[3/4] p-1 rounded-[40px] border border-[#d8b082] bg-white/40">
-                <div className="w-full h-full rounded-[36px] overflow-hidden border-[1.5px] border-[#b97a4e]">
+            <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-2.5 sm:p-3 relative">
+              <div className="w-18 sm:w-22 p-1 rounded-xl border border-[#d8b082] bg-white/50 shadow-xs">
+                <div className="w-full aspect-[678/452] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
                   <img
                     src="/collaborate.png"
                     alt="Collaborate"

@@ -798,7 +798,12 @@ export const HomePage: React.FC = () => {
               titleBlack="COLLABORATE"
               activeSection="contact"
               signature="By Ansh Sahu"
-              imageClassName="object-center"
+              frameShape="architectural"
+              aspectClass="aspect-[678/452]"
+              badgeText="Direct Inquiries"
+              subBadgeText="let's work together"
+              caption="Available for Opportunities"
+              tagText="Collaborate"
             >
               <div className="space-y-4">
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
