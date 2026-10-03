@@ -7,7 +7,8 @@ import {
   Code2, 
   Layers, 
   MapPin,
-  ExternalLink
+  ExternalLink,
+  Award
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { Button } from '../../components/common/Button';
@@ -16,7 +17,7 @@ import { ScrollReveal } from '../../components/common/ScrollReveal';
 import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
 
 export const ResumePage: React.FC = () => {
-  const { settings, projects } = useData();
+  const { settings, projects, certificates } = useData();
 
   const handlePrint = () => {
     window.print();
@@ -97,7 +98,7 @@ export const ResumePage: React.FC = () => {
             <h3 className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
               Professional Summary
             </h3>
-            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed text-justify">
               {settings.aboutDescription}
             </p>
           </div>
@@ -117,7 +118,7 @@ export const ResumePage: React.FC = () => {
               <p className="text-xs font-medium text-slate-600 dark:text-slate-400 flex items-center gap-1">
                 <MapPin className="w-3 h-3 text-emerald-600" /> Sanskriti University, Mathura, Uttar Pradesh, India
               </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed pt-1">
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed pt-1 text-justify">
                 Relevant Coursework: Data Structures & Algorithms, Web Technologies, Database Systems (DBMS), Operating Systems, Machine Learning, Computer Vision.
               </p>
             </div>
@@ -156,7 +157,7 @@ export const ResumePage: React.FC = () => {
                     <h4 className="text-sm font-bold text-slate-900 dark:text-white">{proj.title}</h4>
                     <span className="text-[11px] font-medium text-blue-600 dark:text-blue-400">{proj.category}</span>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{proj.description}</p>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-justify">{proj.description}</p>
                   <div className="flex flex-wrap gap-1 pt-1">
                     {proj.technologies.map((t) => (
                       <span key={t} className="text-[10px] font-medium px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
@@ -168,6 +169,28 @@ export const ResumePage: React.FC = () => {
               ))}
             </div>
           </div>
+
+          {/* Certifications & Specializations */}
+          {certificates && certificates.length > 0 && (
+            <div className="space-y-3">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
+                <Award className="w-4 h-4" /> Certifications & Specializations
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                {certificates.map((cert) => (
+                  <div key={cert.id} className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="font-semibold text-slate-900 dark:text-white truncate">{cert.name}</p>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400">{cert.organization}</p>
+                    </div>
+                    <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">
+                      {cert.issueDate}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </ScrollReveal>
     </div>

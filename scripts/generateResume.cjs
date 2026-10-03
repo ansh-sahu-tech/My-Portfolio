@@ -169,10 +169,10 @@ function generateResume() {
     .fontSize(8.4)
     .fillColor(textColor)
     .text(
-      '• Relevant Coursework: Data Structures & Algorithms (DSA), Object-Oriented Programming, Database Management Systems (DBMS), Web Technologies, Operating Systems, Machine Learning, Computer Vision, Deep Learning, Probability & Statistics.',
+      '•  Relevant Coursework: Data Structures & Algorithms (DSA), Object-Oriented Programming, Database Management Systems (DBMS), Web Technologies, Operating Systems, Machine Learning, Computer Vision, Deep Learning, Probability & Statistics.',
       leftX + 8,
       doc.y,
-      { width: contentWidth - 8, lineGap: 1.2 }
+      { width: contentWidth - 8, lineGap: 1.2, align: 'justify' }
     );
 
   // 4. TECHNICAL SKILLS
@@ -189,7 +189,7 @@ function generateResume() {
       .font('Helvetica')
       .fontSize(8.6)
       .fillColor(textColor)
-      .text(items, { lineGap: 1.4 });
+      .text(items, { width: contentWidth - 8, lineGap: 1.4, align: 'justify' });
   }
 
   renderSkillRow('Languages', 'Python, JavaScript (ES6+), TypeScript, HTML5, CSS3, SQL');
@@ -228,7 +228,7 @@ function generateResume() {
         .font('Helvetica')
         .fontSize(8.3)
         .fillColor(textColor)
-        .text(`•  ${pt}`, leftX + 8, doc.y, { width: contentWidth - 8, lineGap: 1.1 });
+        .text(`•  ${pt}`, leftX + 8, doc.y, { width: contentWidth - 8, lineGap: 1.1, align: 'justify' });
     });
     doc.moveDown(0.3);
   }
@@ -292,7 +292,13 @@ function generateResume() {
       .font('Helvetica')
       .fontSize(8.1)
       .fillColor(mutedColor)
-      .text(` — ${issuer} (${date}) [ID: ${credId}]`);
+      .text(` — ${issuer}`);
+
+    doc
+      .font('Helvetica')
+      .fontSize(8.1)
+      .fillColor(mutedColor)
+      .text(`${date}  |  ${credId}`, leftX, y, { align: 'right', width: contentWidth });
   }
 
   renderCert('Python Certification', 'HackerRank', 'April 2024', 'HR-PYTHON-2024');
