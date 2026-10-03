@@ -23,21 +23,37 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
   return (
     <article className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-lg dark:hover:shadow-slate-950/40 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 ease-out flex flex-col h-full hover:-translate-y-1.5">
       {/* Real Project Image with Subtle Zoom on Hover */}
-      <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 border-b border-slate-100 dark:border-slate-800">
+      <div className="relative aspect-video w-full overflow-hidden bg-slate-900 border-b border-slate-100 dark:border-slate-800">
         <img
           src={project.imageUrl}
           alt={project.title}
           loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          decoding="async"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (project.id === 'proj-1' || project.slug === 'ai-driver-awareness-system') {
+              target.src = '/ai-driver-awareness.png';
+            } else if (project.id === 'proj-2' || project.slug === 'sacha-sauda') {
+              target.src = '/sacha-sauda.png';
+            } else if (project.id === 'proj-3' || project.slug === 'student-performance-prediction') {
+              target.src = '/student-performance-prediction.png';
+            } else if (project.id === 'proj-4' || project.slug === 'swagatam-vijay-bakers') {
+              target.src = '/bakery-project.png';
+            }
+          }}
+          className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.04]"
         />
 
         {/* Subtle hover gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-        {/* Category Pill Tag */}
-        <div className="absolute top-3 left-3">
+        {/* Category Pill Tag & 8K Badge */}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5">
           <span className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 shadow-sm backdrop-blur-sm transition-transform duration-200 group-hover:scale-105 inline-block">
             {project.category}
+          </span>
+          <span className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-slate-950/80 text-cyan-300 border border-cyan-500/40 shadow-sm backdrop-blur-sm tracking-wider uppercase">
+            8K UHD
           </span>
         </div>
 

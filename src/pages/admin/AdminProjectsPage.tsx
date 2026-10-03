@@ -214,6 +214,18 @@ export const AdminProjectsPage: React.FC = () => {
                 <img
                   src={project.imageUrl}
                   alt={project.title}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (project.id === 'proj-1' || project.slug === 'ai-driver-awareness-system') {
+                      target.src = '/ai-driver-awareness.png';
+                    } else if (project.id === 'proj-2' || project.slug === 'sacha-sauda') {
+                      target.src = '/sacha-sauda.png';
+                    } else if (project.id === 'proj-3' || project.slug === 'student-performance-prediction') {
+                      target.src = '/student-performance-prediction.png';
+                    } else if (project.id === 'proj-4' || project.slug === 'swagatam-vijay-bakers') {
+                      target.src = '/bakery-project.png';
+                    }
+                  }}
                   className="w-20 h-16 rounded-xl object-cover border border-slate-800 shrink-0 hidden sm:block"
                 />
                 <div>

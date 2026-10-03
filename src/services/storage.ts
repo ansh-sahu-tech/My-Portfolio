@@ -6,7 +6,7 @@ import { initialCertificates } from '../data/initialCertificates';
 import { defaultSettings } from '../data/defaultSettings';
 
 const STORAGE_KEYS = {
-  PROJECTS: 'ansh_dev_projects_v2',
+  PROJECTS: 'ansh_dev_projects_v3',
   SKILLS: 'ansh_dev_skills_v2',
   EXPERIENCE: 'ansh_dev_experience_v2',
   CERTIFICATES: 'ansh_dev_certificates_v3',
@@ -27,19 +27,19 @@ export const storageService = {
       const parsed: Project[] = JSON.parse(data);
       return parsed.map((p) => {
         let imageUrl = p.imageUrl;
-        if ((p.id === 'proj-1' || p.slug === 'ai-driver-awareness-system') && (imageUrl?.includes('photo-1549399542') || !imageUrl)) {
+        if (p.id === 'proj-1' || p.slug === 'ai-driver-awareness-system') {
           imageUrl = '/ai-driver-awareness.png';
-        } else if ((p.id === 'proj-2' || p.slug === 'sacha-sauda') && (imageUrl?.includes('photo-1542838132') || !imageUrl)) {
+        } else if (p.id === 'proj-2' || p.slug === 'sacha-sauda') {
           imageUrl = '/sacha-sauda.png';
-        } else if ((p.id === 'proj-3' || p.slug === 'student-performance-prediction') && (imageUrl?.includes('photo-1434030216411') || !imageUrl)) {
+        } else if (p.id === 'proj-3' || p.slug === 'student-performance-prediction') {
           imageUrl = '/student-performance-prediction.png';
-        } else if ((p.id === 'proj-4' || p.slug === 'swagatam-vijay-bakers') && (imageUrl?.includes('photo-1509440159') || !imageUrl)) {
+        } else if (p.id === 'proj-4' || p.slug === 'swagatam-vijay-bakers') {
           imageUrl = '/bakery-project.png';
         }
         return {
           ...p,
           githubUrl: !p.githubUrl || p.githubUrl === 'YOUR_GITHUB_URL' ? 'https://github.com/Anshsahu275-max' : p.githubUrl,
-          imageUrl
+          imageUrl: imageUrl || '/ai-driver-awareness.png'
         };
       });
     } catch {

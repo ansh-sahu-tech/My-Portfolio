@@ -120,12 +120,29 @@ export const ProjectDetailPage: React.FC = () => {
 
       {/* Hero Image with Subtle Zoom on Hover */}
       <ScrollReveal delay={0.1}>
-        <div className="group/hero relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 h-64 sm:h-96 shadow-sm bg-slate-100 dark:bg-slate-800">
+        <div className="group/hero relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 aspect-video w-full shadow-sm bg-slate-900">
           <img
             src={project.imageUrl}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover/hero:scale-[1.03]"
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (project.id === 'proj-1' || project.slug === 'ai-driver-awareness-system') {
+                target.src = '/ai-driver-awareness.png';
+              } else if (project.id === 'proj-2' || project.slug === 'sacha-sauda') {
+                target.src = '/sacha-sauda.png';
+              } else if (project.id === 'proj-3' || project.slug === 'student-performance-prediction') {
+                target.src = '/student-performance-prediction.png';
+              } else if (project.id === 'proj-4' || project.slug === 'swagatam-vijay-bakers') {
+                target.src = '/bakery-project.png';
+              }
+            }}
+            className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover/hero:scale-[1.03]"
           />
+          <div className="absolute top-3 right-3">
+            <span className="px-2.5 py-1 text-xs font-bold rounded-md bg-slate-950/80 text-cyan-300 border border-cyan-500/40 shadow-md backdrop-blur-sm tracking-wider uppercase">
+              8K Ultra Resolution
+            </span>
+          </div>
         </div>
       </ScrollReveal>
 

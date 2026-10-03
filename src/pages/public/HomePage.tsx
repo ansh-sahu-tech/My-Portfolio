@@ -81,6 +81,15 @@ export const HomePage: React.FC = () => {
       github: 'https://github.com/Anshsahu275-max',
       demo: 'https://github.com/Anshsahu275-max',
       image: '/student-performance-prediction.png'
+    },
+    {
+      title: 'Swagatam Vijay Bakers',
+      category: 'Web Development',
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+      summary: 'Production artisanal bakery web storefront featuring catalog navigation, dynamic product showcase, and streamlined inquiry workflows.',
+      github: 'https://github.com/Anshsahu275-max',
+      demo: 'https://swagatam-vijay-bakers.vercel.app',
+      image: '/bakery-project.png'
     }
   ];
 
@@ -683,27 +692,25 @@ export const HomePage: React.FC = () => {
               activeSection="portfolio"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass={
-                activeProjectTab === 2
-                  ? 'aspect-[675/453]'
-                  : activeProjectTab === 1
-                  ? 'aspect-[515/388]'
-                  : 'aspect-[738/387]'
-              }
+              aspectClass="aspect-video"
               badgeText={featuredProjects[activeProjectTab]?.category || 'Engineering Project'}
               subBadgeText={
-                activeProjectTab === 2
+                activeProjectTab === 3
+                  ? 'artisanal bakery'
+                  : activeProjectTab === 2
                   ? 'predictive analytics'
                   : activeProjectTab === 1
-                  ? 'data mart & e-commerce'
+                  ? 'grocery e-commerce'
                   : 'driver safety'
               }
               caption={featuredProjects[activeProjectTab]?.title || 'Featured Project'}
               tagText={
-                activeProjectTab === 2
+                activeProjectTab === 3
+                  ? 'React Production'
+                  : activeProjectTab === 2
                   ? 'Scikit-Learn ML'
                   : activeProjectTab === 1
-                  ? 'Data Mart Architecture'
+                  ? 'Grocery E-Commerce'
                   : 'Edge AI System'
               }
             >

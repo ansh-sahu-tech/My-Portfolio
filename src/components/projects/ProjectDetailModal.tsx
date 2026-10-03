@@ -47,16 +47,31 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
     >
       <div className="space-y-6 font-sans">
         {/* Project image banner */}
-        <div className="relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 h-56 sm:h-72">
+        <div className="relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 aspect-video w-full bg-slate-900 shadow-inner">
           <img
             src={project.imageUrl}
             alt={project.title}
-            className="w-full h-full object-cover"
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (project.id === 'proj-1' || project.slug === 'ai-driver-awareness-system') {
+                target.src = '/ai-driver-awareness.png';
+              } else if (project.id === 'proj-2' || project.slug === 'sacha-sauda') {
+                target.src = '/sacha-sauda.png';
+              } else if (project.id === 'proj-3' || project.slug === 'student-performance-prediction') {
+                target.src = '/student-performance-prediction.png';
+              } else if (project.id === 'proj-4' || project.slug === 'swagatam-vijay-bakers') {
+                target.src = '/bakery-project.png';
+              }
+            }}
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute top-3 left-3 flex items-center gap-2">
             <Badge variant="brand" size="sm">
               {project.category}
             </Badge>
+            <span className="px-2 py-0.5 text-[10px] font-bold rounded-md bg-slate-950/80 text-cyan-300 border border-cyan-500/40 shadow-sm backdrop-blur-sm tracking-wider uppercase">
+              8K UHD
+            </span>
           </div>
         </div>
 
