@@ -7,7 +7,7 @@ interface GoldenWireDecorProps {
 
 export const GoldenWireDecor: React.FC<GoldenWireDecorProps> = ({
   className = '',
-  color = '#d4ad7c'
+  color = '#263342'
 }) => {
   return (
     <svg

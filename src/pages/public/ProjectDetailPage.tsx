@@ -60,7 +60,7 @@ export const ProjectDetailPage: React.FC = () => {
         <div className="flex items-center justify-between">
           <button
             onClick={() => navigate(-1)}
-            className="group/back inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1 py-0.5 transition-all duration-200"
+            className="group/back inline-flex items-center gap-2 text-xs font-semibold text-[#94A3B8] hover:text-[#22D3EE] active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] rounded px-1 py-0.5 transition-all duration-200"
           >
             <ArrowLeft className="w-4 h-4 group-hover/back:-translate-x-1 transition-transform duration-200" /> Back to Projects
           </button>
@@ -74,21 +74,21 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Main Title & Action Header */}
       <ScrollReveal delay={0.05}>
         <div className="space-y-4">
-          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#F8FAFC] tracking-tight leading-tight">
             {project.title}
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[#94A3B8] max-w-3xl leading-relaxed">
             {project.description}
           </p>
 
           {/* Action Links Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#263342]">
             <div className="flex flex-wrap gap-1.5">
               {project.technologies.map((t) => (
                 <span
                   key={t}
-                  className="text-xs font-medium px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700 hover:-translate-y-0.5 transition-transform duration-150"
+                  className="text-xs font-medium px-2.5 py-1 rounded-md bg-[#1A2430] text-[#94A3B8] border border-[#263342] hover:text-[#22D3EE] hover:border-[#22D3EE] hover:-translate-y-0.5 transition-all duration-150"
                 >
                   {t}
                 </span>
@@ -120,7 +120,7 @@ export const ProjectDetailPage: React.FC = () => {
 
       {/* Hero Image with Subtle Zoom on Hover */}
       <ScrollReveal delay={0.1}>
-        <div className="group/hero relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 aspect-video w-full shadow-sm bg-slate-900">
+        <div className="group/hero relative rounded-xl overflow-hidden border border-[#263342] aspect-video w-full shadow-sm bg-[#0B0F14]">
           <img
             src={project.imageUrl}
             alt={project.title}
@@ -139,7 +139,7 @@ export const ProjectDetailPage: React.FC = () => {
             className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover/hero:scale-[1.03]"
           />
           <div className="absolute top-3 right-3">
-            <span className="px-2.5 py-1 text-xs font-bold rounded-md bg-slate-950/80 text-cyan-300 border border-cyan-500/40 shadow-md backdrop-blur-sm tracking-wider uppercase">
+            <span className="px-2.5 py-1 text-xs font-bold rounded-md bg-[#0B0F14]/90 text-[#22D3EE] border border-[#22D3EE]/40 shadow-md backdrop-blur-sm tracking-wider uppercase">
               8K Ultra Resolution
             </span>
           </div>
@@ -151,22 +151,22 @@ export const ProjectDetailPage: React.FC = () => {
         <ScrollReveal delay={0.15}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {project.problem && (
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm space-y-2 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
-                <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 text-xs font-semibold uppercase tracking-wider">
+              <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 shadow-sm space-y-2 hover:-translate-y-0.5 hover:border-[#22D3EE] hover:shadow-md transition-all duration-200">
+                <div className="flex items-center gap-2 text-[#22D3EE] text-xs font-semibold uppercase tracking-wider">
                   <Target className="w-4 h-4" /> Problem Statement
                 </div>
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                <p className="text-sm text-[#94A3B8] leading-relaxed">
                   {project.problem}
                 </p>
               </div>
             )}
 
             {project.solution && (
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm space-y-2 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
-                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+              <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 shadow-sm space-y-2 hover:-translate-y-0.5 hover:border-[#22D3EE] hover:shadow-md transition-all duration-200">
+                <div className="flex items-center gap-2 text-[#22D3EE] text-xs font-semibold uppercase tracking-wider">
                   <Lightbulb className="w-4 h-4" /> Solution Approach
                 </div>
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                <p className="text-sm text-[#94A3B8] leading-relaxed">
                   {project.solution}
                 </p>
               </div>
@@ -178,9 +178,9 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Core Capabilities */}
       {project.features && project.features.length > 0 && (
         <ScrollReveal delay={0.2}>
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm space-y-4">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-blue-600" />
+          <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 sm:p-8 shadow-sm space-y-4">
+            <h3 className="text-base font-bold text-[#F8FAFC] tracking-tight flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-[#22D3EE]" />
               Key Features & Capabilities
             </h3>
 
@@ -188,10 +188,10 @@ export const ProjectDetailPage: React.FC = () => {
               {project.features.map((feat, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 flex items-start gap-2.5 hover:-translate-y-0.5 hover:border-blue-500/20 transition-all duration-200"
+                  className="p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-start gap-2.5 hover:-translate-y-0.5 hover:border-[#22D3EE] transition-all duration-200"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0" />
-                  <span className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] mt-2 shrink-0" />
+                  <span className="text-xs text-[#F8FAFC] leading-relaxed font-medium">
                     {feat}
                   </span>
                 </div>
@@ -204,13 +204,13 @@ export const ProjectDetailPage: React.FC = () => {
       {/* System Architecture */}
       {project.architecture && (
         <ScrollReveal delay={0.2}>
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm space-y-3">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-              <Layers className="w-5 h-5 text-blue-600" />
+          <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 sm:p-8 shadow-sm space-y-3">
+            <h3 className="text-base font-bold text-[#F8FAFC] tracking-tight flex items-center gap-2">
+              <Layers className="w-5 h-5 text-[#22D3EE]" />
               System Pipeline Architecture
             </h3>
 
-            <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-mono text-xs text-slate-800 dark:text-slate-200 leading-relaxed overflow-x-auto">
+            <div className="p-4 rounded-lg bg-[#1A2430] border border-[#263342] font-mono text-xs text-[#F8FAFC] leading-relaxed overflow-x-auto">
               {project.architecture}
             </div>
           </div>
@@ -220,19 +220,19 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Process Steps */}
       {project.process && project.process.length > 0 && (
         <ScrollReveal delay={0.2}>
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm space-y-4">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-              <GitBranch className="w-5 h-5 text-blue-600" />
+          <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 sm:p-8 shadow-sm space-y-4">
+            <h3 className="text-base font-bold text-[#F8FAFC] tracking-tight flex items-center gap-2">
+              <GitBranch className="w-5 h-5 text-[#22D3EE]" />
               Development Process
             </h3>
 
             <div className="space-y-2.5">
               {project.process.map((step, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 shrink-0">
+                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] hover:-translate-y-0.5 hover:border-[#22D3EE] hover:shadow-sm transition-all duration-200">
+                  <span className="text-xs font-mono font-bold text-[#22D3EE] px-2 py-0.5 rounded bg-[#121923] border border-[#263342] shrink-0">
                     0{idx + 1}
                   </span>
-                  <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                  <p className="text-xs text-[#94A3B8] leading-relaxed font-medium">
                     {step}
                   </p>
                 </div>
@@ -245,11 +245,11 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Results */}
       {project.results && (
         <ScrollReveal delay={0.2}>
-          <div className="p-5 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 space-y-2 hover:shadow-sm transition-shadow duration-200">
-            <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+          <div className="p-5 rounded-xl bg-[#1A2430] border border-[#263342] space-y-2 hover:shadow-sm transition-shadow duration-200">
+            <div className="flex items-center gap-2 text-[#22D3EE] text-xs font-semibold uppercase tracking-wider">
               <BarChart3 className="w-4 h-4" /> Technical Results & Observed Outcomes
             </div>
-            <p className="text-xs sm:text-sm text-emerald-900 dark:text-emerald-200 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#F8FAFC] leading-relaxed">
               {project.results}
             </p>
           </div>

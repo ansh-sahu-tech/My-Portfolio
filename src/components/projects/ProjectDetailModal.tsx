@@ -47,7 +47,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
     >
       <div className="space-y-6 font-sans">
         {/* Project image banner */}
-        <div className="relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 aspect-video w-full bg-slate-900 shadow-inner">
+        <div className="relative rounded-xl overflow-hidden border border-[#263342] aspect-video w-full bg-[#0B0F14] shadow-inner">
           <img
             src={project.imageUrl}
             alt={project.title}
@@ -69,19 +69,19 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             <Badge variant="brand" size="sm">
               {project.category}
             </Badge>
-            <span className="px-2 py-0.5 text-[10px] font-bold rounded-md bg-slate-950/80 text-cyan-300 border border-cyan-500/40 shadow-sm backdrop-blur-sm tracking-wider uppercase">
+            <span className="px-2 py-0.5 text-[10px] font-bold rounded-md bg-[#0B0F14]/90 text-[#22D3EE] border border-[#22D3EE]/40 shadow-sm backdrop-blur-sm tracking-wider uppercase">
               8K UHD
             </span>
           </div>
         </div>
 
         {/* Action Buttons Header */}
-        <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+        <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-xl bg-[#1A2430] border border-[#263342]">
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.map((t) => (
               <span
                 key={t}
-                className="text-xs font-medium px-2 py-0.5 rounded bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700"
+                className="text-xs font-medium px-2 py-0.5 rounded bg-[#121923] text-[#F8FAFC] border border-[#263342]"
               >
                 {t}
               </span>
@@ -111,10 +111,10 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
         {/* Overview Description */}
         <div>
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#22D3EE] mb-2">
             Project Overview
           </h4>
-          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          <p className="text-sm text-[#94A3B8] leading-relaxed">
             {project.description}
           </p>
         </div>
@@ -122,24 +122,24 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
         {/* Problem & Solution Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {project.problem && (
-            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 space-y-1.5">
-              <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 text-xs font-semibold">
+            <div className="p-4 rounded-xl bg-[#1A2430] border border-[#263342] space-y-1.5">
+              <div className="flex items-center gap-2 text-[#22D3EE] text-xs font-semibold">
                 <Target className="w-4 h-4" />
                 <span>The Challenge</span>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs text-[#94A3B8] leading-relaxed">
                 {project.problem}
               </p>
             </div>
           )}
 
           {project.solution && (
-            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 space-y-1.5">
-              <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
+            <div className="p-4 rounded-xl bg-[#1A2430] border border-[#263342] space-y-1.5">
+              <div className="flex items-center gap-2 text-[#22D3EE] text-xs font-semibold">
                 <Lightbulb className="w-4 h-4" />
                 <span>Engineering Approach</span>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs text-[#94A3B8] leading-relaxed">
                 {project.solution}
               </p>
             </div>
@@ -149,7 +149,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
         {/* Key Features List */}
         {project.features && project.features.length > 0 && (
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3 flex items-center gap-1.5">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-[#22D3EE] mb-3 flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4" />
               Key Features & Capabilities
             </h4>
@@ -157,10 +157,10 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               {project.features.map((feat, idx) => (
                 <div
                   key={idx}
-                  className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 flex items-start gap-2.5"
+                  className="p-3 rounded-lg bg-[#1A2430] border border-[#263342] flex items-start gap-2.5"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mt-1.5 shrink-0" />
-                  <span className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">{feat}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] mt-1.5 shrink-0" />
+                  <span className="text-xs text-[#F8FAFC] leading-relaxed">{feat}</span>
                 </div>
               ))}
             </div>
@@ -169,12 +169,12 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
         {/* System Architecture */}
         {project.architecture && (
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 space-y-2">
-            <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-xs font-semibold">
+          <div className="p-4 rounded-xl bg-[#1A2430] border border-[#263342] space-y-2">
+            <div className="flex items-center gap-2 text-[#22D3EE] text-xs font-semibold">
               <Layers className="w-4 h-4" />
               <span>Architecture & Stack Flow</span>
             </div>
-            <div className="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-mono overflow-x-auto">
+            <div className="p-3 bg-[#121923] rounded-lg border border-[#263342] text-[#F8FAFC] text-xs leading-relaxed font-mono overflow-x-auto">
               {project.architecture}
             </div>
           </div>
@@ -183,17 +183,17 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
         {/* Development Process Steps */}
         {project.process && project.process.length > 0 && (
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3 flex items-center gap-1.5">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-[#22D3EE] mb-3 flex items-center gap-1.5">
               <GitBranch className="w-4 h-4" />
               Implementation Process
             </h4>
             <div className="space-y-2">
               {project.process.map((step, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 shrink-0">
+                <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-[#1A2430] border border-[#263342]">
+                  <span className="text-xs font-mono font-bold text-[#22D3EE] px-2 py-0.5 rounded bg-[#121923] border border-[#263342] shrink-0">
                     0{idx + 1}
                   </span>
-                  <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">{step}</p>
+                  <p className="text-xs text-[#94A3B8] leading-relaxed">{step}</p>
                 </div>
               ))}
             </div>
@@ -202,12 +202,12 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
         {/* Results & Key Takeaways */}
         {project.results && (
-          <div className="p-4 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 space-y-1.5">
-            <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
+          <div className="p-4 rounded-xl bg-[#1A2430] border border-[#263342] space-y-1.5">
+            <div className="flex items-center gap-2 text-[#22D3EE] text-xs font-semibold">
               <BarChart3 className="w-4 h-4" />
               <span>Project Outcome</span>
             </div>
-            <p className="text-xs text-emerald-800 dark:text-emerald-200/90 leading-relaxed">
+            <p className="text-xs text-[#F8FAFC] leading-relaxed">
               {project.results}
             </p>
           </div>

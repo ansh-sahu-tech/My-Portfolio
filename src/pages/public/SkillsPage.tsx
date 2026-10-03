@@ -51,7 +51,7 @@ export const SkillsPage: React.FC = () => {
 
       {/* 2. Filter & Search Bar */}
       <ScrollReveal delay={0.08}>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-[#121923] border border-[#263342] shadow-sm">
           {/* Category Pills */}
           <div className="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
             {categories.map((cat) => {
@@ -60,10 +60,10 @@ export const SkillsPage: React.FC = () => {
                 <button
                   key={cat.value}
                   onClick={() => setActiveCategory(cat.value)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5 ${
                     isSelected
-                      ? 'bg-blue-600 text-white shadow-sm'
-                      : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                      ? 'bg-[#22D3EE] text-[#0B0F14] shadow-sm'
+                      : 'bg-[#1A2430] text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#263342] border border-[#263342]'
                   }`}
                 >
                   {cat.icon}
@@ -75,13 +75,13 @@ export const SkillsPage: React.FC = () => {
 
           {/* Search Input */}
           <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search skills..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-200"
+              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-[#94A3B8] hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200"
             />
           </div>
         </div>
@@ -97,8 +97,8 @@ export const SkillsPage: React.FC = () => {
       </div>
 
       {filteredSkills.length === 0 && (
-        <div className="text-center py-12 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-8 space-y-3">
-          <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+        <div className="text-center py-12 bg-[#121923] rounded-xl border border-[#263342] p-8 space-y-3">
+          <p className="text-sm font-semibold text-[#94A3B8]">
             No skills found matching "{searchQuery}"
           </p>
           <button
@@ -106,7 +106,7 @@ export const SkillsPage: React.FC = () => {
               setActiveCategory('All');
               setSearchQuery('');
             }}
-            className="text-xs text-blue-600 dark:text-blue-400 font-medium hover:underline"
+            className="text-xs text-[#22D3EE] hover:text-[#06B6D4] font-medium hover:underline"
           >
             Clear filters
           </button>

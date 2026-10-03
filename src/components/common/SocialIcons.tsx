@@ -44,7 +44,7 @@ export const SocialTooltip: React.FC<SocialTooltipProps> = ({ children, label })
   return (
     <div className="relative group inline-flex items-center">
       {children}
-      <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-out py-1 px-2 text-[11px] font-medium text-white bg-slate-900 dark:bg-slate-800 border border-slate-700/80 rounded shadow-md whitespace-nowrap z-50">
+      <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-out py-1 px-2 text-[11px] font-medium text-[#F8FAFC] bg-[#121923] border border-[#263342] rounded shadow-md whitespace-nowrap z-50">
         {label}
       </span>
     </div>

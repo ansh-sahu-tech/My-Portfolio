@@ -9,7 +9,7 @@ interface SparkleStarProps {
 export const SparkleStar: React.FC<SparkleStarProps> = ({
   size = 20,
   className = '',
-  color = '#c2744d'
+  color = '#22D3EE'
 }) => {
   return (
     <svg

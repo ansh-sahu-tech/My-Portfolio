@@ -80,26 +80,26 @@ export const ContactPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Col: Contact Information Cards */}
         <ScrollReveal direction="left" className="lg:col-span-5 space-y-4">
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm space-y-5 transition-shadow duration-300">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+          <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 shadow-sm space-y-5 transition-shadow duration-300">
+            <h3 className="text-base font-bold text-[#F8FAFC] tracking-tight flex items-center gap-2">
+              <MessageSquare className="w-4 h-4 text-[#22D3EE]" />
               Contact Details
             </h3>
 
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            <p className="text-xs text-[#94A3B8] leading-relaxed">
               Reach out through email, inspect repositories on GitHub, or connect on LinkedIn.
             </p>
 
             <div className="space-y-3 pt-2">
               {/* Email */}
-              <div className="group/contact p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-blue-500/30 transition-all duration-200">
+              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 group-hover/contact:scale-105 transition-transform duration-200">
+                  <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-medium text-slate-400 uppercase">Email</p>
-                    <a href={`mailto:${settings.email}`} className="text-xs font-semibold text-slate-900 dark:text-white hover:text-blue-600 transition-colors truncate block">
+                    <p className="text-[11px] font-medium text-[#94A3B8] uppercase">Email</p>
+                    <a href={`mailto:${settings.email}`} className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
                       {settings.email}
                     </a>
                   </div>
@@ -107,22 +107,22 @@ export const ContactPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings.email, 'email')}
-                  className="p-1.5 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-150"
+                  className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
                   title="Copy email"
                 >
-                  {copiedField === 'email' ? <Check className="w-4 h-4 text-emerald-600 animate-in fade-in" /> : <Copy className="w-4 h-4" />}
+                  {copiedField === 'email' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
 
               {/* GitHub */}
-              <div className="group/contact p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-slate-400/40 transition-all duration-200">
+              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 group-hover/contact:scale-105 transition-transform duration-200">
+                  <div className="p-2 rounded-lg bg-[#121923] text-[#F8FAFC] group-hover/contact:scale-105 transition-transform duration-200">
                     <GithubIcon size={16} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-medium text-slate-400 uppercase">GitHub</p>
-                    <a href={settings.githubUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-900 dark:text-white hover:text-blue-600 transition-colors truncate block">
+                    <p className="text-[11px] font-medium text-[#94A3B8] uppercase">GitHub</p>
+                    <a href={settings.githubUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
                       {settings.githubUrl}
                     </a>
                   </div>
@@ -130,22 +130,22 @@ export const ContactPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings.githubUrl, 'GitHub URL')}
-                  className="p-1.5 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-150"
+                  className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
                   title="Copy GitHub URL"
                 >
-                  {copiedField === 'GitHub URL' ? <Check className="w-4 h-4 text-emerald-600 animate-in fade-in" /> : <Copy className="w-4 h-4" />}
+                  {copiedField === 'GitHub URL' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
 
               {/* LinkedIn */}
-              <div className="group/contact p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-blue-500/30 transition-all duration-200">
+              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 group-hover/contact:scale-105 transition-transform duration-200">
+                  <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
                     <LinkedinIcon size={16} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-medium text-slate-400 uppercase">LinkedIn</p>
-                    <a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-900 dark:text-white hover:text-blue-600 transition-colors truncate block">
+                    <p className="text-[11px] font-medium text-[#94A3B8] uppercase">LinkedIn</p>
+                    <a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
                       {settings.linkedinUrl}
                     </a>
                   </div>
@@ -153,22 +153,22 @@ export const ContactPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings.linkedinUrl, 'LinkedIn URL')}
-                  className="p-1.5 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-150"
+                  className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
                   title="Copy LinkedIn URL"
                 >
-                  {copiedField === 'LinkedIn URL' ? <Check className="w-4 h-4 text-emerald-600 animate-in fade-in" /> : <Copy className="w-4 h-4" />}
+                  {copiedField === 'LinkedIn URL' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
 
               {/* Phone */}
-              <div className="group/contact p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-emerald-500/30 transition-all duration-200">
+              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 group-hover/contact:scale-105 transition-transform duration-200">
+                  <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-medium text-slate-400 uppercase">Phone</p>
-                    <a href={`tel:${settings.phone}`} className="text-xs font-semibold text-slate-900 dark:text-white hover:text-emerald-600 transition-colors truncate block">
+                    <p className="text-[11px] font-medium text-[#94A3B8] uppercase">Phone</p>
+                    <a href={`tel:${settings.phone}`} className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
                       {settings.phone}
                     </a>
                   </div>
@@ -176,21 +176,21 @@ export const ContactPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings.phone, 'phone number')}
-                  className="p-1.5 text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-emerald-500 transition-all duration-150"
+                  className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
                   title="Copy phone number"
                 >
-                  {copiedField === 'phone number' ? <Check className="w-4 h-4 text-emerald-600 animate-in fade-in" /> : <Copy className="w-4 h-4" />}
+                  {copiedField === 'phone number' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
 
               {/* Location */}
-              <div className="group/contact p-3.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 flex items-center gap-3 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200">
-                <div className="p-2 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 group-hover/contact:scale-105 transition-transform duration-200">
+              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center gap-3 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200">
+                <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-medium text-slate-400 uppercase">Location</p>
-                  <p className="text-xs font-semibold text-slate-900 dark:text-white">
+                  <p className="text-[11px] font-medium text-[#94A3B8] uppercase">Location</p>
+                  <p className="text-xs font-semibold text-[#F8FAFC]">
                     Mathura, Uttar Pradesh, India
                   </p>
                 </div>
@@ -200,19 +200,19 @@ export const ContactPage: React.FC = () => {
         </ScrollReveal>
 
         {/* Right Col: Contact Message Form */}
-        <ScrollReveal direction="right" delay={0.1} className="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm transition-shadow duration-300">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+        <ScrollReveal direction="right" delay={0.1} className="lg:col-span-7 bg-[#121923] border border-[#263342] rounded-xl p-6 sm:p-8 shadow-sm transition-shadow duration-300">
+          <h3 className="text-lg font-bold text-[#F8FAFC] mb-1">
             Send a Direct Message
           </h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mb-6">
+          <p className="text-xs text-[#94A3B8] mb-6">
             Fill out the form below and I will respond to your inquiry promptly.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label htmlFor="name" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                  Your Name <span className="text-red-500">*</span>
+                <label htmlFor="name" className="text-xs font-semibold text-[#F8FAFC]">
+                  Your Name <span className="text-[#22D3EE]">*</span>
                 </label>
                 <input
                   id="name"
@@ -221,13 +221,13 @@ export const ContactPage: React.FC = () => {
                   placeholder="Jane Doe"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3 py-2 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-200"
+                  className="w-full px-3 py-2 text-sm rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-[#94A3B8] hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200"
                 />
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="email" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                  Your Email <span className="text-red-500">*</span>
+                <label htmlFor="email" className="text-xs font-semibold text-[#F8FAFC]">
+                  Your Email <span className="text-[#22D3EE]">*</span>
                 </label>
                 <input
                   id="email"
@@ -236,13 +236,13 @@ export const ContactPage: React.FC = () => {
                   placeholder="jane@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-3 py-2 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-200"
+                  className="w-full px-3 py-2 text-sm rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-[#94A3B8] hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="subject" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <label htmlFor="subject" className="text-xs font-semibold text-[#F8FAFC]">
                 Subject
               </label>
               <input
@@ -251,13 +251,13 @@ export const ContactPage: React.FC = () => {
                 placeholder="Frontend Developer Role / Inquiry"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                className="w-full px-3 py-2 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-200"
+                className="w-full px-3 py-2 text-sm rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-[#94A3B8] hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200"
               />
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="message" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                Message <span className="text-red-500">*</span>
+              <label htmlFor="message" className="text-xs font-semibold text-[#F8FAFC]">
+                Message <span className="text-[#22D3EE]">*</span>
               </label>
               <textarea
                 id="message"
@@ -266,7 +266,7 @@ export const ContactPage: React.FC = () => {
                 placeholder="Hi Ansh, I'm reaching out about..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-3 py-2 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-200 resize-y"
+                className="w-full px-3 py-2 text-sm rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-[#94A3B8] hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200 resize-y"
               />
             </div>
 

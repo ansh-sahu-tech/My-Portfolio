@@ -19,10 +19,10 @@ export const GlassCard: React.FC<GlassCardProps> = ({
   ...props
 }) => {
   const variants = {
-    default: 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm',
-    solid: 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm',
-    subtle: 'bg-slate-50 dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800',
-    borderless: 'bg-white dark:bg-slate-900 border-0',
+    default: 'bg-[#121923] border border-[#263342] shadow-sm',
+    solid: 'bg-[#121923] border border-[#263342] shadow-sm',
+    subtle: 'bg-[#1A2430] border border-[#263342]',
+    borderless: 'bg-[#121923] border-0',
   };
 
   return (
@@ -31,7 +31,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({
         clsx(
           'rounded-xl transition-all duration-300 ease-out',
           variants[variant],
-          interactive && 'hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-slate-950/40 hover:border-slate-300 dark:hover:border-slate-700 active:scale-[0.99] active:translate-y-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500',
+          interactive && 'hover:-translate-y-1 hover:shadow-lg hover:border-[#22D3EE] active:scale-[0.99] active:translate-y-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE]',
           className
         )
       )}

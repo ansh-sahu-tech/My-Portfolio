@@ -76,7 +76,7 @@ export const PublicLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col teal-canvas text-stone-900 selection:bg-[#daf1f2] selection:text-[#062426] font-sans">
+    <div className="min-h-screen flex flex-col bg-[#0B0F14] text-[#F8FAFC] selection:bg-[#22D3EE]/20 selection:text-[#22D3EE] font-sans">
       {/* Command Palette for quick access */}
       <CommandPalette
         isOpen={commandPaletteOpen}

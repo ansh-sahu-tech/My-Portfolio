@@ -15,7 +15,7 @@ export const ProjectFilter: React.FC<ProjectFilterProps> = ({
   counts,
 }) => {
   return (
-    <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl w-fit border border-slate-200/80 dark:border-slate-700/80">
+    <div className="flex flex-wrap items-center gap-1.5 p-1 bg-[#121923] rounded-xl w-fit border border-[#263342]">
       {categories.map((category) => {
         const isSelected = activeCategory === category;
         const count = counts ? counts[category] : undefined;
@@ -24,10 +24,10 @@ export const ProjectFilter: React.FC<ProjectFilterProps> = ({
           <button
             key={category}
             onClick={() => onSelectCategory(category)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ease-out flex items-center gap-1.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ease-out flex items-center gap-1.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none ${
               isSelected
-                ? 'bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-800/50'
+                ? 'bg-[#1A2430] text-[#22D3EE] border border-[#263342] shadow-sm'
+                : 'text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430]'
             }`}
           >
             <span>{category}</span>
@@ -35,8 +35,8 @@ export const ProjectFilter: React.FC<ProjectFilterProps> = ({
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded-md ${
                   isSelected 
-                    ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400' 
-                    : 'bg-slate-200/80 dark:bg-slate-700 text-slate-500 dark:text-slate-400'
+                    ? 'bg-[#22D3EE]/20 text-[#22D3EE]' 
+                    : 'bg-[#1A2430] text-[#94A3B8]'
                 }`}
               >
                 {count}

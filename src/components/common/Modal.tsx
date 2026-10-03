@@ -64,18 +64,18 @@ export const Modal: React.FC<ModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className={`relative w-full ${maxWidthStyles[maxWidth]} bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl overflow-hidden z-10 my-8`}
+            className={`relative w-full ${maxWidthStyles[maxWidth]} bg-[#121923] border border-[#263342] rounded-2xl shadow-xl overflow-hidden z-10 my-8`}
           >
             {/* Header */}
             {(title || subtitle) && (
-              <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between gap-4">
+              <div className="px-6 py-5 border-b border-[#263342] flex items-center justify-between gap-4">
                 <div>
-                  {title && <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">{title}</h3>}
-                  {subtitle && <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{subtitle}</p>}
+                  {title && <h3 className="text-lg font-bold text-[#F8FAFC] tracking-tight">{title}</h3>}
+                  {subtitle && <p className="text-xs text-[#94A3B8] mt-0.5">{subtitle}</p>}
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg hover:rotate-90 active:scale-90 focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200"
+                  className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#1A2430] rounded-lg hover:rotate-90 active:scale-90 focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-200"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
@@ -86,7 +86,7 @@ export const Modal: React.FC<ModalProps> = ({
             {!title && !subtitle && (
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 z-20 p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white bg-white/90 dark:bg-slate-900/90 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700 hover:rotate-90 active:scale-90 focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-200"
+                className="absolute top-4 right-4 z-20 p-2 text-[#94A3B8] hover:text-[#22D3EE] bg-[#121923]/90 hover:bg-[#1A2430] rounded-full border border-[#263342] hover:rotate-90 active:scale-90 focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-200"
                 aria-label="Close modal"
               >
                 <X className="w-4 h-4" />
@@ -94,7 +94,7 @@ export const Modal: React.FC<ModalProps> = ({
             )}
 
             {/* Body */}
-            <div className="p-6 max-h-[80vh] overflow-y-auto text-slate-700 dark:text-slate-300">{children}</div>
+            <div className="p-6 max-h-[80vh] overflow-y-auto text-[#F8FAFC]">{children}</div>
           </motion.div>
         </div>
       )}

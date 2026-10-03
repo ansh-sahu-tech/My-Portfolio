@@ -11,19 +11,19 @@ export const DeckCardFooter: React.FC<DeckCardFooterProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`w-full pt-4 mt-6 border-t border-[#e2d5c3]/90 flex items-center justify-between text-xs text-stone-600 ${className}`}>
-      <div className="flex items-center gap-1.5 text-terracotta-600">
-        <SparkleStar size={13} color="#c2744d" />
-        <span className="text-[10px] uppercase tracking-widest font-semibold text-stone-500">
+    <div className={`w-full pt-4 mt-6 border-t border-[#263342] flex items-center justify-between text-xs text-[#94A3B8] ${className}`}>
+      <div className="flex items-center gap-1.5 text-[#22D3EE]">
+        <SparkleStar size={13} color="#22D3EE" />
+        <span className="text-[10px] uppercase tracking-widest font-semibold text-[#94A3B8]">
           Portfolio 2026
         </span>
       </div>
 
       <div className="flex items-center gap-2">
-        <span className="font-serif italic font-medium text-stone-800 text-sm sm:text-base tracking-wide">
+        <span className="font-serif italic font-medium text-[#F8FAFC] text-sm sm:text-base tracking-wide">
           {authorName}
         </span>
-        <SparkleStar size={12} color="#c2744d" />
+        <SparkleStar size={12} color="#22D3EE" />
       </div>
     </div>
   );

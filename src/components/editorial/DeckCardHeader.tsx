@@ -34,7 +34,7 @@ export const DeckCardHeader: React.FC<DeckCardHeaderProps> = ({
 
   return (
     <div className={`w-full flex items-center justify-end ${className}`}>
-      <nav className="flex items-center gap-4 sm:gap-6 text-[11px] sm:text-xs tracking-wider uppercase font-semibold text-stone-600">
+      <nav className="flex items-center gap-4 sm:gap-6 text-[11px] sm:text-xs tracking-wider uppercase font-semibold text-[#94A3B8]">
         {navItems.map((item) => {
           const isActive = activeSection === item.id;
           return (
@@ -42,13 +42,13 @@ export const DeckCardHeader: React.FC<DeckCardHeaderProps> = ({
               key={item.id}
               href={`#${item.id}`}
               onClick={(e) => handleClick(e, item.id)}
-              className={`transition-all duration-200 hover:text-terracotta-600 relative py-1 ${
-                isActive ? 'text-terracotta-700 font-bold' : 'text-stone-500 hover:text-stone-900'
+              className={`transition-all duration-200 hover:text-[#06B6D4] relative py-1 ${
+                isActive ? 'text-[#22D3EE] font-bold' : 'text-[#94A3B8] hover:text-[#F8FAFC]'
               }`}
             >
               {item.label}
               {isActive && (
-                <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-terracotta-600 rounded-full" />
+                <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#22D3EE] rounded-full" />
               )}
             </a>
           );
