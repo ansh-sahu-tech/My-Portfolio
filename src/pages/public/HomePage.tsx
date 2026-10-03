@@ -526,13 +526,19 @@ export const HomePage: React.FC = () => {
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 4)) && (
             <EditorialSlideCard
               id="skills"
-              imageSrc="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
-              imageAlt="Tech Workspace & Development"
+              imageSrc="/skills.png"
+              imageAlt="Technical Capabilities & Skill Stack"
               categoryTitle="Capabilities Matrix"
               titleRust="SKILL"
               titleBlack="CAPABILITIES"
               activeSection="skills"
               signature="By Ansh Sahu"
+              frameShape="architectural"
+              aspectClass="aspect-[738/369]"
+              badgeText="Capabilities Stack"
+              subBadgeText="engineering matrix"
+              caption="Frontend • AI/ML • Systems"
+              tagText="Technical Core"
             >
               <div className="space-y-4">
                 {/* 2-Column Layout matching screenshot */}
