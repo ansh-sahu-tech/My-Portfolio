@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Identity & Academic Context */}
           <div className="text-center md:text-left space-y-1">
-            <div className="flex items-center justify-center md:justify-start gap-2">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
               <span className="font-bold text-[#F8FAFC] text-base">
                 Ansh Sahu
               </span>
@@ -99,9 +99,9 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Minimal Copyright with Signature */}
-        <div className="mt-6 pt-4 border-t border-[#263342] flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#94A3B8]">
+        <div className="mt-6 pt-4 border-t border-[#263342] flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#94A3B8] text-center sm:text-left gap-2">
           <p>© {new Date().getFullYear()} Ansh. All rights reserved.</p>
-          <p className="mt-1 sm:mt-0 font-serif italic text-[#94A3B8] text-sm">
+          <p className="font-serif italic text-[#94A3B8] text-sm">
             Creative Portfolio Deck • By Ansh Sahu
           </p>
         </div>

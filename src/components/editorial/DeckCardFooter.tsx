@@ -11,7 +11,7 @@ export const DeckCardFooter: React.FC<DeckCardFooterProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`w-full pt-4 mt-6 border-t border-[#263342] flex items-center justify-between text-xs text-[#94A3B8] ${className}`}>
+    <div className={`w-full pt-4 mt-6 border-t border-[#263342] flex flex-wrap items-center justify-between gap-2 text-xs text-[#94A3B8] ${className}`}>
       <div className="flex items-center gap-1.5 text-[#22D3EE]">
         <SparkleStar size={13} color="#22D3EE" />
         <span className="text-[10px] uppercase tracking-widest font-semibold text-[#94A3B8]">

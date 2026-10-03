@@ -31,9 +31,9 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
   if (frameShape === 'architectural' || frameShape === 'landscape') {
     const currentAspect = aspectClass || 'aspect-[4/3]';
     return (
-      <div className={`relative flex flex-col items-center justify-center p-3 sm:p-5 w-full max-w-[340px] sm:max-w-[370px] mx-auto ${className}`}>
+      <div className={`relative flex flex-col items-center justify-center p-2 sm:p-5 w-full max-w-[290px] xs:max-w-[340px] sm:max-w-[370px] mx-auto ${className}`}>
         {/* Decorative Golden Wire Curves */}
-        <div className="absolute -bottom-6 -left-6 w-44 sm:w-56 h-32 z-0 overflow-visible pointer-events-none opacity-85">
+        <div className="absolute -bottom-6 -left-3 sm:-left-6 w-36 sm:w-56 h-28 sm:h-32 z-0 overflow-hidden sm:overflow-visible pointer-events-none opacity-85">
           <GoldenWireDecor />
         </div>
 
@@ -82,12 +82,12 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
           {/* Bottom Location Caption Tag */}
           {caption && (
             <div className="mt-2.5 pt-2 border-t border-[#263342] flex items-center justify-between text-[11px] text-[#94A3B8] font-medium px-1">
-              <div className="flex items-center gap-1.5 text-[#22D3EE] font-semibold text-xs">
+              <div className="flex items-center gap-1.5 text-[#22D3EE] font-semibold text-xs truncate mr-2">
                 <MapPin className="w-3.5 h-3.5 text-[#22D3EE] shrink-0" />
-                <span>{caption}</span>
+                <span className="truncate">{caption}</span>
               </div>
               {tagText && (
-                <span className="text-[10px] text-[#94A3B8] font-mono font-medium">{tagText}</span>
+                <span className="text-[10px] text-[#94A3B8] font-mono font-medium shrink-0">{tagText}</span>
               )}
             </div>
           )}
@@ -96,11 +96,11 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
     );
   }
 
-  const ovalAspect = aspectClass || 'aspect-[3/4] max-w-[260px] sm:max-w-[290px]';
+  const ovalAspect = aspectClass || 'aspect-[3/4] max-w-[240px] sm:max-w-[290px]';
   return (
-    <div className={`relative flex items-center justify-center p-4 sm:p-6 w-full ${className}`}>
+    <div className={`relative flex items-center justify-center p-3 sm:p-6 w-full ${className}`}>
       {/* Decorative Golden Wire Curves at bottom */}
-      <div className="absolute -bottom-8 -left-8 w-48 sm:w-64 h-36 z-0 overflow-visible pointer-events-none">
+      <div className="absolute -bottom-8 -left-4 sm:-left-8 w-40 sm:w-64 h-32 sm:h-36 z-0 overflow-hidden sm:overflow-visible pointer-events-none">
         <GoldenWireDecor />
       </div>
 

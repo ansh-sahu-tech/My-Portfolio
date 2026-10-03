@@ -156,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430] md:hidden active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none transition-all duration-200"
+              className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-lg text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430] md:hidden active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none transition-all duration-200"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -167,7 +167,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
 
         {/* Mobile Dropdown Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 p-3 bg-[#121923] border border-[#263342] rounded-xl shadow-xl space-y-2 animate-in fade-in duration-150">
+          <div className="md:hidden mt-3 p-3 bg-[#121923] border border-[#263342] rounded-xl shadow-xl space-y-2 animate-in fade-in duration-150 max-h-[calc(100vh-100px)] overflow-y-auto">
             <nav className="flex flex-col space-y-1" aria-label="Mobile Navigation">
               {navLinks.map((link) => {
                 const active = isLinkActive(link.path);
@@ -176,7 +176,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
                     key={link.path}
                     to={link.path}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
+                    className={`px-3.5 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-between min-h-[44px] ${
                       active
                         ? 'text-[#22D3EE] bg-[#1A2430] font-semibold'
                         : 'text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430]'
@@ -189,30 +189,30 @@ export const Navbar: React.FC<NavbarProps> = () => {
               })}
             </nav>
 
-            <div className="pt-2 border-t border-[#263342] flex items-center justify-between gap-2">
+            <div className="pt-2 border-t border-[#263342] grid grid-cols-3 gap-1.5 sm:gap-2">
               <a
                 href={settings.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-2 px-3 rounded-lg border border-[#263342] text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430] active:scale-95 flex items-center justify-center gap-1.5 transition-all"
+                className="py-2 px-1.5 sm:px-3 rounded-lg border border-[#263342] text-[11px] sm:text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430] active:scale-95 flex items-center justify-center gap-1 sm:gap-1.5 transition-all min-h-[38px]"
               >
-                <GithubIcon size={15} /> GitHub
+                <GithubIcon size={14} /> <span>GitHub</span>
               </a>
               <a
                 href={settings.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-2 px-3 rounded-lg border border-[#263342] text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430] active:scale-95 flex items-center justify-center gap-1.5 transition-all"
+                className="py-2 px-1.5 sm:px-3 rounded-lg border border-[#263342] text-[11px] sm:text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430] active:scale-95 flex items-center justify-center gap-1 sm:gap-1.5 transition-all min-h-[38px]"
               >
-                <LinkedinIcon size={15} /> LinkedIn
+                <LinkedinIcon size={14} /> <span>LinkedIn</span>
               </a>
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1"
+                className="w-full"
               >
-                <Button size="sm" variant="primary" className="w-full text-xs bg-[#22D3EE] hover:bg-[#06B6D4] text-[#0B0F14] font-semibold" icon={<FileDown className="w-3.5 h-3.5" />}>
+                <Button size="sm" variant="primary" className="w-full text-[11px] sm:text-xs bg-[#22D3EE] hover:bg-[#06B6D4] text-[#0B0F14] font-semibold min-h-[38px] justify-center px-1.5" icon={<FileDown className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}>
                   Resume
                 </Button>
               </a>

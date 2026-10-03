@@ -110,58 +110,62 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           TOP PRESENTATION CONTROLLER & VIEW SWITCHER
           ======================================================== */}
-      <div className="sticky top-20 z-30 max-w-5xl mx-auto px-4 pt-3 pb-2 mb-4 pointer-events-none">
-        <div className="pointer-events-auto flex items-center justify-between bg-[#121923]/95 backdrop-blur-md border border-[#263342] px-4 py-2 rounded-full shadow-lg">
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#94A3B8]">
-            <span className="w-2 h-2 rounded-full bg-[#22D3EE] animate-pulse" />
-            <span className="hidden sm:inline font-serif italic text-sm text-[#22D3EE] font-bold">
+      <div className="sticky top-20 z-30 max-w-5xl mx-auto px-3 sm:px-4 pt-3 pb-2 mb-4 pointer-events-none">
+        <div className="pointer-events-auto flex items-center justify-between gap-2 bg-[#121923]/95 backdrop-blur-md border border-[#263342] px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl sm:rounded-full shadow-lg">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-xs font-semibold text-[#94A3B8] min-w-0 shrink">
+            <span className="w-2 h-2 rounded-full bg-[#22D3EE] animate-pulse shrink-0" />
+            <span className="hidden sm:inline font-serif italic text-sm text-[#22D3EE] font-bold shrink-0">
               Ansh Sahu
             </span>
             <span className="hidden sm:inline text-[#263342]">•</span>
-            <span className="text-[11px] uppercase tracking-wider text-[#94A3B8]">
-              Creative Portfolio Deck
+            <span className="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#94A3B8] truncate">
+              <span className="hidden xs:inline">Creative </span>Portfolio Deck
             </span>
           </div>
 
           {/* View Mode Toggle Buttons */}
-          <div className="flex items-center gap-1 bg-[#1A2430] p-1 rounded-full text-xs border border-[#263342]">
+          <div className="flex items-center gap-0.5 sm:gap-1 bg-[#1A2430] p-1 rounded-xl sm:rounded-full text-xs border border-[#263342] shrink-0">
             <button
               onClick={() => setViewMode('stream')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 font-medium ${
+              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 rounded-lg sm:rounded-full transition-all duration-200 font-medium ${
                 viewMode === 'stream'
                   ? 'bg-[#22D3EE] text-[#0B0F14] shadow-sm font-semibold'
                   : 'text-[#94A3B8] hover:text-[#F8FAFC]'
               }`}
               title="Editorial Scroll View"
             >
-              <Layers className="w-3.5 h-3.5" />
-              <span className="text-[11px]">Stream</span>
+              <Layers className="w-3.5 h-3.5 shrink-0" />
+              <span className="text-[10px] sm:text-[11px]">Stream</span>
             </button>
 
             <button
               onClick={() => setViewMode('collage')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 font-medium ${
+              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 rounded-lg sm:rounded-full transition-all duration-200 font-medium ${
                 viewMode === 'collage'
                   ? 'bg-[#22D3EE] text-[#0B0F14] shadow-sm font-semibold'
                   : 'text-[#94A3B8] hover:text-[#F8FAFC]'
               }`}
               title="Overview Deck Collage"
             >
-              <Grid className="w-3.5 h-3.5" />
-              <span className="text-[11px]">Deck Collage</span>
+              <Grid className="w-3.5 h-3.5 shrink-0" />
+              <span className="text-[10px] sm:text-[11px]">
+                <span className="hidden sm:inline">Deck </span>Collage
+              </span>
             </button>
 
             <button
               onClick={() => setViewMode('slide')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 font-medium ${
+              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 rounded-lg sm:rounded-full transition-all duration-200 font-medium ${
                 viewMode === 'slide'
                   ? 'bg-[#22D3EE] text-[#0B0F14] shadow-sm font-semibold'
                   : 'text-[#94A3B8] hover:text-[#F8FAFC]'
               }`}
               title="Step-by-step Presentation Slide Mode"
             >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span className="text-[11px]">Slide Mode</span>
+              <Sparkles className="w-3.5 h-3.5 shrink-0" />
+              <span className="text-[10px] sm:text-[11px]">
+                <span className="hidden sm:inline">Slide </span>Mode
+              </span>
             </button>
           </div>
         </div>
@@ -309,7 +313,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Social Quick Profiles */}
-                <div className="flex items-center gap-2 pt-2 border-t border-[#263342] text-xs text-[#94A3B8]">
+                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#263342] text-xs text-[#94A3B8]">
                   <span className="font-semibold text-[#94A3B8] mr-1">Profiles:</span>
                   <a
                     href={settings.githubUrl}
@@ -840,18 +844,18 @@ export const HomePage: React.FC = () => {
                 {/* 4 Icon rows */}
                 <div className="space-y-2.5 pt-1">
                   {/* Phone */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm gap-2">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="w-8 h-8 rounded-full bg-[#121923] text-[#22D3EE] border border-[#263342] flex items-center justify-center shrink-0">
                         <Phone className="w-4 h-4" />
                       </div>
-                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC]">
+                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
                         {settings.phone}
                       </span>
                     </div>
                     <button
                       onClick={() => handleCopy(settings.phone, 'Phone number')}
-                      className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#121923] transition-colors"
+                      className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#121923] transition-colors shrink-0"
                       title="Copy Phone"
                     >
                       {copiedField === 'Phone number' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -859,18 +863,18 @@ export const HomePage: React.FC = () => {
                   </div>
 
                   {/* Email */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm gap-2">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="w-8 h-8 rounded-full bg-[#121923] text-[#22D3EE] border border-[#263342] flex items-center justify-center shrink-0">
                         <Mail className="w-4 h-4" />
                       </div>
-                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] break-all">
+                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
                         {settings.email}
                       </span>
                     </div>
                     <button
                       onClick={() => handleCopy(settings.email, 'Email address')}
-                      className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#121923] transition-colors"
+                      className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#121923] transition-colors shrink-0"
                       title="Copy Email"
                     >
                       {copiedField === 'Email address' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -878,12 +882,12 @@ export const HomePage: React.FC = () => {
                   </div>
 
                   {/* GitHub */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm gap-2">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="w-8 h-8 rounded-full bg-[#121923] text-[#22D3EE] border border-[#263342] flex items-center justify-center shrink-0">
                         <GithubIcon size={16} />
                       </div>
-                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC]">
+                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
                         github.com/Anshsahu275-max
                       </span>
                     </div>
@@ -891,23 +895,23 @@ export const HomePage: React.FC = () => {
                       href={settings.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#121923] transition-colors"
+                      className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#121923] transition-colors shrink-0"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
 
                   {/* Location */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm gap-2">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="w-8 h-8 rounded-full bg-[#121923] text-[#22D3EE] border border-[#263342] flex items-center justify-center shrink-0">
                         <MapPin className="w-4 h-4" />
                       </div>
-                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC]">
+                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
                         Mathura, Uttar Pradesh, India
                       </span>
                     </div>
-                    <span className="text-[10px] text-[#94A3B8] uppercase tracking-widest font-semibold pr-2">
+                    <span className="text-[10px] text-[#94A3B8] uppercase tracking-widest font-semibold pr-2 shrink-0">
                       Location
                     </span>
                   </div>

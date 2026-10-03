@@ -50,7 +50,7 @@ export const ExperiencePage: React.FC = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE]" />
               </div>
 
-              <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-[#22D3EE] hover:-translate-y-0.5 transition-all duration-300 ease-out space-y-4">
+              <div className="bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-7 shadow-sm hover:shadow-md hover:border-[#22D3EE] hover:-translate-y-0.5 transition-all duration-300 ease-out space-y-4">
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
                   <Badge variant="brand" size="sm">

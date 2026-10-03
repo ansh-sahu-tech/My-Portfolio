@@ -202,7 +202,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-20 p-4">
+        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-16 sm:pt-20 p-2.5 sm:p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -280,7 +280,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
               )}
             </div>
 
-            <div className="px-4 py-2 bg-[#0B0F14] border-t border-[#263342] flex items-center justify-between text-[11px] text-[#94A3B8] font-mono">
+            <div className="px-4 py-2 bg-[#0B0F14] border-t border-[#263342] flex flex-wrap items-center justify-between gap-1 text-[10px] sm:text-[11px] text-[#94A3B8] font-mono">
               <span>Navigate: ↑ ↓</span>
               <span>Execute: Enter</span>
               <span>Dismiss: Esc</span>

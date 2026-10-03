@@ -44,7 +44,7 @@ export const EducationPage: React.FC = () => {
 
       {/* 2. Main Education Detail Card */}
       <ScrollReveal delay={0.08}>
-        <div className="bg-[#121923] border border-[#263342] rounded-2xl p-6 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-8">
+        <div className="bg-[#121923] border border-[#263342] rounded-2xl p-4 sm:p-8 lg:p-10 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-8">
           {/* Institution Header */}
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-6 border-b border-[#263342]">
             <div className="space-y-2">
@@ -99,9 +99,9 @@ export const EducationPage: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14]/70 via-transparent to-transparent pointer-events-none" />
 
               {/* Campus Location Tag Overlay */}
-              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#121923]/90 backdrop-blur-md border border-[#263342] text-[#F8FAFC] text-xs font-semibold shadow-lg">
+              <div className="absolute bottom-2 left-2 right-2 sm:right-auto sm:bottom-4 sm:left-4 z-10 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl sm:rounded-full bg-[#121923]/90 backdrop-blur-md border border-[#263342] text-[#F8FAFC] text-[10px] sm:text-xs font-semibold shadow-lg max-w-[calc(100%-16px)]">
                 <MapPin className="w-3.5 h-3.5 text-[#22D3EE] shrink-0" />
-                <span>Sanskriti University — Main Campus Facade, Mathura, UP</span>
+                <span className="truncate">Sanskriti University — Main Campus Facade, Mathura, UP</span>
               </div>
             </div>
           </div>

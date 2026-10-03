@@ -80,7 +80,7 @@ export const AboutPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Bio & Academic Info Card */}
           <div className="lg:col-span-7">
-            <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-6 hover:-translate-y-0.5 group">
+            <div className="bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-6 hover:-translate-y-0.5 group">
               <div className="flex flex-col sm:flex-row sm:items-center gap-6">
                 <div className="relative shrink-0">
                   <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden border border-[#263342] bg-[#1A2430] shadow-sm">

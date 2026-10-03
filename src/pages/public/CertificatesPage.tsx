@@ -68,7 +68,7 @@ export const CertificatesPage: React.FC = () => {
         {filteredCerts.map((cert, idx) => (
           <ScrollReveal key={cert.id} delay={idx * 0.05}>
             <div
-              className="bg-[#121923] border border-[#263342] rounded-xl p-6 shadow-sm hover:shadow-md hover:border-[#22D3EE] hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full group"
+              className="bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md hover:border-[#22D3EE] hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">

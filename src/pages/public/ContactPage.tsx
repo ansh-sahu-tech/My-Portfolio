@@ -80,7 +80,7 @@ export const ContactPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Col: Contact Information Cards */}
         <ScrollReveal direction="left" className="lg:col-span-5 space-y-4">
-          <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 shadow-sm space-y-5 transition-shadow duration-300">
+          <div className="bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-6 shadow-sm space-y-5 transition-shadow duration-300">
             <h3 className="text-base font-bold text-[#F8FAFC] tracking-tight flex items-center gap-2">
               <MessageSquare className="w-4 h-4 text-[#22D3EE]" />
               Contact Details
@@ -200,7 +200,7 @@ export const ContactPage: React.FC = () => {
         </ScrollReveal>
 
         {/* Right Col: Contact Message Form */}
-        <ScrollReveal direction="right" delay={0.1} className="lg:col-span-7 bg-[#121923] border border-[#263342] rounded-xl p-6 sm:p-8 shadow-sm transition-shadow duration-300">
+        <ScrollReveal direction="right" delay={0.1} className="lg:col-span-7 bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-8 shadow-sm transition-shadow duration-300">
           <h3 className="text-lg font-bold text-[#F8FAFC] mb-1">
             Send a Direct Message
           </h3>

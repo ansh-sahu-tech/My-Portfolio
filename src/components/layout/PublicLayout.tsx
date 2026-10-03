@@ -76,7 +76,7 @@ export const PublicLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0B0F14] text-[#F8FAFC] selection:bg-[#22D3EE]/20 selection:text-[#22D3EE] font-sans">
+    <div className="min-h-screen flex flex-col bg-[#0B0F14] text-[#F8FAFC] selection:bg-[#22D3EE]/20 selection:text-[#22D3EE] font-sans overflow-x-hidden w-full max-w-full">
       {/* Command Palette for quick access */}
       <CommandPalette
         isOpen={commandPaletteOpen}
@@ -87,7 +87,7 @@ export const PublicLayout: React.FC = () => {
       <Navbar onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
 
       {/* Main Content Area */}
-      <main className="flex-1 pt-20">
+      <main className="flex-1 pt-20 overflow-x-hidden w-full max-w-full">
         <Outlet />
       </main>
 

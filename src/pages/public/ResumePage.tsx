@@ -69,7 +69,7 @@ export const ResumePage: React.FC = () => {
 
       {/* 2. Formatted Resume Card */}
       <ScrollReveal delay={0.1}>
-        <div className="bg-[#121923] border border-[#263342] rounded-xl p-6 sm:p-10 shadow-sm space-y-8 transition-shadow duration-300">
+        <div className="bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-8 lg:p-10 shadow-sm space-y-8 transition-shadow duration-300">
           {/* Header Profile Info */}
           <div className="border-b border-[#263342] pb-6 space-y-2">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
