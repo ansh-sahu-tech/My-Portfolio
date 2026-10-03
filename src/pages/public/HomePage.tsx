@@ -9,9 +9,6 @@ import {
   ExternalLink, 
   Copy, 
   Check, 
-  Sparkles, 
-  Grid, 
-  Layers, 
   ChevronRight, 
   ChevronLeft,
   Code2,
@@ -111,69 +108,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="w-full min-h-screen bg-[#0B0F14] text-[#F8FAFC] font-sans pb-24 select-text">
-      {/* ========================================================
-          TOP PRESENTATION CONTROLLER & VIEW SWITCHER
-          ======================================================== */}
-      <div className="sticky top-20 z-30 max-w-5xl mx-auto px-3 sm:px-4 pt-3 pb-2 mb-4 pointer-events-none">
-        <div className="pointer-events-auto flex items-center justify-between gap-2 bg-[#121923]/95 backdrop-blur-md border border-[#263342] px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl sm:rounded-full shadow-lg">
-          <div className="flex items-center gap-1.5 sm:gap-2 text-xs font-semibold text-[#94A3B8] min-w-0 shrink">
-            <span className="w-2 h-2 rounded-full bg-[#22D3EE] animate-pulse shrink-0" />
-            <span className="hidden sm:inline font-serif italic text-sm text-[#22D3EE] font-bold shrink-0">
-              Ansh Sahu
-            </span>
-            <span className="hidden sm:inline text-[#263342]">•</span>
-            <span className="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#94A3B8] truncate">
-              <span className="hidden xs:inline">Creative </span>Portfolio Deck
-            </span>
-          </div>
 
-          {/* View Mode Toggle Buttons */}
-          <div className="flex items-center gap-0.5 sm:gap-1 bg-[#1A2430] p-1 rounded-xl sm:rounded-full text-xs border border-[#263342] shrink-0">
-            <button
-              onClick={() => setViewMode('stream')}
-              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 rounded-lg sm:rounded-full transition-all duration-200 font-medium ${
-                viewMode === 'stream'
-                  ? 'bg-[#22D3EE] text-[#0B0F14] shadow-sm font-semibold'
-                  : 'text-[#94A3B8] hover:text-[#F8FAFC]'
-              }`}
-              title="Editorial Scroll View"
-            >
-              <Layers className="w-3.5 h-3.5 shrink-0" />
-              <span className="text-[10px] sm:text-[11px]">Stream</span>
-            </button>
-
-            <button
-              onClick={() => setViewMode('collage')}
-              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 rounded-lg sm:rounded-full transition-all duration-200 font-medium ${
-                viewMode === 'collage'
-                  ? 'bg-[#22D3EE] text-[#0B0F14] shadow-sm font-semibold'
-                  : 'text-[#94A3B8] hover:text-[#F8FAFC]'
-              }`}
-              title="Overview Deck Collage"
-            >
-              <Grid className="w-3.5 h-3.5 shrink-0" />
-              <span className="text-[10px] sm:text-[11px]">
-                <span className="hidden sm:inline">Deck </span>Collage
-              </span>
-            </button>
-
-            <button
-              onClick={() => setViewMode('slide')}
-              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 rounded-lg sm:rounded-full transition-all duration-200 font-medium ${
-                viewMode === 'slide'
-                  ? 'bg-[#22D3EE] text-[#0B0F14] shadow-sm font-semibold'
-                  : 'text-[#94A3B8] hover:text-[#F8FAFC]'
-              }`}
-              title="Step-by-step Presentation Slide Mode"
-            >
-              <Sparkles className="w-3.5 h-3.5 shrink-0" />
-              <span className="text-[10px] sm:text-[11px]">
-                <span className="hidden sm:inline">Slide </span>Mode
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
 
       {/* ========================================================
           VIEW MODE 1: DECK GRID COLLAGE (THE EXACT SCREENSHOT VIEW)
@@ -231,7 +166,7 @@ export const HomePage: React.FC = () => {
           EDITORIAL CARDS STREAM / SLIDES CONTAINER
           ======================================================== */}
       {(viewMode === 'stream' || viewMode === 'slide') && (
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16 pt-2">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16 pt-2 sm:pt-4">
 
           {/* ----------------------------------------------------
               CARD 1: CREATIVE PORTFOLIO (HERO)
