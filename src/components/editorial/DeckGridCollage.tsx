@@ -23,8 +23,8 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
             <div className="absolute top-2 left-3">
               <SparkleStar size={11} color="#c2744d" />
             </div>
-            <div className="relative z-10 w-24 sm:w-36 aspect-[3/4] p-1 sm:p-1.5 rounded-[50px] sm:rounded-[70px] border border-[#d8b082] bg-white/40">
-              <div className="w-full h-full rounded-[45px] sm:rounded-[65px] overflow-hidden border-[2px] border-[#b97a4e]">
+            <div className="relative z-10 w-28 sm:w-36 aspect-[4/3] p-1 sm:p-1.5 rounded-2xl border border-[#d8b082] bg-white/60 shadow-xs">
+              <div className="w-full h-full rounded-xl overflow-hidden border-[2px] border-[#b97a4e] bg-stone-900/10">
                 <img
                   src="/ansh-profile.jpg"
                   alt="Ansh Portrait"
@@ -75,9 +75,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
           className="cursor-pointer group relative rounded-2xl overflow-hidden bg-[#fbf7f1] border border-[#e4d5c0] shadow-md transition-all duration-300 hover:scale-[1.015] hover:shadow-xl"
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
-            <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-3 relative">
-              <div className="w-16 sm:w-20 aspect-[3/4] p-1 rounded-[40px] border border-[#d8b082] bg-white/40">
-                <div className="w-full h-full rounded-[36px] overflow-hidden border-[1.5px] border-[#b97a4e]">
+            <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-2.5 sm:p-3 relative">
+              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#d8b082] bg-white/60 shadow-xs">
+                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
                   <img
                     src="/ansh-profile.jpg"
                     alt="About Ansh Sahu"
@@ -112,8 +112,8 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
             <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-2.5 sm:p-3 relative">
-              <div className="w-18 sm:w-22 p-1 rounded-xl border border-[#d8b082] bg-white/50 shadow-xs">
-                <div className="w-full aspect-[623/491] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
+              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#d8b082] bg-white/60 shadow-xs">
+                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
                   <img
                     src="/vision-mission.png"
                     alt="Vision & Mission"
@@ -148,8 +148,8 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
             <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-2.5 sm:p-3 relative">
-              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#d8b082] bg-white/50 shadow-xs">
-                <div className="w-full aspect-[738/294] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
+              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#d8b082] bg-white/60 shadow-xs">
+                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
                   <img
                     src="/sanskriti-university.png"
                     alt="Sanskriti University Campus"
@@ -184,8 +184,8 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
             <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-2.5 sm:p-3 relative">
-              <div className="w-18 sm:w-22 p-1 rounded-xl border border-[#d8b082] bg-white/50 shadow-xs">
-                <div className="w-full aspect-[738/369] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
+              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#d8b082] bg-white/60 shadow-xs">
+                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
                   <img
                     src="/skills.png"
                     alt="Skills"
@@ -222,8 +222,8 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
             <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-2.5 sm:p-3 relative">
-              <div className="w-18 sm:w-22 p-1 rounded-xl border border-[#d8b082] bg-white/50 shadow-xs">
-                <div className="w-full aspect-[275/183] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
+              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#d8b082] bg-white/60 shadow-xs">
+                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
                   <img
                     src="/experience.png"
                     alt="Experience Workspace"
@@ -258,8 +258,8 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
             <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-2.5 sm:p-3 relative">
-              <div className="w-18 sm:w-22 p-1 rounded-xl border border-[#d8b082] bg-white/50 shadow-xs">
-                <div className="w-full aspect-[738/387] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
+              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#d8b082] bg-white/60 shadow-xs">
+                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
                   <img
                     src="/ai-driver-awareness.png"
                     alt="AI Driver Awareness System"
@@ -294,8 +294,8 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
             <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-2.5 sm:p-3 relative">
-              <div className="w-18 sm:w-22 p-1 rounded-xl border border-[#d8b082] bg-white/50 shadow-xs">
-                <div className="w-full aspect-[678/452] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
+              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#d8b082] bg-white/60 shadow-xs">
+                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
                   <img
                     src="/collaborate.png"
                     alt="Collaborate"
@@ -329,9 +329,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
           className="cursor-pointer group relative rounded-2xl overflow-hidden bg-[#fbf7f1] border border-[#e4d5c0] shadow-md transition-all duration-300 hover:scale-[1.015] hover:shadow-xl"
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
-            <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-3 relative">
-              <div className="w-16 sm:w-20 aspect-[3/4] p-1 rounded-[40px] border border-[#d8b082] bg-white/40">
-                <div className="w-full h-full rounded-[36px] overflow-hidden border-[1.5px] border-[#b97a4e]">
+            <div className="col-span-5 editorial-marble-panel border-r border-[#ebdcc8] flex items-center justify-center p-2.5 sm:p-3 relative">
+              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#d8b082] bg-white/60 shadow-xs">
+                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#b97a4e] bg-stone-900/10">
                   <img
                     src="/ansh-profile.jpg"
                     alt="Thanks"

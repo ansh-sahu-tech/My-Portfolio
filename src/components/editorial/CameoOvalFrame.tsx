@@ -20,8 +20,8 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
   imageSrc,
   imageAlt,
   className = '',
-  aspectClass,
-  frameShape = 'oval',
+  aspectClass = 'aspect-[4/3]',
+  frameShape = 'architectural',
   imageClassName = '',
   caption,
   badgeText,
@@ -67,6 +67,12 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
               src={imageSrc}
               alt={imageAlt}
               loading="lazy"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('ansh-profile')) {
+                  target.src = '/ai-driver-awareness.png';
+                }
+              }}
               className={`w-full h-full object-cover object-center filter contrast-[1.04] brightness-[1.01] transition-transform duration-700 ease-out group-hover:scale-105 ${imageClassName}`}
             />
             {/* Subtle soft gradient sheen */}

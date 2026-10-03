@@ -232,12 +232,19 @@ export const HomePage: React.FC = () => {
             <EditorialSlideCard
               id="hero"
               imageSrc="/ansh-profile.jpg"
-              imageAlt="Ansh Sahu - Software Engineer &amp; Developer"
+              imageAlt="Ansh Sahu - Software Engineer & Developer"
               categoryTitle="Editorial Portfolio 2026"
               titleRust="CREATIVE"
               titleBlack="PORTFOLIO"
               activeSection="hero"
               signature="By Ansh Sahu"
+              frameShape="architectural"
+              aspectClass="aspect-[4/3]"
+              imageClassName="object-top"
+              badgeText="Lead Software Engineer"
+              subBadgeText="mathura, india"
+              caption="Ansh Sahu • Developer"
+              tagText="Available 2026"
             >
               <div className="space-y-4">
                 {/* Primary H1 for Search Engine Ranking */}
@@ -339,6 +346,13 @@ export const HomePage: React.FC = () => {
               titleRust="ABOUT ME"
               activeSection="about"
               signature="By Ansh Sahu"
+              frameShape="architectural"
+              aspectClass="aspect-[4/3]"
+              imageClassName="object-top"
+              badgeText="Biography & Mindset"
+              subBadgeText="engineering core"
+              caption="Ansh Sahu • Profile"
+              tagText="Software Engineer"
             >
               <div className="space-y-4">
                 <p className="text-stone-700 text-sm sm:text-[14.5px] leading-relaxed">
@@ -405,7 +419,7 @@ export const HomePage: React.FC = () => {
               activeSection="about"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-[623/491]"
+              aspectClass="aspect-[4/3]"
               badgeText="Core Philosophy"
               subBadgeText="guiding principles"
               caption="Vision • Mission • Core Values"
@@ -459,7 +473,7 @@ export const HomePage: React.FC = () => {
               activeSection="education"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-[738/294]"
+              aspectClass="aspect-[4/3]"
               caption="Sanskriti University • Mathura, UP"
               badgeText="Campus Architecture"
               subBadgeText="mathura, india"
@@ -543,7 +557,7 @@ export const HomePage: React.FC = () => {
               activeSection="skills"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-[738/369]"
+              aspectClass="aspect-[4/3]"
               badgeText="Capabilities Stack"
               subBadgeText="engineering matrix"
               caption="Frontend • AI/ML • Systems"
@@ -623,7 +637,7 @@ export const HomePage: React.FC = () => {
               activeSection="experience"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-[275/183]"
+              aspectClass="aspect-[4/3]"
               badgeText="Engineering Track"
               subBadgeText="hands-on execution"
               caption="Workstation • Research & Development"
@@ -692,7 +706,7 @@ export const HomePage: React.FC = () => {
               activeSection="portfolio"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-video"
+              aspectClass="aspect-[4/3]"
               badgeText={featuredProjects[activeProjectTab]?.category || 'Engineering Project'}
               subBadgeText={
                 activeProjectTab === 3
@@ -700,7 +714,7 @@ export const HomePage: React.FC = () => {
                   : activeProjectTab === 2
                   ? 'predictive analytics'
                   : activeProjectTab === 1
-                  ? 'grocery e-commerce'
+                  ? 'home & construction'
                   : 'driver safety'
               }
               caption={featuredProjects[activeProjectTab]?.title || 'Featured Project'}
@@ -710,7 +724,7 @@ export const HomePage: React.FC = () => {
                   : activeProjectTab === 2
                   ? 'Scikit-Learn ML'
                   : activeProjectTab === 1
-                  ? 'Grocery E-Commerce'
+                  ? 'Marketplace'
                   : 'Edge AI System'
               }
             >
@@ -812,7 +826,7 @@ export const HomePage: React.FC = () => {
               activeSection="contact"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-[678/452]"
+              aspectClass="aspect-[4/3]"
               badgeText="Direct Inquiries"
               subBadgeText="let's work together"
               caption="Available for Opportunities"
@@ -925,6 +939,13 @@ export const HomePage: React.FC = () => {
               titleBlack="YOU"
               activeSection="contact"
               signature="By Ansh Sahu"
+              frameShape="architectural"
+              aspectClass="aspect-[4/3]"
+              imageClassName="object-top"
+              badgeText="Closing Appreciation"
+              subBadgeText="thank you"
+              caption="Ansh Sahu • Engineering"
+              tagText="Signature"
             >
               <div className="space-y-4">
                 <p className="text-sm sm:text-base text-stone-800 font-medium leading-relaxed">
