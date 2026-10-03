@@ -295,9 +295,12 @@ function generateResume() {
       .text(` — ${issuer} (${date}) [ID: ${credId}]`);
   }
 
-  renderCert('Machine Learning & Deep Learning Foundations', 'Technical Specialization', '2024', 'ANSH-AI-2024-001');
-  renderCert('Computer Vision with OpenCV & Python', 'Applied Vision Engineering', '2024', 'ANSH-CV-2024-002');
-  renderCert('Data Science & Exploratory Analysis with Python', 'Data Engineering Coursework', '2023', 'ANSH-DS-2023-003');
+  renderCert('Python Certification', 'HackerRank', 'April 2024', 'HR-PYTHON-2024');
+  renderCert('C Programming Certification', 'HackerRank', 'April 2024', 'HR-C-2024');
+  renderCert('Data Structures & Algorithms', 'Infosys', 'October 2024', 'INFOSYS-DSA-2024');
+  renderCert('Introduction to Artificial Intelligence', 'Infosys', 'September 2024', 'INFOSYS-AI-2024');
+  renderCert('IP Utsav', 'AICTE', 'April 2025', 'AICTE-IPUTSAV-2025');
+  renderCert('Spark Program', 'Sanskriti University', 'March 2025', 'SU-SPARK-2025');
 
   // Finalize PDF
   doc.end();

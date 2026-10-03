@@ -9,7 +9,7 @@ const STORAGE_KEYS = {
   PROJECTS: 'ansh_dev_projects_v2',
   SKILLS: 'ansh_dev_skills_v2',
   EXPERIENCE: 'ansh_dev_experience_v2',
-  CERTIFICATES: 'ansh_dev_certificates_v2',
+  CERTIFICATES: 'ansh_dev_certificates_v3',
   MESSAGES: 'ansh_dev_messages_v2',
   SETTINGS: 'ansh_dev_settings_v2',
   THEME: 'ansh_dev_theme_v2',

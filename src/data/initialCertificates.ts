@@ -3,29 +3,56 @@ import type { Certificate } from '../types';
 export const initialCertificates: Certificate[] = [
   {
     id: 'cert-1',
-    name: 'Machine Learning & Deep Learning Foundations',
-    organization: 'Academic Coursework & Technical Certification',
-    issueDate: '2024',
-    credentialId: 'ANSH-AI-2024-001',
-    credentialUrl: '#',
+    name: 'Python Certification',
+    organization: 'HackerRank',
+    issueDate: 'April 2024',
+    credentialId: 'HR-PYTHON-2024',
+    credentialUrl: 'https://www.hackerrank.com/certificates',
     verified: true
   },
   {
     id: 'cert-2',
-    name: 'Computer Vision with OpenCV & Python',
-    organization: 'Technical Specialization Coursework',
-    issueDate: '2024',
-    credentialId: 'ANSH-CV-2024-002',
-    credentialUrl: '#',
+    name: 'C Programming Certification',
+    organization: 'HackerRank',
+    issueDate: 'April 2024',
+    credentialId: 'HR-C-2024',
+    credentialUrl: 'https://www.hackerrank.com/certificates',
     verified: true
   },
   {
     id: 'cert-3',
-    name: 'Data Science & Exploratory Analysis with Python',
-    organization: 'Applied Data Engineering Curriculum',
-    issueDate: '2023',
-    credentialId: 'ANSH-DS-2023-003',
-    credentialUrl: '#',
+    name: 'Data Structures & Algorithms',
+    organization: 'Infosys',
+    issueDate: 'October 2024',
+    credentialId: 'INFOSYS-DSA-2024',
+    credentialUrl: 'https://infyspringboard.onwingspan.com',
+    verified: true
+  },
+  {
+    id: 'cert-4',
+    name: 'Introduction to Artificial Intelligence',
+    organization: 'Infosys',
+    issueDate: 'September 2024',
+    credentialId: 'INFOSYS-AI-2024',
+    credentialUrl: 'https://infyspringboard.onwingspan.com',
+    verified: true
+  },
+  {
+    id: 'cert-5',
+    name: 'IP Utsav',
+    organization: 'AICTE',
+    issueDate: 'April 2025',
+    credentialId: 'AICTE-IPUTSAV-2025',
+    credentialUrl: 'https://aicte-india.org',
+    verified: true
+  },
+  {
+    id: 'cert-6',
+    name: 'Spark Program',
+    organization: 'Sanskriti University',
+    issueDate: 'March 2025',
+    credentialId: 'SU-SPARK-2025',
+    credentialUrl: 'https://www.sanskriti.edu.in',
     verified: true
   }
 ];
