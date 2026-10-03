@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { CameoOvalFrame } from './CameoOvalFrame';
 import { DeckCardHeader } from './DeckCardHeader';
 import { DeckCardFooter } from './DeckCardFooter';
-import { SparkleStar } from './SparkleStar';
 
 interface EditorialSlideCardProps {
   id?: string;
@@ -16,7 +15,6 @@ interface EditorialSlideCardProps {
   children: React.ReactNode;
   className?: string;
   signature?: string;
-  sparklePosition?: 'title-right' | 'title-left' | 'top-right';
   frameShape?: 'oval' | 'architectural' | 'landscape';
   aspectClass?: string;
   imageClassName?: string;
@@ -37,7 +35,6 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
   children,
   className = '',
   signature = 'By Ansh Sahu',
-  sparklePosition = 'title-right',
   frameShape = 'architectural',
   aspectClass = 'aspect-[4/3]',
   imageClassName,
@@ -55,13 +52,7 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={`relative w-full max-w-5xl mx-auto rounded-3xl sm:rounded-[32px] overflow-hidden bg-[#121923] border border-[#263342] shadow-[0_16px_50px_-10px_rgba(0,0,0,0.5)] transition-all duration-300 hover:shadow-[0_22px_60px_-10px_rgba(0,0,0,0.7)] ${className}`}
     >
-      {/* Delicate outer card frame accents */}
-      <div className="absolute top-3 left-4 z-20 pointer-events-none">
-        <SparkleStar size={12} color="#22D3EE" />
-      </div>
-      <div className="absolute bottom-3 right-6 z-20 pointer-events-none">
-        <SparkleStar size={11} color="#22D3EE" />
-      </div>
+
 
       <div className="grid grid-cols-1 md:grid-cols-12 min-h-[440px] sm:min-h-[500px]">
         {/* Left Column: Cameo Oval Frame + Marble Texture */}
@@ -94,7 +85,6 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
             {/* Category / Super-title if any */}
             {categoryTitle && (
               <div className="mt-4 sm:mt-5 text-[11px] font-bold uppercase tracking-widest text-[#22D3EE] flex items-center gap-1.5 flex-wrap">
-                <SparkleStar size={10} color="#22D3EE" />
                 <span>{categoryTitle}</span>
               </div>
             )}
@@ -110,12 +100,7 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
                 </h3>
               )}
 
-              {/* Sparkle Accent near the title */}
-              {sparklePosition === 'title-right' && (
-                <div className="absolute -top-3 right-0 sm:-right-8 pointer-events-none">
-                  <SparkleStar size={20} color="#22D3EE" />
-                </div>
-              )}
+
             </div>
 
             {/* Main Content Area */}

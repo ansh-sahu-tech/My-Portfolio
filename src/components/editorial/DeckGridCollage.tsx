@@ -1,5 +1,4 @@
 import React from 'react';
-import { SparkleStar } from './SparkleStar';
 import { GoldenWireDecor } from './GoldenWireDecor';
 
 interface DeckGridCollageProps {
@@ -20,9 +19,7 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
             <div className="absolute -bottom-4 -left-4 w-32 h-24 pointer-events-none opacity-60">
               <GoldenWireDecor />
             </div>
-            <div className="absolute top-2 left-3">
-              <SparkleStar size={11} color="#22D3EE" />
-            </div>
+
             <div className="relative z-10 w-24 xs:w-28 sm:w-36 aspect-[4/3] p-1 sm:p-1.5 rounded-2xl border border-[#263342] bg-[#1A2430]/60 shadow-xs">
               <div className="w-full h-full rounded-xl overflow-hidden border-[2px] border-[#263342] bg-[#0B0F14]">
                 <img
@@ -50,9 +47,7 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
               <h3 className="font-display font-black uppercase tracking-tight text-xl xs:text-2xl sm:text-4xl lg:text-5xl text-[#F8FAFC] leading-none break-words">
                 PORTFOLIO
               </h3>
-              <div className="absolute -top-3 right-2 sm:right-4">
-                <SparkleStar size={18} color="#22D3EE" />
-              </div>
+
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-1 text-[10px] sm:text-xs pt-2 border-t border-[#263342]">

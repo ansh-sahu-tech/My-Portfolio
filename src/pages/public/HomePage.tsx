@@ -18,7 +18,6 @@ import { useData } from '../../context/DataContext';
 import { useToast } from '../../context/ToastContext';
 import { EditorialSlideCard } from '../../components/editorial/EditorialSlideCard';
 import { DeckGridCollage } from '../../components/editorial/DeckGridCollage';
-import { SparkleStar } from '../../components/editorial/SparkleStar';
 import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
 import { getRealisticSkillIcon } from '../../components/skills/RealisticSkillIcons';
 import { 
@@ -125,10 +124,8 @@ export const HomePage: React.FC = () => {
       {viewMode === 'collage' && (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-4">
           <div className="text-center mb-6 text-[#F8FAFC] space-y-1">
-            <p className="text-xs uppercase tracking-widest text-[#22D3EE] font-semibold flex items-center justify-center gap-1.5">
-              <SparkleStar size={12} color="#22D3EE" />
+            <p className="text-xs uppercase tracking-widest text-[#22D3EE] font-semibold flex items-center justify-center">
               <span>Full Portfolio Presentation Deck</span>
-              <SparkleStar size={12} color="#22D3EE" />
             </p>
             <h2 className="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-[#F8FAFC]">
               Creative Editorial Overview
@@ -380,8 +377,7 @@ export const HomePage: React.FC = () => {
               <div className="space-y-4">
                 {/* Vision Block */}
                 <div className="space-y-1 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342]">
-                  <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#F8FAFC] flex items-center gap-1.5">
-                    <SparkleStar size={13} color="#22D3EE" />
+                  <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#F8FAFC]">
                     <span>VISION</span>
                   </h4>
                   <p className="text-xs sm:text-[13.5px] text-[#94A3B8] leading-relaxed">
@@ -391,8 +387,7 @@ export const HomePage: React.FC = () => {
 
                 {/* Mission Block */}
                 <div className="space-y-1 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342]">
-                  <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#22D3EE] flex items-center gap-1.5">
-                    <SparkleStar size={13} color="#22D3EE" />
+                  <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#22D3EE]">
                     <span>MISSION</span>
                   </h4>
                   <p className="text-xs sm:text-[13.5px] text-[#94A3B8] leading-relaxed">

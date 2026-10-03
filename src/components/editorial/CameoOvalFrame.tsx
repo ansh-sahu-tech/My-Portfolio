@@ -1,6 +1,5 @@
 import React from 'react';
 import { MapPin } from 'lucide-react';
-import { SparkleStar } from './SparkleStar';
 import { GoldenWireDecor } from './GoldenWireDecor';
 
 export interface CameoOvalFrameProps {
@@ -37,16 +36,7 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
           <GoldenWireDecor />
         </div>
 
-        {/* Floating Sparkles around the frame */}
-        <div className="absolute top-2 left-2 z-20">
-          <SparkleStar size={16} color="#22D3EE" />
-        </div>
-        <div className="absolute bottom-6 right-2 z-20">
-          <SparkleStar size={14} color="#22D3EE" />
-        </div>
-        <div className="absolute -top-1 right-6 z-20">
-          <SparkleStar size={12} color="#22D3EE" />
-        </div>
+
 
         {/* Outer concentric architectural frame */}
         <div className="relative z-10 w-full p-2.5 sm:p-3 rounded-2xl sm:rounded-[26px] border border-[#263342] shadow-[0_10px_35px_-5px_rgba(0,0,0,0.5)] bg-[#1A2430]/80 backdrop-blur-[3px] transition-all duration-500 hover:scale-[1.02] hover:border-[#22D3EE]/50 hover:shadow-[0_14px_40px_-5px_rgba(0,0,0,0.6)]">
@@ -104,16 +94,7 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
         <GoldenWireDecor />
       </div>
 
-      {/* Floating Sparkles around the frame */}
-      <div className="absolute top-4 left-3 z-20">
-        <SparkleStar size={16} color="#22D3EE" />
-      </div>
-      <div className="absolute bottom-12 right-2 z-20">
-        <SparkleStar size={14} color="#22D3EE" />
-      </div>
-      <div className="absolute -top-1 right-8 z-20">
-        <SparkleStar size={12} color="#22D3EE" />
-      </div>
+
 
       {/* Outer concentric thin ring */}
       <div className={`relative z-10 w-full ${ovalAspect} p-2 rounded-[130px] border border-[#263342] shadow-sm bg-[#1A2430]/40 backdrop-blur-[2px] transition-transform duration-500 hover:scale-[1.02]`}>
