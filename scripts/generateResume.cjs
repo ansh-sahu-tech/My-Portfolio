@@ -85,7 +85,7 @@ function generateResume() {
 
   // Contact Info Line 2: Clickable GitHub & LinkedIn links (centered without wrapping overlap)
   const linkLineY = doc.y;
-  const linkText1 = 'GitHub: github.com/Anshsahu275-max';
+  const linkText1 = 'GitHub: github.com/ansh-sahu-tech';
   const sep = '   •   ';
   const linkText2 = 'LinkedIn: linkedin.com/in/ansh-sahu-8362183a8';
 
@@ -99,7 +99,7 @@ function generateResume() {
   doc
     .fillColor(secondaryColor)
     .text(linkText1, startX, linkLineY, {
-      link: 'https://github.com/Anshsahu275-max',
+      link: 'https://github.com/ansh-sahu-tech',
       underline: true,
       lineBreak: false
     });
@@ -263,7 +263,7 @@ function generateResume() {
       'Conducted exploratory data analysis (EDA), data cleaning, feature normalization, and categorical encoding across multi-variate academic data.',
       'Benchmarked supervised regression and classification models using cross-validation and generated interpretable correlation plots.'
     ],
-    { label: 'GitHub Repository', url: 'https://github.com/Anshsahu275-max' }
+    { label: 'GitHub Repository', url: 'https://github.com/ansh-sahu-tech' }
   );
 
   renderProject(

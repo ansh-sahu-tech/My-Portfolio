@@ -50,7 +50,7 @@ export const storageService = {
         return {
           ...p,
           liveUrl: liveUrl || p.liveUrl,
-          githubUrl: !githubUrl || githubUrl === 'YOUR_GITHUB_URL' ? 'https://github.com/Anshsahu275-max' : githubUrl,
+          githubUrl: !githubUrl || githubUrl === 'YOUR_GITHUB_URL' || githubUrl.includes('Anshsahu275-max') ? 'https://github.com/ansh-sahu-tech' : githubUrl,
           imageUrl: imageUrl || '/ai-driver-awareness.png'
         };
       });
@@ -156,7 +156,7 @@ export const storageService = {
         parsed.linkedinUrl = defaultSettings.linkedinUrl;
         modified = true;
       }
-      if (!parsed.githubUrl || parsed.githubUrl === 'YOUR_GITHUB_URL') {
+      if (!parsed.githubUrl || parsed.githubUrl === 'YOUR_GITHUB_URL' || parsed.githubUrl.includes('Anshsahu275-max')) {
         parsed.githubUrl = defaultSettings.githubUrl;
         modified = true;
       }

@@ -13,7 +13,7 @@ export const defaultSettings: SiteSettings = {
   aboutTitle: 'Software Engineer & Developer with AI & Machine Learning Foundations.',
   aboutDescription: "I'm Ansh Sahu (ansh.developer), a Software Engineer and B.Tech Computer Science student specializing in AI & ML at Sanskriti University (2023–2027). I engineer fast, accessible, and user-friendly web applications using React, Next.js, TypeScript, and modern CSS, supported by strong fundamentals in data structures, algorithms, REST APIs, and applied machine learning.",
   email: 'anshcseaiml0169@gmail.com',
-  githubUrl: 'https://github.com/Anshsahu275-max',
+  githubUrl: 'https://github.com/ansh-sahu-tech',
   linkedinUrl: 'https://www.linkedin.com/in/ansh-sahu-8362183a8',
   phone: '+91 7754091703',
   resumeUrl: '/resume.pdf',

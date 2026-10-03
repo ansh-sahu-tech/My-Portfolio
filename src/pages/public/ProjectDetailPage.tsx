@@ -47,7 +47,7 @@ export const ProjectDetailPage: React.FC = () => {
 
   const githubHref = project.githubUrl && project.githubUrl !== 'YOUR_GITHUB_URL'
     ? project.githubUrl
-    : (settings.githubUrl || 'https://github.com/Anshsahu275-max');
+    : (settings.githubUrl || 'https://github.com/ansh-sahu-tech');
 
   const liveHref = project.liveUrl && project.liveUrl !== '#'
     ? project.liveUrl

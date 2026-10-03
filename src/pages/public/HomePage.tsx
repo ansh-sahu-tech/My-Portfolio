@@ -70,7 +70,7 @@ export const HomePage: React.FC = () => {
       category: 'Home & Construction Marketplace',
       tech: ['React', 'JavaScript', 'Tailwind CSS', 'REST APIs'],
       summary: 'Modern marketplace for home and construction needs to explore properties, building materials, home products, and services with fast discovery and enquiries.',
-      github: 'https://github.com/Anshsahu275-max',
+      github: 'https://github.com/ansh-sahu-tech',
       demo: 'https://sacha-sauda-five.vercel.app/',
       image: '/sacha-sauda.png'
     },
@@ -79,8 +79,8 @@ export const HomePage: React.FC = () => {
       category: 'Machine Learning Pipeline',
       tech: ['Python', 'Scikit-learn', 'Pandas', 'Data Analysis'],
       summary: 'Supervised ML model evaluating study habits, attendance, and continuous assessment data to forecast academic performance.',
-      github: 'https://github.com/Anshsahu275-max',
-      demo: 'https://github.com/Anshsahu275-max',
+      github: 'https://github.com/ansh-sahu-tech',
+      demo: 'https://github.com/ansh-sahu-tech',
       image: '/student-performance-prediction.png'
     },
     {
@@ -88,7 +88,7 @@ export const HomePage: React.FC = () => {
       category: 'Web Development',
       tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
       summary: 'Production artisanal bakery web storefront featuring catalog navigation, dynamic product showcase, and streamlined inquiry workflows.',
-      github: 'https://github.com/Anshsahu275-max',
+      github: 'https://github.com/ansh-sahu-tech',
       demo: 'https://bakery-taupe-six.vercel.app/',
       image: '/bakery-project.png'
     },
@@ -840,7 +840,7 @@ export const HomePage: React.FC = () => {
                         <GithubIcon size={16} />
                       </div>
                       <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
-                        github.com/Anshsahu275-max
+                        {settings.githubUrl ? settings.githubUrl.replace(/^https?:\/\//, '') : 'github.com/ansh-sahu-tech'}
                       </span>
                     </div>
                     <a

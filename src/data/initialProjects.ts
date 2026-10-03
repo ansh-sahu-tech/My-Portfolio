@@ -58,7 +58,7 @@ export const initialProjects: Project[] = [
       'Tested responsive layouts across mobile, tablet, and desktop for a practical and polished user experience.'
     ],
     results: 'Delivered a modern, high-performance marketplace enabling seamless product discovery and instant enquiries for home and construction requirements.',
-    githubUrl: 'https://github.com/Anshsahu275-max',
+    githubUrl: 'https://github.com/ansh-sahu-tech',
     liveUrl: 'https://sacha-sauda-five.vercel.app/',
     imageUrl: '/sacha-sauda.png',
     featured: true,
@@ -90,8 +90,8 @@ export const initialProjects: Project[] = [
       'Generated visual correlation plots with Matplotlib.'
     ],
     results: 'Demonstrated strong predictive accuracy connecting regular engagement metrics with final academic outcomes.',
-    githubUrl: 'https://github.com/Anshsahu275-max',
-    liveUrl: 'https://github.com/Anshsahu275-max',
+    githubUrl: 'https://github.com/ansh-sahu-tech',
+    liveUrl: 'https://github.com/ansh-sahu-tech',
     imageUrl: '/student-performance-prediction.png',
     featured: true,
     published: true,
@@ -122,7 +122,7 @@ export const initialProjects: Project[] = [
       'Deployed production build to Vercel with automated branch previews.'
     ],
     results: 'Delivered a production web application with fast load times and positive client feedback.',
-    githubUrl: 'https://github.com/Anshsahu275-max',
+    githubUrl: 'https://github.com/ansh-sahu-tech',
     liveUrl: 'https://bakery-taupe-six.vercel.app/',
     imageUrl: '/bakery-project.png',
     featured: true,

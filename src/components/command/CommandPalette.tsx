@@ -95,7 +95,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
     },
     {
       id: 'github',
-      name: 'Open GitHub Profile (@Anshsahu275-max)',
+      name: 'Open GitHub Profile (@ansh-sahu-tech)',
       category: 'External',
       icon: <GithubIcon size={16} className="text-[#94A3B8]" />,
       perform: () => {
