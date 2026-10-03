@@ -12,6 +12,7 @@ import { useData } from '../../context/DataContext';
 import { useToast } from '../../context/ToastContext';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { Button } from '../../components/common/Button';
+import { BackButton } from '../../components/common/BackButton';
 import { ScrollReveal } from '../../components/common/ScrollReveal';
 import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
 
@@ -65,6 +66,13 @@ export const ContactPage: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans pb-16">
+      {/* Top Left Back Navigation */}
+      <ScrollReveal>
+        <div className="flex items-center justify-start pt-1 -mb-8 sm:-mb-9">
+          <BackButton />
+        </div>
+      </ScrollReveal>
+
       {/* 1. Header */}
       <ScrollReveal>
         <SectionHeader

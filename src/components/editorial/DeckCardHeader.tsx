@@ -1,14 +1,17 @@
 import React from 'react';
+import { ArrowLeft } from 'lucide-react';
 
 interface DeckCardHeaderProps {
   activeSection?: string;
   onNavigate?: (sectionId: string) => void;
+  onBack?: () => void;
   className?: string;
 }
 
 export const DeckCardHeader: React.FC<DeckCardHeaderProps> = ({
   activeSection = 'home',
   onNavigate,
+  onBack,
   className = ''
 }) => {
   const navItems = [
@@ -18,6 +21,34 @@ export const DeckCardHeader: React.FC<DeckCardHeaderProps> = ({
     { id: 'portfolio', label: 'Portfolio' },
     { id: 'contact', label: 'Contact' }
   ];
+
+  const handleBack = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onBack) {
+      onBack();
+      return;
+    }
+    const prevSlideBtn = document.querySelector<HTMLButtonElement>('button[aria-label="Previous Slide"]');
+    if (prevSlideBtn && !prevSlideBtn.disabled) {
+      prevSlideBtn.click();
+      return;
+    }
+    const sectionOrder = ['hero', 'about', 'vision', 'education', 'skills', 'experience', 'projects', 'contact', 'thanks'];
+    const currentIndex = sectionOrder.indexOf(activeSection || 'hero');
+    if (currentIndex > 0) {
+      const prevId = sectionOrder[currentIndex - 1];
+      const prevEl = document.getElementById(prevId);
+      if (prevEl) {
+        prevEl.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    if (window.history.state && window.history.state.idx > 0) {
+      window.history.back();
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const handleClick = (e: React.MouseEvent, id: string) => {
     if (onNavigate) {
@@ -33,8 +64,19 @@ export const DeckCardHeader: React.FC<DeckCardHeaderProps> = ({
   };
 
   return (
-    <div className={`w-full flex items-center justify-start sm:justify-end ${className}`}>
-      <nav className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-6 text-[10px] sm:text-xs tracking-wider uppercase font-semibold text-[#94A3B8]">
+    <div className={`w-full flex items-center justify-between gap-3 ${className}`}>
+      {/* Back button on top on the left */}
+      <button
+        type="button"
+        onClick={handleBack}
+        className="group/back inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-[#94A3B8] hover:text-[#22D3EE] active:scale-95 px-2.5 py-1 rounded-lg bg-[#1A2430] border border-[#263342] hover:border-[#22D3EE] shadow-xs transition-all duration-200 cursor-pointer shrink-0"
+        aria-label="Back"
+      >
+        <ArrowLeft className="w-3.5 h-3.5 group-hover/back:-translate-x-0.5 transition-transform duration-200 text-[#22D3EE]" />
+        <span>Back</span>
+      </button>
+
+      <nav className="flex flex-wrap items-center justify-end gap-2 sm:gap-4 md:gap-6 text-[10px] sm:text-xs tracking-wider uppercase font-semibold text-[#94A3B8]">
         {navItems.map((item) => {
           const isActive = activeSection === item.id;
           return (

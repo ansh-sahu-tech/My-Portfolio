@@ -15,6 +15,7 @@ interface EditorialSlideCardProps {
   children: React.ReactNode;
   className?: string;
   signature?: string;
+  onBack?: () => void;
   frameShape?: 'oval' | 'architectural' | 'landscape';
   aspectClass?: string;
   imageClassName?: string;
@@ -35,6 +36,7 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
   children,
   className = '',
   signature = 'By Ansh Sahu',
+  onBack,
   frameShape = 'architectural',
   aspectClass = 'aspect-[4/3]',
   imageClassName,
@@ -80,7 +82,7 @@ export const EditorialSlideCard: React.FC<EditorialSlideCardProps> = ({
         <div className="md:col-span-7 flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 bg-[#121923] relative min-w-0">
           <div>
             {/* Top Navigation */}
-            <DeckCardHeader activeSection={activeSection} />
+            <DeckCardHeader activeSection={activeSection} onBack={onBack} />
 
             {/* Category / Super-title if any */}
             {categoryTitle && (

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { 
-  ArrowLeft, 
+  ArrowLeft,
   ExternalLink, 
   CheckCircle2, 
   Layers, 
@@ -13,13 +13,13 @@ import {
 import { useData } from '../../context/DataContext';
 import { Button } from '../../components/common/Button';
 import { Badge } from '../../components/common/Badge';
+import { BackButton } from '../../components/common/BackButton';
 import { ScrollReveal } from '../../components/common/ScrollReveal';
 import { GithubIcon } from '../../components/common/SocialIcons';
 
 export const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { getProjectBySlug, settings } = useData();
-  const navigate = useNavigate();
 
   const project = slug ? getProjectBySlug(slug) : undefined;
 
@@ -58,12 +58,7 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Navigation Breadcrumb */}
       <ScrollReveal>
         <div className="flex items-center justify-between">
-          <button
-            onClick={() => navigate(-1)}
-            className="group/back inline-flex items-center gap-2 text-xs font-semibold text-[#94A3B8] hover:text-[#22D3EE] active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] rounded px-1 py-0.5 transition-all duration-200"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover/back:-translate-x-1 transition-transform duration-200" /> Back to Projects
-          </button>
+          <BackButton label="Back to Projects" fallbackPath="/projects" />
 
           <Badge variant="brand" size="sm">
             {project.category}
