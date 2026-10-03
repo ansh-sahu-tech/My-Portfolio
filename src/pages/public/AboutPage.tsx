@@ -1,24 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  GraduationCap, 
-  Eye, 
-  ArrowRight, 
-  FileDown, 
-  MapPin, 
-  Calendar, 
-  Layers, 
-  Cpu, 
-  Target, 
-  Mail, 
-  Phone, 
-  Code2 
-} from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { Button } from '../../components/common/Button';
 import { ScrollReveal } from '../../components/common/ScrollReveal';
-import { GithubIcon, LinkedinIcon, SocialTooltip } from '../../components/common/SocialIcons';
+import { SocialTooltip } from '../../components/common/SocialIcons';
+import { RealFrontendIcon, RealAiBrainIcon } from '../../components/common/RealisticIcons';
+import {
+  RealisticMapPinIcon,
+  RealisticCalendarIcon,
+  RealisticTargetIcon,
+  RealisticPhoneIcon,
+  RealisticEmailIcon,
+  RealisticLinkedinIcon,
+  RealisticGithubBadgeIcon,
+  RealisticGradCapIcon,
+  RealisticLayersIcon,
+  RealisticVisionLensIcon,
+  RealisticPragmaticCodeIcon,
+  RealisticResponsiveDuoIcon,
+  RealisticContinuousGrowthIcon,
+  RealisticArrowRightIcon,
+  RealisticDownloadDocIcon,
+} from '../../components/common/RealisticAboutIcons';
 
 export const AboutPage: React.FC = () => {
   const { settings } = useData();
@@ -26,22 +30,22 @@ export const AboutPage: React.FC = () => {
   const focusAreas = [
     {
       title: 'Frontend Engineering',
-      icon: <Code2 className="w-5 h-5 text-[#22D3EE]" />,
+      icon: <RealFrontendIcon size={30} />,
       desc: 'Developing responsive, accessible single-page applications with React, Next.js, and Tailwind CSS.'
     },
     {
       title: 'AI & Machine Learning Foundations',
-      icon: <Cpu className="w-5 h-5 text-[#22D3EE]" />,
+      icon: <RealAiBrainIcon size={30} />,
       desc: 'Supervised predictive modeling, data cleaning with Pandas & NumPy, and algorithmic problem-solving.'
     },
     {
       title: 'Computer Vision',
-      icon: <Eye className="w-5 h-5 text-[#22D3EE]" />,
+      icon: <RealisticVisionLensIcon size={30} />,
       desc: 'Real-time video processing, facial landmark estimation (EAR/MAR), and edge-optimized camera inference.'
     },
     {
       title: 'Component Architecture & APIs',
-      icon: <Layers className="w-5 h-5 text-[#22D3EE]" />,
+      icon: <RealisticLayersIcon size={30} />,
       desc: 'Designing reusable, type-safe components, integrating RESTful backends, and optimizing rendering speed.'
     }
   ];
@@ -109,7 +113,7 @@ export const AboutPage: React.FC = () => {
                         rel="noopener noreferrer"
                         className="px-2.5 py-1 rounded-lg bg-[#1A2430] hover:bg-[#263342] text-[#F8FAFC] border border-[#263342] text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5"
                       >
-                        <GithubIcon size={13} />
+                        <RealisticGithubBadgeIcon size={15} />
                         <span>GitHub</span>
                       </a>
                     </SocialTooltip>
@@ -121,7 +125,7 @@ export const AboutPage: React.FC = () => {
                         rel="noopener noreferrer"
                         className="px-2.5 py-1 rounded-lg bg-[#1A2430] hover:bg-[#263342] text-[#22D3EE] text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 border border-[#263342] focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5"
                       >
-                        <LinkedinIcon size={13} />
+                        <RealisticLinkedinIcon size={15} />
                         <span>LinkedIn</span>
                       </a>
                     </SocialTooltip>
@@ -131,7 +135,7 @@ export const AboutPage: React.FC = () => {
                         href={`mailto:${settings.email}`}
                         className="px-2.5 py-1 rounded-lg bg-[#1A2430] hover:bg-[#263342] text-[#F8FAFC] border border-[#263342] text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5"
                       >
-                        <Mail className="w-3.5 h-3.5 text-[#22D3EE]" />
+                        <RealisticEmailIcon size={15} />
                         <span>Email</span>
                       </a>
                     </SocialTooltip>
@@ -141,7 +145,7 @@ export const AboutPage: React.FC = () => {
                         href={`tel:${settings.phone}`}
                         className="px-2.5 py-1 rounded-lg bg-[#1A2430] hover:bg-[#263342] text-[#F8FAFC] border border-[#263342] text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5"
                       >
-                        <Phone className="w-3.5 h-3.5 text-[#22D3EE]" />
+                        <RealisticPhoneIcon size={15} />
                         <span>{settings.phone}</span>
                       </a>
                     </SocialTooltip>
@@ -161,28 +165,28 @@ export const AboutPage: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div className="p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] space-y-1 hover:border-[#22D3EE] transition-colors">
                   <span className="text-xs font-medium text-[#94A3B8] flex items-center gap-1.5">
-                    <GraduationCap className="w-3.5 h-3.5 text-[#22D3EE]" /> Degree & Major
+                    <RealisticGradCapIcon size={16} /> Degree & Major
                   </span>
                   <p className="text-xs font-bold text-[#F8FAFC]">B.Tech CSE (AI & ML)</p>
                 </div>
 
                 <div className="p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] space-y-1 hover:border-[#22D3EE] transition-colors">
                   <span className="text-xs font-medium text-[#94A3B8] flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#22D3EE]" /> University & Location
+                    <RealisticMapPinIcon size={16} /> University & Location
                   </span>
                   <p className="text-xs font-bold text-[#F8FAFC]">Sanskriti University, Mathura</p>
                 </div>
 
                 <div className="p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] space-y-1 hover:border-[#22D3EE] transition-colors">
                   <span className="text-xs font-medium text-[#94A3B8] flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-[#22D3EE]" /> Timeline
+                    <RealisticCalendarIcon size={16} /> Timeline
                   </span>
                   <p className="text-xs font-bold text-[#F8FAFC]">2023 — 2027 (Expected)</p>
                 </div>
 
                 <div className="p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] space-y-1 hover:border-[#22D3EE] transition-colors">
                   <span className="text-xs font-medium text-[#94A3B8] flex items-center gap-1.5">
-                    <Target className="w-3.5 h-3.5 text-[#22D3EE]" /> Current Status
+                    <RealisticTargetIcon size={16} /> Current Status
                   </span>
                   <p className="text-xs font-bold text-[#22D3EE]">Open for Frontend Roles</p>
                 </div>
@@ -190,12 +194,12 @@ export const AboutPage: React.FC = () => {
 
               <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[#263342]">
                 <Link to="/contact">
-                  <Button size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+                  <Button size="md" variant="primary" icon={<RealisticArrowRightIcon size={16} />} iconPosition="right">
                     Get in Touch
                   </Button>
                 </Link>
                 <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                  <Button size="md" variant="secondary" icon={<FileDown className="w-4 h-4" />}>
+                  <Button size="md" variant="secondary" icon={<RealisticDownloadDocIcon size={16} />}>
                     Download Resume
                   </Button>
                 </a>
@@ -206,7 +210,7 @@ export const AboutPage: React.FC = () => {
           {/* Right: Focus Areas Grid */}
           <div className="lg:col-span-5 space-y-4">
             <h3 className="text-base font-bold text-[#F8FAFC] tracking-tight flex items-center gap-2">
-              <Layers className="w-4 h-4 text-[#22D3EE]" />
+              <RealisticLayersIcon size={20} />
               Core Focus Areas
             </h3>
 
@@ -251,8 +255,15 @@ export const AboutPage: React.FC = () => {
                 key={idx}
                 className="bg-[#121923] border border-[#263342] rounded-xl p-6 shadow-sm hover:shadow-md hover:border-[#22D3EE] hover:-translate-y-1 transition-all duration-300 ease-out space-y-3"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#1A2430] border border-[#263342] text-[#22D3EE] flex items-center justify-center font-bold text-xs">
-                  0{idx + 1}
+                <div className="flex items-center justify-between">
+                  <div className="w-8 h-8 rounded-lg bg-[#1A2430] border border-[#263342] text-[#22D3EE] flex items-center justify-center font-bold text-xs">
+                    0{idx + 1}
+                  </div>
+                  <div className="p-1 rounded-lg bg-[#1A2430]/70 border border-[#263342]/60">
+                    {idx === 0 && <RealisticPragmaticCodeIcon size={22} />}
+                    {idx === 1 && <RealisticResponsiveDuoIcon size={22} />}
+                    {idx === 2 && <RealisticContinuousGrowthIcon size={22} />}
+                  </div>
                 </div>
                 <h4 className="text-base font-bold text-[#F8FAFC]">{item.title}</h4>
                 <p className="text-xs text-[#94A3B8] leading-relaxed">{item.desc}</p>
