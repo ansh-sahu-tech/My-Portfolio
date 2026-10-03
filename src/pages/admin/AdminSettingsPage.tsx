@@ -159,6 +159,20 @@ export const AdminSettingsPage: React.FC = () => {
                 className="w-full px-3 py-2 bg-[#070b14] border border-slate-800 rounded-xl text-white focus:outline-none focus:border-cyan-500"
               />
             </div>
+
+            <div className="space-y-1 sm:col-span-2">
+              <label className="font-medium text-slate-300">Custom Form Submission Endpoint (Optional)</label>
+              <input
+                type="text"
+                value={formData.contactFormEndpoint || ''}
+                onChange={(e) => setFormData({ ...formData, contactFormEndpoint: e.target.value })}
+                placeholder="Leave blank to use FormSubmit automatic delivery, or enter Web3Forms / Formspree URL"
+                className="w-full px-3 py-2 bg-[#070b14] border border-slate-800 rounded-xl text-white focus:outline-none focus:border-cyan-500 text-[11px]"
+              />
+              <p className="text-[10px] text-slate-500 font-sans">
+                By default, messages submit to FormSubmit.co and forward straight to your email.
+              </p>
+            </div>
           </div>
         </GlassCard>
 

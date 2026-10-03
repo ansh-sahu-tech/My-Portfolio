@@ -23,5 +23,6 @@ export const defaultSettings: SiteSettings = {
     computerVisionStatus: 'ACTIVE',
     dataPipelineStatus: 'RUNNING',
     latencyMs: 14
-  }
+  },
+  contactFormEndpoint: ''
 };

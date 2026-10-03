@@ -107,6 +107,7 @@ export interface SiteSettings {
   };
   supabaseUrl?: string;
   supabaseAnonKey?: string;
+  contactFormEndpoint?: string;
 }
 
 export interface AdminUser {
