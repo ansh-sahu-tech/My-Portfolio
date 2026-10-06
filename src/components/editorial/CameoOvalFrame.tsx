@@ -63,10 +63,12 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
                   target.src = '/ai-driver-awareness.png';
                 }
               }}
-              className={`w-full h-full object-cover object-center filter contrast-[1.04] brightness-[1.01] transition-transform duration-700 ease-out group-hover:scale-105 ${imageClassName}`}
+              className={`w-full h-full object-cover ${imageClassName || 'object-center'} filter contrast-[1.02] brightness-[1.01] transition-transform duration-700 ease-out group-hover:scale-105`}
             />
-            {/* Subtle soft gradient sheen */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14]/40 via-transparent to-transparent pointer-events-none" />
+            {/* Subtle soft gradient sheen only for non-profile graphics */}
+            {!imageSrc.includes('ansh-profile') && (
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14]/40 via-transparent to-transparent pointer-events-none" />
+            )}
           </div>
 
           {/* Bottom Location Caption Tag */}
@@ -104,10 +106,12 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
             src={imageSrc}
             alt={imageAlt}
             loading="lazy"
-            className={`w-full h-full object-cover filter contrast-[1.03] transition-transform duration-700 ease-out group-hover:scale-105 ${imageClassName || 'object-top'}`}
+            className={`w-full h-full object-cover filter contrast-[1.02] transition-transform duration-700 ease-out group-hover:scale-105 ${imageClassName || 'object-center'}`}
           />
-          {/* Subtle soft gradient sheen */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14]/30 via-transparent to-transparent pointer-events-none" />
+          {/* Subtle soft gradient sheen only for non-profile graphics */}
+          {!imageSrc.includes('ansh-profile') && (
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14]/30 via-transparent to-transparent pointer-events-none" />
+          )}
         </div>
       </div>
     </div>

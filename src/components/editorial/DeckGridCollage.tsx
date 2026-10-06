@@ -20,12 +20,12 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
               <GoldenWireDecor />
             </div>
 
-            <div className="relative z-10 w-24 xs:w-28 sm:w-36 aspect-[4/3] p-1 sm:p-1.5 rounded-2xl border border-[#263342] bg-[#1A2430]/60 shadow-xs">
+            <div className="relative z-10 w-24 xs:w-28 sm:w-36 aspect-square p-1 sm:p-1.5 rounded-2xl border border-[#263342] bg-[#1A2430]/60 shadow-xs">
               <div className="w-full h-full rounded-xl overflow-hidden border-[2px] border-[#263342] bg-[#0B0F14]">
                 <img
-                  src="/ansh-profile.jpg"
+                  src="/ansh-profile.jpg?v=2"
                   alt="Ansh Portrait"
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -72,11 +72,11 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
             <div className="col-span-5 min-w-0 editorial-marble-panel border-r border-[#263342] flex items-center justify-center p-2.5 sm:p-3 relative">
               <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#263342] bg-[#1A2430]/60 shadow-xs">
-                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
+                <div className="w-full aspect-square rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
-                    src="/ansh-profile.jpg"
+                    src="/ansh-profile.jpg?v=2"
                     alt="About Ansh Sahu"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>
@@ -326,11 +326,11 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
             <div className="col-span-5 min-w-0 editorial-marble-panel border-r border-[#263342] flex items-center justify-center p-2.5 sm:p-3 relative">
               <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#263342] bg-[#1A2430]/60 shadow-xs">
-                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
+                <div className="w-full aspect-square rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
-                    src="/ansh-profile.jpg"
+                    src="/ansh-profile.jpg?v=2"
                     alt="Thanks"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>

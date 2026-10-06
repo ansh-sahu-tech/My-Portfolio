@@ -157,7 +157,7 @@ export const initialProjects: Project[] = [
     results: 'Deployed a production-grade portfolio demonstrating modern frontend architecture and clean engineering practices.',
     githubUrl: 'https://github.com/ansh-sahu-tech/My-Portfolio',
     liveUrl: 'https://sahuansh-portfolio-2026.vercel.app/',
-    imageUrl: '/ansh-profile.jpg',
+    imageUrl: '/ansh-profile.jpg?v=2',
     featured: true,
     published: true,
     createdAt: '2025-01-20T10:00:00.000Z',

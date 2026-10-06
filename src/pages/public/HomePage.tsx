@@ -98,7 +98,7 @@ export const HomePage: React.FC = () => {
       summary: 'Official interactive developer portfolio featuring editorial presentation layouts, dark-mode design system, dynamic project filtering, and automated resume compilation.',
       github: 'https://github.com/ansh-sahu-tech/My-Portfolio',
       demo: 'https://sahuansh-portfolio-2026.vercel.app/',
-      image: '/ansh-profile.jpg'
+      image: '/ansh-profile.jpg?v=2'
     }
   ];
 
@@ -180,7 +180,7 @@ export const HomePage: React.FC = () => {
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 0)) && (
             <EditorialSlideCard
               id="hero"
-              imageSrc="/ansh-profile.jpg"
+              imageSrc="/ansh-profile.jpg?v=2"
               imageAlt="Ansh Sahu - Software Engineer & Developer"
               categoryTitle="Editorial Portfolio 2026"
               titleRust="CREATIVE"
@@ -188,8 +188,8 @@ export const HomePage: React.FC = () => {
               activeSection="hero"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-[4/3]"
-              imageClassName="object-top"
+              aspectClass="aspect-square"
+              imageClassName="object-center"
               badgeText="Lead Software Engineer"
               subBadgeText="mathura, india"
               caption="Ansh Sahu • Developer"
@@ -289,15 +289,15 @@ export const HomePage: React.FC = () => {
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 1)) && (
             <EditorialSlideCard
               id="about"
-              imageSrc="/ansh-profile.jpg"
+              imageSrc="/ansh-profile.jpg?v=2"
               imageAlt="About Ansh Sahu - Software Engineer"
               categoryTitle="Biography & Mindset"
               titleRust="ABOUT ME"
               activeSection="about"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-[4/3]"
-              imageClassName="object-top"
+              aspectClass="aspect-square"
+              imageClassName="object-center"
               badgeText="Biography & Mindset"
               subBadgeText="engineering core"
               caption="Ansh Sahu • Profile"
@@ -883,7 +883,7 @@ export const HomePage: React.FC = () => {
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 8)) && (
             <EditorialSlideCard
               id="thanks"
-              imageSrc="/ansh-profile.jpg"
+              imageSrc="/ansh-profile.jpg?v=2"
               imageAlt="Ansh - Thank you"
               categoryTitle="Closing Appreciation"
               titleRust="THANKS"
@@ -891,8 +891,8 @@ export const HomePage: React.FC = () => {
               activeSection="contact"
               signature="By Ansh Sahu"
               frameShape="architectural"
-              aspectClass="aspect-[4/3]"
-              imageClassName="object-top"
+              aspectClass="aspect-square"
+              imageClassName="object-center"
               badgeText="Closing Appreciation"
               subBadgeText="thank you"
               caption="Ansh Sahu • Engineering"
