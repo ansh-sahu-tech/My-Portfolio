@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Shield } from 'lucide-react';
 import { useData } from '../../context/DataContext';
-import { GithubIcon, LinkedinIcon, SocialTooltip } from '../common/SocialIcons';
+import { GithubIcon, LinkedinIcon, InstagramIcon, SocialTooltip } from '../common/SocialIcons';
 
 export const Footer: React.FC = () => {
   const { settings } = useData();
@@ -29,7 +29,7 @@ export const Footer: React.FC = () => {
               </span>
               <span className="text-[#263342]">•</span>
               <span className="text-sm font-semibold text-[#22D3EE]">
-                Software Engineer &amp; Developer
+                Frontend Developer
               </span>
             </div>
             <p className="text-xs text-[#94A3B8]">
@@ -75,6 +75,20 @@ export const Footer: React.FC = () => {
                 <LinkedinIcon size={17} />
               </a>
             </SocialTooltip>
+
+            {settings.instagramUrl && (
+              <SocialTooltip label="Instagram Profile">
+                <a
+                  href={settings.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#1A2430] transition-colors"
+                  aria-label="Instagram Profile"
+                >
+                  <InstagramIcon size={17} />
+                </a>
+              </SocialTooltip>
+            )}
 
             <SocialTooltip label="Direct Email">
               <a

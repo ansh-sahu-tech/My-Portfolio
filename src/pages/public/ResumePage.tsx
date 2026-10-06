@@ -50,10 +50,10 @@ export const ResumePage: React.FC = () => {
               Curriculum Vitae
             </Badge>
             <h1 className="text-2xl sm:text-3xl font-bold text-[#F8FAFC] tracking-tight">
-              Ansh Sahu — Software Engineer &amp; Developer Resume
+              Ansh Sahu — Frontend Developer Resume
             </h1>
             <p className="text-xs text-[#94A3B8] mt-1">
-              Software Engineer &amp; Frontend Developer (ansh.developer) • Sanskriti University (2023–2027)
+              Frontend Developer (ansh.developer) • React &amp; Next.js • Sanskriti University (2023–2027)
             </p>
           </div>
 

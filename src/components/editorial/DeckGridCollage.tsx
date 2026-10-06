@@ -24,7 +24,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
               <div className="w-full h-full rounded-xl overflow-hidden border-[2px] border-[#263342] bg-[#0B0F14]">
                 <img
                   src="/ansh-profile.jpg?v=2"
-                  alt="Ansh Portrait"
+                  alt="Ansh Sahu - Frontend Developer Profile"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -52,7 +54,7 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
 
             <div className="flex flex-wrap items-center justify-between gap-1 text-[10px] sm:text-xs pt-2 border-t border-[#263342]">
               <span className="text-[9px] xs:text-[10px] text-[#94A3B8] uppercase tracking-widest font-semibold truncate mr-1">
-                Software Engineer • ansh.developer
+                Frontend Developer • ansh.developer
               </span>
               <span className="font-serif italic text-[#F8FAFC] font-medium shrink-0">
                 By Ansh Sahu
@@ -75,7 +77,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                 <div className="w-full aspect-square rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
                     src="/ansh-profile.jpg?v=2"
-                    alt="About Ansh Sahu"
+                    alt="About Ansh Sahu - Frontend Developer Portfolio"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -90,7 +94,7 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                   ABOUT ME
                 </h4>
                 <p className="text-[10px] sm:text-xs text-[#94A3B8] line-clamp-2 mt-1">
-                  Software Engineer &amp; Developer • B.Tech CSE (AI &amp; ML) at Sanskriti University.
+                  Frontend Developer • React &amp; Next.js • B.Tech CSE (AI &amp; ML) at Sanskriti University.
                 </p>
               </div>
               <div className="flex justify-end pt-1 border-t border-[#263342] text-[10px] font-serif italic text-[#F8FAFC]">
@@ -111,7 +115,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                 <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
                     src="/vision-mission.png"
-                    alt="Vision & Mission"
+                    alt="Ansh Sahu - Vision and Engineering Mission"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -147,7 +153,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                 <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
                     src="/sanskriti-university.png"
-                    alt="Sanskriti University Campus"
+                    alt="Sanskriti University Campus - B.Tech CSE AI&ML"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -183,7 +191,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                 <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
                     src="/skills.png"
-                    alt="Skills"
+                    alt="Technical Skills - Frontend & AI ML Development"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -221,7 +231,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                 <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
                     src="/experience.png"
-                    alt="Experience Workspace"
+                    alt="Frontend & Engineering Experience"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -257,7 +269,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                 <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
                     src="/ai-driver-awareness.png"
-                    alt="AI Driver Awareness System"
+                    alt="AI Driver Awareness System - Computer Vision Project by Ansh Sahu"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -293,7 +307,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                 <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
                     src="/collaborate.png"
-                    alt="Collaborate"
+                    alt="Collaborate with Ansh Sahu - Frontend Developer"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -329,7 +345,9 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                 <div className="w-full aspect-square rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
                   <img
                     src="/ansh-profile.jpg?v=2"
-                    alt="Thanks"
+                    alt="Ansh Sahu Portfolio Closing Deck"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>

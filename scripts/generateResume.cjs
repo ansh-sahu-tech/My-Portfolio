@@ -15,10 +15,10 @@ function generateResume() {
       right: 38
     },
     info: {
-      Title: 'Ansh Sahu - Software Engineer & Frontend Developer Resume',
+      Title: 'Ansh Sahu - Frontend Developer Resume',
       Author: 'Ansh Sahu',
-      Subject: 'Software Engineer & Frontend Developer Resume (ATS Friendly)',
-      Keywords: 'Ansh Sahu, Software Engineer, Frontend Developer, React, Next.js, TypeScript, Python, Machine Learning, Computer Vision, Sanskriti University',
+      Subject: 'Frontend Developer Resume (ATS Friendly)',
+      Keywords: 'Ansh Sahu, Frontend Developer, React Developer, Next.js, JavaScript, TypeScript, Python, Machine Learning, Computer Vision, Sanskriti University',
       Creator: 'Ansh Sahu Portfolio',
       Producer: 'PDFKit'
     }
@@ -68,7 +68,7 @@ function generateResume() {
     .font('Helvetica-Bold')
     .fontSize(9.5)
     .fillColor(secondaryColor)
-    .text('SOFTWARE ENGINEER | FRONTEND & AI/ML DEVELOPER', { align: 'center', characterSpacing: 0.8 });
+    .text('FRONTEND DEVELOPER | REACT & NEXT.JS DEVELOPER', { align: 'center', characterSpacing: 0.8 });
 
   doc.moveDown(0.2);
 
@@ -77,7 +77,7 @@ function generateResume() {
     .font('Helvetica')
     .fontSize(8.5)
     .fillColor(mutedColor)
-    .text('Mathura, Uttar Pradesh, India   •   +91 7754091703   •   anshcseaiml0169@gmail.com', {
+    .text('Gonda, Uttar Pradesh (near Ayodhya), India   •   +91 7754091703   •   anshcseaiml0169@gmail.com', {
       align: 'center'
     });
 

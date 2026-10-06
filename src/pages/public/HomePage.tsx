@@ -181,7 +181,7 @@ export const HomePage: React.FC = () => {
             <EditorialSlideCard
               id="hero"
               imageSrc="/ansh-profile.jpg?v=2"
-              imageAlt="Ansh Sahu - Software Engineer & Developer"
+              imageAlt="Ansh Sahu - Frontend Developer Portfolio"
               categoryTitle="Editorial Portfolio 2026"
               titleRust="CREATIVE"
               titleBlack="PORTFOLIO"
@@ -190,35 +190,35 @@ export const HomePage: React.FC = () => {
               frameShape="architectural"
               aspectClass="aspect-square"
               imageClassName="object-center"
-              badgeText="Lead Software Engineer"
-              subBadgeText="mathura, india"
-              caption="Ansh Sahu • Developer"
+              badgeText="Frontend Developer"
+              subBadgeText="gonda, uttar pradesh"
+              caption="Ansh Sahu • Frontend Developer"
               tagText="Available 2026"
             >
               <div className="space-y-4">
                 {/* Primary H1 for Search Engine Ranking */}
                 <div className="space-y-1">
                   <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#F8FAFC]">
-                    Ansh Sahu <span className="text-[#263342] font-normal">|</span> <span className="text-[#22D3EE]">Software Engineer</span>
+                    Ansh Sahu <span className="text-[#263342] font-normal">|</span> <span className="text-[#22D3EE]">Frontend Developer</span>
                   </h1>
                   <p className="text-xs font-mono font-medium text-[#94A3B8] tracking-wide">
-                    ansh.developer • Software Engineer &amp; Developer • Sanskriti University
+                    ansh.developer • Frontend Developer • React &amp; Next.js • Sanskriti University
                   </p>
                 </div>
 
                 {/* Role Pill */}
                 <div className="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-[#1A2430] border border-[#263342] text-xs font-semibold text-[#22D3EE]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE]" />
-                  <span>SOFTWARE ENGINEER</span>
-                  <span className="text-[#263342]">•</span>
                   <span>FRONTEND DEVELOPER</span>
+                  <span className="text-[#263342]">•</span>
+                  <span>REACT DEVELOPER</span>
                   <span className="text-[#263342]">•</span>
                   <span className="font-normal text-[#94A3B8]">B.Tech CSE (AI &amp; ML)</span>
                 </div>
 
                 {/* Subtitle & Bio */}
                 <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                  Hi, I'm <strong className="font-bold text-[#F8FAFC]">Ansh Sahu</strong> (<strong>ansh.developer</strong>). I am a dedicated <strong className="font-semibold text-[#F8FAFC]">Software Engineer</strong> crafting clean, responsive, and high-performance web applications using React, Next.js, TypeScript, and modern CSS, backed by a disciplined foundation in computer science and applied AI/ML at <strong className="font-semibold text-[#F8FAFC]">Sanskriti University</strong>.
+                  Hi, I'm <strong className="font-bold text-[#F8FAFC]">Ansh Sahu</strong> (<strong>ansh.developer</strong>). I am a dedicated <strong className="font-semibold text-[#F8FAFC]">Frontend Developer</strong> crafting clean, responsive, and high-performance web applications using React, Next.js, JavaScript, TypeScript, and modern CSS, backed by a disciplined foundation in computer science and applied AI/ML at <strong className="font-semibold text-[#F8FAFC]">Sanskriti University</strong>.
                 </p>
 
                 {/* CTAs */}
@@ -290,7 +290,7 @@ export const HomePage: React.FC = () => {
             <EditorialSlideCard
               id="about"
               imageSrc="/ansh-profile.jpg?v=2"
-              imageAlt="About Ansh Sahu - Software Engineer"
+              imageAlt="About Ansh Sahu - Frontend Developer Portfolio"
               categoryTitle="Biography & Mindset"
               titleRust="ABOUT ME"
               activeSection="about"
@@ -301,11 +301,11 @@ export const HomePage: React.FC = () => {
               badgeText="Biography & Mindset"
               subBadgeText="engineering core"
               caption="Ansh Sahu • Profile"
-              tagText="Software Engineer"
+              tagText="Frontend Developer"
             >
               <div className="space-y-4">
                 <p className="text-[#94A3B8] text-sm sm:text-[14.5px] leading-relaxed">
-                  I am a passionate <strong className="font-semibold text-[#F8FAFC]">Software Engineer &amp; Frontend Developer</strong> currently in my undergraduate studies at <strong className="font-semibold text-[#F8FAFC]">Sanskriti University</strong>, specializing in Computer Science Engineering (Artificial Intelligence &amp; Machine Learning).
+                  I am a passionate <strong className="font-semibold text-[#F8FAFC]">Frontend Developer</strong> currently in my undergraduate studies at <strong className="font-semibold text-[#F8FAFC]">Sanskriti University</strong> (2023–2027), specializing in B.Tech Computer Science Engineering (Artificial Intelligence &amp; Machine Learning). Based in Gonda, Uttar Pradesh (near Ayodhya).
                 </p>
 
                 <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed">
@@ -855,7 +855,7 @@ export const HomePage: React.FC = () => {
                         <MapPin className="w-4 h-4" />
                       </div>
                       <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
-                        Mathura, Uttar Pradesh, India
+                        Gonda, Uttar Pradesh (near Ayodhya), India
                       </span>
                     </div>
                     <span className="text-[10px] text-[#94A3B8] uppercase tracking-widest font-semibold pr-2 shrink-0">
@@ -884,7 +884,7 @@ export const HomePage: React.FC = () => {
             <EditorialSlideCard
               id="thanks"
               imageSrc="/ansh-profile.jpg?v=2"
-              imageAlt="Ansh - Thank you"
+              imageAlt="Ansh Sahu - Frontend Developer Portfolio Closing"
               categoryTitle="Closing Appreciation"
               titleRust="THANKS"
               titleBlack="YOU"
@@ -895,7 +895,7 @@ export const HomePage: React.FC = () => {
               imageClassName="object-center"
               badgeText="Closing Appreciation"
               subBadgeText="thank you"
-              caption="Ansh Sahu • Engineering"
+              caption="Ansh Sahu • Frontend Developer"
               tagText="Signature"
             >
               <div className="space-y-4">

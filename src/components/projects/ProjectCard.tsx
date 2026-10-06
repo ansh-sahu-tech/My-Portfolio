@@ -26,7 +26,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
       <div className="relative aspect-video w-full overflow-hidden bg-[#0B0F14] border-b border-[#263342]">
         <img
           src={project.imageUrl}
-          alt={project.title}
+          alt={`${project.title} - ${project.category} Project by Ansh Sahu`}
           loading="lazy"
           decoding="async"
           onError={(e) => {

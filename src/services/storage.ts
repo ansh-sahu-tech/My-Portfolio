@@ -168,7 +168,7 @@ export const storageService = {
         parsed.name = defaultSettings.name;
         modified = true;
       }
-      if (!parsed.role || parsed.role === 'Frontend Developer') {
+      if (!parsed.role || parsed.role.includes('Software Engineer')) {
         parsed.role = defaultSettings.role;
         modified = true;
       }
@@ -176,8 +176,12 @@ export const storageService = {
         parsed.brand = defaultSettings.brand;
         modified = true;
       }
-      if (!parsed.positioning || parsed.positioning.startsWith('Frontend Developer')) {
+      if (!parsed.positioning || parsed.positioning.includes('Software Engineer')) {
         parsed.positioning = defaultSettings.positioning;
+        modified = true;
+      }
+      if (!parsed.instagramUrl) {
+        parsed.instagramUrl = defaultSettings.instagramUrl;
         modified = true;
       }
       const merged = { ...defaultSettings, ...parsed };

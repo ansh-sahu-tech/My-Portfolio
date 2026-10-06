@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Terminal, Home } from 'lucide-react';
 import { Button } from '../components/common/Button';
 import { GlassCard } from '../components/common/GlassCard';
 
 export const NotFoundPage: React.FC = () => {
+  useEffect(() => {
+    document.title = '404: Page Not Found | Ansh Sahu — Frontend Developer';
+    const metaRobots = document.querySelector('meta[name="robots"]');
+    if (metaRobots) {
+      metaRobots.setAttribute('content', 'noindex, nofollow');
+    }
+    return () => {
+      if (metaRobots) {
+        metaRobots.setAttribute('content', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+      }
+    };
+  }, []);
+
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4">
       <GlassCard className="p-8 sm:p-12 max-w-lg w-full text-center space-y-6 border-[#263342]" glowColor="cyan">

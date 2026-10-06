@@ -25,9 +25,25 @@ export const ProjectDetailPage: React.FC = () => {
 
   useEffect(() => {
     if (project) {
-      document.title = `${project.title} | Ansh Sahu (ansh.developer) Software Engineering`;
+      const pageTitle = `${project.title} | Ansh Sahu — Frontend Developer`;
+      document.title = pageTitle;
+
+      const descTag = document.querySelector('meta[name="description"]');
+      if (descTag) {
+        descTag.setAttribute('content', `${project.title} — ${project.description.slice(0, 140)}... Built by Ansh Sahu.`);
+      }
+
+      const ogTitleTag = document.querySelector('meta[property="og:title"]');
+      if (ogTitleTag) {
+        ogTitleTag.setAttribute('content', pageTitle);
+      }
+
+      const canonicalTag = document.querySelector('link[rel="canonical"]');
+      if (canonicalTag && slug) {
+        canonicalTag.setAttribute('href', `https://sahuansh-portfolio-2026.vercel.app/projects/${slug}`);
+      }
     }
-  }, [project]);
+  }, [project, slug]);
 
   if (!project) {
     return (
@@ -118,7 +134,9 @@ export const ProjectDetailPage: React.FC = () => {
         <div className="group/hero relative rounded-xl overflow-hidden border border-[#263342] aspect-video w-full shadow-sm bg-[#0B0F14]">
           <img
             src={project.imageUrl}
-            alt={project.title}
+            alt={`${project.title} - ${project.category} Project Showcase by Ansh Sahu`}
+            loading="eager"
+            decoding="async"
             onError={(e) => {
               const target = e.currentTarget;
               if (project.id === 'proj-1' || project.slug === 'ai-driver-awareness-system') {

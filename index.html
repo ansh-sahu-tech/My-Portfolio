@@ -2,23 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0B0F14" />
     
+    <!-- Google Search Favicon & Cross-Platform Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#0B0F14" />
+
+    <!-- Preload Hero Image for Core Web Vitals (LCP) -->
+    <link rel="preload" as="image" href="/ansh-profile.jpg" fetchpriority="high" />
+    
     <!-- Primary SEO Meta Tags for Search Engines & Entity Matching -->
-    <title>Ansh Sahu | Software Engineer &amp; Developer (ansh.developer)</title>
-    <meta name="title" content="Ansh Sahu | Software Engineer &amp; Developer (ansh.developer)" />
-    <meta name="description" content="Official portfolio of Ansh Sahu (ansh.developer) — Software Engineer &amp; Frontend Developer. Building high-performance web applications, AI/ML systems, and modern digital experiences with React, TypeScript, Next.js, and Python at Sanskriti University. Explore projects, engineering skills, and contact details." />
-    <meta name="keywords" content="ansh software engineer, ansh sahu, ansh sahu engineer, ansh.developer, ansh developer, ansh sahu software engineer, ansh sahu developer, ansh sahu portfolio, ansh sahu frontend developer, ansh sahu react developer, ansh sahu sanskriti university, software engineer ansh, ansh sahu computer science engineer, ansh.dev, React developer, TypeScript, Next.js, Python AI ML, Sanskriti University CSE" />
+    <title>Ansh Sahu | Frontend Developer Portfolio</title>
+    <meta name="title" content="Ansh Sahu | Frontend Developer Portfolio" />
+    <meta name="description" content="Official portfolio of Ansh Sahu — Frontend Developer specializing in React, Next.js, and JavaScript. B.Tech CSE AI&amp;ML student at Sanskriti University (2023–2027), based in Gonda, Uttar Pradesh near Ayodhya. Explore responsive web projects and technical skills." />
+    <meta name="keywords" content="Ansh Sahu, Ansh Sahu Portfolio, Frontend Developer, Frontend Developer Portfolio, React Developer, Next.js Developer, JavaScript Developer, Web Developer, Responsive Web Developer, UI Developer, React Portfolio, Next.js Portfolio, B.Tech CSE AI&amp;ML, AI ML Engineer, Machine Learning Developer, Computer Vision Developer, Data Analyst, AI Driver Awareness System, Student Performance Prediction, Sacha Sauda, GitHub Developer, Frontend Developer Gonda, Frontend Developer Uttar Pradesh, Frontend Developer near Ayodhya" />
     <meta name="author" content="Ansh Sahu" />
     <meta name="creator" content="Ansh Sahu" />
     <meta name="publisher" content="Ansh Sahu" />
-    <link rel="canonical" href="https://ansh.dev/" />
+    <link rel="canonical" href="https://sahuansh-portfolio-2026.vercel.app/" />
+
+    <!-- Geo & Local SEO for Uttar Pradesh / Gonda / near Ayodhya -->
+    <meta name="geo.region" content="IN-UP" />
+    <meta name="geo.placename" content="Gonda, Uttar Pradesh" />
 
     <!-- Search Engine Indexing & Bot Directives -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot-image" content="index, follow" />
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     
     <!-- Google Search Console Ownership Verification -->
@@ -28,21 +46,24 @@
     <meta property="og:type" content="profile" />
     <meta property="profile:first_name" content="Ansh" />
     <meta property="profile:last_name" content="Sahu" />
-    <meta property="profile:username" content="ansh.developer" />
-    <meta property="og:site_name" content="Ansh Sahu — Software Engineer" />
-    <meta property="og:url" content="https://ansh.dev/" />
-    <meta property="og:title" content="Ansh Sahu | Software Engineer &amp; Developer (ansh.developer)" />
-    <meta property="og:description" content="Official portfolio of Ansh Sahu (ansh.developer) — Software Engineer &amp; Frontend Developer specializing in React, Next.js, and applied AI/ML systems." />
-    <meta property="og:image" content="https://ansh.dev/ansh-profile.jpg" />
-    <meta property="og:image:alt" content="Ansh Sahu - Software Engineer Portfolio" />
+    <meta property="profile:username" content="ansh-sahu-tech" />
+    <meta property="og:site_name" content="Ansh Sahu Portfolio" />
+    <meta property="og:url" content="https://sahuansh-portfolio-2026.vercel.app/" />
+    <meta property="og:title" content="Ansh Sahu | Frontend Developer Portfolio" />
+    <meta property="og:description" content="Official portfolio of Ansh Sahu — Frontend Developer specializing in React, Next.js, and JavaScript. B.Tech CSE AI&amp;ML at Sanskriti University." />
+    <meta property="og:image" content="https://sahuansh-portfolio-2026.vercel.app/ansh-profile.jpg" />
+    <meta property="og:image:alt" content="Ansh Sahu - Frontend Developer Portfolio" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://ansh.dev/" />
-    <meta name="twitter:title" content="Ansh Sahu | Software Engineer &amp; Developer (ansh.developer)" />
-    <meta name="twitter:description" content="Official portfolio of Ansh Sahu (ansh.developer) — Software Engineer &amp; Frontend Developer specializing in React, Next.js, and applied AI/ML systems." />
-    <meta name="twitter:image" content="https://ansh.dev/ansh-profile.jpg" />
-    <meta name="twitter:image:alt" content="Ansh Sahu - Software Engineer Portfolio" />
+    <meta name="twitter:url" content="https://sahuansh-portfolio-2026.vercel.app/" />
+    <meta name="twitter:title" content="Ansh Sahu | Frontend Developer Portfolio" />
+    <meta name="twitter:description" content="Official portfolio of Ansh Sahu — Frontend Developer specializing in React, Next.js, and JavaScript. B.Tech CSE AI&amp;ML at Sanskriti University." />
+    <meta name="twitter:image" content="https://sahuansh-portfolio-2026.vercel.app/ansh-profile.jpg" />
+    <meta name="twitter:image:alt" content="Ansh Sahu - Frontend Developer Portfolio" />
 
     <!-- Structured Data (JSON-LD) for Google Knowledge Graph & Entity Recognition -->
     <script type="application/ld+json">
@@ -51,77 +72,93 @@
       "@graph": [
         {
           "@type": "Person",
-          "@id": "https://ansh.dev/#person",
+          "@id": "https://sahuansh-portfolio-2026.vercel.app/#person",
           "name": "Ansh Sahu",
           "alternateName": [
             "Ansh",
             "ansh.developer",
-            "Ansh Software Engineer",
-            "Ansh Sahu Engineer",
-            "Ansh Developer",
-            "Ansh Sahu Developer",
-            "Ansh Sahu Software Engineer"
+            "ansh-sahu-tech",
+            "Ansh Sahu Portfolio",
+            "Ansh Sahu Frontend Developer",
+            "Ansh Sahu React Developer"
           ],
-          "jobTitle": ["Software Engineer", "Frontend Developer", "Web Developer"],
-          "description": "Ansh Sahu (ansh.developer) is a Software Engineer and Frontend Developer specializing in React, Next.js, TypeScript, and applied AI/ML systems at Sanskriti University.",
-          "url": "https://ansh.dev/",
+          "jobTitle": [
+            "Frontend Developer",
+            "React Developer",
+            "Next.js Developer",
+            "JavaScript Developer",
+            "Web Developer"
+          ],
+          "description": "Ansh Sahu is a Frontend Developer and B.Tech CSE AI&ML student at Sanskriti University (2023–2027), based in Gonda, Uttar Pradesh (near Ayodhya). Specializing in React, Next.js, JavaScript, and responsive UI engineering.",
+          "url": "https://sahuansh-portfolio-2026.vercel.app/",
           "image": {
             "@type": "ImageObject",
-            "url": "https://ansh.dev/ansh-profile.jpg",
-            "caption": "Ansh Sahu - Software Engineer & Developer"
+            "url": "https://sahuansh-portfolio-2026.vercel.app/ansh-profile.jpg",
+            "caption": "Ansh Sahu - Frontend Developer"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Gonda",
+            "addressRegion": "Uttar Pradesh",
+            "addressCountry": "IN"
           },
           "alumniOf": {
             "@type": "CollegeOrUniversity",
-            "name": "Sanskriti University"
+            "name": "Sanskriti University",
+            "url": "https://www.sanskriti.edu.in/"
           },
           "sameAs": [
             "https://github.com/ansh-sahu-tech",
-            "https://www.linkedin.com/in/ansh-sahu-8362183a8"
+            "https://www.linkedin.com/in/ansh-sahu-8362183a8",
+            "https://www.instagram.com/anshsahu802"
           ],
           "knowsAbout": [
-            "Software Engineering",
-            "Frontend Engineering",
-            "Web Development",
-            "React.js",
-            "TypeScript",
-            "JavaScript",
+            "Frontend Development",
+            "React",
             "Next.js",
+            "JavaScript",
+            "TypeScript",
             "Tailwind CSS",
-            "Python",
+            "Responsive Web Design",
+            "UI Development",
+            "Web Performance",
+            "B.Tech CSE AI&ML",
             "Machine Learning",
             "Computer Vision",
-            "Data Structures & Algorithms"
+            "Data Analysis",
+            "AI Driver Awareness System",
+            "Student Performance Prediction",
+            "Sacha Sauda"
           ]
         },
         {
           "@type": "WebSite",
-          "@id": "https://ansh.dev/#website",
-          "url": "https://ansh.dev/",
-          "name": "Ansh Sahu | Software Engineer & Developer Portfolio",
+          "@id": "https://sahuansh-portfolio-2026.vercel.app/#website",
+          "url": "https://sahuansh-portfolio-2026.vercel.app/",
+          "name": "Ansh Sahu | Frontend Developer Portfolio",
           "alternateName": [
-            "ansh.developer",
             "Ansh Sahu Portfolio",
-            "Ansh Software Engineer",
-            "Ansh Sahu Engineer"
+            "Ansh Frontend Developer",
+            "Ansh Sahu React Developer"
           ],
-          "description": "Portfolio of Ansh Sahu (ansh.developer) showcasing software engineering projects, web development skills, and technical achievements.",
+          "description": "Official portfolio of Ansh Sahu, Frontend Developer showcasing web development projects, React & Next.js applications, and technical skills.",
           "publisher": {
-            "@id": "https://ansh.dev/#person"
+            "@id": "https://sahuansh-portfolio-2026.vercel.app/#person"
           },
           "inLanguage": "en-US"
         },
         {
           "@type": "ProfilePage",
-          "@id": "https://ansh.dev/#profilepage",
-          "url": "https://ansh.dev/",
-          "name": "Ansh Sahu - Software Engineer & Developer Profile",
+          "@id": "https://sahuansh-portfolio-2026.vercel.app/#profilepage",
+          "url": "https://sahuansh-portfolio-2026.vercel.app/",
+          "name": "Ansh Sahu - Frontend Developer Profile",
           "isPartOf": {
-            "@id": "https://ansh.dev/#website"
+            "@id": "https://sahuansh-portfolio-2026.vercel.app/#website"
           },
           "mainEntity": {
-            "@id": "https://ansh.dev/#person"
+            "@id": "https://sahuansh-portfolio-2026.vercel.app/#person"
           },
-          "description": "Official software engineering portfolio and profile of Ansh Sahu (ansh.developer)."
+          "description": "Official portfolio and professional profile of Ansh Sahu, Frontend Developer."
         }
       ]
     }

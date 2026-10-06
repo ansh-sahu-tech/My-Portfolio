@@ -81,9 +81,9 @@ export const AboutPage: React.FC = () => {
           headingTag="h1"
           badge="About Me"
           badgeVariant="brand"
-          title="Ansh Sahu | Software Engineer with"
+          title="Ansh Sahu | Frontend Developer with"
           highlightText="AI/ML Foundations"
-          description="A deeper look into my background as a Software Engineer, academic studies at Sanskriti University, core focus areas, and technical philosophy."
+          description="A deeper look into my background as a Frontend Developer, academic studies at Sanskriti University, core focus areas, and technical philosophy."
         />
       </ScrollReveal>
 
@@ -98,7 +98,9 @@ export const AboutPage: React.FC = () => {
                   <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden border border-[#263342] bg-[#1A2430] shadow-sm">
                     <img
                       src="/ansh-profile.jpg?v=2"
-                      alt="Ansh Sahu - Software Engineer &amp; Developer"
+                      alt="Ansh Sahu - Frontend Developer Portfolio"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                     />
                   </div>

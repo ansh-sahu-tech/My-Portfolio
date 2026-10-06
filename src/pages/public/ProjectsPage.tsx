@@ -65,9 +65,9 @@ export const ProjectsPage: React.FC = () => {
           headingTag="h1"
           badge="Selected Projects"
           badgeVariant="brand"
-          title="Ansh Sahu | Software Engineering"
+          title="Ansh Sahu | Frontend &amp; Web"
           highlightText="Projects &amp; Systems"
-          description="Explore high-impact projects spanning responsive web platforms, computer vision applications, and predictive machine learning models built by Ansh Sahu (ansh.developer)."
+          description="Explore high-impact projects spanning responsive web platforms, React &amp; Next.js applications, computer vision pipelines, and machine learning models built by Ansh Sahu (Frontend Developer)."
         />
       </ScrollReveal>
 

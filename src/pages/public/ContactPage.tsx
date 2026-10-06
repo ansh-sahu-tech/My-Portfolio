@@ -16,7 +16,7 @@ import { SectionHeader } from '../../components/common/SectionHeader';
 import { Button } from '../../components/common/Button';
 import { BackButton } from '../../components/common/BackButton';
 import { ScrollReveal } from '../../components/common/ScrollReveal';
-import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from '../../components/common/SocialIcons';
 
 export const ContactPage: React.FC = () => {
   const { settings, addMessage } = useData();
@@ -153,7 +153,7 @@ export const ContactPage: React.FC = () => {
           badgeVariant="brand"
           title="Connect with"
           highlightText="Ansh Sahu"
-          description="Have a question about a software engineering project, internship opportunity, or developer collaboration? Reach out to Ansh Sahu (ansh.developer) directly."
+          description="Have a question about a frontend development project, internship opportunity, or developer collaboration? Reach out to Ansh Sahu (Frontend Developer) directly."
         />
       </ScrollReveal>
 
@@ -240,6 +240,31 @@ export const ContactPage: React.FC = () => {
                 </button>
               </div>
 
+              {/* Instagram */}
+              {settings.instagramUrl && (
+                <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
+                      <InstagramIcon size={16} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-medium text-[#94A3B8] uppercase">Instagram</p>
+                      <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
+                        {settings.instagramUrl}
+                      </a>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(settings.instagramUrl || '', 'Instagram URL')}
+                    className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
+                    title="Copy Instagram URL"
+                  >
+                    {copiedField === 'Instagram URL' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
+                  </button>
+                </div>
+              )}
+
               {/* Phone */}
               <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
                 <div className="flex items-center gap-3 min-w-0">
@@ -271,7 +296,7 @@ export const ContactPage: React.FC = () => {
                 <div>
                   <p className="text-[11px] font-medium text-[#94A3B8] uppercase">Location</p>
                   <p className="text-xs font-semibold text-[#F8FAFC]">
-                    Mathura, Uttar Pradesh, India
+                    Gonda, Uttar Pradesh (near Ayodhya), India
                   </p>
                 </div>
               </div>

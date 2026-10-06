@@ -96,6 +96,7 @@ export interface SiteSettings {
   email: string;
   githubUrl: string;
   linkedinUrl: string;
+  instagramUrl?: string;
   phone: string;
   resumeUrl: string;
   aiMetrics: {

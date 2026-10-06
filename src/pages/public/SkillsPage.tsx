@@ -51,9 +51,9 @@ export const SkillsPage: React.FC = () => {
           headingTag="h1"
           badge="Skills &amp; Technologies"
           badgeVariant="brand"
-          title="Ansh Sahu | Software Engineer"
+          title="Ansh Sahu | Frontend Developer"
           highlightText="Stack &amp; Capabilities"
-          description="Comprehensive breakdown of the frontend libraries, developer workflows, and machine learning foundations utilized by Ansh Sahu (ansh.developer)."
+          description="Comprehensive breakdown of the frontend ecosystem, React &amp; Next.js tools, UI frameworks, and machine learning foundations utilized by Ansh Sahu (Frontend Developer)."
         />
       </ScrollReveal>
 

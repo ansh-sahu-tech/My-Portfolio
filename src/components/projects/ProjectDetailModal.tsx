@@ -50,7 +50,9 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
         <div className="relative rounded-xl overflow-hidden border border-[#263342] aspect-video w-full bg-[#0B0F14] shadow-inner">
           <img
             src={project.imageUrl}
-            alt={project.title}
+            alt={`${project.title} - ${project.category} Project Overview by Ansh Sahu`}
+            loading="lazy"
+            decoding="async"
             onError={(e) => {
               const target = e.currentTarget;
               if (project.id === 'proj-1' || project.slug === 'ai-driver-awareness-system') {
