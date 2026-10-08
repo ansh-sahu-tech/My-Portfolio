@@ -151,7 +151,14 @@ export const ProjectDetailPage: React.FC = () => {
                 target.src = '/ansh-profile.jpg';
               }
             }}
-            className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover/hero:scale-[1.03]"
+            className={`w-full h-full object-cover ${
+              project.imagePosition === 'top' ||
+              project.imageUrl?.includes('ansh-profile') ||
+              project.id === 'proj-5' ||
+              project.slug === 'developer-portfolio-2026'
+                ? 'object-top'
+                : 'object-center'
+            } transition-transform duration-500 ease-out group-hover/hero:scale-[1.03]`}
           />
           <div className="absolute top-3 right-3">
             <span className="px-2.5 py-1 text-xs font-bold rounded-md bg-[#0B0F14]/90 text-[#22D3EE] border border-[#22D3EE]/40 shadow-md backdrop-blur-sm tracking-wider uppercase">

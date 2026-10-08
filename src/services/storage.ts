@@ -51,7 +51,8 @@ export const storageService = {
           ...p,
           liveUrl: liveUrl || p.liveUrl,
           githubUrl: !githubUrl || githubUrl === 'YOUR_GITHUB_URL' || githubUrl.includes('Anshsahu275-max') ? 'https://github.com/ansh-sahu-tech' : githubUrl,
-          imageUrl: imageUrl || '/ai-driver-awareness.png'
+          imageUrl: imageUrl || '/ai-driver-awareness.png',
+          imagePosition: p.imagePosition || (p.id === 'proj-5' || p.slug === 'developer-portfolio-2026' ? 'top' : undefined)
         };
       });
     } catch {

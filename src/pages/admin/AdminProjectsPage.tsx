@@ -228,7 +228,14 @@ export const AdminProjectsPage: React.FC = () => {
                       target.src = '/ansh-profile.jpg';
                     }
                   }}
-                  className="w-20 h-16 rounded-xl object-cover border border-slate-800 shrink-0 hidden sm:block"
+                  className={`w-20 h-16 rounded-xl object-cover border border-slate-800 shrink-0 hidden sm:block ${
+                    project.imagePosition === 'top' ||
+                    project.imageUrl?.includes('ansh-profile') ||
+                    project.id === 'proj-5' ||
+                    project.slug === 'developer-portfolio-2026'
+                      ? 'object-top'
+                      : 'object-center'
+                  }`}
                 />
                 <div>
                   <div className="flex flex-wrap items-center gap-2">

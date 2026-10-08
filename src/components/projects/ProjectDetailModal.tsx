@@ -67,7 +67,14 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 target.src = '/ansh-profile.jpg';
               }
             }}
-            className="w-full h-full object-cover object-center"
+            className={`w-full h-full object-cover ${
+              project.imagePosition === 'top' ||
+              project.imageUrl?.includes('ansh-profile') ||
+              project.id === 'proj-5' ||
+              project.slug === 'developer-portfolio-2026'
+                ? 'object-top'
+                : 'object-center'
+            }`}
           />
           <div className="absolute top-3 left-3 flex items-center gap-2">
             <Badge variant="brand" size="sm">

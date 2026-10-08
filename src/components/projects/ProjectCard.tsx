@@ -43,7 +43,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
               target.src = '/ansh-profile.jpg';
             }
           }}
-          className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          className={`w-full h-full object-cover ${
+            project.imagePosition === 'top' ||
+            project.imageUrl?.includes('ansh-profile') ||
+            project.id === 'proj-5' ||
+            project.slug === 'developer-portfolio-2026'
+              ? 'object-top'
+              : 'object-center'
+          } transition-transform duration-500 ease-out group-hover:scale-[1.04]`}
         />
 
         {/* Subtle hover gradient overlay */}

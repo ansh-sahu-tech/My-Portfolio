@@ -23,6 +23,7 @@ export interface Project {
   githubUrl: string;
   liveUrl?: string;
   imageUrl: string;
+  imagePosition?: 'top' | 'center' | 'bottom';
   featured: boolean;
   published: boolean;
   createdAt: string;

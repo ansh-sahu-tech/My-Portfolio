@@ -654,6 +654,11 @@ export const HomePage: React.FC = () => {
               signature="By Ansh Sahu"
               frameShape="architectural"
               aspectClass="aspect-[4/3]"
+              imageClassName={
+                featuredProjects[activeProjectTab]?.image?.includes('ansh-profile') || activeProjectTab === 4
+                  ? 'object-top'
+                  : 'object-center'
+              }
               badgeText={featuredProjects[activeProjectTab]?.category || 'Engineering Project'}
               subBadgeText={
                 activeProjectTab === 4
