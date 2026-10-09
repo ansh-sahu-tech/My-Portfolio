@@ -129,39 +129,5 @@ export const initialProjects: Project[] = [
     published: true,
     createdAt: '2024-08-01T12:00:00.000Z',
     updatedAt: '2024-08-25T14:00:00.000Z',
-  },
-  {
-    id: 'proj-5',
-    title: 'Developer Portfolio 2026',
-    slug: 'developer-portfolio-2026',
-    category: 'Web Development',
-    filterCategory: 'Frontend',
-    description: 'An interactive, responsive software engineering portfolio built with React, TypeScript, and Tailwind CSS. Showcases featured software projects, technical skills, verified credentials, and responsive editorial presentation architecture.',
-    problem: 'Software engineers need a modern, professional, and accessible digital platform to demonstrate technical capabilities, academic milestones, and engineering projects with fast load times and clean SEO architecture.',
-    solution: 'Designed and deployed a responsive single-page portfolio with custom editorial layouts, dark mode aesthetic, SEO optimization, and dynamic project filtering hosted on Vercel.',
-    features: [
-      'Modern dark mode interface with responsive layout and fluid micro-interactions',
-      'Interactive project showcase with category filtering, search, and detail modals',
-      'Technical skill categorization with realistic SVG badges',
-      'Automated resume generation and direct contact workflows',
-      'Optimized SEO meta tags, OpenGraph data, and fast Vercel edge deployment'
-    ],
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Vercel'],
-    architecture: 'React 18 + Vite → Tailwind CSS Design System → React Router SPA → Vercel Edge Hosting',
-    process: [
-      'Designed a sleek modern UI architecture focused on high contrast and accessibility.',
-      'Constructed modular components with TypeScript for type-safe rendering.',
-      'Implemented responsive design for seamless mobile and desktop navigation.',
-      'Configured continuous deployment pipeline on Vercel.'
-    ],
-    results: 'Deployed a production-grade portfolio demonstrating modern frontend architecture and clean engineering practices.',
-    githubUrl: 'https://github.com/ansh-sahu-tech/My-Portfolio',
-    liveUrl: 'https://sahuansh-portfolio-2026.vercel.app/',
-    imageUrl: '/ansh-profile.jpg?v=2',
-    imagePosition: 'top',
-    featured: true,
-    published: true,
-    createdAt: '2025-01-20T10:00:00.000Z',
-    updatedAt: '2025-02-15T14:00:00.000Z',
   }
 ];

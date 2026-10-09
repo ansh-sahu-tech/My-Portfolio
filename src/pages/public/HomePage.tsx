@@ -90,15 +90,6 @@ export const HomePage: React.FC = () => {
       github: 'https://github.com/ansh-sahu-tech',
       demo: 'https://bakery-taupe-six.vercel.app/',
       image: '/bakery-project.png'
-    },
-    {
-      title: 'Developer Portfolio 2026',
-      category: 'Frontend & UI Engineering',
-      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Vercel'],
-      summary: 'Official interactive developer portfolio featuring editorial presentation layouts, dark-mode design system, dynamic project filtering, and automated resume compilation.',
-      github: 'https://github.com/ansh-sahu-tech/My-Portfolio',
-      demo: 'https://sahuansh-portfolio-2026.vercel.app/',
-      image: '/ansh-profile.jpg?v=2'
     }
   ];
 
@@ -654,16 +645,10 @@ export const HomePage: React.FC = () => {
               signature="By Ansh Sahu"
               frameShape="architectural"
               aspectClass="aspect-[4/3]"
-              imageClassName={
-                featuredProjects[activeProjectTab]?.image?.includes('ansh-profile') || activeProjectTab === 4
-                  ? 'object-top'
-                  : 'object-center'
-              }
+              imageClassName="object-center"
               badgeText={featuredProjects[activeProjectTab]?.category || 'Engineering Project'}
               subBadgeText={
-                activeProjectTab === 4
-                  ? 'developer portfolio'
-                  : activeProjectTab === 3
+                activeProjectTab === 3
                   ? 'artisanal bakery'
                   : activeProjectTab === 2
                   ? 'predictive analytics'
@@ -673,9 +658,7 @@ export const HomePage: React.FC = () => {
               }
               caption={featuredProjects[activeProjectTab]?.title || 'Featured Project'}
               tagText={
-                activeProjectTab === 4
-                  ? 'Vercel Production'
-                  : activeProjectTab === 3
+                activeProjectTab === 3
                   ? 'React Production'
                   : activeProjectTab === 2
                   ? 'Scikit-Learn ML'
