@@ -10,25 +10,32 @@ import {
   ExternalLink, 
   Copy, 
   Check, 
-  Code2, 
-  Cpu, 
-  Layers, 
-  Palette, 
-  Globe, 
   Send,
   CheckCircle2,
-  AlertCircle,
-  Database,
-  Server,
-  Zap,
-  ShoppingBag,
-  BarChart3,
-  Cloud
+  AlertCircle
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { useToast } from '../../context/ToastContext';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '../../components/common/SocialIcons';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '../../components/common/ScrollReveal';
+import {
+  RealisticTailwindIcon,
+  RealisticJsIcon,
+  RealisticReactIcon,
+  RealisticNextjsIcon,
+  RealisticPythonIcon,
+  RealisticComputerVisionIcon,
+  RealisticRestApisIcon,
+  RealisticHtmlCssIcon,
+  RealisticGitGithubIcon,
+  RealisticFullStackIcon,
+  RealisticResponsiveIcon,
+  RealisticAiBrainIcon,
+  RealisticPerformanceIcon,
+  RealisticEcommerceIcon,
+  RealisticDataAnalysisIcon,
+  RealisticCloudDeployIcon,
+} from '../../components/skills/RealisticSkillIcons';
 
 export const HomePage: React.FC = () => {
   const { settings, addMessage } = useData();
@@ -190,96 +197,96 @@ export const HomePage: React.FC = () => {
     }
   ];
 
-  // Technical Skills (matching Screenshot 1 Grid)
+  // Technical Skills (matching Screenshot 1 Grid with Realistic Tech Icons)
   const skillsList = [
     {
       name: 'Tailwind CSS',
-      icon: <Palette className="w-6 h-6 text-[#24211D]" />,
+      icon: <RealisticTailwindIcon size={32} />,
       desc: 'Creating responsive, modern, and clean layouts quickly using utility-first styling and fluid breakpoints.'
     },
     {
       name: 'JavaScript',
-      icon: <Code2 className="w-6 h-6 text-[#24211D]" />,
+      icon: <RealisticJsIcon size={32} />,
       desc: 'Writing efficient, modern ES6+, and optimized code for both complex frontend interactions and async logic.'
     },
     {
       name: 'React',
-      icon: <Layers className="w-6 h-6 text-[#24211D]" />,
+      icon: <RealisticReactIcon size={32} />,
       desc: 'Building fast, interactive, and component-based user interfaces with state management and custom hooks.'
     },
     {
       name: 'Next.js',
-      icon: <Globe className="w-6 h-6 text-[#24211D]" />,
+      icon: <RealisticNextjsIcon size={32} />,
       desc: 'Developing high-performance applications with server and client components, SSR, and SEO-first routing.'
     },
     {
       name: 'Python & AI/ML',
-      icon: <Cpu className="w-6 h-6 text-[#24211D]" />,
+      icon: <RealisticPythonIcon size={32} />,
       desc: 'Applied machine learning architectures, statistical model training, and data manipulation pipelines.'
     },
     {
       name: 'Computer Vision',
-      icon: <Zap className="w-6 h-6 text-[#24211D]" />,
+      icon: <RealisticComputerVisionIcon size={32} />,
       desc: 'OpenCV image processing, facial landmark tracking (EAR/MAR), and edge-ready real-time video inference.'
     },
     {
       name: 'REST APIs',
-      icon: <Server className="w-6 h-6 text-[#24211D]" />,
+      icon: <RealisticRestApisIcon size={32} />,
       desc: 'Connecting frontend clients to RESTful endpoints with robust error handling and asynchronous payload parsing.'
     },
     {
       name: 'HTML5 & CSS3',
-      icon: <Globe className="w-6 h-6 text-[#24211D]" />,
+      icon: <RealisticHtmlCssIcon size={32} />,
       desc: 'Clean, semantic page structure with accessible DOM hierarchies, WCAG compliance, and modern CSS properties.'
     },
     {
       name: 'Git & GitHub',
-      icon: <Database className="w-6 h-6 text-[#24211D]" />,
+      icon: <RealisticGitGithubIcon size={32} />,
       desc: 'Disciplined version control workflows, atomic commits, pull request management, and collaborative git practices.'
     }
   ];
 
-  // Services List (matching Screenshot 1 & 2 Grid)
+  // Services List (matching Screenshot 1 & 2 Grid with Realistic Icons)
   const servicesList = [
     {
       title: 'Full-Stack & Frontend Web Development',
       desc: 'End-to-end web applications and modern SPAs engineered with React, Next.js, and clean component architecture.',
-      icon: <Code2 className="w-6 h-6 text-[#24211D]" />
+      icon: <RealisticFullStackIcon size={32} />
     },
     {
       title: 'Responsive UI/UX Engineering',
       desc: 'Pixel-perfect, mobile-first web interfaces styled with Tailwind CSS, ensuring smooth rendering across all screens.',
-      icon: <Palette className="w-6 h-6 text-[#24211D]" />
+      icon: <RealisticResponsiveIcon size={32} />
     },
     {
       title: 'AI & Computer Vision Solutions',
       desc: 'Real-time facial landmark detection (EAR/MAR), driver safety telemetry, and OpenCV video analysis pipelines.',
-      icon: <Cpu className="w-6 h-6 text-[#24211D]" />
+      icon: <RealisticAiBrainIcon size={32} />
     },
     {
       title: 'REST API & State Integration',
       desc: 'Seamless data binding between frontend applications and backend APIs with optimized caching and error handling.',
-      icon: <Server className="w-6 h-6 text-[#24211D]" />
+      icon: <RealisticRestApisIcon size={32} />
     },
     {
       title: 'Performance & Web Optimization',
       desc: 'Improving Core Web Vitals, page speed, accessible semantic structure, and asset bundling for high efficiency.',
-      icon: <Zap className="w-6 h-6 text-[#24211D]" />
+      icon: <RealisticPerformanceIcon size={32} />
     },
     {
       title: 'Marketplace & E-Commerce Platforms',
       desc: 'Interactive product discovery, custom inquiry flows, catalog browsing, and conversion-focused architectures.',
-      icon: <ShoppingBag className="w-6 h-6 text-[#24211D]" />
+      icon: <RealisticEcommerceIcon size={32} />
     },
     {
       title: 'Machine Learning & Data Analytics',
       desc: 'Exploratory data analysis with Pandas & NumPy, predictive regression and classification models, and visual insights.',
-      icon: <BarChart3 className="w-6 h-6 text-[#24211D]" />
+      icon: <RealisticDataAnalysisIcon size={32} />
     },
     {
       title: 'Deployment & Continuous Integration',
       desc: 'Deploying production-ready applications to Vercel and cloud platforms with automated git workflows.',
-      icon: <Cloud className="w-6 h-6 text-[#24211D]" />
+      icon: <RealisticCloudDeployIcon size={32} />
     }
   ];
 
@@ -289,20 +296,20 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           1. HERO SECTION (SPLIT HERO MATCHING SCREENSHOT 1)
           ======================================================== */}
-      <section className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-center py-10 sm:py-14 lg:py-16 bg-[#FEFAE0] overflow-hidden border-b border-[#CCD5AE]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
+      <section className="relative w-full min-h-[68vh] lg:min-h-[78vh] flex items-center justify-center py-12 sm:py-16 lg:py-20 bg-[#FEFAE0] overflow-hidden border-b border-[#CCD5AE]">
+        <div className="max-w-[1440px] 2xl:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 xl:gap-20 items-center w-full">
             
-            {/* Left Column: Circular Portrait */}
+            {/* Left Column: Circular Portrait (Pushed to Left) */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 flex items-center justify-center relative py-2 sm:py-4 order-1 lg:order-1"
+              className="lg:col-span-5 flex items-center justify-center lg:justify-start relative py-2 sm:py-4 order-1 lg:order-1"
             >
               <div className="relative flex items-center justify-center">
                 {/* Subtle outer concentric framing ring */}
-                <div className="absolute -inset-3 sm:-inset-4 md:-inset-5 rounded-full border border-[#CCD5AE]/70 pointer-events-none" />
+                <div className="absolute -inset-3.5 sm:-inset-4.5 md:-inset-5.5 rounded-full border border-[#CCD5AE]/75 pointer-events-none" />
 
                 {/* Main Profile Image Circle (Proportionate, impactful size) */}
                 <div className="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[370px] md:h-[370px] lg:w-[400px] lg:h-[400px] xl:w-[440px] xl:h-[440px] rounded-full overflow-hidden hero-portrait-ring bg-[#E9EDC9] shadow-md">
@@ -316,12 +323,12 @@ export const HomePage: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Right Column: Hero Content */}
+            {/* Right Column: Hero Content (Pushed to Right) */}
             <motion.div 
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7 space-y-5 lg:space-y-6 text-center lg:text-left order-2 lg:order-2 lg:pl-2 xl:pl-4"
+              className="lg:col-span-7 flex flex-col items-center lg:items-start lg:ml-auto max-w-2xl w-full space-y-5 lg:space-y-6 text-center lg:text-left order-2 lg:order-2"
             >
               {/* Status Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9EDC9] border border-[#CCD5AE] text-xs font-semibold text-[#24211D] shadow-sm">

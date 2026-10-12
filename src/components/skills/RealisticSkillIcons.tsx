@@ -729,6 +729,235 @@ export const RealisticPandasIcon: React.FC<SkillIconProps> = ({ size = 32, class
 );
 
 // ----------------------------------------------------
+// 19. HTML5 & CSS3 REALISTIC DUAL SHIELDS
+// ----------------------------------------------------
+export const RealisticHtmlCssIcon: React.FC<SkillIconProps> = ({ size = 32, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={`shrink-0 ${className}`} {...props}>
+    <defs>
+      <linearGradient id="hcss-html" x1="4" y1="6" x2="24" y2="42" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#FF6B4A" />
+        <stop offset="60%" stopColor="#E44D26" />
+        <stop offset="100%" stopColor="#C33612" />
+      </linearGradient>
+      <linearGradient id="hcss-css" x1="22" y1="6" x2="44" y2="42" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#38BDF8" />
+        <stop offset="50%" stopColor="#2563EB" />
+        <stop offset="100%" stopColor="#1E3A8A" />
+      </linearGradient>
+      <filter id="hcss-shadow" x="2" y="4" width="44" height="42" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="2" stdDeviation="1.8" floodColor="#0F172A" floodOpacity="0.4" />
+      </filter>
+    </defs>
+    <g filter="url(#hcss-shadow)">
+      {/* HTML5 Left Shield */}
+      <path d="M5 8L8 37L19 40V8H5Z" fill="url(#hcss-html)" />
+      <path d="M19 8V40L20 40.3L22 37L22.5 8H19Z" fill="#F16529" />
+      {/* HTML5 '5' stylized */}
+      <path d="M19 14H10L10.5 19H19V14ZM10.7 21H19V26H11.2L11.5 30.5L19 32.5V36L9.5 33.5L9 21H10.7Z" fill="white" />
+
+      {/* CSS3 Right Shield (Overlapping) */}
+      <path d="M25 8L27.8 37L39 40V8H25Z" fill="#2082C5" />
+      <path d="M39 8V40L42.2 37L45 8H39Z" fill="url(#hcss-css)" />
+      {/* CSS3 '3' stylized */}
+      <path d="M39 14V19H32L31.5 14H39ZM39 23.5V28H34.5L34.2 26H39ZM39 36L31.5 33.5L31 29H35.2L35.4 31.8L39 32.8V36Z" fill="white" />
+      <path d="M39 14H42.5L42 19H39V14ZM39 23.5H41.5L41 28H39V23.5ZM39 32.8L41.8 31.8L42.4 23.5H44.8L44 33.5L39 36V32.8Z" fill="#F1F5F9" />
+    </g>
+  </svg>
+);
+
+// ----------------------------------------------------
+// 20. GIT & GITHUB REALISTIC COMBINED EMBLEM
+// ----------------------------------------------------
+export const RealisticGitGithubIcon: React.FC<SkillIconProps> = ({ size = 32, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={`shrink-0 ${className}`} {...props}>
+    <defs>
+      <linearGradient id="gg-git" x1="4" y1="4" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#FF6E52" />
+        <stop offset="100%" stopColor="#DE3412" />
+      </linearGradient>
+      <linearGradient id="gg-hub" x1="18" y1="18" x2="46" y2="46" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#3F3F46" />
+        <stop offset="50%" stopColor="#18181B" />
+        <stop offset="100%" stopColor="#09090B" />
+      </linearGradient>
+      <filter id="gg-shadow" x="2" y="2" width="44" height="44" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="2" stdDeviation="1.8" floodColor="#000000" floodOpacity="0.45" />
+      </filter>
+    </defs>
+    <g filter="url(#gg-shadow)">
+      {/* Background Git Rhombus */}
+      <rect x="18" y="2" width="22" height="22" rx="4.5" transform="rotate(45 18 2)" fill="url(#gg-git)" stroke="#FFA08C" strokeWidth="1" />
+      {/* Git branch line */}
+      <path d="M12 21L19 14" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M12 14V23" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="12" cy="14" r="2.4" fill="white" />
+      <circle cx="12" cy="23" r="2.4" fill="white" />
+      <circle cx="19" cy="14" r="2.4" fill="white" />
+
+      {/* Foreground GitHub Metallic Disc */}
+      <circle cx="32" cy="32" r="14" fill="url(#gg-hub)" stroke="#71717A" strokeWidth="1.2" />
+      <circle cx="32" cy="32" r="12.8" stroke="white" strokeOpacity="0.15" strokeWidth="0.8" />
+      {/* Octocat mini silhouette */}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M32 22C26.48 22 22 26.48 22 32C22 36.42 24.87 40.17 28.84 41.48C29.34 41.58 29.52 41.27 29.52 41.01C29.52 40.77 29.51 39.98 29.51 39.16C26.73 39.77 26.15 37.98 26.15 37.98C25.69 36.83 25.04 36.52 25.04 36.52C24.13 35.9 25.11 35.91 25.11 35.91C26.11 35.98 26.64 36.93 26.64 36.93C27.53 38.45 28.98 38.01 29.55 37.76C29.64 37.11 29.9 36.68 30.18 36.42C27.97 36.18 25.64 35.32 25.64 31.51C25.64 30.42 26.03 29.53 26.66 28.83C26.56 28.58 26.22 27.56 26.76 26.19C26.76 26.19 27.6 25.92 29.49 27.21C30.28 26.99 31.14 26.88 32 26.87C32.86 26.88 33.72 26.99 34.52 27.21C36.41 25.92 37.24 26.19 37.24 26.19C37.78 27.56 37.44 28.58 37.34 28.83C37.98 29.53 38.36 30.42 38.36 31.51C38.36 35.33 36.02 36.17 33.8 36.42C34.15 36.72 34.48 37.33 34.48 38.25C34.48 39.58 34.46 40.65 34.46 41.01C34.46 41.27 34.65 41.58 35.15 41.48C39.12 40.16 42 36.41 42 32C42 26.48 37.52 22 32 22Z"
+        fill="white"
+      />
+    </g>
+  </svg>
+);
+
+// ----------------------------------------------------
+// 21. FULL-STACK / WEB DEV REALISTIC 3D WORKSPACE
+// ----------------------------------------------------
+export const RealisticFullStackIcon: React.FC<SkillIconProps> = ({ size = 32, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={`shrink-0 ${className}`} {...props}>
+    <defs>
+      <linearGradient id="fs-window" x1="4" y1="6" x2="44" y2="42" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#1E293B" />
+        <stop offset="50%" stopColor="#0F172A" />
+        <stop offset="100%" stopColor="#020617" />
+      </linearGradient>
+      <linearGradient id="fs-tag" x1="12" y1="18" x2="36" y2="34" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#38BDF8" />
+        <stop offset="100%" stopColor="#6366F1" />
+      </linearGradient>
+      <filter id="fs-shadow" x="2" y="4" width="44" height="42" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="2.5" stdDeviation="2" floodColor="#020617" floodOpacity="0.5" />
+      </filter>
+    </defs>
+    <g filter="url(#fs-shadow)">
+      {/* IDE Window Frame */}
+      <rect x="5" y="7" width="38" height="34" rx="7" fill="url(#fs-window)" stroke="#38BDF8" strokeWidth="1.2" />
+      {/* Header Bar */}
+      <path d="M5 14H43" stroke="#334155" strokeWidth="1" />
+      {/* Window Controls */}
+      <circle cx="11" cy="10.5" r="2" fill="#EF4444" />
+      <circle cx="16.5" cy="10.5" r="2" fill="#F59E0B" />
+      <circle cx="22" cy="10.5" r="2" fill="#10B981" />
+      {/* Neon Code Tag Bracket < / > */}
+      <path d="M16 23L11 28L16 33" stroke="url(#fs-tag)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M32 23L37 28L32 33" stroke="url(#fs-tag)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M26 20L22 36" stroke="#38BDF8" strokeWidth="2.6" strokeLinecap="round" />
+    </g>
+  </svg>
+);
+
+// ----------------------------------------------------
+// 22. PERFORMANCE & WEB OPTIMIZATION REALISTIC 3D TURBO GAUGE
+// ----------------------------------------------------
+export const RealisticPerformanceIcon: React.FC<SkillIconProps> = ({ size = 32, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={`shrink-0 ${className}`} {...props}>
+    <defs>
+      <linearGradient id="perf-dial" x1="8" y1="8" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#1E293B" />
+        <stop offset="100%" stopColor="#0B132B" />
+      </linearGradient>
+      <linearGradient id="perf-arc" x1="10" y1="24" x2="38" y2="24" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#10B981" />
+        <stop offset="50%" stopColor="#F59E0B" />
+        <stop offset="100%" stopColor="#EF4444" />
+      </linearGradient>
+      <linearGradient id="perf-bolt" x1="20" y1="16" x2="32" y2="34" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#FDE047" />
+        <stop offset="100%" stopColor="#F59E0B" />
+      </linearGradient>
+      <filter id="perf-shadow" x="2" y="2" width="44" height="44" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="2.5" stdDeviation="2" floodColor="#0F172A" floodOpacity="0.45" />
+      </filter>
+    </defs>
+    <g filter="url(#perf-shadow)">
+      {/* Outer Gauge Bezel */}
+      <circle cx="24" cy="24" r="19" fill="url(#perf-dial)" stroke="#64748B" strokeWidth="1.5" />
+      {/* Color RPM Velocity Arc */}
+      <path d="M12 30A14 14 0 1 1 36 30" stroke="url(#perf-arc)" strokeWidth="3" strokeLinecap="round" />
+      {/* Center Pivot */}
+      <circle cx="24" cy="28" r="4" fill="#F8FAFC" />
+      {/* Needle pointing to MAX performance */}
+      <line x1="24" y1="28" x2="34" y2="18" stroke="#EF4444" strokeWidth="2.4" strokeLinecap="round" />
+      {/* Foreground 3D Lightning Zap */}
+      <path d="M22 13L16 23H23L21 33L31 21H24L26 13H22Z" fill="url(#perf-bolt)" stroke="#FFFBEB" strokeWidth="0.8" />
+    </g>
+  </svg>
+);
+
+// ----------------------------------------------------
+// 23. E-COMMERCE & MARKETPLACE REALISTIC 3D STOREFRONT BAG
+// ----------------------------------------------------
+export const RealisticEcommerceIcon: React.FC<SkillIconProps> = ({ size = 32, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={`shrink-0 ${className}`} {...props}>
+    <defs>
+      <linearGradient id="ecom-bag" x1="10" y1="14" x2="38" y2="44" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#10B981" />
+        <stop offset="50%" stopColor="#059669" />
+        <stop offset="100%" stopColor="#047857" />
+      </linearGradient>
+      <linearGradient id="ecom-gold" x1="16" y1="4" x2="32" y2="20" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#FDE047" />
+        <stop offset="100%" stopColor="#D97706" />
+      </linearGradient>
+      <filter id="ecom-shadow" x="4" y="4" width="40" height="42" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="2.5" stdDeviation="2" floodColor="#064E3B" floodOpacity="0.45" />
+      </filter>
+    </defs>
+    <g filter="url(#ecom-shadow)">
+      {/* Curved Handle */}
+      <path d="M17 17V12C17 8.13 20.13 5 24 5C27.87 5 31 8.13 31 12V17" stroke="url(#ecom-gold)" strokeWidth="3.2" strokeLinecap="round" />
+      {/* 3D Bag Body */}
+      <path d="M10 15L12.5 41C12.7 42.1 13.6 43 14.8 43H33.2C34.4 43 35.3 42.1 35.5 41L38 15H10Z" fill="url(#ecom-bag)" stroke="#6EE7B7" strokeWidth="1" />
+      {/* Storefront / Cart Tag Sparkle */}
+      <circle cx="24" cy="27" r="5" fill="#ECFDF5" />
+      <path d="M21.5 27H26.5M24 24.5V29.5" stroke="#059669" strokeWidth="2" strokeLinecap="round" />
+      {/* Decorative Stitch lines */}
+      <line x1="14" y1="19" x2="34" y2="19" stroke="white" strokeOpacity="0.25" strokeDasharray="2 2" strokeWidth="1" />
+    </g>
+  </svg>
+);
+
+// ----------------------------------------------------
+// 24. CLOUD DEPLOYMENT & CI/CD REALISTIC 3D PIPELINE
+// ----------------------------------------------------
+export const RealisticCloudDeployIcon: React.FC<SkillIconProps> = ({ size = 32, className = '', ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={`shrink-0 ${className}`} {...props}>
+    <defs>
+      <linearGradient id="cld-sky" x1="10" y1="6" x2="38" y2="34" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#38BDF8" />
+        <stop offset="50%" stopColor="#0284C7" />
+        <stop offset="100%" stopColor="#0369A1" />
+      </linearGradient>
+      <linearGradient id="cld-pipe" x1="14" y1="28" x2="34" y2="44" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#10B981" />
+        <stop offset="100%" stopColor="#059669" />
+      </linearGradient>
+      <filter id="cld-shadow" x="4" y="6" width="40" height="40" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="2.5" stdDeviation="2" floodColor="#075985" floodOpacity="0.45" />
+      </filter>
+    </defs>
+    <g filter="url(#cld-shadow)">
+      {/* 3D Cloud */}
+      <path
+        d="M17 19C17 14.58 20.58 11 25 11C28.6 11 31.62 13.38 32.61 16.71C35.63 17.15 38 19.8 38 23C38 26.58 35.09 29.5 31.5 29.5H16C12.13 29.5 9 26.37 9 22.5C9 18.8 11.87 15.76 15.5 15.53C15.9 16.65 16.5 17.9 17 19Z"
+        fill="url(#cld-sky)"
+        stroke="#BAE6FD"
+        strokeWidth="1.2"
+      />
+      {/* CI/CD Infinity Sync Loop */}
+      <path
+        d="M18 36C18 33.5 20.5 32 24 35C27.5 38 30 36.5 30 34C30 31.5 27.5 30 24 33C20.5 36 18 34.5 18 32"
+        stroke="#FFFFFF"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+      {/* Upward Deploy Rocket Arrow */}
+      <path d="M24 23V31M24 23L20 27M24 23L28 27" stroke="#FDE047" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Live status beacon */}
+      <circle cx="34" cy="20" r="2" fill="#34D399" />
+    </g>
+  </svg>
+);
+
+// ----------------------------------------------------
 // MASTER ICON RESOLVER FOR SKILLS SECTION
 // ----------------------------------------------------
 export const getRealisticSkillIcon = (name: string, iconKey?: string, size = 32, className = ''): React.ReactNode => {
@@ -736,6 +965,8 @@ export const getRealisticSkillIcon = (name: string, iconKey?: string, size = 32,
   const normKey = (iconKey || '').toLowerCase().trim();
 
   // Explicit tool/library checks first
+  if (normName.includes('html') && normName.includes('css')) return <RealisticHtmlCssIcon size={size} className={className} />;
+  if (normName.includes('git') && normName.includes('github')) return <RealisticGitGithubIcon size={size} className={className} />;
   if (normName.includes('opencv')) return <RealisticOpenCvIcon size={size} className={className} />;
   if (normName.includes('pandas')) return <RealisticPandasIcon size={size} className={className} />;
   if (normName.includes('html')) return <RealisticHtmlIcon size={size} className={className} />;
