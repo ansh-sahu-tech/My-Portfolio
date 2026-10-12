@@ -510,16 +510,15 @@ export const HomePage: React.FC = () => {
           
           {/* Section Header */}
           <ScrollReveal>
-            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 lg:mb-14 space-y-2.5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9EDC9] border border-[#CCD5AE] text-[11px] font-mono text-[#24211D] shadow-2xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-bold tracking-wider uppercase">Production Systems &amp; Pipelines</span>
-              </div>
+            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 lg:mb-14 space-y-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+                Portfolio Work
+              </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#24211D]">
-                Featured Technical Projects
+                Recent Projects
               </h2>
               <p className="text-xs sm:text-sm md:text-base text-[#575249]">
-                Production web applications, computer vision pipelines, and intelligent architectures engineered for real-world performance.
+                Here are some of the real-world projects and intelligent systems I've built.
               </p>
             </div>
           </ScrollReveal>

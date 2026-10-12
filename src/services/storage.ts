@@ -53,24 +53,20 @@ export const storageService = {
           if (p.id === 'proj-2' && (p.title === 'Sacha Sauda' || p.title === 'Sacha Sauda (2025)')) {
             title = 'Geo Build Mart';
           }
-          if (p.id === 'proj-3' && (p.title === 'Student Performance Prediction' || p.title === 'Student Performance Prediction (2024)')) {
+          if (p.id === 'proj-3' && (p.title === 'Student Performance Prediction' || p.title === 'Student Performance Prediction (2024)' || p.description?.includes('predictive analytical') || p.technologies?.includes('Scikit-learn'))) {
             title = 'Sanskar Katha';
             slug = 'sanskar-katha';
             category = 'Cultural & Storytelling Platform';
             filterCategory = 'Frontend';
           }
           const initMatch = initialProjects.find((ip) => ip.id === p.id || ip.slug === slug || ip.slug === p.slug);
+          const isLegacySanskar = p.id === 'proj-3' && (p.description?.includes('predictive analytical') || p.technologies?.includes('Scikit-learn'));
           return {
             ...initMatch,
             ...p,
-            systemCode: p.systemCode || initMatch?.systemCode,
-            status: p.status || initMatch?.status,
-            year: p.year || initMatch?.year,
-            version: p.version || initMatch?.version,
-            pipeline: p.pipeline || initMatch?.pipeline,
-            metrics: p.metrics && p.metrics.length > 0 ? p.metrics : initMatch?.metrics,
-            highlights: p.highlights && p.highlights.length > 0 ? p.highlights : initMatch?.highlights,
-            telemetry: p.telemetry && p.telemetry.length > 0 ? p.telemetry : initMatch?.telemetry,
+            description: isLegacySanskar ? (initMatch?.description || p.description) : p.description,
+            technologies: isLegacySanskar ? (initMatch?.technologies || p.technologies) : p.technologies,
+            features: isLegacySanskar ? (initMatch?.features || p.features) : p.features,
             title,
             slug,
             category,
