@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { CommandPalette } from '../command/CommandPalette';
+import { ScrollProgress } from '../common/ScrollProgress';
 
 const BASE_CANONICAL = 'https://sahuansh-portfolio-2026.vercel.app';
 
@@ -119,6 +120,9 @@ export const PublicLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FEFAE0] text-[#24211D] selection:bg-[#CCD5AE] selection:text-[#24211D] font-sans overflow-x-hidden w-full max-w-full">
+      {/* Global Scroll Progress Indicator */}
+      <ScrollProgress />
+
       {/* Command Palette for quick access */}
       <CommandPalette
         isOpen={commandPaletteOpen}

@@ -29,6 +29,7 @@ import { useData } from '../../context/DataContext';
 import { useToast } from '../../context/ToastContext';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '../../components/common/SocialIcons';
 import { getRealisticSkillIcon } from '../../components/skills/RealisticSkillIcons';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '../../components/common/ScrollReveal';
 
 export const HomePage: React.FC = () => {
   const { settings, addMessage } = useData();
@@ -471,7 +472,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             {/* Left Column: Portrait photo with soft square rounded frame */}
-            <div className="lg:col-span-5 flex justify-center">
+            <ScrollReveal className="lg:col-span-5 flex justify-center" distance={20} duration={0.6}>
               <div className="relative w-full max-w-sm aspect-square rounded-3xl overflow-hidden border-2 border-[#CCD5AE] shadow-card bg-[#FFFFFF]">
                 <img
                   src="/ansh-profile.jpg?v=2"
@@ -483,10 +484,10 @@ export const HomePage: React.FC = () => {
                   <p className="text-[11px] text-[#575249]">B.Tech CSE (AI &amp; ML) • Sanskriti University</p>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Right Column: About details matching Screenshot 1 */}
-            <div className="lg:col-span-7 space-y-6">
+            <ScrollReveal className="lg:col-span-7 space-y-6" distance={20} duration={0.6} delay={0.1}>
               <div className="space-y-2">
                 <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
                   About Me
@@ -538,7 +539,7 @@ export const HomePage: React.FC = () => {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-            </div>
+            </ScrollReveal>
 
           </div>
         </div>
@@ -551,52 +552,57 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
-              Technical Stack
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
-              Skills &amp; Technologies
-            </h2>
-            <p className="text-sm sm:text-base text-[#575249]">
-              I work with modern tools and technologies to build fast, scalable, and efficient web applications.
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+                Technical Stack
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
+                Skills &amp; Technologies
+              </h2>
+              <p className="text-sm sm:text-base text-[#575249]">
+                I work with modern tools and technologies to build fast, scalable, and efficient web applications.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Technical Grid (3 columns on desktop, matching Screenshot 1 layout) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skillsList.map((skill) => (
-              <div
-                key={skill.name}
-                className="group p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
-              >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                    {skill.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors">
-                      {skill.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[#575249] mt-2 leading-relaxed">
-                      {skill.desc}
-                    </p>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.05}>
+            {skillsList.map((skill, index) => (
+              <StaggerItem key={skill.name} index={index} className="h-full flex flex-col">
+                <div
+                  className="group p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 h-full"
+                >
+                  <div className="space-y-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                      {skill.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors">
+                        {skill.name}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[#575249] mt-2 leading-relaxed">
+                        {skill.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           {/* Link to All Skills */}
-          <div className="text-center mt-10">
-            <Link
-              to="/skills"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#24211D] hover:text-[#D4A373] transition-colors"
-            >
-              <span>Explore Complete Skills &amp; Tools Matrix</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          <ScrollReveal delay={0.12}>
+            <div className="text-center mt-10">
+              <Link
+                to="/skills"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#24211D] hover:text-[#D4A373] transition-colors"
+              >
+                <span>Explore Complete Skills &amp; Tools Matrix</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
 
         </div>
       </section>
@@ -608,41 +614,44 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
-              What I Deliver
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
-              Services I Provide
-            </h2>
-            <p className="text-sm sm:text-base text-[#575249]">
-              I offer design and development services focused on building fast, modern, and user-friendly digital experiences.
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+                What I Deliver
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
+                Services I Provide
+              </h2>
+              <p className="text-sm sm:text-base text-[#575249]">
+                I offer design and development services focused on building fast, modern, and user-friendly digital experiences.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* 4-column responsive grid matching screenshot services */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {servicesList.map((service) => (
-              <div
-                key={service.title}
-                className="group p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
-              >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                    {service.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors leading-snug">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs text-[#575249] mt-2 leading-relaxed">
-                      {service.desc}
-                    </p>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.04}>
+            {servicesList.map((service, index) => (
+              <StaggerItem key={service.title} index={index} className="h-full flex flex-col">
+                <div
+                  className="group p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 h-full"
+                >
+                  <div className="space-y-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                      {service.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors leading-snug">
+                        {service.title}
+                      </h3>
+                      <p className="text-xs text-[#575249] mt-2 leading-relaxed">
+                        {service.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
         </div>
       </section>
@@ -654,100 +663,105 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
-              Portfolio Work
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
-              Recent Projects
-            </h2>
-            <p className="text-sm sm:text-base text-[#575249]">
-              Here are some of the real-world projects and intelligent systems I've built.
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+                Portfolio Work
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
+                Recent Projects
+              </h2>
+              <p className="text-sm sm:text-base text-[#575249]">
+                Here are some of the real-world projects and intelligent systems I've built.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* 2-column Projects Grid matching Screenshot 2 */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {recentProjects.map((project) => (
-              <div
-                key={project.title}
-                className="group rounded-3xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 overflow-hidden flex flex-col justify-between"
-              >
-                {/* Project Image Preview */}
-                <div className="relative aspect-video w-full overflow-hidden bg-[#FAEDCD] border-b-2 border-[#CCD5AE]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FFFFFF]/90 border border-[#CCD5AE] text-[#24211D] shadow-sm backdrop-blur-sm">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Project Info & Tech Tags */}
-                <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[#575249] leading-relaxed">
-                      {project.summary}
-                    </p>
-
-                    {/* Tech stack pills */}
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE]"
-                        >
-                          {t}
-                        </span>
-                      ))}
+          <StaggerContainer className="grid grid-cols-1 lg:grid-cols-2 gap-8" staggerDelay={0.08}>
+            {recentProjects.map((project, index) => (
+              <StaggerItem key={project.title} index={index} className="h-full flex flex-col">
+                <div
+                  className="group rounded-3xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 overflow-hidden flex flex-col justify-between h-full"
+                >
+                  {/* Project Image Preview */}
+                  <div className="relative aspect-video w-full overflow-hidden bg-[#FAEDCD] border-b-2 border-[#CCD5AE]">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FFFFFF]/90 border border-[#CCD5AE] text-[#24211D] shadow-sm backdrop-blur-sm">
+                        {project.category}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Actions matching Screenshot 2 */}
-                  <div className="pt-4 border-t border-[#CCD5AE]/60 flex items-center gap-3">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#CCD5AE] bg-[#FFFFFF] hover:bg-[#E9EDC9] hover:border-[#D4A373] text-[#24211D] text-xs font-semibold shadow-sm transition-all"
-                    >
-                      <GithubIcon size={14} />
-                      <span>GitHub</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
+                  {/* Project Info & Tech Tags */}
+                  <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                    <div className="space-y-3">
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[#575249] leading-relaxed">
+                        {project.summary}
+                      </p>
 
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] text-xs font-semibold shadow-sm transition-all"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      <span>Live Demo</span>
-                    </a>
+                      {/* Tech stack pills */}
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {project.tech.map((t) => (
+                          <span
+                            key={t}
+                            className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE]"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Actions matching Screenshot 2 */}
+                    <div className="pt-4 border-t border-[#CCD5AE]/60 flex items-center gap-3">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#CCD5AE] bg-[#FFFFFF] hover:bg-[#E9EDC9] hover:border-[#D4A373] text-[#24211D] text-xs font-semibold shadow-sm transition-all"
+                      >
+                        <GithubIcon size={14} />
+                        <span>GitHub</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </a>
+
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] text-xs font-semibold shadow-sm transition-all"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>Live Demo</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           {/* Link to Full Projects Page */}
-          <div className="text-center mt-12">
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] text-sm font-semibold shadow-sm transition-all"
-            >
-              <span>View All Projects in Full Gallery</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          <ScrollReveal delay={0.12}>
+            <div className="text-center mt-12">
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] text-sm font-semibold shadow-sm transition-all"
+              >
+                <span>View All Projects in Full Gallery</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
 
         </div>
       </section>
@@ -759,22 +773,24 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header */}
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
-              Let's Connect
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
-              Contact Us
-            </h2>
-            <p className="text-sm sm:text-base text-[#575249]">
-              Have a project in mind? Let's connect and discuss how I can help bring your ideas to life.
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+                Let's Connect
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
+                Contact Us
+              </h2>
+              <p className="text-sm sm:text-base text-[#575249]">
+                Have a project in mind? Let's connect and discuss how I can help bring your ideas to life.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             
             {/* Left Column: Get in touch today */}
-            <div className="lg:col-span-5 space-y-6">
+            <ScrollReveal className="lg:col-span-5 space-y-6" distance={20} duration={0.6}>
               <div className="space-y-2">
                 <h3 className="text-2xl font-bold text-[#24211D]">
                   Get in touch today
@@ -878,10 +894,10 @@ export const HomePage: React.FC = () => {
                   </a>
                 )}
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Right Column: Working Contact Form matching Screenshot 2 */}
-            <div className="lg:col-span-7">
+            <ScrollReveal className="lg:col-span-7" distance={20} duration={0.6} delay={0.1}>
               <div className="p-6 sm:p-8 rounded-3xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-card">
                 <form onSubmit={handleFormSubmit} className="space-y-4">
                   
@@ -994,7 +1010,7 @@ export const HomePage: React.FC = () => {
 
                 </form>
               </div>
-            </div>
+            </ScrollReveal>
 
           </div>
 
