@@ -289,7 +289,7 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           1. HERO SECTION (SPLIT HERO MATCHING SCREENSHOT 1)
           ======================================================== */}
-      <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center pt-8 pb-16 lg:py-20 bg-[#FEFAE0] tech-grid-bg overflow-hidden border-b border-[#CCD5AE]">
+      <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center pt-8 pb-16 lg:py-20 bg-[#FEFAE0] overflow-hidden border-b border-[#CCD5AE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
