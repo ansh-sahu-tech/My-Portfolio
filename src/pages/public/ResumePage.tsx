@@ -1,6 +1,5 @@
 import { 
   FileDown, 
-  Printer, 
   Mail, 
   Phone,
   GraduationCap, 
@@ -19,10 +18,6 @@ import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
 
 export const ResumePage: React.FC = () => {
   const { settings, projects, certificates } = useData();
-
-  const handlePrint = () => {
-    window.print();
-  };
 
   const handleDownloadPdf = () => {
     const link = document.createElement('a');
@@ -63,10 +58,6 @@ export const ResumePage: React.FC = () => {
                 View PDF
               </Button>
             </a>
-
-            <Button size="sm" variant="secondary" onClick={handlePrint} icon={<Printer className="w-3.5 h-3.5" />}>
-              Print
-            </Button>
 
             <Button size="sm" variant="primary" onClick={handleDownloadPdf} icon={<FileDown className="w-3.5 h-3.5" />}>
               Download PDF
