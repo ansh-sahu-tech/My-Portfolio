@@ -40,7 +40,7 @@ export const ProjectDetailPage: React.FC = () => {
 
       const canonicalTag = document.querySelector('link[rel="canonical"]');
       if (canonicalTag && slug) {
-        canonicalTag.setAttribute('href', `https://sahuansh-portfolio-2026.vercel.app/projects/${slug}`);
+        canonicalTag.setAttribute('href', `https://ansh-portfolio-2026.vercel.app/projects/${slug}`);
       }
     }
   }, [project, slug]);

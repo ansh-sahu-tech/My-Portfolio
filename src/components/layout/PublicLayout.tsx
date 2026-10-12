@@ -5,7 +5,7 @@ import { Footer } from './Footer';
 import { CommandPalette } from '../command/CommandPalette';
 import { ScrollProgress } from '../common/ScrollProgress';
 
-const BASE_CANONICAL = 'https://sahuansh-portfolio-2026.vercel.app';
+const BASE_CANONICAL = 'https://ansh-portfolio-2026.vercel.app';
 
 const routeMeta: Record<string, { title: string; desc: string }> = {
   '/': {
