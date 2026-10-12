@@ -38,12 +38,12 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Quick Nav Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-[#FAEDCD]">
+          <nav className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 text-xs font-medium text-[#FAEDCD]">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className="hover:text-[#CCD5AE] transition-colors"
+                className="py-1 px-1 hover:text-[#CCD5AE] transition-colors"
               >
                 {link.name}
               </Link>

@@ -67,10 +67,10 @@ export const AboutPage: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 font-sans pb-16">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16 font-sans pb-16">
       {/* Top Left Back Navigation */}
       <ScrollReveal>
-        <div className="flex items-center justify-start pt-1 -mb-10 sm:-mb-12">
+        <div className="mb-4 sm:mb-6">
           <BackButton />
         </div>
       </ScrollReveal>
@@ -92,10 +92,10 @@ export const AboutPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Bio & Academic Info Card */}
           <div className="lg:col-span-7">
-            <div className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-card-hover transition-all duration-300 ease-out space-y-6 group">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+            <div className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm hover:shadow-card-hover transition-all duration-300 ease-out space-y-5 sm:space-y-6 group">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
                 <div className="relative shrink-0">
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-[#CCD5AE] bg-[#FAEDCD] shadow-sm">
+                  <div className="w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-[#CCD5AE] bg-[#FAEDCD] shadow-sm">
                     <img
                       src="/ansh-profile.jpg?v=2"
                       alt="Ansh Sahu - Frontend Developer Portfolio"
@@ -108,14 +108,14 @@ export const AboutPage: React.FC = () => {
 
                 <div className="space-y-1.5">
                   <div>
-                    <h3 className="text-2xl font-bold text-[#24211D]">{settings.name}</h3>
-                    <p className="text-sm font-bold text-[#D4A373]">{settings.role}</p>
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#24211D]">{settings.name}</h3>
+                    <p className="text-xs sm:text-sm font-bold text-[#D4A373]">{settings.role}</p>
                   </div>
                   <p className="text-xs text-[#575249]">
                     {settings.university} • B.Tech CSE (AI &amp; ML) 2023–2027
                   </p>
 
-                  <div className="flex flex-wrap items-center gap-2 pt-1.5">
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1.5">
                     <SocialTooltip label="GitHub">
                       <a
                         href={settings.githubUrl}
@@ -163,53 +163,53 @@ export const AboutPage: React.FC = () => {
                 </div>
               </div>
 
-              <p className="text-[#24211D] text-sm sm:text-base leading-relaxed">
+              <p className="text-[#24211D] text-xs sm:text-sm md:text-base leading-relaxed">
                 Hello! I'm <strong className="text-[#D4A373]">Ansh</strong>, an undergraduate Computer Science student at <strong className="text-[#24211D]">Sanskriti University</strong> specializing in Artificial Intelligence and Machine Learning (Class of 2027).
               </p>
 
-              <p className="text-[#575249] text-sm leading-relaxed">
+              <p className="text-[#575249] text-xs sm:text-sm leading-relaxed">
                 My primary passion is <strong>Frontend Development</strong> — constructing responsive, accessible, and fast web applications using React, Next.js, and modern CSS. My coursework in AI &amp; ML provides me with a rigorous mathematical and algorithmic foundation, enabling me to handle complex state, data flows, and intelligent features with confidence.
               </p>
 
               {/* Key Academic Specs */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div className="p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
-                  <span className="text-xs font-semibold text-[#575249] flex items-center gap-1.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-2">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
+                  <span className="text-[11px] sm:text-xs font-semibold text-[#575249] flex items-center gap-1.5">
                     <RealisticGradCapIcon size={16} /> Degree &amp; Major
                   </span>
                   <p className="text-xs font-bold text-[#24211D]">B.Tech CSE (AI &amp; ML)</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
-                  <span className="text-xs font-semibold text-[#575249] flex items-center gap-1.5">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
+                  <span className="text-[11px] sm:text-xs font-semibold text-[#575249] flex items-center gap-1.5">
                     <RealisticMapPinIcon size={16} /> University &amp; Location
                   </span>
                   <p className="text-xs font-bold text-[#24211D]">Sanskriti University, Mathura</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
-                  <span className="text-xs font-semibold text-[#575249] flex items-center gap-1.5">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
+                  <span className="text-[11px] sm:text-xs font-semibold text-[#575249] flex items-center gap-1.5">
                     <RealisticCalendarIcon size={16} /> Timeline
                   </span>
                   <p className="text-xs font-bold text-[#24211D]">2023 — 2027 (Expected)</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
-                  <span className="text-xs font-semibold text-[#575249] flex items-center gap-1.5">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
+                  <span className="text-[11px] sm:text-xs font-semibold text-[#575249] flex items-center gap-1.5">
                     <RealisticTargetIcon size={16} /> Current Status
                   </span>
                   <p className="text-xs font-bold text-[#D4A373]">Open for Frontend Roles</p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[#CCD5AE]/60">
-                <Link to="/contact">
-                  <Button size="md" variant="primary" icon={<RealisticArrowRightIcon size={16} />} iconPosition="right">
+              <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2.5 sm:gap-3 pt-4 border-t border-[#CCD5AE]/60">
+                <Link to="/contact" className="w-full xs:w-auto">
+                  <Button size="md" variant="primary" icon={<RealisticArrowRightIcon size={16} />} iconPosition="right" className="w-full justify-center">
                     Get in Touch
                   </Button>
                 </Link>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                  <Button size="md" variant="secondary" icon={<RealisticDownloadDocIcon size={16} />}>
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full xs:w-auto">
+                  <Button size="md" variant="secondary" icon={<RealisticDownloadDocIcon size={16} />} className="w-full justify-center">
                     Download Resume
                   </Button>
                 </a>
@@ -218,13 +218,13 @@ export const AboutPage: React.FC = () => {
           </div>
 
           {/* Right: Focus Areas Grid */}
-          <div className="lg:col-span-5 space-y-4">
+          <div className="lg:col-span-5 space-y-3.5 sm:space-y-4">
             <h3 className="text-base font-bold text-[#24211D] tracking-tight flex items-center gap-2">
               <RealisticLayersIcon size={20} />
               Core Focus Areas
             </h3>
 
-            <div className="space-y-3">
+            <div className="space-y-2.5 sm:space-y-3">
               {focusAreas.map((area, idx) => (
                 <div
                   key={idx}
@@ -250,7 +250,7 @@ export const AboutPage: React.FC = () => {
 
       {/* 3. Engineering Philosophy & Approach */}
       <ScrollReveal delay={0.15}>
-        <div className="space-y-6 pt-4">
+        <div className="space-y-6 pt-2 sm:pt-4">
           <SectionHeader
             badge="Philosophy"
             badgeVariant="brand"
@@ -259,11 +259,11 @@ export const AboutPage: React.FC = () => {
             description="The practical engineering principles guiding my development work."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {engineeringPrinciples.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl p-6 shadow-sm hover:shadow-card-hover hover:border-[#D4A373] hover:-translate-y-1 transition-all duration-300 ease-out space-y-3"
+                className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-card-hover hover:border-[#D4A373] hover:-translate-y-1 transition-all duration-300 ease-out space-y-3"
               >
                 <div className="flex items-center justify-between">
                   <div className="w-8 h-8 rounded-lg bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] flex items-center justify-center font-bold text-xs">

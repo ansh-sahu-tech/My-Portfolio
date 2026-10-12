@@ -51,10 +51,10 @@ export const ProjectsPage: React.FC = () => {
   }, [projects, activeCategory, searchQuery]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 font-sans pb-16">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 font-sans pb-16">
       {/* Top Left Back Navigation */}
       <ScrollReveal>
-        <div className="flex items-center justify-start pt-1 -mb-6 sm:-mb-7">
+        <div className="mb-4 sm:mb-6">
           <BackButton />
         </div>
       </ScrollReveal>
@@ -73,7 +73,7 @@ export const ProjectsPage: React.FC = () => {
 
       {/* 2. Controls: Filter & Search Bar */}
       <ScrollReveal delay={0.08}>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3.5 sm:gap-4 p-3.5 sm:p-4 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm">
           <ProjectFilter
             categories={categories}
             activeCategory={activeCategory}
@@ -88,14 +88,14 @@ export const ProjectsPage: React.FC = () => {
               placeholder="Search projects..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249] hover:border-[#D4A373] focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200"
+              className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249] hover:border-[#D4A373] focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200 min-h-[38px]"
             />
           </div>
         </div>
       </ScrollReveal>
 
       {/* 3. Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
         {filteredProjects.map((project, idx) => (
           <ScrollReveal key={project.id} delay={idx * 0.08}>
             <ProjectCard

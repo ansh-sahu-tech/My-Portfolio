@@ -97,17 +97,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
               href={liveHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-[#FFFFFF] bg-[#24211D] hover:bg-[#D4A373] rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm"
+              className="group/btn inline-flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-2 text-[11px] sm:text-xs font-semibold text-[#FFFFFF] bg-[#24211D] hover:bg-[#D4A373] rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm min-h-[40px]"
             >
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3.5 h-3.5 shrink-0" />
               <span>Live Demo</span>
             </a>
           ) : (
             <button
               onClick={() => onOpenDetails(project)}
-              className="group/btn inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-[#FFFFFF] bg-[#24211D] hover:bg-[#D4A373] rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm"
+              className="group/btn inline-flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-2 text-[11px] sm:text-xs font-semibold text-[#FFFFFF] bg-[#24211D] hover:bg-[#D4A373] rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm min-h-[40px]"
             >
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3.5 h-3.5 shrink-0" />
               <span>Overview</span>
             </button>
           )}
@@ -116,9 +116,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
             href={githubHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/btn inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-[#24211D] bg-[#FFFFFF] hover:bg-[#E9EDC9] border border-[#CCD5AE] hover:border-[#D4A373] rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm"
+            className="group/btn inline-flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-2 text-[11px] sm:text-xs font-semibold text-[#24211D] bg-[#FFFFFF] hover:bg-[#E9EDC9] border border-[#CCD5AE] hover:border-[#D4A373] rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm min-h-[40px]"
           >
-            <GithubIcon size={14} className="text-[#24211D] group-hover/btn:text-[#D4A373] transition-transform duration-200 group-hover/btn:scale-110" />
+            <GithubIcon size={14} className="text-[#24211D] group-hover/btn:text-[#D4A373] transition-transform duration-200 group-hover/btn:scale-110 shrink-0" />
             <span>GitHub</span>
           </a>
         </div>

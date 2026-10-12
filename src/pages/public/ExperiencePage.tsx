@@ -15,10 +15,10 @@ export const ExperiencePage: React.FC = () => {
   const { experience } = useData();
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans pb-16">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12 font-sans pb-16">
       {/* Top Left Back Navigation */}
       <ScrollReveal>
-        <div className="flex items-center justify-start pt-1 -mb-8 sm:-mb-9">
+        <div className="mb-4 sm:mb-6">
           <BackButton />
         </div>
       </ScrollReveal>
@@ -37,7 +37,7 @@ export const ExperiencePage: React.FC = () => {
 
       {/* 2. Career Phase & Transparency Notice */}
       <ScrollReveal delay={0.08}>
-        <div className="p-4 sm:p-5 rounded-xl bg-[#FAEDCD]/50 border border-[#CCD5AE] flex items-start gap-3.5 hover:shadow-sm transition-shadow duration-200">
+        <div className="p-4 sm:p-5 rounded-2xl bg-[#FAEDCD]/50 border-2 border-[#CCD5AE] flex items-start gap-3 sm:gap-3.5 hover:shadow-sm transition-shadow duration-200">
           <Compass className="w-5 h-5 text-[#D4A373] shrink-0 mt-0.5" />
           <div className="space-y-1 text-xs sm:text-sm">
             <h4 className="font-bold text-[#24211D]">Active Student & Aspiring Frontend Engineer</h4>
@@ -49,16 +49,16 @@ export const ExperiencePage: React.FC = () => {
       </ScrollReveal>
 
       {/* 3. Timeline Items */}
-      <div className="relative border-l-2 border-[#CCD5AE] ml-4 sm:ml-6 pl-6 sm:pl-8 space-y-10">
+      <div className="relative border-l-2 border-[#CCD5AE] ml-3 sm:ml-6 pl-5 sm:pl-8 space-y-8 sm:space-y-10">
         {experience.map((item, idx) => (
           <ScrollReveal key={item.id} delay={idx * 0.1}>
             <div className="relative group">
               {/* Timeline Node Point */}
-              <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-[#FEFAE0] border-2 border-[#D4A373] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-200">
+              <div className="absolute -left-[27px] sm:-left-[39px] top-2 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#FEFAE0] border-2 border-[#D4A373] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-200">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D4A373]" />
               </div>
 
-              <div className="bg-[#FFFFFF] border border-[#CCD5AE] rounded-xl p-4 sm:p-7 shadow-sm hover:shadow-md hover:border-[#D4A373] hover:-translate-y-0.5 transition-all duration-300 ease-out space-y-4">
+              <div className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl p-4 sm:p-6 lg:p-7 shadow-sm hover:shadow-md hover:border-[#D4A373] hover:-translate-y-0.5 transition-all duration-300 ease-out space-y-3.5 sm:space-y-4">
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
                   <Badge variant="brand" size="sm">

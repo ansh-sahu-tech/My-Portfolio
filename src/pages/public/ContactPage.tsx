@@ -137,10 +137,10 @@ export const ContactPage: React.FC = () => {
   )}`;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans pb-16">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12 font-sans pb-16">
       {/* Top Left Back Navigation */}
       <ScrollReveal>
-        <div className="flex items-center justify-start pt-1 -mb-8 sm:-mb-9">
+        <div className="mb-4 sm:mb-6">
           <BackButton />
         </div>
       </ScrollReveal>
@@ -157,10 +157,10 @@ export const ContactPage: React.FC = () => {
         />
       </ScrollReveal>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start">
         {/* Left Col: Contact Information Cards */}
         <ScrollReveal direction="left" className="lg:col-span-5 space-y-4">
-          <div className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-3xl p-6 sm:p-8 shadow-sm space-y-5 transition-shadow duration-300">
+          <div className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm space-y-5 transition-shadow duration-300">
             <h3 className="text-xl font-bold text-[#24211D] tracking-tight flex items-center gap-2">
               <MessageSquare className="w-5 h-5 text-[#D4A373]" />
               Contact Details
@@ -280,7 +280,7 @@ export const ContactPage: React.FC = () => {
         </ScrollReveal>
 
         {/* Right Col: Contact Message Form */}
-        <ScrollReveal direction="right" delay={0.1} className="lg:col-span-7 bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-3xl p-6 sm:p-8 shadow-sm transition-shadow duration-300">
+        <ScrollReveal direction="right" delay={0.1} className="lg:col-span-7 bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 shadow-sm transition-shadow duration-300">
           <h3 className="text-xl font-bold text-[#24211D] mb-1">
             Send a Direct Message
           </h3>

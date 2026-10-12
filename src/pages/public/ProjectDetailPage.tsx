@@ -85,16 +85,16 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Main Title & Action Header */}
       <ScrollReveal delay={0.05}>
         <div className="space-y-4">
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#24211D] tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#24211D] tracking-tight leading-tight">
             {project.title}
           </h1>
 
-          <p className="text-base sm:text-lg text-[#575249] max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-[#575249] max-w-3xl leading-relaxed">
             {project.description}
           </p>
 
           {/* Action Links Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#CCD5AE]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 pt-4 border-t border-[#CCD5AE]">
             <div className="flex flex-wrap gap-1.5">
               {project.technologies.map((t) => (
                 <span
@@ -106,20 +106,21 @@ export const ProjectDetailPage: React.FC = () => {
               ))}
             </div>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2.5 w-full sm:w-auto">
               <a
                 href={githubHref}
                 target="_blank"
                 rel="noreferrer"
+                className="flex-1 sm:flex-initial"
               >
-                <Button size="md" variant="secondary" icon={<GithubIcon size={16} />}>
+                <Button size="md" variant="secondary" icon={<GithubIcon size={16} />} className="w-full justify-center">
                   View GitHub
                 </Button>
               </a>
 
               {liveHref && (
-                <a href={liveHref} target="_blank" rel="noreferrer">
-                  <Button size="md" variant="primary" icon={<ExternalLink className="w-4 h-4" />}>
+                <a href={liveHref} target="_blank" rel="noreferrer" className="flex-1 sm:flex-initial">
+                  <Button size="md" variant="primary" icon={<ExternalLink className="w-4 h-4" />} className="w-full justify-center">
                     Live Demo
                   </Button>
                 </a>

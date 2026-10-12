@@ -30,10 +30,10 @@ export const CertificatesPage: React.FC = () => {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 font-sans pb-16">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 font-sans pb-16">
       {/* Top Left Back Navigation */}
       <ScrollReveal>
-        <div className="flex items-center justify-start pt-1 -mb-6 sm:-mb-7">
+        <div className="mb-4 sm:mb-6">
           <BackButton />
         </div>
       </ScrollReveal>
@@ -52,9 +52,9 @@ export const CertificatesPage: React.FC = () => {
 
       {/* 2. Search & Overview */}
       <ScrollReveal delay={0.08}>
-        <div className="flex flex-col sm:row items-center justify-between gap-4 p-4 rounded-xl bg-[#FAEDCD]/50 border border-[#CCD5AE] shadow-sm">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-2xl bg-[#FAEDCD]/50 border-2 border-[#CCD5AE] shadow-sm">
           <div className="flex items-center gap-2 text-xs text-[#575249] font-medium">
-            <ShieldCheck className="w-4 h-4 text-[#D4A373]" />
+            <ShieldCheck className="w-4 h-4 text-[#D4A373] shrink-0" />
             <span>{certificates.length} Verified Credentials Available</span>
           </div>
 
@@ -65,18 +65,18 @@ export const CertificatesPage: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search certificate or ID..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-[#FFFFFF] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249] hover:border-[#D4A373] focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200"
+              className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249] hover:border-[#D4A373] focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200 min-h-[38px]"
             />
           </div>
         </div>
       </ScrollReveal>
 
       {/* 3. Certificate Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {filteredCerts.map((cert, idx) => (
           <ScrollReveal key={cert.id} delay={idx * 0.05}>
             <div
-              className="bg-[#FFFFFF] border border-[#CCD5AE] rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md hover:border-[#D4A373] hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full group"
+              className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md hover:border-[#D4A373] hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">

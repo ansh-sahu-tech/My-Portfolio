@@ -37,10 +37,10 @@ export const SkillsPage: React.FC = () => {
   }, [skills, activeCategory, searchQuery]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 font-sans pb-16">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 font-sans pb-16">
       {/* Top Left Back Navigation */}
       <ScrollReveal>
-        <div className="flex items-center justify-start pt-1 -mb-6 sm:-mb-7">
+        <div className="mb-4 sm:mb-6">
           <BackButton />
         </div>
       </ScrollReveal>
@@ -59,7 +59,7 @@ export const SkillsPage: React.FC = () => {
 
       {/* 2. Filter & Search Bar */}
       <ScrollReveal delay={0.08}>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3.5 sm:gap-4 p-3.5 sm:p-4 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm">
           {/* Category Pills */}
           <div className="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
             {categories.map((cat) => {
@@ -68,7 +68,7 @@ export const SkillsPage: React.FC = () => {
                 <button
                   key={cat.value}
                   onClick={() => setActiveCategory(cat.value)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none flex items-center gap-1.5 min-h-[38px] ${
                     isSelected
                       ? 'bg-[#24211D] text-[#FFFFFF] shadow-sm'
                       : 'bg-[#E9EDC9] text-[#24211D] hover:bg-[#CCD5AE] border border-[#CCD5AE]'
@@ -89,14 +89,14 @@ export const SkillsPage: React.FC = () => {
               placeholder="Search skills..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249] hover:border-[#D4A373] focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200"
+              className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249] hover:border-[#D4A373] focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200 min-h-[38px]"
             />
           </div>
         </div>
       </ScrollReveal>
 
-      {/* 3. Skills Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+      {/* 3. Skills Grid (Fluid: 1 col on narrow mobile, 2 cols on xs & sm, 3 cols on lg, 4 cols on xl) */}
+      <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
         {filteredSkills.map((skill, idx) => (
           <ScrollReveal key={skill.id} delay={idx * 0.03}>
             <SkillCard skill={skill} />

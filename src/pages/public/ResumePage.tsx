@@ -34,10 +34,10 @@ export const ResumePage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans pb-16">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 font-sans pb-16">
       {/* Top Left Back Navigation */}
       <ScrollReveal>
-        <div className="flex items-center justify-start pt-1 -mb-4 sm:-mb-5">
+        <div className="mb-4 sm:mb-6">
           <BackButton />
         </div>
       </ScrollReveal>
@@ -49,7 +49,7 @@ export const ResumePage: React.FC = () => {
             <Badge variant="brand" size="sm" className="mb-2">
               Curriculum Vitae
             </Badge>
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#24211D] tracking-tight">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#24211D] tracking-tight">
               Ansh Sahu — Frontend Developer Resume
             </h1>
             <p className="text-xs text-[#575249] mt-1">
@@ -57,7 +57,7 @@ export const ResumePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               <Button size="sm" variant="outline" icon={<ExternalLink className="w-3.5 h-3.5" />}>
                 View PDF
@@ -77,7 +77,7 @@ export const ResumePage: React.FC = () => {
 
       {/* 2. Formatted Resume Card */}
       <ScrollReveal delay={0.1}>
-        <div className="bg-[#FFFFFF] border border-[#CCD5AE] rounded-xl p-4 sm:p-8 lg:p-10 shadow-sm space-y-8 transition-shadow duration-300">
+        <div className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl p-4 sm:p-8 lg:p-10 shadow-sm space-y-6 sm:space-y-8 transition-shadow duration-300">
           {/* Header Profile Info */}
           <div className="border-b border-[#CCD5AE] pb-6 space-y-2">
             <div className="flex flex-wrap items-baseline justify-between gap-2">

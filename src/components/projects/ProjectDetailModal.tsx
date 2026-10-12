@@ -76,7 +76,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
         </div>
 
         {/* Action Buttons Header */}
-        <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-[#FEFAE0] border-2 border-[#CCD5AE]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-[#FEFAE0] border-2 border-[#CCD5AE]">
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.map((t) => (
               <span
@@ -88,20 +88,21 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-start sm:justify-end">
             <a
               href={githubHref}
               target="_blank"
               rel="noreferrer"
+              className="flex-1 sm:flex-initial"
             >
-              <Button size="sm" variant="secondary" icon={<GithubIcon size={14} />}>
+              <Button size="sm" variant="secondary" icon={<GithubIcon size={14} />} className="w-full justify-center">
                 GitHub
               </Button>
             </a>
 
             {liveHref && (
-              <a href={liveHref} target="_blank" rel="noreferrer">
-                <Button size="sm" variant="primary" icon={<ExternalLink className="w-3.5 h-3.5" />}>
+              <a href={liveHref} target="_blank" rel="noreferrer" className="flex-1 sm:flex-initial">
+                <Button size="sm" variant="primary" icon={<ExternalLink className="w-3.5 h-3.5" />} className="w-full justify-center">
                   Live Demo
                 </Button>
               </a>

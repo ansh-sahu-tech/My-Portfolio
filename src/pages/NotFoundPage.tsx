@@ -37,14 +37,14 @@ export const NotFoundPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-          <Link to="/">
-            <Button variant="primary" size="md" icon={<Home className="w-4 h-4" />}>
+        <div className="flex flex-col xs:flex-row items-center justify-center gap-3 pt-2">
+          <Link to="/" className="w-full xs:w-auto">
+            <Button variant="primary" size="md" icon={<Home className="w-4 h-4" />} className="w-full justify-center">
               Return to Home
             </Button>
           </Link>
-          <Link to="/projects">
-            <Button variant="secondary" size="md">
+          <Link to="/projects" className="w-full xs:w-auto">
+            <Button variant="secondary" size="md" className="w-full justify-center">
               View Projects
             </Button>
           </Link>
