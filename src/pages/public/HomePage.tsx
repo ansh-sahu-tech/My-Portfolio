@@ -419,88 +419,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================
-          2. ABOUT ME SECTION (BALANCED TEXT & IMAGE LAYOUT - SCREENSHOT 1)
-          ======================================================== */}
-      <section id="about" className="py-20 lg:py-24 bg-[#FAEDCD] border-b border-[#CCD5AE]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
-            {/* Left Column: Portrait photo with soft square rounded frame */}
-            <ScrollReveal className="lg:col-span-5 flex justify-center" distance={20} duration={0.6}>
-              <div className="relative w-full max-w-sm aspect-square rounded-3xl overflow-hidden border-2 border-[#CCD5AE] shadow-card bg-[#FFFFFF]">
-                <img
-                  src="/ansh-profile.jpg?v=2"
-                  alt="Ansh Sahu Profile"
-                  className="w-full h-full object-cover object-center"
-                />
-                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-2xl bg-[#FFFFFF]/90 backdrop-blur-md border border-[#CCD5AE] shadow-sm">
-                  <p className="text-xs font-bold text-[#24211D]">Ansh Sahu</p>
-                  <p className="text-[11px] text-[#575249]">B.Tech CSE (AI &amp; ML) • Sanskriti University</p>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Right Column: About details matching Screenshot 1 */}
-            <ScrollReveal className="lg:col-span-7 space-y-6" distance={20} duration={0.6} delay={0.1}>
-              <div className="space-y-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
-                  About Me
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
-                  Crafting Production Web &amp; Intelligent Systems
-                </h2>
-              </div>
-
-              <p className="text-base text-[#575249] leading-relaxed">
-                I am a Frontend Developer focusing on building production-ready applications. I enjoy designing clean APIs, creating interactive user interfaces, and optimizing performance to deliver smooth and efficient user experiences.
-              </p>
-
-              <p className="text-sm sm:text-base text-[#575249] leading-relaxed">
-                Along with strong problem-solving skills, I follow clean architecture principles and modern development patterns. I'm passionate about writing maintainable code, improving UI/UX flows, and building applications that feel fast, secure, and intuitive. I actively explore new tools in the modern web and AI ecosystem to stay updated and keep improving my development workflow.
-              </p>
-
-              {/* Academic & Specialty Badges */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div className="p-3.5 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm">
-                  <p className="text-xs font-bold text-[#D4A373] uppercase tracking-wider">Education</p>
-                  <p className="text-sm font-bold text-[#24211D] mt-0.5">Sanskriti University (2023–2027)</p>
-                  <p className="text-xs text-[#575249]">B.Tech CSE (AI &amp; ML)</p>
-                </div>
-                <div className="p-3.5 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm">
-                  <p className="text-xs font-bold text-[#D4A373] uppercase tracking-wider">Location</p>
-                  <p className="text-sm font-bold text-[#24211D] mt-0.5">Gonda &amp; Mathura, India</p>
-                  <p className="text-xs text-[#575249]">Available for Remote &amp; On-site Roles</p>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold text-sm shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
-                >
-                  <span>Download Resume</span>
-                  <FileDown className="w-4 h-4" />
-                </a>
-
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-1.5 text-sm font-bold text-[#24211D] hover:text-[#D4A373] transition-colors"
-                >
-                  <span>Read Full Biography</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </ScrollReveal>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================
-          3. SKILLS & TECHNOLOGIES SECTION (GRID MATCHING SCREENSHOT 1)
+          2. SKILLS & TECHNOLOGIES SECTION (GRID MATCHING SCREENSHOT 1)
           ======================================================== */}
       <section id="skills" className="py-20 lg:py-24 bg-[#FEFAE0] border-b border-[#CCD5AE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -562,7 +481,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================
-          4. SERVICES I PROVIDE SECTION (GRID MATCHING SCREENSHOT 1 & 2)
+          3. SERVICES I PROVIDE SECTION (GRID MATCHING SCREENSHOT 1 & 2)
           ======================================================== */}
       <section id="services" className="py-20 lg:py-24 bg-[#FAEDCD] border-b border-[#CCD5AE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -611,7 +530,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================
-          5. RECENT PROJECTS SECTION (2-COL CARDS MATCHING SCREENSHOT 2)
+          4. RECENT PROJECTS SECTION (2-COL CARDS MATCHING SCREENSHOT 2)
           ======================================================== */}
       <section id="projects" className="py-20 lg:py-24 bg-[#FEFAE0] border-b border-[#CCD5AE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -721,7 +640,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================
-          6. CONTACT US SECTION (SPLIT FORM & DETAILS - SCREENSHOT 2)
+          5. CONTACT US SECTION (SPLIT FORM & DETAILS - SCREENSHOT 2)
           ======================================================== */}
       <section id="contact" className="py-20 lg:py-24 bg-[#FAEDCD]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
