@@ -293,12 +293,35 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
-            {/* Left Content Column */}
+            {/* Left Column: Circular Portrait */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 flex items-center justify-center relative py-4 sm:py-6 order-1 lg:order-1"
+            >
+              <div className="relative flex items-center justify-center">
+                {/* Subtle outer concentric framing ring */}
+                <div className="absolute -inset-3 sm:-inset-4 md:-inset-5 rounded-full border border-[#CCD5AE]/60 pointer-events-none" />
+
+                {/* Main Profile Image Circle */}
+                <div className="relative w-[250px] h-[250px] sm:w-[310px] sm:h-[310px] md:w-[365px] md:h-[365px] rounded-full overflow-hidden hero-portrait-ring bg-[#E9EDC9]">
+                  <img
+                    src="/ansh-profile.jpg?v=2"
+                    alt="Ansh Sahu - Frontend Developer"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/30 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Hero Content */}
             <motion.div 
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7 space-y-6 text-center lg:text-left"
+              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-2 lg:pl-6"
             >
               {/* Status Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9EDC9] border border-[#CCD5AE] text-xs font-semibold text-[#24211D] shadow-sm">
@@ -388,29 +411,6 @@ export const HomePage: React.FC = () => {
                 </a>
                 <span className="text-[#CCD5AE]">•</span>
                 <span className="text-xs text-[#575249]">Mathura &amp; Gonda, UP</span>
-              </div>
-            </motion.div>
-
-            {/* Right Column: Circular Portrait (Skills Removed, 20% Enlarged Image) */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 flex items-center justify-center relative py-4 sm:py-6"
-            >
-              <div className="relative flex items-center justify-center">
-                {/* Subtle outer concentric framing ring */}
-                <div className="absolute -inset-3 sm:-inset-4 md:-inset-5 rounded-full border border-[#CCD5AE]/60 pointer-events-none" />
-
-                {/* Main Profile Image Circle (Enlarged by 20%) */}
-                <div className="relative w-[250px] h-[250px] sm:w-[310px] sm:h-[310px] md:w-[365px] md:h-[365px] rounded-full overflow-hidden hero-portrait-ring bg-[#E9EDC9]">
-                  <img
-                    src="/ansh-profile.jpg?v=2"
-                    alt="Ansh Sahu - Frontend Developer"
-                    className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/30 via-transparent to-transparent pointer-events-none" />
-                </div>
               </div>
             </motion.div>
 
