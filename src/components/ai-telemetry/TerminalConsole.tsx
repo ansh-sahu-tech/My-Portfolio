@@ -57,7 +57,7 @@ export const TerminalConsole: React.FC = () => {
     } else if (lower === 'ansh --projects' || lower === 'projects') {
       newHistory.push(
         { type: 'success', text: '1. AI Driver Awareness System (OpenCV, Drowsiness & Distraction Alert)' },
-        { type: 'success', text: '2. Student Performance Prediction (Scikit-learn Regression & Classification)' },
+        { type: 'success', text: '2. Sanskar Katha (Next.js & Heritage Cultural Platform)' },
         { type: 'success', text: '3. Heart Disease Prediction (Clinical Biomarker Risk Modeling)' },
         { type: 'success', text: '4. Swagatam Vijay Bakers (Production React & TypeScript Platform)' }
       );

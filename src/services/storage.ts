@@ -39,19 +39,32 @@ export const storageService = {
           } else if (p.id === 'proj-2' || p.slug === 'sacha-sauda') {
             imageUrl = '/sacha-sauda.png';
             liveUrl = 'https://sacha-sauda-five.vercel.app/';
-          } else if (p.id === 'proj-3' || p.slug === 'student-performance-prediction') {
-            imageUrl = '/student-performance-prediction.png';
+          } else if (p.id === 'proj-3' || p.slug === 'sanskar-katha' || p.slug === 'student-performance-prediction') {
+            imageUrl = '/sanskar-katha.jpg';
+            liveUrl = 'https://sanskar-katha.vercel.app/';
           } else if (p.id === 'proj-4' || p.slug === 'swagatam-vijay-bakers') {
             imageUrl = '/bakery-project.png';
             liveUrl = 'https://bakery-taupe-six.vercel.app/';
           }
           let title = p.title;
+          let slug = p.slug;
+          let category = p.category;
+          let filterCategory = p.filterCategory;
           if (p.id === 'proj-2' && (p.title === 'Sacha Sauda' || p.title === 'Sacha Sauda (2025)')) {
             title = 'Geo Build Mart';
+          }
+          if (p.id === 'proj-3' && (p.title === 'Student Performance Prediction' || p.title === 'Student Performance Prediction (2024)')) {
+            title = 'Sanskar Katha';
+            slug = 'sanskar-katha';
+            category = 'Cultural & Storytelling Platform';
+            filterCategory = 'Frontend';
           }
           return {
             ...p,
             title,
+            slug,
+            category,
+            filterCategory,
             liveUrl: liveUrl || p.liveUrl,
             githubUrl: !githubUrl || githubUrl === 'YOUR_GITHUB_URL' || githubUrl.includes('Anshsahu275-max') ? 'https://github.com/ansh-sahu-tech' : githubUrl,
             imageUrl: imageUrl || '/ai-driver-awareness.png',

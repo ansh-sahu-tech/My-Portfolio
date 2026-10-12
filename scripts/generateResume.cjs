@@ -256,14 +256,14 @@ function generateResume() {
   );
 
   renderProject(
-    'Student Performance Prediction System',
-    'Python, Scikit-Learn, Pandas, NumPy, Matplotlib',
+    'Sanskar Katha - Cultural & Storytelling Platform',
+    'Next.js, React, TypeScript, Tailwind CSS, Web Audio API, i18n',
     [
-      'Constructed an end-to-end predictive machine learning pipeline evaluating academic habits and attendance to identify early intervention needs.',
-      'Conducted exploratory data analysis (EDA), data cleaning, feature normalization, and categorical encoding across multi-variate academic data.',
-      'Benchmarked supervised regression and classification models using cross-validation and generated interpretable correlation plots.'
+      'Architected a digital cultural storytelling platform curating traditional Indian moral stories and filial values (Mata-Pita Bhakti).',
+      'Engineered interactive Vedic shlokas marquee, temple bell acoustic triggers, and bilingual localization (Hindi & English).',
+      'Optimized performance with Next.js App Router, responsive Devanagari typography, and fast edge deployment on Vercel.'
     ],
-    { label: 'GitHub Repository', url: 'https://github.com/ansh-sahu-tech' }
+    { label: 'Live Demo', url: 'https://sanskar-katha.vercel.app/' }
   );
 
   renderProject(

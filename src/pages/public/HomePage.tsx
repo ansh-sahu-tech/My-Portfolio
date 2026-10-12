@@ -167,15 +167,15 @@ export const HomePage: React.FC = () => {
       badge: 'React Production'
     },
     {
-      title: 'Student Performance Prediction (2024)',
-      category: 'Machine Learning',
-      slug: 'student-performance-prediction',
-      tech: ['Python', 'Scikit-learn', 'Pandas', 'Data Analysis'],
-      summary: 'Supervised predictive machine learning pipeline evaluating study habits, attendance, and continuous assessment data to forecast academic performance.',
+      title: 'Sanskar Katha (2025)',
+      category: 'Cultural & Storytelling Platform',
+      slug: 'sanskar-katha',
+      tech: ['Next.js', 'React', 'Tailwind CSS', 'Web Audio API'],
+      summary: 'Cultural storytelling and heritage platform curating traditional Indian moral stories, sacred Vedic shlokas, and filial values (Mata-Pita Bhakti) with bilingual audio narration.',
       github: 'https://github.com/ansh-sahu-tech',
-      demo: 'https://github.com/ansh-sahu-tech',
-      image: '/student-performance-prediction.png',
-      badge: 'Scikit-Learn ML'
+      demo: 'https://sanskar-katha.vercel.app/',
+      image: '/sanskar-katha.jpg',
+      badge: 'Next.js Production'
     },
     {
       title: 'Swagatam Vijay Bakers (2024)',

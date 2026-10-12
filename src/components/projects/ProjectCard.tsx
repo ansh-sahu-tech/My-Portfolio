@@ -35,8 +35,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
               target.src = '/ai-driver-awareness.png';
             } else if (project.id === 'proj-2' || project.slug === 'sacha-sauda') {
               target.src = '/sacha-sauda.png';
-            } else if (project.id === 'proj-3' || project.slug === 'student-performance-prediction') {
-              target.src = '/student-performance-prediction.png';
+            } else if (project.id === 'proj-3' || project.slug === 'sanskar-katha' || project.slug === 'student-performance-prediction') {
+              target.src = '/sanskar-katha.jpg';
             } else if (project.id === 'proj-4' || project.slug === 'swagatam-vijay-bakers') {
               target.src = '/bakery-project.png';
             }
