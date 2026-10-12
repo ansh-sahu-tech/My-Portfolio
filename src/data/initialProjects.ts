@@ -32,6 +32,21 @@ export const initialProjects: Project[] = [
     published: true,
     createdAt: '2025-01-15T10:00:00.000Z',
     updatedAt: '2025-02-10T14:30:00.000Z',
+    systemCode: 'SYS-01 // EDGE-CV-INFERENCE',
+    status: 'PRODUCTION READY',
+    year: '2025',
+    version: 'v1.2.4',
+    pipeline: 'Webcam Stream → 68-pt Mesh → EAR Metric → Real-time Alert',
+    metrics: [
+      { label: 'INFERENCE', value: '< 45ms' },
+      { label: 'FRAME RATE', value: '30+ FPS' },
+      { label: 'ALGORITHM', value: 'EAR / MAR' },
+    ],
+    highlights: [
+      'Real-time EAR & MAR facial landmark tracking (68 points)',
+      'Distraction & micro-sleep audio threshold warnings'
+    ],
+    telemetry: ['30+ FPS', 'EAR 0.32', '<45ms Latency']
   },
   {
     id: 'proj-2',
@@ -65,6 +80,21 @@ export const initialProjects: Project[] = [
     published: true,
     createdAt: '2024-12-10T09:00:00.000Z',
     updatedAt: '2025-01-20T11:00:00.000Z',
+    systemCode: 'SYS-02 // E-COMM-PLATFORM',
+    status: 'PRODUCTION LIVE',
+    year: '2026',
+    version: 'v2.1.0',
+    pipeline: 'Client UI → Filter Queries → REST Services → Instant Inquiry Dispatch',
+    metrics: [
+      { label: 'PERFORMANCE', value: '98 / 100' },
+      { label: 'ARCHITECTURE', value: 'React 18 SPA' },
+      { label: 'INTEGRATION', value: 'REST APIs' },
+    ],
+    highlights: [
+      'Unified catalog for properties & construction supplies',
+      'Streamlined multi-channel client inquiry routing'
+    ],
+    telemetry: ['98/100 Vitals', 'REST Endpoints', 'Dynamic Catalog']
   },
   {
     id: 'proj-3',
@@ -98,6 +128,21 @@ export const initialProjects: Project[] = [
     published: true,
     createdAt: '2025-02-01T10:00:00.000Z',
     updatedAt: '2025-03-10T12:00:00.000Z',
+    systemCode: 'SYS-03 // AUDIO-STACK-SSR',
+    status: 'VERCEL EDGE',
+    year: '2025',
+    version: 'v2.0.2',
+    pipeline: 'Next.js App Router → Shloka Marquee → Web Audio Engine → Bilingual State',
+    metrics: [
+      { label: 'AUDIO ENGINE', value: 'Web Audio' },
+      { label: 'ROUTING', value: 'App Router' },
+      { label: 'LOCALIZATION', value: 'Hindi / EN' },
+    ],
+    highlights: [
+      'Interactive temple bells & sacred Vedic shloka ticker',
+      'Bilingual Devanagari typography & reading bookmarks'
+    ],
+    telemetry: ['Web Audio API', 'Next.js 14 SSR', 'Devanagari i18n']
   },
   {
     id: 'proj-4',
@@ -130,5 +175,20 @@ export const initialProjects: Project[] = [
     published: true,
     createdAt: '2024-08-01T12:00:00.000Z',
     updatedAt: '2024-08-25T14:00:00.000Z',
+    systemCode: 'SYS-04 // STOREFRONT-EDGE',
+    status: 'PRODUCTION LIVE',
+    year: '2024',
+    version: 'v1.4.0',
+    pipeline: 'React TS → Categorized Catalog → Inquiry Modal → Vercel Edge CDN',
+    metrics: [
+      { label: 'TYPE SAFETY', value: 'Strict TS' },
+      { label: 'DEPLOYMENT', value: 'Edge CDN' },
+      { label: 'RESPONSIVE', value: 'Mobile-First' },
+    ],
+    highlights: [
+      'Dynamic artisanal catalog with interactive filters',
+      'Direct inquiry funnel with sub-second page delivery'
+    ],
+    telemetry: ['Vercel Edge CDN', 'Strict TypeScript', 'Mobile First']
   }
 ];

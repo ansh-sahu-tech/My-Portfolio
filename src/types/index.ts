@@ -6,6 +6,11 @@ export type ProjectCategory =
   | 'Data Science'
   | 'Web Development';
 
+export interface ProjectMetric {
+  label: string;
+  value: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -28,7 +33,16 @@ export interface Project {
   published: boolean;
   createdAt: string;
   updatedAt: string;
+  systemCode?: string;
+  status?: string;
+  year?: string;
+  version?: string;
+  pipeline?: string;
+  metrics?: ProjectMetric[];
+  highlights?: string[];
+  telemetry?: string[];
 }
+
 
 export type SkillCategory = 
   | 'Frontend'

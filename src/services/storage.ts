@@ -59,16 +59,26 @@ export const storageService = {
             category = 'Cultural & Storytelling Platform';
             filterCategory = 'Frontend';
           }
+          const initMatch = initialProjects.find((ip) => ip.id === p.id || ip.slug === slug || ip.slug === p.slug);
           return {
+            ...initMatch,
             ...p,
+            systemCode: p.systemCode || initMatch?.systemCode,
+            status: p.status || initMatch?.status,
+            year: p.year || initMatch?.year,
+            version: p.version || initMatch?.version,
+            pipeline: p.pipeline || initMatch?.pipeline,
+            metrics: p.metrics && p.metrics.length > 0 ? p.metrics : initMatch?.metrics,
+            highlights: p.highlights && p.highlights.length > 0 ? p.highlights : initMatch?.highlights,
+            telemetry: p.telemetry && p.telemetry.length > 0 ? p.telemetry : initMatch?.telemetry,
             title,
             slug,
             category,
             filterCategory,
-            liveUrl: liveUrl || p.liveUrl,
-            githubUrl: !githubUrl || githubUrl === 'YOUR_GITHUB_URL' || githubUrl.includes('Anshsahu275-max') ? 'https://github.com/ansh-sahu-tech' : githubUrl,
-            imageUrl: imageUrl || '/ai-driver-awareness.png',
-            imagePosition: p.imagePosition
+            liveUrl: liveUrl || p.liveUrl || initMatch?.liveUrl,
+            githubUrl: !githubUrl || githubUrl === 'YOUR_GITHUB_URL' || githubUrl.includes('Anshsahu275-max') ? (initMatch?.githubUrl || 'https://github.com/ansh-sahu-tech') : githubUrl,
+            imageUrl: imageUrl || initMatch?.imageUrl || '/ai-driver-awareness.png',
+            imagePosition: p.imagePosition || initMatch?.imagePosition
           };
         });
     } catch {
