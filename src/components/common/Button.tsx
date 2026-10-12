@@ -30,14 +30,13 @@ export const Button: React.FC<ButtonProps> = ({
     };
 
     const variantStyles = {
-      primary: 'bg-[#22D3EE] hover:bg-[#06B6D4] text-[#0B0F14] font-semibold shadow-sm hover:shadow focus-visible:ring-[#22D3EE] focus-visible:ring-offset-[#0B0F14] border border-transparent',
-      secondary: 'bg-[#1A2430] hover:bg-[#263342] text-[#F8FAFC] border border-[#263342] hover:border-[#22D3EE] shadow-sm hover:shadow focus-visible:ring-[#22D3EE] focus-visible:ring-offset-[#0B0F14]',
-      outline: 'border border-[#263342] hover:border-[#22D3EE] text-[#94A3B8] hover:text-[#22D3EE] bg-transparent hover:bg-[#1A2430]/50 focus-visible:ring-[#22D3EE]',
-      ghost: 'text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430] focus-visible:ring-[#22D3EE]',
-      danger: 'bg-red-600 hover:bg-red-700 text-white shadow-sm focus-visible:ring-red-500',
-      // Fallback mappings to maintain backwards compatibility without neon styles
-      gradient: 'bg-[#22D3EE] hover:bg-[#06B6D4] text-[#0B0F14] font-semibold shadow-sm hover:shadow focus-visible:ring-[#22D3EE] border border-transparent',
-      cyber: 'bg-[#1A2430] hover:bg-[#263342] text-[#F8FAFC] border border-[#263342] hover:border-[#22D3EE] shadow-sm focus-visible:ring-[#22D3EE]',
+      primary: 'bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold shadow-sm hover:shadow-md focus-visible:ring-[#D4A373] focus-visible:ring-offset-[#FEFAE0] border border-transparent',
+      secondary: 'bg-[#E9EDC9] hover:bg-[#CCD5AE] text-[#24211D] border border-[#CCD5AE] hover:border-[#D4A373] shadow-sm hover:shadow focus-visible:ring-[#D4A373] focus-visible:ring-offset-[#FEFAE0]',
+      outline: 'border border-[#CCD5AE] hover:border-[#D4A373] text-[#24211D] hover:text-[#24211D] bg-[#FFFFFF] hover:bg-[#E9EDC9]/50 shadow-sm focus-visible:ring-[#D4A373]',
+      ghost: 'text-[#575249] hover:text-[#24211D] hover:bg-[#E9EDC9]/60 focus-visible:ring-[#D4A373]',
+      danger: 'bg-red-700 hover:bg-red-800 text-white shadow-sm focus-visible:ring-red-500',
+      gradient: 'bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold shadow-sm hover:shadow focus-visible:ring-[#D4A373] border border-transparent',
+      cyber: 'bg-[#FAEDCD] hover:bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE] hover:border-[#D4A373] shadow-sm focus-visible:ring-[#D4A373]',
     };
 
     return (

@@ -59,7 +59,7 @@ export const SkillsPage: React.FC = () => {
 
       {/* 2. Filter & Search Bar */}
       <ScrollReveal delay={0.08}>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-[#121923] border border-[#263342] shadow-sm">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm">
           {/* Category Pills */}
           <div className="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
             {categories.map((cat) => {
@@ -68,10 +68,10 @@ export const SkillsPage: React.FC = () => {
                 <button
                   key={cat.value}
                   onClick={() => setActiveCategory(cat.value)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none flex items-center gap-1.5 ${
                     isSelected
-                      ? 'bg-[#22D3EE] text-[#0B0F14] shadow-sm'
-                      : 'bg-[#1A2430] text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#263342] border border-[#263342]'
+                      ? 'bg-[#24211D] text-[#FFFFFF] shadow-sm'
+                      : 'bg-[#E9EDC9] text-[#24211D] hover:bg-[#CCD5AE] border border-[#CCD5AE]'
                   }`}
                 >
                   {cat.icon}
@@ -83,13 +83,13 @@ export const SkillsPage: React.FC = () => {
 
           {/* Search Input */}
           <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#575249] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search skills..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-[#94A3B8] hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200"
+              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249] hover:border-[#D4A373] focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200"
             />
           </div>
         </div>
@@ -105,8 +105,8 @@ export const SkillsPage: React.FC = () => {
       </div>
 
       {filteredSkills.length === 0 && (
-        <div className="text-center py-12 bg-[#121923] rounded-xl border border-[#263342] p-8 space-y-3">
-          <p className="text-sm font-semibold text-[#94A3B8]">
+        <div className="text-center py-12 bg-[#FFFFFF] rounded-2xl border-2 border-[#CCD5AE] p-8 space-y-3">
+          <p className="text-sm font-semibold text-[#575249]">
             No skills found matching "{searchQuery}"
           </p>
           <button
@@ -114,7 +114,7 @@ export const SkillsPage: React.FC = () => {
               setActiveCategory('All');
               setSearchQuery('');
             }}
-            className="text-xs text-[#22D3EE] hover:text-[#06B6D4] font-medium hover:underline"
+            className="text-xs text-[#24211D] hover:text-[#D4A373] font-bold hover:underline"
           >
             Clear filters
           </button>

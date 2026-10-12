@@ -52,20 +52,20 @@ export const CertificatesPage: React.FC = () => {
 
       {/* 2. Search & Overview */}
       <ScrollReveal delay={0.08}>
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-[#121923] border border-[#263342] shadow-sm">
-          <div className="flex items-center gap-2 text-xs text-[#94A3B8] font-medium">
-            <ShieldCheck className="w-4 h-4 text-[#22D3EE]" />
+        <div className="flex flex-col sm:row items-center justify-between gap-4 p-4 rounded-xl bg-[#FAEDCD]/50 border border-[#CCD5AE] shadow-sm">
+          <div className="flex items-center gap-2 text-xs text-[#575249] font-medium">
+            <ShieldCheck className="w-4 h-4 text-[#D4A373]" />
             <span>{certificates.length} Verified Credentials Available</span>
           </div>
 
           <div className="relative w-full sm:w-72">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94A3B8]" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#575249]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search certificate or ID..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-[#94A3B8] hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200"
+              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-[#FFFFFF] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249] hover:border-[#D4A373] focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200"
             />
           </div>
         </div>
@@ -76,12 +76,12 @@ export const CertificatesPage: React.FC = () => {
         {filteredCerts.map((cert, idx) => (
           <ScrollReveal key={cert.id} delay={idx * 0.05}>
             <div
-              className="bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md hover:border-[#22D3EE] hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full group"
+              className="bg-[#FFFFFF] border border-[#CCD5AE] rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md hover:border-[#D4A373] hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between h-full group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="p-2.5 rounded-lg bg-[#1A2430] border border-[#263342] text-[#22D3EE] group-hover:scale-105 transition-transform duration-200">
-                    <Award className="w-5 h-5" />
+                  <div className="p-2.5 rounded-lg bg-[#E9EDC9] border border-[#CCD5AE] text-[#D4A373] group-hover:scale-105 transition-transform duration-200">
+                    <Award className="w-5 h-5 text-[#D4A373]" />
                   </div>
                   {cert.verified && (
                     <Badge variant="emerald" size="sm" icon={<CheckCircle2 className="w-3 h-3" />}>
@@ -91,32 +91,32 @@ export const CertificatesPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-[#F8FAFC] group-hover:text-[#22D3EE] transition-colors duration-200">
+                  <h3 className="text-base font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors duration-200">
                     {cert.name}
                   </h3>
-                  <p className="text-xs text-[#94A3B8] mt-1 font-medium">
+                  <p className="text-xs text-[#575249] mt-1 font-medium">
                     {cert.organization}
                   </p>
                 </div>
 
-                <div className="pt-2 border-t border-[#263342] space-y-1.5 text-xs text-[#94A3B8]">
+                <div className="pt-2 border-t border-[#CCD5AE] space-y-1.5 text-xs text-[#575249]">
                   <div className="flex items-center justify-between">
-                    <span className="flex items-center gap-1 text-[11px] text-[#94A3B8]">
-                      <Calendar className="w-3 h-3 text-[#22D3EE]" /> Year
+                    <span className="flex items-center gap-1 text-[11px] text-[#575249]">
+                      <Calendar className="w-3 h-3 text-[#D4A373]" /> Year
                     </span>
-                    <span className="text-[#F8FAFC] font-medium">{cert.issueDate}</span>
+                    <span className="text-[#24211D] font-medium">{cert.issueDate}</span>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="flex items-center gap-1 text-[11px] text-[#94A3B8]">
-                      <Hash className="w-3 h-3 text-[#22D3EE]" /> Credential ID
+                    <span className="flex items-center gap-1 text-[11px] text-[#575249]">
+                      <Hash className="w-3 h-3 text-[#D4A373]" /> Credential ID
                     </span>
-                    <span className="text-[#F8FAFC] font-mono text-[11px]">{cert.credentialId}</span>
+                    <span className="text-[#24211D] font-mono text-[11px]">{cert.credentialId}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 mt-6 border-t border-[#263342]">
+              <div className="pt-4 mt-6 border-t border-[#CCD5AE]">
                 <Button
                   variant="secondary"
                   size="sm"
@@ -143,31 +143,31 @@ export const CertificatesPage: React.FC = () => {
       >
         {selectedCert && (
           <div className="space-y-5 font-sans">
-            <div className="p-6 rounded-xl bg-[#1A2430] border border-[#263342] text-center space-y-3">
-              <div className="w-12 h-12 rounded-full bg-[#121923] border border-[#263342] text-[#22D3EE] flex items-center justify-center mx-auto">
-                <Award className="w-6 h-6" />
+            <div className="p-6 rounded-xl bg-[#FAEDCD]/50 border border-[#CCD5AE] text-center space-y-3">
+              <div className="w-12 h-12 rounded-full bg-[#E9EDC9] border border-[#CCD5AE] text-[#D4A373] flex items-center justify-center mx-auto">
+                <Award className="w-6 h-6 text-[#D4A373]" />
               </div>
               <div>
-                <h4 className="text-base font-bold text-[#F8FAFC]">{selectedCert.name}</h4>
-                <p className="text-xs text-[#94A3B8] mt-0.5">{selectedCert.organization}</p>
+                <h4 className="text-base font-bold text-[#24211D]">{selectedCert.name}</h4>
+                <p className="text-xs text-[#575249] mt-0.5">{selectedCert.organization}</p>
               </div>
               <Badge variant="live" size="sm">
                 Verified Credential
               </Badge>
             </div>
 
-            <div className="space-y-2 text-xs bg-[#121923] p-4 rounded-xl border border-[#263342]">
-              <div className="flex justify-between py-1 border-b border-[#263342]">
-                <span className="text-[#94A3B8]">Credential ID:</span>
-                <span className="text-[#F8FAFC] font-mono font-semibold">{selectedCert.credentialId}</span>
+            <div className="space-y-2 text-xs bg-[#FFFFFF] p-4 rounded-xl border border-[#CCD5AE]">
+              <div className="flex justify-between py-1 border-b border-[#CCD5AE]">
+                <span className="text-[#575249]">Credential ID:</span>
+                <span className="text-[#24211D] font-mono font-semibold">{selectedCert.credentialId}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-[#263342]">
-                <span className="text-[#94A3B8]">Issued Year:</span>
-                <span className="text-[#F8FAFC] font-semibold">{selectedCert.issueDate}</span>
+              <div className="flex justify-between py-1 border-b border-[#CCD5AE]">
+                <span className="text-[#575249]">Issued Year:</span>
+                <span className="text-[#24211D] font-semibold">{selectedCert.issueDate}</span>
               </div>
               <div className="flex justify-between py-1">
-                <span className="text-[#94A3B8]">Verification Status:</span>
-                <span className="text-[#22D3EE] font-semibold">Active Record</span>
+                <span className="text-[#575249]">Verification Status:</span>
+                <span className="text-[#D4A373] font-semibold">Active Record</span>
               </div>
             </div>
 

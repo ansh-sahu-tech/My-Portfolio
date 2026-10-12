@@ -6,7 +6,7 @@ interface TechBadgeProps {
 
 export const TechBadge: React.FC<TechBadgeProps> = ({ tech }) => {
   const getTechStyle = () => {
-    return 'bg-[#1A2430] text-[#94A3B8] border-[#263342] hover:text-[#22D3EE] hover:border-[#22D3EE]';
+    return 'bg-[#E9EDC9] text-[#24211D] border-[#CCD5AE] hover:text-[#24211D] hover:border-[#D4A373]';
   };
 
   return (

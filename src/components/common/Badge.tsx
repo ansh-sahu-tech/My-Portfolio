@@ -27,23 +27,23 @@ export const Badge: React.FC<BadgeProps> = ({
   };
 
   const variantStyles = {
-    brand: 'bg-[#22D3EE]/10 text-[#22D3EE] border border-[#22D3EE]/30',
-    cyan: 'bg-[#22D3EE]/10 text-[#22D3EE] border border-[#22D3EE]/30',
-    emerald: 'bg-[#22D3EE]/10 text-[#22D3EE] border border-[#22D3EE]/30',
-    indigo: 'bg-[#22D3EE]/10 text-[#22D3EE] border border-[#22D3EE]/30',
-    amber: 'bg-[#22D3EE]/10 text-[#22D3EE] border border-[#22D3EE]/30',
-    rose: 'bg-rose-500/10 text-rose-300 border border-rose-500/30',
-    slate: 'bg-[#1A2430] text-[#94A3B8] border border-[#263342]',
-    outline: 'bg-[#121923] text-[#F8FAFC] border border-[#263342]',
-    live: 'bg-[#22D3EE]/15 text-[#22D3EE] border border-[#22D3EE]/40',
+    brand: 'bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE]',
+    cyan: 'bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE]',
+    emerald: 'bg-[#CCD5AE]/40 text-[#24211D] border border-[#CCD5AE]',
+    indigo: 'bg-[#FAEDCD] text-[#24211D] border border-[#CCD5AE]',
+    amber: 'bg-[#FAEDCD] text-[#24211D] border border-[#D4A373]/60',
+    rose: 'bg-[#FAEDCD] text-[#24211D] border border-[#D4A373]/60',
+    slate: 'bg-[#FFFFFF] text-[#575249] border border-[#CCD5AE]',
+    outline: 'bg-transparent text-[#24211D] border border-[#CCD5AE]',
+    live: 'bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE]',
   };
 
   return (
     <span className={twMerge(clsx(baseStyles, sizeStyles[size], variantStyles[variant], className))}>
       {pulse && (
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22D3EE] opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22D3EE]"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A373] opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4A373]"></span>
         </span>
       )}
       {icon && <span className="shrink-0">{icon}</span>}

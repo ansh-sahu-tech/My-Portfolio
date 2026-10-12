@@ -92,10 +92,10 @@ export const AboutPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Bio & Academic Info Card */}
           <div className="lg:col-span-7">
-            <div className="bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 ease-out space-y-6 hover:-translate-y-0.5 group">
+            <div className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-card-hover transition-all duration-300 ease-out space-y-6 group">
               <div className="flex flex-col sm:flex-row sm:items-center gap-6">
                 <div className="relative shrink-0">
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden border border-[#263342] bg-[#1A2430] shadow-sm">
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-[#CCD5AE] bg-[#FAEDCD] shadow-sm">
                     <img
                       src="/ansh-profile.jpg?v=2"
                       alt="Ansh Sahu - Frontend Developer Portfolio"
@@ -108,10 +108,10 @@ export const AboutPage: React.FC = () => {
 
                 <div className="space-y-1.5">
                   <div>
-                    <h3 className="text-2xl font-bold text-[#F8FAFC]">{settings.name}</h3>
-                    <p className="text-sm font-semibold text-[#22D3EE]">{settings.role}</p>
+                    <h3 className="text-2xl font-bold text-[#24211D]">{settings.name}</h3>
+                    <p className="text-sm font-bold text-[#D4A373]">{settings.role}</p>
                   </div>
-                  <p className="text-xs text-[#94A3B8]">
+                  <p className="text-xs text-[#575249]">
                     {settings.university} • B.Tech CSE (AI &amp; ML) 2023–2027
                   </p>
 
@@ -121,7 +121,7 @@ export const AboutPage: React.FC = () => {
                         href={settings.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-2.5 py-1 rounded-lg bg-[#1A2430] hover:bg-[#263342] text-[#F8FAFC] border border-[#263342] text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5"
+                        className="px-2.5 py-1 rounded-lg bg-[#E9EDC9] hover:bg-[#CCD5AE] text-[#24211D] border border-[#CCD5AE] text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none flex items-center gap-1.5"
                       >
                         <RealisticGithubBadgeIcon size={15} />
                         <span>GitHub</span>
@@ -133,7 +133,7 @@ export const AboutPage: React.FC = () => {
                         href={settings.linkedinUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-2.5 py-1 rounded-lg bg-[#1A2430] hover:bg-[#263342] text-[#22D3EE] text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 border border-[#263342] focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5"
+                        className="px-2.5 py-1 rounded-lg bg-[#E9EDC9] hover:bg-[#CCD5AE] text-[#24211D] text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5 active:scale-95 border border-[#CCD5AE] focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none flex items-center gap-1.5"
                       >
                         <RealisticLinkedinIcon size={15} />
                         <span>LinkedIn</span>
@@ -143,7 +143,7 @@ export const AboutPage: React.FC = () => {
                     <SocialTooltip label="Email">
                       <a
                         href={`mailto:${settings.email}`}
-                        className="px-2.5 py-1 rounded-lg bg-[#1A2430] hover:bg-[#263342] text-[#F8FAFC] border border-[#263342] text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5"
+                        className="px-2.5 py-1 rounded-lg bg-[#E9EDC9] hover:bg-[#CCD5AE] text-[#24211D] border border-[#CCD5AE] text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none flex items-center gap-1.5"
                       >
                         <RealisticEmailIcon size={15} />
                         <span>Email</span>
@@ -153,7 +153,7 @@ export const AboutPage: React.FC = () => {
                     <SocialTooltip label="Phone">
                       <a
                         href={`tel:${settings.phone}`}
-                        className="px-2.5 py-1 rounded-lg bg-[#1A2430] hover:bg-[#263342] text-[#F8FAFC] border border-[#263342] text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:outline-none flex items-center gap-1.5"
+                        className="px-2.5 py-1 rounded-lg bg-[#E9EDC9] hover:bg-[#CCD5AE] text-[#24211D] border border-[#CCD5AE] text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none flex items-center gap-1.5"
                       >
                         <RealisticPhoneIcon size={15} />
                         <span>{settings.phone}</span>
@@ -163,46 +163,46 @@ export const AboutPage: React.FC = () => {
                 </div>
               </div>
 
-              <p className="text-[#F8FAFC] text-sm sm:text-base leading-relaxed">
-                Hello! I'm <strong className="text-[#22D3EE]">Ansh</strong>, an undergraduate Computer Science student at <strong className="text-[#F8FAFC]">Sanskriti University</strong> specializing in Artificial Intelligence and Machine Learning (Class of 2027).
+              <p className="text-[#24211D] text-sm sm:text-base leading-relaxed">
+                Hello! I'm <strong className="text-[#D4A373]">Ansh</strong>, an undergraduate Computer Science student at <strong className="text-[#24211D]">Sanskriti University</strong> specializing in Artificial Intelligence and Machine Learning (Class of 2027).
               </p>
 
-              <p className="text-[#94A3B8] text-sm leading-relaxed">
-                My primary passion is **Frontend Development** — constructing responsive, accessible, and fast web applications using React, Next.js, and modern CSS. My coursework in AI & ML provides me with a rigorous mathematical and algorithmic foundation, enabling me to handle complex state, data flows, and intelligent features with confidence.
+              <p className="text-[#575249] text-sm leading-relaxed">
+                My primary passion is <strong>Frontend Development</strong> — constructing responsive, accessible, and fast web applications using React, Next.js, and modern CSS. My coursework in AI &amp; ML provides me with a rigorous mathematical and algorithmic foundation, enabling me to handle complex state, data flows, and intelligent features with confidence.
               </p>
 
               {/* Key Academic Specs */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div className="p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] space-y-1 hover:border-[#22D3EE] transition-colors">
-                  <span className="text-xs font-medium text-[#94A3B8] flex items-center gap-1.5">
-                    <RealisticGradCapIcon size={16} /> Degree & Major
+                <div className="p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
+                  <span className="text-xs font-semibold text-[#575249] flex items-center gap-1.5">
+                    <RealisticGradCapIcon size={16} /> Degree &amp; Major
                   </span>
-                  <p className="text-xs font-bold text-[#F8FAFC]">B.Tech CSE (AI & ML)</p>
+                  <p className="text-xs font-bold text-[#24211D]">B.Tech CSE (AI &amp; ML)</p>
                 </div>
 
-                <div className="p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] space-y-1 hover:border-[#22D3EE] transition-colors">
-                  <span className="text-xs font-medium text-[#94A3B8] flex items-center gap-1.5">
-                    <RealisticMapPinIcon size={16} /> University & Location
+                <div className="p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
+                  <span className="text-xs font-semibold text-[#575249] flex items-center gap-1.5">
+                    <RealisticMapPinIcon size={16} /> University &amp; Location
                   </span>
-                  <p className="text-xs font-bold text-[#F8FAFC]">Sanskriti University, Mathura</p>
+                  <p className="text-xs font-bold text-[#24211D]">Sanskriti University, Mathura</p>
                 </div>
 
-                <div className="p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] space-y-1 hover:border-[#22D3EE] transition-colors">
-                  <span className="text-xs font-medium text-[#94A3B8] flex items-center gap-1.5">
+                <div className="p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
+                  <span className="text-xs font-semibold text-[#575249] flex items-center gap-1.5">
                     <RealisticCalendarIcon size={16} /> Timeline
                   </span>
-                  <p className="text-xs font-bold text-[#F8FAFC]">2023 — 2027 (Expected)</p>
+                  <p className="text-xs font-bold text-[#24211D]">2023 — 2027 (Expected)</p>
                 </div>
 
-                <div className="p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] space-y-1 hover:border-[#22D3EE] transition-colors">
-                  <span className="text-xs font-medium text-[#94A3B8] flex items-center gap-1.5">
+                <div className="p-3.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] space-y-1 hover:border-[#D4A373] transition-colors">
+                  <span className="text-xs font-semibold text-[#575249] flex items-center gap-1.5">
                     <RealisticTargetIcon size={16} /> Current Status
                   </span>
-                  <p className="text-xs font-bold text-[#22D3EE]">Open for Frontend Roles</p>
+                  <p className="text-xs font-bold text-[#D4A373]">Open for Frontend Roles</p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[#263342]">
+              <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[#CCD5AE]/60">
                 <Link to="/contact">
                   <Button size="md" variant="primary" icon={<RealisticArrowRightIcon size={16} />} iconPosition="right">
                     Get in Touch
@@ -219,7 +219,7 @@ export const AboutPage: React.FC = () => {
 
           {/* Right: Focus Areas Grid */}
           <div className="lg:col-span-5 space-y-4">
-            <h3 className="text-base font-bold text-[#F8FAFC] tracking-tight flex items-center gap-2">
+            <h3 className="text-base font-bold text-[#24211D] tracking-tight flex items-center gap-2">
               <RealisticLayersIcon size={20} />
               Core Focus Areas
             </h3>
@@ -228,15 +228,15 @@ export const AboutPage: React.FC = () => {
               {focusAreas.map((area, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#121923] border border-[#263342] rounded-xl p-4 shadow-sm hover:shadow-md hover:border-[#22D3EE] hover:-translate-y-0.5 transition-all duration-300 ease-out"
+                  className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl p-4 shadow-sm hover:shadow-card-hover hover:border-[#D4A373] hover:-translate-y-0.5 transition-all duration-300 ease-out"
                 >
                   <div className="flex items-start gap-3.5">
-                    <div className="p-2.5 rounded-lg bg-[#1A2430] border border-[#263342] shrink-0">
+                    <div className="p-2.5 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] shrink-0">
                       {area.icon}
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-[#F8FAFC]">{area.title}</h4>
-                      <p className="text-xs text-[#94A3B8] mt-1 leading-relaxed">
+                      <h4 className="text-sm font-bold text-[#24211D]">{area.title}</h4>
+                      <p className="text-xs text-[#575249] mt-1 leading-relaxed">
                         {area.desc}
                       </p>
                     </div>
@@ -263,20 +263,20 @@ export const AboutPage: React.FC = () => {
             {engineeringPrinciples.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-[#121923] border border-[#263342] rounded-xl p-6 shadow-sm hover:shadow-md hover:border-[#22D3EE] hover:-translate-y-1 transition-all duration-300 ease-out space-y-3"
+                className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl p-6 shadow-sm hover:shadow-card-hover hover:border-[#D4A373] hover:-translate-y-1 transition-all duration-300 ease-out space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <div className="w-8 h-8 rounded-lg bg-[#1A2430] border border-[#263342] text-[#22D3EE] flex items-center justify-center font-bold text-xs">
+                  <div className="w-8 h-8 rounded-lg bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] flex items-center justify-center font-bold text-xs">
                     0{idx + 1}
                   </div>
-                  <div className="p-1 rounded-lg bg-[#1A2430]/70 border border-[#263342]/60">
+                  <div className="p-1 rounded-lg bg-[#E9EDC9] border border-[#CCD5AE]">
                     {idx === 0 && <RealisticPragmaticCodeIcon size={22} />}
                     {idx === 1 && <RealisticResponsiveDuoIcon size={22} />}
                     {idx === 2 && <RealisticContinuousGrowthIcon size={22} />}
                   </div>
                 </div>
-                <h4 className="text-base font-bold text-[#F8FAFC]">{item.title}</h4>
-                <p className="text-xs text-[#94A3B8] leading-relaxed">{item.desc}</p>
+                <h4 className="text-base font-bold text-[#24211D]">{item.title}</h4>
+                <p className="text-xs text-[#575249] leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>

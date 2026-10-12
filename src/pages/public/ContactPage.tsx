@@ -16,7 +16,7 @@ import { SectionHeader } from '../../components/common/SectionHeader';
 import { Button } from '../../components/common/Button';
 import { BackButton } from '../../components/common/BackButton';
 import { ScrollReveal } from '../../components/common/ScrollReveal';
-import { GithubIcon, LinkedinIcon, InstagramIcon } from '../../components/common/SocialIcons';
+import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
 
 export const ContactPage: React.FC = () => {
   const { settings, addMessage } = useData();
@@ -160,26 +160,26 @@ export const ContactPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Col: Contact Information Cards */}
         <ScrollReveal direction="left" className="lg:col-span-5 space-y-4">
-          <div className="bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-6 shadow-sm space-y-5 transition-shadow duration-300">
-            <h3 className="text-base font-bold text-[#F8FAFC] tracking-tight flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-[#22D3EE]" />
+          <div className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-3xl p-6 sm:p-8 shadow-sm space-y-5 transition-shadow duration-300">
+            <h3 className="text-xl font-bold text-[#24211D] tracking-tight flex items-center gap-2">
+              <MessageSquare className="w-5 h-5 text-[#D4A373]" />
               Contact Details
             </h3>
 
-            <p className="text-xs text-[#94A3B8] leading-relaxed">
+            <p className="text-xs text-[#575249] leading-relaxed">
               Reach out through email, inspect repositories on GitHub, or connect on LinkedIn.
             </p>
 
             <div className="space-y-3 pt-2">
               {/* Email */}
-              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
+              <div className="group/contact p-3.5 rounded-2xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#D4A373] transition-all duration-200">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
+                  <div className="p-2 rounded-xl bg-[#FFFFFF] text-[#D4A373] border border-[#CCD5AE] group-hover/contact:scale-105 transition-transform duration-200">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-medium text-[#94A3B8] uppercase">Email</p>
-                    <a href={`mailto:${settings.email}`} className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
+                    <p className="text-[11px] font-bold text-[#575249] uppercase">Email</p>
+                    <a href={`mailto:${settings.email}`} className="text-xs sm:text-sm font-bold text-[#24211D] hover:text-[#D4A373] transition-colors truncate block">
                       {settings.email}
                     </a>
                   </div>
@@ -187,22 +187,22 @@ export const ContactPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings.email, 'email')}
-                  className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
+                  className="p-1.5 text-[#575249] hover:text-[#24211D] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#D4A373] transition-all duration-150"
                   title="Copy email"
                 >
-                  {copiedField === 'email' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
+                  {copiedField === 'email' ? <Check className="w-4 h-4 text-emerald-600 animate-in fade-in" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
 
               {/* GitHub */}
-              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
+              <div className="group/contact p-3.5 rounded-2xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#D4A373] transition-all duration-200">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2 rounded-lg bg-[#121923] text-[#F8FAFC] group-hover/contact:scale-105 transition-transform duration-200">
+                  <div className="p-2 rounded-xl bg-[#FFFFFF] text-[#24211D] border border-[#CCD5AE] group-hover/contact:scale-105 transition-transform duration-200">
                     <GithubIcon size={16} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-medium text-[#94A3B8] uppercase">GitHub</p>
-                    <a href={settings.githubUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
+                    <p className="text-[11px] font-bold text-[#575249] uppercase">GitHub</p>
+                    <a href={settings.githubUrl} target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm font-bold text-[#24211D] hover:text-[#D4A373] transition-colors truncate block">
                       {settings.githubUrl}
                     </a>
                   </div>
@@ -210,22 +210,22 @@ export const ContactPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings.githubUrl, 'GitHub URL')}
-                  className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
+                  className="p-1.5 text-[#575249] hover:text-[#24211D] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#D4A373] transition-all duration-150"
                   title="Copy GitHub URL"
                 >
-                  {copiedField === 'GitHub URL' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
+                  {copiedField === 'GitHub URL' ? <Check className="w-4 h-4 text-emerald-600 animate-in fade-in" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
 
               {/* LinkedIn */}
-              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
+              <div className="group/contact p-3.5 rounded-2xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#D4A373] transition-all duration-200">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
+                  <div className="p-2 rounded-xl bg-[#FFFFFF] text-[#D4A373] border border-[#CCD5AE] group-hover/contact:scale-105 transition-transform duration-200">
                     <LinkedinIcon size={16} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-medium text-[#94A3B8] uppercase">LinkedIn</p>
-                    <a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
+                    <p className="text-[11px] font-bold text-[#575249] uppercase">LinkedIn</p>
+                    <a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm font-bold text-[#24211D] hover:text-[#D4A373] transition-colors truncate block">
                       {settings.linkedinUrl}
                     </a>
                   </div>
@@ -233,47 +233,22 @@ export const ContactPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings.linkedinUrl, 'LinkedIn URL')}
-                  className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
+                  className="p-1.5 text-[#575249] hover:text-[#24211D] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#D4A373] transition-all duration-150"
                   title="Copy LinkedIn URL"
                 >
-                  {copiedField === 'LinkedIn URL' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
+                  {copiedField === 'LinkedIn URL' ? <Check className="w-4 h-4 text-emerald-600 animate-in fade-in" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
 
-              {/* Instagram */}
-              {settings.instagramUrl && (
-                <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
-                      <InstagramIcon size={16} />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[11px] font-medium text-[#94A3B8] uppercase">Instagram</p>
-                      <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
-                        {settings.instagramUrl}
-                      </a>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => copyToClipboard(settings.instagramUrl || '', 'Instagram URL')}
-                    className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
-                    title="Copy Instagram URL"
-                  >
-                    {copiedField === 'Instagram URL' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
-                  </button>
-                </div>
-              )}
-
               {/* Phone */}
-              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#22D3EE] transition-all duration-200">
+              <div className="group/contact p-3.5 rounded-2xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-between gap-3 hover:-translate-y-0.5 hover:shadow-sm hover:border-[#D4A373] transition-all duration-200">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
+                  <div className="p-2 rounded-xl bg-[#FFFFFF] text-[#D4A373] border border-[#CCD5AE] group-hover/contact:scale-105 transition-transform duration-200">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-medium text-[#94A3B8] uppercase">Phone</p>
-                    <a href={`tel:${settings.phone}`} className="text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] transition-colors truncate block">
+                    <p className="text-[11px] font-bold text-[#575249] uppercase">Phone</p>
+                    <a href={`tel:${settings.phone}`} className="text-xs sm:text-sm font-bold text-[#24211D] hover:text-[#D4A373] transition-colors truncate block">
                       {settings.phone}
                     </a>
                   </div>
@@ -281,21 +256,21 @@ export const ContactPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings.phone, 'phone number')}
-                  className="p-1.5 text-[#94A3B8] hover:text-[#22D3EE] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#22D3EE] transition-all duration-150"
+                  className="p-1.5 text-[#575249] hover:text-[#24211D] active:scale-90 rounded-md focus-visible:ring-2 focus-visible:ring-[#D4A373] transition-all duration-150"
                   title="Copy phone number"
                 >
-                  {copiedField === 'phone number' ? <Check className="w-4 h-4 text-[#22D3EE] animate-in fade-in" /> : <Copy className="w-4 h-4" />}
+                  {copiedField === 'phone number' ? <Check className="w-4 h-4 text-emerald-600 animate-in fade-in" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
 
               {/* Location */}
-              <div className="group/contact p-3.5 rounded-lg bg-[#1A2430] border border-[#263342] flex items-center gap-3 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200">
-                <div className="p-2 rounded-lg bg-[#121923] text-[#22D3EE] group-hover/contact:scale-105 transition-transform duration-200">
+              <div className="group/contact p-3.5 rounded-2xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center gap-3 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200">
+                <div className="p-2 rounded-xl bg-[#FFFFFF] text-[#D4A373] border border-[#CCD5AE] group-hover/contact:scale-105 transition-transform duration-200">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-medium text-[#94A3B8] uppercase">Location</p>
-                  <p className="text-xs font-semibold text-[#F8FAFC]">
+                  <p className="text-[11px] font-bold text-[#575249] uppercase">Location</p>
+                  <p className="text-xs sm:text-sm font-bold text-[#24211D]">
                     Gonda, Uttar Pradesh (near Ayodhya), India
                   </p>
                 </div>
@@ -305,25 +280,25 @@ export const ContactPage: React.FC = () => {
         </ScrollReveal>
 
         {/* Right Col: Contact Message Form */}
-        <ScrollReveal direction="right" delay={0.1} className="lg:col-span-7 bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-8 shadow-sm transition-shadow duration-300">
-          <h3 className="text-lg font-bold text-[#F8FAFC] mb-1">
+        <ScrollReveal direction="right" delay={0.1} className="lg:col-span-7 bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-3xl p-6 sm:p-8 shadow-sm transition-shadow duration-300">
+          <h3 className="text-xl font-bold text-[#24211D] mb-1">
             Send a Direct Message
           </h3>
-          <p className="text-xs text-[#94A3B8] mb-6">
-            Fill out the form below or dispatch your inquiry directly to <a href={`mailto:${targetEmail}`} className="text-[#22D3EE] hover:underline font-medium">{targetEmail}</a>.
+          <p className="text-xs text-[#575249] mb-6">
+            Fill out the form below or dispatch your inquiry directly to <a href={`mailto:${targetEmail}`} className="text-[#D4A373] hover:underline font-semibold">{targetEmail}</a>.
           </p>
 
           {isSuccess ? (
-            <div className="p-6 sm:p-8 rounded-xl bg-[#1A2430] border border-[#22D3EE]/40 text-center space-y-4 animate-in fade-in duration-300">
-              <div className="w-12 h-12 rounded-full bg-[#22D3EE]/10 text-[#22D3EE] border border-[#22D3EE]/30 flex items-center justify-center mx-auto">
+            <div className="p-6 sm:p-8 rounded-2xl bg-[#E9EDC9] border border-[#CCD5AE] text-center space-y-4 animate-in fade-in duration-300">
+              <div className="w-12 h-12 rounded-full bg-[#FFFFFF] text-emerald-700 border border-[#CCD5AE] flex items-center justify-center mx-auto shadow-sm">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-base font-bold text-[#F8FAFC]">
+                <h4 className="text-base font-bold text-[#24211D]">
                   Message Dispatched Successfully!
                 </h4>
-                <p className="text-xs text-[#94A3B8] max-w-md mx-auto leading-relaxed">
-                  Thank you for reaching out. Your message has been sent to <span className="text-[#22D3EE] font-mono">{targetEmail}</span>. I will review your inquiry and reply promptly.
+                <p className="text-xs text-[#575249] max-w-md mx-auto leading-relaxed">
+                  Thank you for reaching out. Your message has been sent to <span className="text-[#24211D] font-mono font-bold">{targetEmail}</span>. I will review your inquiry and reply promptly.
                 </p>
               </div>
               <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
@@ -337,9 +312,9 @@ export const ContactPage: React.FC = () => {
                 </Button>
                 <a
                   href={`mailto:${targetEmail}`}
-                  className="inline-flex items-center gap-2 px-4 py-2 min-h-[40px] text-xs font-semibold text-[#F8FAFC] hover:text-[#22D3EE] bg-[#121923] hover:bg-[#1E293B] border border-[#263342] rounded-lg transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 min-h-[40px] text-xs font-semibold text-[#24211D] hover:bg-[#CCD5AE] bg-[#FEFAE0] border border-[#CCD5AE] rounded-xl transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-[#22D3EE]" />
+                  <Mail className="w-4 h-4 text-[#D4A373]" />
                   <span>Open in Mail App</span>
                 </a>
               </div>
@@ -347,14 +322,14 @@ export const ContactPage: React.FC = () => {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               {formError && (
-                <div className="p-3 rounded-lg bg-rose-950/30 border border-rose-500/40 text-rose-300 text-xs flex items-center justify-between gap-2">
+                <div className="p-3 rounded-xl bg-red-50 border border-red-300 text-red-800 text-xs flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
                     <span>{formError}</span>
                   </div>
                   <a
                     href={mailtoHref}
-                    className="underline text-rose-300 hover:text-white shrink-0 font-medium"
+                    className="underline text-red-700 hover:text-red-900 shrink-0 font-bold"
                   >
                     Open Mail App
                   </a>
@@ -362,9 +337,9 @@ export const ContactPage: React.FC = () => {
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label htmlFor="name" className="text-xs font-semibold text-[#F8FAFC]">
-                    Your Name <span className="text-[#22D3EE]">*</span>
+                <div className="space-y-1.5">
+                  <label htmlFor="name" className="text-xs font-bold text-[#24211D]">
+                    Your Name <span className="text-[#D4A373]">*</span>
                   </label>
                   <input
                     id="name"
@@ -373,13 +348,13 @@ export const ContactPage: React.FC = () => {
                     placeholder="Jane Doe"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3 py-2 text-sm rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-slate-500 hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249]/60 hover:border-[#D4A373] focus:outline-none focus:border-[#D4A373] transition-all duration-200"
                   />
                 </div>
 
-                <div className="space-y-1">
-                  <label htmlFor="email" className="text-xs font-semibold text-[#F8FAFC]">
-                    Your Email <span className="text-[#22D3EE]">*</span>
+                <div className="space-y-1.5">
+                  <label htmlFor="email" className="text-xs font-bold text-[#24211D]">
+                    Your Email <span className="text-[#D4A373]">*</span>
                   </label>
                   <input
                     id="email"
@@ -388,13 +363,13 @@ export const ContactPage: React.FC = () => {
                     placeholder="jane@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3 py-2 text-sm rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-slate-500 hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249]/60 hover:border-[#D4A373] focus:outline-none focus:border-[#D4A373] transition-all duration-200"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <label htmlFor="subject" className="text-xs font-semibold text-[#F8FAFC]">
+              <div className="space-y-1.5">
+                <label htmlFor="subject" className="text-xs font-bold text-[#24211D]">
                   Subject
                 </label>
                 <input
@@ -403,13 +378,13 @@ export const ContactPage: React.FC = () => {
                   placeholder="Frontend Developer Role / Inquiry"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full px-3 py-2 text-sm rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-slate-500 hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249]/60 hover:border-[#D4A373] focus:outline-none focus:border-[#D4A373] transition-all duration-200"
                 />
               </div>
 
-              <div className="space-y-1">
-                <label htmlFor="message" className="text-xs font-semibold text-[#F8FAFC]">
-                  Message <span className="text-[#22D3EE]">*</span>
+              <div className="space-y-1.5">
+                <label htmlFor="message" className="text-xs font-bold text-[#24211D]">
+                  Message <span className="text-[#D4A373]">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -418,11 +393,11 @@ export const ContactPage: React.FC = () => {
                   placeholder="Hi Ansh, I'm reaching out about..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-3 py-2 text-sm rounded-lg bg-[#1A2430] border border-[#263342] text-[#F8FAFC] placeholder:text-slate-500 hover:border-[#22D3EE] focus:outline-none focus:ring-2 focus:ring-[#22D3EE]/20 focus:border-[#22D3EE] focus:bg-[#1A2430] transition-all duration-200 resize-y"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder:text-[#575249]/60 hover:border-[#D4A373] focus:outline-none focus:border-[#D4A373] transition-all duration-200 resize-y"
                 />
               </div>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
                 <Button
                   type="submit"
                   variant="primary"
@@ -435,18 +410,18 @@ export const ContactPage: React.FC = () => {
 
                 <a
                   href={mailtoHref}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 min-h-[40px] text-xs sm:text-sm font-semibold rounded-lg bg-[#1A2430] hover:bg-[#263342] text-[#F8FAFC] border border-[#263342] hover:border-[#22D3EE] transition-all text-center"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 min-h-[40px] text-xs sm:text-sm font-semibold rounded-xl bg-[#FFFFFF] hover:bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE] hover:border-[#D4A373] transition-all text-center"
                   title="Open in your default email application"
                 >
-                  <Mail className="w-4 h-4 text-[#22D3EE]" />
+                  <Mail className="w-4 h-4 text-[#D4A373]" />
                   <span>Send via Email Client</span>
                 </a>
               </div>
 
-              <div className="flex items-center gap-2 text-[11px] text-[#94A3B8] pt-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#22D3EE] shrink-0" />
+              <div className="flex items-center gap-2 text-[11px] text-[#575249] pt-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#D4A373] shrink-0" />
                 <span>
-                  Delivers directly to <a href={`mailto:${targetEmail}`} className="text-[#22D3EE] hover:underline font-medium">{targetEmail}</a>
+                  Delivers directly to <a href={`mailto:${targetEmail}`} className="text-[#24211D] hover:underline font-bold">{targetEmail}</a>
                 </span>
               </div>
             </form>
@@ -456,4 +431,6 @@ export const ContactPage: React.FC = () => {
     </div>
   );
 };
+
+export default ContactPage;
 

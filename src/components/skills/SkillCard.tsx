@@ -9,10 +9,10 @@ interface SkillCardProps {
 
 export const SkillCard: React.FC<SkillCardProps> = ({ skill }) => {
   return (
-    <div className="bg-[#121923] border border-[#263342] rounded-xl p-4 sm:p-5 shadow-sm hover:shadow-md hover:border-[#22D3EE] transition-all duration-300 ease-out flex flex-col justify-between group hover:-translate-y-1">
+    <div className="bg-[#FFFFFF] border-2 border-[#CCD5AE] rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-card-hover hover:border-[#D4A373] transition-all duration-300 ease-out flex flex-col justify-between group hover:-translate-y-1">
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#1A2430] border border-[#263342] shadow-[0_2px_8px_rgba(0,0,0,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_4px_14px_rgba(0,0,0,0.4)] group-hover:border-[#22D3EE]">
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#FEFAE0] border border-[#CCD5AE] shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:border-[#D4A373]">
             {getRealisticSkillIcon(skill.name, skill.iconKey, 34)}
           </div>
           {skill.level && (
@@ -23,18 +23,18 @@ export const SkillCard: React.FC<SkillCardProps> = ({ skill }) => {
         </div>
 
         <div>
-          <h4 className="text-sm font-bold text-[#F8FAFC] group-hover:text-[#22D3EE] transition-colors duration-200">
+          <h4 className="text-base font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors duration-200">
             {skill.name}
           </h4>
-          <p className="text-xs text-[#94A3B8] mt-1 leading-relaxed line-clamp-2">
+          <p className="text-xs text-[#575249] mt-1.5 leading-relaxed line-clamp-2">
             {skill.description || `Specialized competencies in ${skill.name}.`}
           </p>
         </div>
       </div>
 
-      <div className="mt-4 pt-3 border-t border-[#263342] flex items-center justify-between text-xs text-[#94A3B8]">
+      <div className="mt-4 pt-3 border-t border-[#CCD5AE]/60 flex items-center justify-between text-xs text-[#575249]">
         <span>{skill.category}</span>
-        <span className="text-[#22D3EE] font-medium group-hover:underline">
+        <span className="text-[#D4A373] font-semibold">
           Verified
         </span>
       </div>

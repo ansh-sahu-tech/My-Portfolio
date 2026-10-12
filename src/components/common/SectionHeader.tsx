@@ -34,10 +34,10 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
               </Badge>
             </div>
           )}
-          <HeadingTag className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F8FAFC] leading-tight">
+          <HeadingTag className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#24211D] leading-tight">
             {title}{' '}
             {highlightText && (
-              <span className="text-[#22D3EE]">
+              <span className="text-[#D4A373]">
                 {highlightText}
               </span>
             )}
@@ -47,7 +47,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       </div>
 
       {description && (
-        <p className="mt-3 text-sm sm:text-base text-[#94A3B8] leading-relaxed">
+        <p className="mt-3 text-sm sm:text-base text-[#575249] leading-relaxed">
           {description}
         </p>
       )}

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, 
   FileDown, 
@@ -9,871 +10,997 @@ import {
   ExternalLink, 
   Copy, 
   Check, 
-  ChevronRight, 
-  ChevronLeft,
-  Code2,
-  Cpu
+  Code2, 
+  Cpu, 
+  Layers, 
+  Palette, 
+  Globe, 
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  Database,
+  Server,
+  Zap,
+  ShoppingBag,
+  BarChart3,
+  Cloud
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { useToast } from '../../context/ToastContext';
-import { EditorialSlideCard } from '../../components/editorial/EditorialSlideCard';
-import { DeckGridCollage } from '../../components/editorial/DeckGridCollage';
-import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from '../../components/common/SocialIcons';
 import { getRealisticSkillIcon } from '../../components/skills/RealisticSkillIcons';
-import { 
-  RealisticGradCapIcon, 
-  RealisticArrowRightIcon 
-} from '../../components/common/RealisticAboutIcons';
-import { RealFrontendIcon } from '../../components/common/RealisticIcons';
 
 export const HomePage: React.FC = () => {
-  const { settings } = useData();
-  const { showToast } = useToast();
+  const { settings, addMessage } = useData();
+  const { success: showSuccess, error: showError, info: showInfo } = useToast();
 
-  // View modes: 'stream' (smooth scroll editorial cards) vs 'collage' (the exact overview collage from the screenshot) vs 'slide' (step-by-step presentation)
-  const [viewMode, setViewMode] = useState<'stream' | 'collage' | 'slide'>('stream');
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  const [activeProjectTab, setActiveProjectTab] = useState(0);
+  // Dynamic role cycling
+  const roles = [
+    'Frontend Developer',
+    'AI & ML Engineer',
+    'React & Next.js Specialist',
+    'Data Analyst'
+  ];
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 3200);
+    return () => clearInterval(interval);
+  }, [roles.length]);
+
+  // Copy helper
   const [copiedField, setCopiedField] = useState<string | null>(null);
-
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     setCopiedField(label);
-    showToast(`Copied ${label} to clipboard!`, 'info');
+    showInfo(`Copied ${label} to clipboard!`);
     setTimeout(() => setCopiedField(null), 2000);
   };
 
-  const scrollToCard = (id: string) => {
-    setViewMode('stream');
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 50);
+  // Contact Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+
+  const targetEmail = settings.email || 'anshcseaiml0169@gmail.com';
+  const customEndpoint = settings.contactFormEndpoint?.trim();
+  const endpoint = customEndpoint || `https://formsubmit.co/ajax/${encodeURIComponent(targetEmail)}`;
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormError(null);
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const phone = formData.phone.trim();
+    const subject = formData.subject.trim() || 'Portfolio Contact Submission';
+    const message = formData.message.trim();
+
+    if (!name || !email || !message) {
+      const msg = 'Please fill in all required fields (Name, Email, Message).';
+      setFormError(msg);
+      showError('Missing Information', msg);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      const msg = 'Please enter a valid email address.';
+      setFormError(msg);
+      showError('Invalid Email', msg);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // 1. Dispatch to form endpoint
+      await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          _subject: `Portfolio Inquiry from ${name}: ${subject}`,
+          subject,
+          message,
+          _replyto: email,
+          _captcha: 'false',
+        }),
+      }).catch(() => null);
+
+      // 2. Archive in local context
+      await addMessage({
+        name,
+        email,
+        subject: phone ? `${subject} (Phone: ${phone})` : subject,
+        message,
+      });
+
+      setIsSuccess(true);
+      showSuccess('Message Dispatched', 'Thank you! Your message has been sent successfully.');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch {
+      setFormError('Failed to send message. Please try sending via direct email.');
+      showError('Submission Error', 'Failed to dispatch message.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const featuredProjects = [
+  // Actual Real-world projects
+  const recentProjects = [
     {
-      title: 'AI Driver Awareness System',
-      category: 'Computer Vision & AI Safety',
+      title: 'AI Driver Awareness System (2025)',
+      category: 'AI & Computer Vision',
+      slug: 'ai-driver-awareness-system',
       tech: ['Python', 'OpenCV', 'Computer Vision', 'NumPy'],
-      summary: 'Real-time fatigue, drowsiness, and road distraction monitoring system using facial landmark analysis (EAR/MAR metrics).',
+      summary: 'Real-time fatigue, drowsiness, and road distraction monitoring system using OpenCV and facial landmark analysis (EAR/MAR metrics).',
       github: 'https://github.com/ansh-sahu-tech/AI-Driver-Safety-Awareness-System',
       demo: 'https://github.com/ansh-sahu-tech/AI-Driver-Safety-Awareness-System',
-      image: '/ai-driver-awareness.png'
+      image: '/ai-driver-awareness.png',
+      badge: 'Edge AI System'
     },
     {
-      title: 'Sacha Sauda',
-      category: 'Home & Construction Marketplace',
+      title: 'Sacha Sauda (2025)',
+      category: 'Marketplace Platform',
+      slug: 'sacha-sauda',
       tech: ['React', 'JavaScript', 'Tailwind CSS', 'REST APIs'],
-      summary: 'Modern marketplace for home and construction needs to explore properties, building materials, home products, and services with fast discovery and enquiries.',
+      summary: 'Modern marketplace for home and construction needs to explore properties, building materials, home products, and services with clean, fast discovery and enquiries.',
       github: 'https://github.com/ansh-sahu-tech',
       demo: 'https://sacha-sauda-five.vercel.app/',
-      image: '/sacha-sauda.png'
+      image: '/sacha-sauda.png',
+      badge: 'React Production'
     },
     {
-      title: 'Student Performance Prediction',
-      category: 'Machine Learning Pipeline',
+      title: 'Student Performance Prediction (2024)',
+      category: 'Machine Learning',
+      slug: 'student-performance-prediction',
       tech: ['Python', 'Scikit-learn', 'Pandas', 'Data Analysis'],
-      summary: 'Supervised ML model evaluating study habits, attendance, and continuous assessment data to forecast academic performance.',
+      summary: 'Supervised predictive machine learning pipeline evaluating study habits, attendance, and continuous assessment data to forecast academic performance.',
       github: 'https://github.com/ansh-sahu-tech',
       demo: 'https://github.com/ansh-sahu-tech',
-      image: '/student-performance-prediction.png'
+      image: '/student-performance-prediction.png',
+      badge: 'Scikit-Learn ML'
     },
     {
-      title: 'Swagatam Vijay Bakers',
-      category: 'Web Development',
+      title: 'Swagatam Vijay Bakers (2024)',
+      category: 'E-Commerce Platform',
+      slug: 'swagatam-vijay-bakers',
       tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-      summary: 'Production artisanal bakery web storefront featuring catalog navigation, dynamic product showcase, and streamlined inquiry workflows.',
+      summary: 'Production artisanal bakery web storefront featuring catalog navigation, dynamic product showcase, and streamlined order inquiry workflows.',
       github: 'https://github.com/ansh-sahu-tech',
       demo: 'https://bakery-taupe-six.vercel.app/',
-      image: '/bakery-project.png'
+      image: '/bakery-project.png',
+      badge: 'Vercel Live'
     }
   ];
 
-  const slideIds = [
-    'hero',
-    'about',
-    'education',
-    'skills',
-    'experience',
-    'projects',
-    'contact',
-    'thanks'
+  // Technical Skills (matching Screenshot 1 Grid)
+  const skillsList = [
+    {
+      name: 'Tailwind CSS',
+      icon: <Palette className="w-6 h-6 text-[#24211D]" />,
+      desc: 'Creating responsive, modern, and clean layouts quickly using utility-first styling and fluid breakpoints.'
+    },
+    {
+      name: 'JavaScript',
+      icon: <Code2 className="w-6 h-6 text-[#24211D]" />,
+      desc: 'Writing efficient, modern ES6+, and optimized code for both complex frontend interactions and async logic.'
+    },
+    {
+      name: 'React',
+      icon: <Layers className="w-6 h-6 text-[#24211D]" />,
+      desc: 'Building fast, interactive, and component-based user interfaces with state management and custom hooks.'
+    },
+    {
+      name: 'Next.js',
+      icon: <Globe className="w-6 h-6 text-[#24211D]" />,
+      desc: 'Developing high-performance applications with server and client components, SSR, and SEO-first routing.'
+    },
+    {
+      name: 'Python & AI/ML',
+      icon: <Cpu className="w-6 h-6 text-[#24211D]" />,
+      desc: 'Applied machine learning architectures, statistical model training, and data manipulation pipelines.'
+    },
+    {
+      name: 'Computer Vision',
+      icon: <Zap className="w-6 h-6 text-[#24211D]" />,
+      desc: 'OpenCV image processing, facial landmark tracking (EAR/MAR), and edge-ready real-time video inference.'
+    },
+    {
+      name: 'REST APIs',
+      icon: <Server className="w-6 h-6 text-[#24211D]" />,
+      desc: 'Connecting frontend clients to RESTful endpoints with robust error handling and asynchronous payload parsing.'
+    },
+    {
+      name: 'HTML5 & CSS3',
+      icon: <Globe className="w-6 h-6 text-[#24211D]" />,
+      desc: 'Clean, semantic page structure with accessible DOM hierarchies, WCAG compliance, and modern CSS properties.'
+    },
+    {
+      name: 'Git & GitHub',
+      icon: <Database className="w-6 h-6 text-[#24211D]" />,
+      desc: 'Disciplined version control workflows, atomic commits, pull request management, and collaborative git practices.'
+    }
+  ];
+
+  // Services List (matching Screenshot 1 & 2 Grid)
+  const servicesList = [
+    {
+      title: 'Full-Stack & Frontend Web Development',
+      desc: 'End-to-end web applications and modern SPAs engineered with React, Next.js, and clean component architecture.',
+      icon: <Code2 className="w-6 h-6 text-[#24211D]" />
+    },
+    {
+      title: 'Responsive UI/UX Engineering',
+      desc: 'Pixel-perfect, mobile-first web interfaces styled with Tailwind CSS, ensuring smooth rendering across all screens.',
+      icon: <Palette className="w-6 h-6 text-[#24211D]" />
+    },
+    {
+      title: 'AI & Computer Vision Solutions',
+      desc: 'Real-time facial landmark detection (EAR/MAR), driver safety telemetry, and OpenCV video analysis pipelines.',
+      icon: <Cpu className="w-6 h-6 text-[#24211D]" />
+    },
+    {
+      title: 'REST API & State Integration',
+      desc: 'Seamless data binding between frontend applications and backend APIs with optimized caching and error handling.',
+      icon: <Server className="w-6 h-6 text-[#24211D]" />
+    },
+    {
+      title: 'Performance & Web Optimization',
+      desc: 'Improving Core Web Vitals, page speed, accessible semantic structure, and asset bundling for high efficiency.',
+      icon: <Zap className="w-6 h-6 text-[#24211D]" />
+    },
+    {
+      title: 'Marketplace & E-Commerce Platforms',
+      desc: 'Interactive product discovery, custom inquiry flows, catalog browsing, and conversion-focused architectures.',
+      icon: <ShoppingBag className="w-6 h-6 text-[#24211D]" />
+    },
+    {
+      title: 'Machine Learning & Data Analytics',
+      desc: 'Exploratory data analysis with Pandas & NumPy, predictive regression and classification models, and visual insights.',
+      icon: <BarChart3 className="w-6 h-6 text-[#24211D]" />
+    },
+    {
+      title: 'Deployment & Continuous Integration',
+      desc: 'Deploying production-ready applications to Vercel and cloud platforms with automated git workflows.',
+      icon: <Cloud className="w-6 h-6 text-[#24211D]" />
+    }
   ];
 
   return (
-    <div className="w-full min-h-screen bg-[#0B0F14] text-[#F8FAFC] font-sans pb-24 select-text">
-
+    <div className="w-full min-h-screen bg-[#FEFAE0] text-[#24211D] font-sans selection:bg-[#CCD5AE] selection:text-[#24211D]">
 
       {/* ========================================================
-          VIEW MODE 1: DECK GRID COLLAGE (THE EXACT SCREENSHOT VIEW)
+          1. HERO SECTION (SPLIT HERO MATCHING SCREENSHOT 1)
           ======================================================== */}
-      {viewMode === 'collage' && (
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-4">
-          <div className="text-center mb-6 text-[#F8FAFC] space-y-1">
-            <p className="text-xs uppercase tracking-widest text-[#22D3EE] font-semibold flex items-center justify-center">
-              <span>Full Portfolio Presentation Deck</span>
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-[#F8FAFC]">
-              Creative Editorial Overview
-            </h2>
-            <p className="text-xs text-[#94A3B8]">
-              Click any card to read full details and interact directly with projects & links
-            </p>
+      <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center pt-8 pb-16 lg:py-20 bg-[#FEFAE0] tech-grid-bg overflow-hidden border-b border-[#CCD5AE]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            
+            {/* Left Content Column */}
+            <motion.div 
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7 space-y-6 text-center lg:text-left"
+            >
+              {/* Status Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9EDC9] border border-[#CCD5AE] text-xs font-semibold text-[#24211D] shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#D4A373] animate-pulse" />
+                <span>Available for Frontend &amp; React Roles</span>
+              </div>
+
+              {/* Greeting & Headline */}
+              <div className="space-y-2">
+                <p className="text-xl sm:text-2xl font-medium text-[#575249]">
+                  Hi, I'm
+                </p>
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#24211D] leading-[1.08]">
+                  Ansh <span className="text-[#D4A373]">Sahu</span>
+                </h1>
+              </div>
+
+              {/* Animated Cycling Role */}
+              <div className="h-10 sm:h-12 flex items-center justify-center lg:justify-start">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={roles[currentRoleIndex]}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.3 }}
+                    className="inline-flex items-center gap-2 text-xl sm:text-2xl font-bold text-[#24211D]"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#D4A373]" />
+                    <span>{roles[currentRoleIndex]}</span>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Subheading / Bio */}
+              <p className="text-base sm:text-lg text-[#575249] max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                I build scalable web applications and high-performance user interfaces using React, Next.js, and TypeScript. Dedicated to clean code, responsive UX, and applied AI/ML at Sanskriti University.
+              </p>
+
+              {/* CTA Action Buttons matching Screenshot 1 */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+                <a
+                  href="#projects"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold text-sm shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <span>View Projects</span>
+                </a>
+
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] hover:border-[#D4A373] hover:bg-[#E9EDC9] text-[#24211D] font-semibold text-sm shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <span>Let's Collaborate</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-full text-xs font-semibold text-[#575249] hover:text-[#24211D] hover:bg-[#E9EDC9]/60 transition-colors"
+                >
+                  <FileDown className="w-4 h-4 text-[#D4A373]" />
+                  <span>Resume PDF</span>
+                </a>
+              </div>
+
+              {/* Social Link Quick Badges */}
+              <div className="pt-4 flex items-center justify-center lg:justify-start gap-4 text-xs text-[#575249]">
+                <span className="font-semibold text-[#24211D]">Connect:</span>
+                <a
+                  href={settings.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 hover:text-[#24211D] transition-colors"
+                >
+                  <GithubIcon size={15} /> <span>GitHub</span>
+                </a>
+                <span className="text-[#CCD5AE]">•</span>
+                <a
+                  href={settings.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 hover:text-[#24211D] transition-colors"
+                >
+                  <LinkedinIcon size={15} /> <span>LinkedIn</span>
+                </a>
+                <span className="text-[#CCD5AE]">•</span>
+                <span className="text-xs text-[#575249]">Mathura &amp; Gonda, UP</span>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Circular Portrait with Orbiting Satellite Badges */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 flex items-center justify-center relative"
+            >
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center">
+                
+                {/* Concentric Glow Rings */}
+                <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#CCD5AE] animate-[spin_60s_linear_infinite]" />
+                <div className="absolute inset-4 rounded-full border border-[#CCD5AE]/60" />
+
+                {/* Main Profile Image Circle */}
+                <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-76 md:h-76 rounded-full overflow-hidden hero-portrait-ring bg-[#E9EDC9]">
+                  <img
+                    src="/ansh-profile.jpg?v=2"
+                    alt="Ansh Sahu - Frontend Developer"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/30 via-transparent to-transparent pointer-events-none" />
+                </div>
+
+                {/* Satellite Orbit Badge 1: React (Top Right) */}
+                <div className="absolute top-2 right-4 sm:top-4 sm:right-6 orbit-float">
+                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
+                    {getRealisticSkillIcon('React', undefined, 26)}
+                  </div>
+                </div>
+
+                {/* Satellite Orbit Badge 2: Next.js (Middle Right) */}
+                <div className="absolute top-1/2 -right-3 sm:-right-4 -translate-y-1/2 orbit-float-delayed">
+                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
+                    {getRealisticSkillIcon('Next.js', undefined, 26)}
+                  </div>
+                </div>
+
+                {/* Satellite Orbit Badge 3: JavaScript (Middle Left) */}
+                <div className="absolute top-1/2 -left-3 sm:-left-4 -translate-y-1/2 orbit-float-slow">
+                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
+                    {getRealisticSkillIcon('JavaScript', undefined, 26)}
+                  </div>
+                </div>
+
+                {/* Satellite Orbit Badge 4: Tailwind CSS (Top Left) */}
+                <div className="absolute top-2 left-4 sm:top-4 sm:left-6 orbit-float-delayed">
+                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
+                    {getRealisticSkillIcon('Tailwind CSS', undefined, 26)}
+                  </div>
+                </div>
+
+                {/* Satellite Orbit Badge 5: Python (Bottom Left) */}
+                <div className="absolute bottom-3 left-6 sm:bottom-4 sm:left-8 orbit-float">
+                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
+                    {getRealisticSkillIcon('Python', undefined, 26)}
+                  </div>
+                </div>
+
+                {/* Satellite Orbit Badge 6: Computer Vision / AI (Bottom Right) */}
+                <div className="absolute bottom-3 right-6 sm:bottom-4 sm:right-8 orbit-float-slow">
+                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
+                    {getRealisticSkillIcon('Computer Vision', undefined, 26)}
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+
           </div>
-
-          <DeckGridCollage onSelectCard={scrollToCard} />
         </div>
-      )}
+      </section>
 
       {/* ========================================================
-          VIEW MODE 2: SLIDE PRESENTATION MODE
+          2. ABOUT ME SECTION (BALANCED TEXT & IMAGE LAYOUT - SCREENSHOT 1)
           ======================================================== */}
-      {viewMode === 'slide' && (
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-4 space-y-4">
-          <div className="flex items-center justify-between text-[#94A3B8] text-xs font-semibold px-2">
-            <span>Slide {activeSlideIndex + 1} of {slideIds.length}</span>
-            <div className="flex items-center gap-2">
-              <button
-                disabled={activeSlideIndex === 0}
-                onClick={() => setActiveSlideIndex((prev) => Math.max(0, prev - 1))}
-                className="p-1.5 rounded-full bg-[#1A2430] hover:bg-[#22D3EE] hover:text-[#0B0F14] disabled:opacity-30 disabled:pointer-events-none text-[#F8FAFC] border border-[#263342] transition-colors"
-                aria-label="Previous Slide"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                disabled={activeSlideIndex === slideIds.length - 1}
-                onClick={() => setActiveSlideIndex((prev) => Math.min(slideIds.length - 1, prev + 1))}
-                className="p-1.5 rounded-full bg-[#1A2430] hover:bg-[#22D3EE] hover:text-[#0B0F14] disabled:opacity-30 disabled:pointer-events-none text-[#F8FAFC] border border-[#263342] transition-colors"
-                aria-label="Next Slide"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
+      <section id="about" className="py-20 lg:py-24 bg-[#FAEDCD] border-b border-[#CCD5AE]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Portrait photo with soft square rounded frame */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative w-full max-w-sm aspect-square rounded-3xl overflow-hidden border-2 border-[#CCD5AE] shadow-card bg-[#FFFFFF]">
+                <img
+                  src="/ansh-profile.jpg?v=2"
+                  alt="Ansh Sahu Profile"
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-2xl bg-[#FFFFFF]/90 backdrop-blur-md border border-[#CCD5AE] shadow-sm">
+                  <p className="text-xs font-bold text-[#24211D]">Ansh Sahu</p>
+                  <p className="text-[11px] text-[#575249]">B.Tech CSE (AI &amp; ML) • Sanskriti University</p>
+                </div>
+              </div>
             </div>
+
+            {/* Right Column: About details matching Screenshot 1 */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+                  About Me
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
+                  Crafting Production Web &amp; Intelligent Systems
+                </h2>
+              </div>
+
+              <p className="text-base text-[#575249] leading-relaxed">
+                I am a Frontend Developer focusing on building production-ready applications. I enjoy designing clean APIs, creating interactive user interfaces, and optimizing performance to deliver smooth and efficient user experiences.
+              </p>
+
+              <p className="text-sm sm:text-base text-[#575249] leading-relaxed">
+                Along with strong problem-solving skills, I follow clean architecture principles and modern development patterns. I'm passionate about writing maintainable code, improving UI/UX flows, and building applications that feel fast, secure, and intuitive. I actively explore new tools in the modern web and AI ecosystem to stay updated and keep improving my development workflow.
+              </p>
+
+              {/* Academic & Specialty Badges */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="p-3.5 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm">
+                  <p className="text-xs font-bold text-[#D4A373] uppercase tracking-wider">Education</p>
+                  <p className="text-sm font-bold text-[#24211D] mt-0.5">Sanskriti University (2023–2027)</p>
+                  <p className="text-xs text-[#575249]">B.Tech CSE (AI &amp; ML)</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm">
+                  <p className="text-xs font-bold text-[#D4A373] uppercase tracking-wider">Location</p>
+                  <p className="text-sm font-bold text-[#24211D] mt-0.5">Gonda &amp; Mathura, India</p>
+                  <p className="text-xs text-[#575249]">Available for Remote &amp; On-site Roles</p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold text-sm shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <span>Download Resume</span>
+                  <FileDown className="w-4 h-4" />
+                </a>
+
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-[#24211D] hover:text-[#D4A373] transition-colors"
+                >
+                  <span>Read Full Biography</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
           </div>
         </div>
-      )}
+      </section>
 
       {/* ========================================================
-          EDITORIAL CARDS STREAM / SLIDES CONTAINER
+          3. SKILLS & TECHNOLOGIES SECTION (GRID MATCHING SCREENSHOT 1)
           ======================================================== */}
-      {(viewMode === 'stream' || viewMode === 'slide') && (
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16 pt-2 sm:pt-4">
+      <section id="skills" className="py-20 lg:py-24 bg-[#FEFAE0] border-b border-[#CCD5AE]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+              Technical Stack
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
+              Skills &amp; Technologies
+            </h2>
+            <p className="text-sm sm:text-base text-[#575249]">
+              I work with modern tools and technologies to build fast, scalable, and efficient web applications.
+            </p>
+          </div>
 
-          {/* ----------------------------------------------------
-              CARD 1: CREATIVE PORTFOLIO (HERO)
-              ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 0)) && (
-            <EditorialSlideCard
-              id="hero"
-              imageSrc="/ansh-profile.jpg?v=2"
-              imageAlt="Ansh Sahu - Frontend Developer Portfolio"
-              categoryTitle="Editorial Portfolio 2026"
-              titleRust="CREATIVE"
-              titleBlack="PORTFOLIO"
-              activeSection="hero"
-              signature="By Ansh Sahu"
-              frameShape="architectural"
-              aspectClass="aspect-square"
-              imageClassName="object-center"
-              badgeText="Frontend Developer"
-              subBadgeText="gonda, uttar pradesh"
-              caption="Ansh Sahu • Frontend Developer"
-              tagText="Available 2026"
-            >
-              <div className="space-y-4">
-                {/* Primary H1 for Search Engine Ranking */}
-                <div className="space-y-1">
-                  <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#F8FAFC]">
-                    Ansh Sahu <span className="text-[#263342] font-normal">|</span> <span className="text-[#22D3EE]">Frontend Developer</span>
-                  </h1>
-                  <p className="text-xs font-mono font-medium text-[#94A3B8] tracking-wide">
-                    ansh.developer • Frontend Developer • React &amp; Next.js • Sanskriti University
-                  </p>
-                </div>
-
-                {/* Role Pill */}
-                <div className="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-[#1A2430] border border-[#263342] text-xs font-semibold text-[#22D3EE]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE]" />
-                  <span>FRONTEND DEVELOPER</span>
-                  <span className="text-[#263342]">•</span>
-                  <span>REACT DEVELOPER</span>
-                  <span className="text-[#263342]">•</span>
-                  <span className="font-normal text-[#94A3B8]">B.Tech CSE (AI &amp; ML)</span>
-                </div>
-
-                {/* Subtitle & Bio */}
-                <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                  Hi, I'm <strong className="font-bold text-[#F8FAFC]">Ansh Sahu</strong> (<strong>ansh.developer</strong>). I am a dedicated <strong className="font-semibold text-[#F8FAFC]">Frontend Developer</strong> crafting clean, responsive, and high-performance web applications using React, Next.js, JavaScript, TypeScript, and modern CSS, backed by a disciplined foundation in computer science and applied AI/ML at <strong className="font-semibold text-[#F8FAFC]">Sanskriti University</strong>.
-                </p>
-
-                {/* CTAs */}
-                <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <a
-                    href="#projects"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToCard('projects');
-                    }}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#22D3EE] hover:bg-[#06B6D4] text-[#0B0F14] text-xs sm:text-sm font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
-                  >
-                    <span>Explore Projects</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-
-                  <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1A2430] border border-[#263342] hover:bg-[#121923] hover:border-[#22D3EE] text-[#F8FAFC] text-xs sm:text-sm font-semibold transition-all duration-200 shadow-sm"
-                  >
-                    <FileDown className="w-3.5 h-3.5 text-[#22D3EE]" />
-                    <span>Download CV</span>
-                  </a>
-
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToCard('contact');
-                    }}
-                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430] text-xs sm:text-sm font-semibold transition-colors"
-                  >
-                    <span>Contact Me</span>
-                  </a>
-                </div>
-
-                {/* Social Quick Profiles */}
-                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#263342] text-xs text-[#94A3B8]">
-                  <span className="font-semibold text-[#94A3B8] mr-1">Profiles:</span>
-                  <a
-                    href={settings.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#1A2430] border border-[#263342] hover:bg-[#121923] hover:border-[#22D3EE] text-[#F8FAFC] hover:text-[#22D3EE] font-medium transition-all"
-                  >
-                    <GithubIcon size={13} />
-                    <span>GitHub</span>
-                  </a>
-                  <a
-                    href={settings.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#1A2430] border border-[#263342] hover:bg-[#121923] hover:border-[#22D3EE] text-[#F8FAFC] hover:text-[#22D3EE] font-medium transition-all"
-                  >
-                    <LinkedinIcon size={13} />
-                    <span>LinkedIn</span>
-                  </a>
+          {/* Technical Grid (3 columns on desktop, matching Screenshot 1 layout) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skillsList.map((skill) => (
+              <div
+                key={skill.name}
+                className="group p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
+              >
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                    {skill.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors">
+                      {skill.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#575249] mt-2 leading-relaxed">
+                      {skill.desc}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </EditorialSlideCard>
-          )}
+            ))}
+          </div>
 
-          {/* ----------------------------------------------------
-              CARD 2: ABOUT ME
-              ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 1)) && (
-            <EditorialSlideCard
-              id="about"
-              imageSrc="/ansh-profile.jpg?v=2"
-              imageAlt="About Ansh Sahu - Frontend Developer Portfolio"
-              categoryTitle="Biography & Mindset"
-              titleRust="ABOUT ME"
-              activeSection="about"
-              signature="By Ansh Sahu"
-              frameShape="architectural"
-              aspectClass="aspect-square"
-              imageClassName="object-center"
-              badgeText="Biography & Mindset"
-              subBadgeText="engineering core"
-              caption="Ansh Sahu • Profile"
-              tagText="Frontend Developer"
+          {/* Link to All Skills */}
+          <div className="text-center mt-10">
+            <Link
+              to="/skills"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#24211D] hover:text-[#D4A373] transition-colors"
             >
-              <div className="space-y-4">
-                <p className="text-[#94A3B8] text-sm sm:text-[14.5px] leading-relaxed">
-                  I am a passionate <strong className="font-semibold text-[#F8FAFC]">Frontend Developer</strong> currently in my undergraduate studies at <strong className="font-semibold text-[#F8FAFC]">Sanskriti University</strong> (2023–2027), specializing in B.Tech Computer Science Engineering (Artificial Intelligence &amp; Machine Learning). Based in Gonda, Uttar Pradesh (near Ayodhya).
-                </p>
+              <span>Explore Complete Skills &amp; Tools Matrix</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
 
-                <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed">
-                  My technical philosophy focuses on building fast, accessible, and user-centric interfaces. I combine clean CSS architecture and modern React design patterns with rigorous computational logic, bringing precision to every interface I construct.
-                </p>
+        </div>
+      </section>
 
-                {/* Two-Column Facts */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                  <div className="p-3 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm space-y-1">
-                    <p className="text-[11px] font-bold text-[#22D3EE] uppercase tracking-wider flex items-center gap-1.5">
-                      <RealisticGradCapIcon size={16} />
-                      Academic Studies
-                    </p>
-                    <p className="text-xs font-semibold text-[#F8FAFC]">
-                      Sanskriti University (2023–2027)
-                    </p>
-                    <p className="text-[11px] text-[#94A3B8]">
-                      B.Tech CSE (AI & ML) • Mathura, UP
+      {/* ========================================================
+          4. SERVICES I PROVIDE SECTION (GRID MATCHING SCREENSHOT 1 & 2)
+          ======================================================== */}
+      <section id="services" className="py-20 lg:py-24 bg-[#FAEDCD] border-b border-[#CCD5AE]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+              What I Deliver
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
+              Services I Provide
+            </h2>
+            <p className="text-sm sm:text-base text-[#575249]">
+              I offer design and development services focused on building fast, modern, and user-friendly digital experiences.
+            </p>
+          </div>
+
+          {/* 4-column responsive grid matching screenshot services */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {servicesList.map((service) => (
+              <div
+                key={service.title}
+                className="group p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
+              >
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                    {service.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors leading-snug">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs text-[#575249] mt-2 leading-relaxed">
+                      {service.desc}
                     </p>
                   </div>
-
-                  <div className="p-3 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm space-y-1">
-                    <p className="text-[11px] font-bold text-[#22D3EE] uppercase tracking-wider flex items-center gap-1.5">
-                      <RealFrontendIcon size={16} />
-                      Core Specialties
-                    </p>
-                    <p className="text-xs font-semibold text-[#F8FAFC]">
-                      React, Next.js, Tailwind CSS
-                    </p>
-                    <p className="text-[11px] text-[#94A3B8]">
-                      Computer Vision & RESTful APIs
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <Link
-                    to="/about"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#22D3EE] hover:text-[#06B6D4] transition-colors group"
-                  >
-                    <span>Read Full Bio & Engineering Principles</span>
-                    <RealisticArrowRightIcon size={14} />
-                  </Link>
                 </div>
               </div>
-            </EditorialSlideCard>
-          )}
+            ))}
+          </div>
 
-          {/* ----------------------------------------------------
-              CARD 3: EDUCATION
-              ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 2)) && (
-            <EditorialSlideCard
-              id="education"
-              imageSrc="/sanskriti-university.png"
-              imageAlt="Sanskriti University Mathura Campus Facade"
-              categoryTitle="Formal Qualifications"
-              titleRust="EDUCATION"
-              activeSection="education"
-              signature="By Ansh Sahu"
-              frameShape="architectural"
-              aspectClass="aspect-[4/3]"
-              caption="Sanskriti University • Mathura, UP"
-              badgeText="Campus Architecture"
-              subBadgeText="mathura, india"
-              tagText="B.Tech Campus"
-            >
-              <div className="space-y-4">
-                {/* 2-Column Layout */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Column 1: Institution */}
-                  <div className="space-y-2 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <div className="text-[11px] font-bold text-[#22D3EE] uppercase tracking-wider">
-                      2023 — 2027
-                    </div>
-                    <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-[#F8FAFC] leading-snug">
-                      SANSKRITI UNIVERSITY
-                    </h4>
-                    <p className="text-xs text-[#F8FAFC] font-medium">
-                      B.Tech in Computer Science & Engineering
-                    </p>
-                    <p className="text-[11px] text-[#94A3B8]">
-                      Specialization in Artificial Intelligence & Machine Learning (AI & ML)
-                    </p>
-                    <p className="text-[10px] text-[#94A3B8]">
-                      Mathura, Uttar Pradesh, India
-                    </p>
-                  </div>
+        </div>
+      </section>
 
-                  {/* Column 2: Core Coursework Foundation */}
-                  <div className="space-y-2 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <div className="text-[11px] font-bold text-[#22D3EE] uppercase tracking-wider">
-                      CORE RIGOR
-                    </div>
-                    <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-[#F8FAFC] leading-snug">
-                      CURRICULUM
-                    </h4>
-                    <ul className="text-xs text-[#94A3B8] space-y-1">
-                      <li className="flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-[#22D3EE]" />
-                        Data Structures & Algorithms
-                      </li>
-                      <li className="flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-[#22D3EE]" />
-                        Web Technologies & Engineering
-                      </li>
-                      <li className="flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-[#22D3EE]" />
-                        Computer Vision & Image Processing
-                      </li>
-                      <li className="flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-[#22D3EE]" />
-                        Database Management Systems
-                      </li>
-                    </ul>
+      {/* ========================================================
+          5. RECENT PROJECTS SECTION (2-COL CARDS MATCHING SCREENSHOT 2)
+          ======================================================== */}
+      <section id="projects" className="py-20 lg:py-24 bg-[#FEFAE0] border-b border-[#CCD5AE]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+              Portfolio Work
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
+              Recent Projects
+            </h2>
+            <p className="text-sm sm:text-base text-[#575249]">
+              Here are some of the real-world projects and intelligent systems I've built.
+            </p>
+          </div>
+
+          {/* 2-column Projects Grid matching Screenshot 2 */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {recentProjects.map((project) => (
+              <div
+                key={project.title}
+                className="group rounded-3xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 overflow-hidden flex flex-col justify-between"
+              >
+                {/* Project Image Preview */}
+                <div className="relative aspect-video w-full overflow-hidden bg-[#FAEDCD] border-b-2 border-[#CCD5AE]">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FFFFFF]/90 border border-[#CCD5AE] text-[#24211D] shadow-sm backdrop-blur-sm">
+                      {project.category}
+                    </span>
                   </div>
                 </div>
 
-                <div className="pt-1">
-                  <Link
-                    to="/education"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#22D3EE] hover:text-[#06B6D4] transition-colors"
-                  >
-                    <span>View Complete Academic Details</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </EditorialSlideCard>
-          )}
-
-          {/* ----------------------------------------------------
-              CARD 4: SKILL
-              ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 3)) && (
-            <EditorialSlideCard
-              id="skills"
-              imageSrc="/skills.png"
-              imageAlt="Technical Capabilities & Skill Stack"
-              categoryTitle="Capabilities Matrix"
-              titleRust="SKILL"
-              titleBlack="CAPABILITIES"
-              activeSection="skills"
-              signature="By Ansh Sahu"
-              frameShape="architectural"
-              aspectClass="aspect-[4/3]"
-              badgeText="Capabilities Stack"
-              subBadgeText="engineering matrix"
-              caption="Frontend • AI/ML • Systems"
-              tagText="Technical Core"
-            >
-              <div className="space-y-4">
-                {/* 2-Column Layout */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Column 1: Frontend */}
-                  <div className="space-y-2.5 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#F8FAFC] border-b border-[#263342] pb-1.5 flex items-center justify-between">
-                      <span>FRONTEND & UI</span>
-                      <Code2 className="w-3.5 h-3.5 text-[#22D3EE]" />
-                    </h4>
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {['React', 'Next.js', 'JavaScript (ES6+)', 'Tailwind CSS', 'HTML5', 'CSS3', 'Responsive Design'].map((skill) => (
-                        <span
-                          key={skill}
-                          className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#121923] border border-[#263342] text-[11px] font-semibold text-[#F8FAFC] shadow-[0_1px_2px_rgba(0,0,0,0.2)] hover:border-[#22D3EE] hover:text-[#22D3EE] transition-colors"
-                        >
-                          {getRealisticSkillIcon(skill, undefined, 14)}
-                          <span>{skill}</span>
-                        </span>
-                      ))}
-                    </div>
-                    <p className="text-[11px] text-[#94A3B8] leading-relaxed pt-1">
-                      Component architecture, accessible state management, and modern CSS layout patterns.
-                    </p>
-                  </div>
-
-                  {/* Column 2: AI/ML & Engineering */}
-                  <div className="space-y-2.5 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#22D3EE] border-b border-[#263342] pb-1.5 flex items-center justify-between">
-                      <span>AI/ML & DEV TOOLS</span>
-                      <Cpu className="w-3.5 h-3.5 text-[#22D3EE]" />
-                    </h4>
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {['Python', 'Computer Vision', 'OpenCV', 'Pandas', 'Git', 'GitHub', 'REST APIs'].map((skill) => (
-                        <span
-                          key={skill}
-                          className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#121923] border border-[#263342] text-[11px] font-semibold text-[#F8FAFC] shadow-[0_1px_2px_rgba(0,0,0,0.2)] hover:border-[#22D3EE] hover:text-[#22D3EE] transition-colors"
-                        >
-                          {getRealisticSkillIcon(skill, undefined, 14)}
-                          <span>{skill}</span>
-                        </span>
-                      ))}
-                    </div>
-                    <p className="text-[11px] text-[#94A3B8] leading-relaxed pt-1">
-                      Real-time facial landmark estimation, statistical pipelines, and atomic git collaboration.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-1">
-                  <Link
-                    to="/skills"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#22D3EE] hover:text-[#06B6D4] transition-colors"
-                  >
-                    <span>Explore Comprehensive Skills Matrix</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </EditorialSlideCard>
-          )}
-
-          {/* ----------------------------------------------------
-              CARD 5: EXPERIENCE
-              ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 4)) && (
-            <EditorialSlideCard
-              id="experience"
-              imageSrc="/experience.png"
-              imageAlt="Developer Workspace Setup with Laptop and Notes"
-              categoryTitle="Track Record"
-              titleRust="EXPERIENCE"
-              activeSection="experience"
-              signature="By Ansh Sahu"
-              frameShape="architectural"
-              aspectClass="aspect-[4/3]"
-              badgeText="Engineering Track"
-              subBadgeText="hands-on execution"
-              caption="Workstation • Research & Development"
-              tagText="Active Development"
-            >
-              <div className="space-y-4">
-                {/* 2-Column Layout */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Col 1 */}
-                  <div className="space-y-2 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <div className="text-[11px] font-bold text-[#22D3EE] uppercase tracking-wider">
-                      2023 — 2027
-                    </div>
-                    <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-[#F8FAFC] leading-snug">
-                      SANSKRITI UNIVERSITY
-                    </h4>
-                    <p className="text-xs font-semibold text-[#22D3EE]">
-                      B.Tech Project Lead (Academic)
-                    </p>
-                    <p className="text-xs text-[#94A3B8] leading-relaxed">
-                      Hands-on execution of computer vision pipelines, real-time safety monitoring models, and full-stack software development projects in academic labs.
-                    </p>
-                  </div>
-
-                  {/* Col 2 */}
-                  <div className="space-y-2 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm">
-                    <div className="text-[11px] font-bold text-[#22D3EE] uppercase tracking-wider">
-                      2023 — PRESENT
-                    </div>
-                    <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-[#F8FAFC] leading-snug">
-                      INDEPENDENT RESEARCH
-                    </h4>
-                    <p className="text-xs font-semibold text-[#22D3EE]">
-                      AI & Software Development
-                    </p>
-                    <p className="text-xs text-[#94A3B8] leading-relaxed">
-                      Building production-grade client apps like Sacha Sauda, machine learning forecasting algorithms, and continuous mastery of modern web architecture.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-1">
-                  <Link
-                    to="/experience"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#22D3EE] hover:text-[#06B6D4] transition-colors"
-                  >
-                    <span>Inspect Complete Experience Details</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </EditorialSlideCard>
-          )}
-
-          {/* ----------------------------------------------------
-              CARD 6: 2024–2026 PROJECTS
-              ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 5)) && (
-            <EditorialSlideCard
-              id="projects"
-              imageSrc={featuredProjects[activeProjectTab]?.image || '/ai-driver-awareness.png'}
-              imageAlt={featuredProjects[activeProjectTab]?.title || 'Featured Project'}
-              categoryTitle="Showcase & Engineering"
-              titleRust="2024–2026"
-              titleBlack="PROJECTS"
-              activeSection="portfolio"
-              signature="By Ansh Sahu"
-              frameShape="architectural"
-              aspectClass="aspect-[4/3]"
-              imageClassName="object-center"
-              badgeText={featuredProjects[activeProjectTab]?.category || 'Engineering Project'}
-              subBadgeText={
-                activeProjectTab === 3
-                  ? 'artisanal bakery'
-                  : activeProjectTab === 2
-                  ? 'predictive analytics'
-                  : activeProjectTab === 1
-                  ? 'home & construction'
-                  : 'driver safety'
-              }
-              caption={featuredProjects[activeProjectTab]?.title || 'Featured Project'}
-              tagText={
-                activeProjectTab === 3
-                  ? 'React Production'
-                  : activeProjectTab === 2
-                  ? 'Scikit-Learn ML'
-                  : activeProjectTab === 1
-                  ? 'Marketplace'
-                  : 'Edge AI System'
-              }
-            >
-              <div className="space-y-4">
-                {/* Project Selector Tabs */}
-                <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
-                  {featuredProjects.map((p, idx) => (
-                    <button
-                      key={p.title}
-                      onClick={() => setActiveProjectTab(idx)}
-                      className={`px-3 py-1.5 rounded-lg whitespace-nowrap font-medium transition-all ${
-                        activeProjectTab === idx
-                          ? 'bg-[#22D3EE] text-[#0B0F14] shadow-sm font-semibold'
-                          : 'bg-[#1A2430] border border-[#263342] text-[#94A3B8] hover:bg-[#121923] hover:text-[#F8FAFC]'
-                      }`}
-                    >
-                      {p.title}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Active Project Highlight Box */}
-                {featuredProjects[activeProjectTab] && (
-                  <div className="p-4 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm space-y-3">
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#263342] pb-2">
-                      <div>
-                        <h4 className="font-display font-bold uppercase tracking-tight text-lg text-[#F8FAFC]">
-                          {featuredProjects[activeProjectTab].title}
-                        </h4>
-                        <span className="text-[11px] text-[#22D3EE] font-semibold">
-                          {featuredProjects[activeProjectTab].category}
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <a
-                          href={featuredProjects[activeProjectTab].github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#121923] border border-[#263342] text-[11px] font-semibold text-[#94A3B8] hover:text-[#F8FAFC] hover:border-[#22D3EE] transition-colors"
-                        >
-                          <GithubIcon size={12} />
-                          <span>Code</span>
-                        </a>
-
-                        <a
-                          href={featuredProjects[activeProjectTab].demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#22D3EE] text-[#0B0F14] text-[11px] font-semibold hover:bg-[#06B6D4] transition-colors"
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          <span>Live</span>
-                        </a>
-                      </div>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-                      {featuredProjects[activeProjectTab].summary}
+                {/* Project Info & Tech Tags */}
+                <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#575249] leading-relaxed">
+                      {project.summary}
                     </p>
 
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {featuredProjects[activeProjectTab].tech.map((t) => (
+                    {/* Tech stack pills */}
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {project.tech.map((t) => (
                         <span
                           key={t}
-                          className="px-2 py-0.5 rounded bg-[#121923] border border-[#263342] text-[10px] font-semibold text-[#22D3EE]"
+                          className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE]"
                         >
                           {t}
                         </span>
                       ))}
                     </div>
                   </div>
-                )}
 
-                <div className="pt-1">
-                  <Link
-                    to="/projects"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#22D3EE] hover:text-[#06B6D4] transition-colors"
-                  >
-                    <span>Browse All Projects in Full Gallery</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </EditorialSlideCard>
-          )}
-
-          {/* ----------------------------------------------------
-              CARD 7: LET'S COLLABORATE (CONTACT)
-              ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 6)) && (
-            <EditorialSlideCard
-              id="contact"
-              imageSrc="/collaborate.png"
-              imageAlt="Let's Work Together - Collaborate"
-              categoryTitle="Direct Inquiries"
-              titleRust="LET'S"
-              titleBlack="COLLABORATE"
-              activeSection="contact"
-              signature="By Ansh Sahu"
-              frameShape="architectural"
-              aspectClass="aspect-[4/3]"
-              badgeText="Direct Inquiries"
-              subBadgeText="let's work together"
-              caption="Available for Opportunities"
-              tagText="Collaborate"
-            >
-              <div className="space-y-4">
-                <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-                  I am available for full-time frontend roles, internships, and high-impact engineering projects. Feel free to connect directly via any channel:
-                </p>
-
-                {/* 4 Icon rows */}
-                <div className="space-y-2.5 pt-1">
-                  {/* Phone */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm gap-2">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-8 h-8 rounded-full bg-[#121923] text-[#22D3EE] border border-[#263342] flex items-center justify-center shrink-0">
-                        <Phone className="w-4 h-4" />
-                      </div>
-                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
-                        {settings.phone}
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => handleCopy(settings.phone, 'Phone number')}
-                      className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#121923] transition-colors shrink-0"
-                      title="Copy Phone"
-                    >
-                      {copiedField === 'Phone number' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                    </button>
-                  </div>
-
-                  {/* Email */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm gap-2">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-8 h-8 rounded-full bg-[#121923] text-[#22D3EE] border border-[#263342] flex items-center justify-center shrink-0">
-                        <Mail className="w-4 h-4" />
-                      </div>
-                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
-                        {settings.email}
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => handleCopy(settings.email, 'Email address')}
-                      className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#121923] transition-colors shrink-0"
-                      title="Copy Email"
-                    >
-                      {copiedField === 'Email address' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                    </button>
-                  </div>
-
-                  {/* GitHub */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm gap-2">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-8 h-8 rounded-full bg-[#121923] text-[#22D3EE] border border-[#263342] flex items-center justify-center shrink-0">
-                        <GithubIcon size={16} />
-                      </div>
-                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
-                        {settings.githubUrl ? settings.githubUrl.replace(/^https?:\/\//, '') : 'github.com/ansh-sahu-tech'}
-                      </span>
-                    </div>
+                  {/* Actions matching Screenshot 2 */}
+                  <div className="pt-4 border-t border-[#CCD5AE]/60 flex items-center gap-3">
                     <a
-                      href={settings.githubUrl}
+                      href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#22D3EE] hover:bg-[#121923] transition-colors shrink-0"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#CCD5AE] bg-[#FFFFFF] hover:bg-[#E9EDC9] hover:border-[#D4A373] text-[#24211D] text-xs font-semibold shadow-sm transition-all"
+                    >
+                      <GithubIcon size={14} />
+                      <span>GitHub</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] text-xs font-semibold shadow-sm transition-all"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
+                      <span>Live Demo</span>
                     </a>
                   </div>
-
-                  {/* Location */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#1A2430] border border-[#263342] shadow-sm gap-2">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-8 h-8 rounded-full bg-[#121923] text-[#22D3EE] border border-[#263342] flex items-center justify-center shrink-0">
-                        <MapPin className="w-4 h-4" />
-                      </div>
-                      <span className="text-xs sm:text-sm font-semibold text-[#F8FAFC] truncate">
-                        Gonda, Uttar Pradesh (near Ayodhya), India
-                      </span>
-                    </div>
-                    <span className="text-[10px] text-[#94A3B8] uppercase tracking-widest font-semibold pr-2 shrink-0">
-                      Location
-                    </span>
-                  </div>
-                </div>
-
-                <div className="pt-1">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#22D3EE] text-[#0B0F14] text-xs font-semibold hover:bg-[#06B6D4] shadow-sm transition-all"
-                  >
-                    <span>Open Direct Contact Form</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
                 </div>
               </div>
-            </EditorialSlideCard>
-          )}
+            ))}
+          </div>
 
-          {/* ----------------------------------------------------
-              CARD 8: THANKS YOU
-              ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 7)) && (
-            <EditorialSlideCard
-              id="thanks"
-              imageSrc="/ansh-profile.jpg?v=2"
-              imageAlt="Ansh Sahu - Frontend Developer Portfolio Closing"
-              categoryTitle="Closing Appreciation"
-              titleRust="THANKS"
-              titleBlack="YOU"
-              activeSection="contact"
-              signature="By Ansh Sahu"
-              frameShape="architectural"
-              aspectClass="aspect-square"
-              imageClassName="object-center"
-              badgeText="Closing Appreciation"
-              subBadgeText="thank you"
-              caption="Ansh Sahu • Frontend Developer"
-              tagText="Signature"
+          {/* Link to Full Projects Page */}
+          <div className="text-center mt-12">
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] text-sm font-semibold shadow-sm transition-all"
             >
-              <div className="space-y-4">
-                <p className="text-sm sm:text-base text-[#F8FAFC] font-medium leading-relaxed">
-                  Thank you for taking the time to view my portfolio presentation.
-                </p>
-
-                <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-                  I am actively preparing for frontend engineering opportunities where I can apply modern React architecture, algorithmic rigor, and responsive UX design to build meaningful software.
-                </p>
-
-                <div className="flex flex-wrap items-center gap-3 pt-3">
-                  <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#22D3EE] hover:bg-[#06B6D4] text-[#0B0F14] text-xs sm:text-sm font-semibold shadow-sm transition-all"
-                  >
-                    <FileDown className="w-3.5 h-3.5" />
-                    <span>Download Complete Resume</span>
-                  </a>
-
-                  <a
-                    href={settings.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1A2430] border border-[#263342] hover:bg-[#121923] hover:border-[#22D3EE] text-[#F8FAFC] text-xs sm:text-sm font-semibold transition-all"
-                  >
-                    <LinkedinIcon size={14} className="text-[#22D3EE]" />
-                    <span>Connect on LinkedIn</span>
-                  </a>
-
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#1A2430] text-xs font-semibold"
-                  >
-                    <span>Send Message</span>
-                  </Link>
-                </div>
-              </div>
-            </EditorialSlideCard>
-          )}
+              <span>View All Projects in Full Gallery</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
 
         </div>
-      )}
+      </section>
+
+      {/* ========================================================
+          6. CONTACT US SECTION (SPLIT FORM & DETAILS - SCREENSHOT 2)
+          ======================================================== */}
+      <section id="contact" className="py-20 lg:py-24 bg-[#FAEDCD]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Header */}
+          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+              Let's Connect
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#24211D]">
+              Contact Us
+            </h2>
+            <p className="text-sm sm:text-base text-[#575249]">
+              Have a project in mind? Let's connect and discuss how I can help bring your ideas to life.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            {/* Left Column: Get in touch today */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-[#24211D]">
+                  Get in touch today
+                </h3>
+                <p className="text-sm text-[#575249] leading-relaxed">
+                  I'm always open to discussing new projects, creative ideas, full-time frontend roles, internships, or opportunities to be part of your vision.
+                </p>
+              </div>
+
+              {/* Direct Channels */}
+              <div className="space-y-3 pt-2">
+                {/* Email item */}
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shrink-0 text-[#24211D]">
+                      <Mail className="w-5 h-5 text-[#D4A373]" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] uppercase font-bold text-[#575249]">Email Address</p>
+                      <a href={`mailto:${settings.email}`} className="text-xs sm:text-sm font-bold text-[#24211D] hover:text-[#D4A373] truncate block">
+                        {settings.email}
+                      </a>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handleCopy(settings.email, 'Email address')}
+                    className="p-2 rounded-lg text-[#575249] hover:text-[#24211D] hover:bg-[#E9EDC9] transition-colors"
+                    title="Copy Email"
+                  >
+                    {copiedField === 'Email address' ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                  </button>
+                </div>
+
+                {/* Phone item */}
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shrink-0 text-[#24211D]">
+                      <Phone className="w-5 h-5 text-[#D4A373]" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] uppercase font-bold text-[#575249]">Phone Number</p>
+                      <a href={`tel:${settings.phone}`} className="text-xs sm:text-sm font-bold text-[#24211D] hover:text-[#D4A373] truncate block">
+                        {settings.phone}
+                      </a>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handleCopy(settings.phone, 'Phone number')}
+                    className="p-2 rounded-lg text-[#575249] hover:text-[#24211D] hover:bg-[#E9EDC9] transition-colors"
+                    title="Copy Phone"
+                  >
+                    {copiedField === 'Phone number' ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                  </button>
+                </div>
+
+                {/* Location item */}
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shrink-0 text-[#24211D]">
+                      <MapPin className="w-5 h-5 text-[#D4A373]" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] uppercase font-bold text-[#575249]">Location</p>
+                      <p className="text-xs sm:text-sm font-bold text-[#24211D] truncate">
+                        Gonda &amp; Mathura, Uttar Pradesh, India
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Channels */}
+              <div className="pt-2 flex items-center gap-3">
+                <a
+                  href={settings.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] hover:border-[#D4A373] text-[#24211D] shadow-sm hover:scale-105 transition-all"
+                  aria-label="GitHub"
+                >
+                  <GithubIcon size={18} />
+                </a>
+                <a
+                  href={settings.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] hover:border-[#D4A373] text-[#24211D] shadow-sm hover:scale-105 transition-all"
+                  aria-label="LinkedIn"
+                >
+                  <LinkedinIcon size={18} />
+                </a>
+                {settings.instagramUrl && (
+                  <a
+                    href={settings.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] hover:border-[#D4A373] text-[#24211D] shadow-sm hover:scale-105 transition-all"
+                    aria-label="Instagram"
+                  >
+                    <InstagramIcon size={18} />
+                  </a>
+                )}
+              </div>
+            </div>
+
+            {/* Right Column: Working Contact Form matching Screenshot 2 */}
+            <div className="lg:col-span-7">
+              <div className="p-6 sm:p-8 rounded-3xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-card">
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  
+                  {formError && (
+                    <div className="p-3 rounded-xl bg-red-50 border border-red-300 text-red-800 text-xs flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
+                      <span>{formError}</span>
+                    </div>
+                  )}
+
+                  {isSuccess && (
+                    <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
+                      <span>Thank you! Your message was sent successfully.</span>
+                    </div>
+                  )}
+
+                  {/* Name & Email inputs */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-[#24211D]">
+                        Name <span className="text-[#D4A373]">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="e.g. John Carter"
+                        className="w-full px-4 py-3 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder-[#575249]/60 text-sm focus:outline-none focus:border-[#D4A373] transition-colors"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-[#24211D]">
+                        Email <span className="text-[#D4A373]">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="e.g. example@gmail.com"
+                        className="w-full px-4 py-3 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder-[#575249]/60 text-sm focus:outline-none focus:border-[#D4A373] transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Phone & Subject inputs */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-[#24211D]">
+                        Phone (Optional)
+                      </label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        placeholder="e.g. +91 9876543210"
+                        className="w-full px-4 py-3 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder-[#575249]/60 text-sm focus:outline-none focus:border-[#D4A373] transition-colors"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-[#24211D]">
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        placeholder="e.g. Project Inquiry / Job Opportunity"
+                        className="w-full px-4 py-3 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder-[#575249]/60 text-sm focus:outline-none focus:border-[#D4A373] transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Message input */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-[#24211D]">
+                      Message <span className="text-[#D4A373]">*</span>
+                    </label>
+                    <textarea
+                      required
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Please write your message here..."
+                      className="w-full px-4 py-3 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] text-[#24211D] placeholder-[#575249]/60 text-sm focus:outline-none focus:border-[#D4A373] transition-colors resize-none"
+                    />
+                  </div>
+
+                  {/* Send button */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-bold text-sm shadow-md transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      {isSubmitting ? (
+                        <span>Sending message...</span>
+                      ) : (
+                        <>
+                          <span>Send Message</span>
+                          <Send className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
     </div>
   );
 };

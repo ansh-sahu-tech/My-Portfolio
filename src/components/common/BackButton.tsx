@@ -35,9 +35,9 @@ export const BackButton: React.FC<BackButtonProps> = ({
       type="button"
       onClick={handleClick}
       aria-label={label}
-      className={`group/back inline-flex items-center gap-2 text-xs font-semibold text-[#94A3B8] hover:text-[#22D3EE] active:scale-95 focus-visible:ring-2 focus-visible:ring-[#22D3EE] rounded-lg px-3 py-1.5 bg-[#121923] border border-[#263342] hover:border-[#22D3EE] shadow-sm transition-all duration-200 cursor-pointer ${className}`}
+      className={`group/back inline-flex items-center gap-2 text-xs font-semibold text-[#24211D] hover:text-[#24211D] active:scale-95 focus-visible:ring-2 focus-visible:ring-[#D4A373] rounded-lg px-3 py-1.5 bg-[#FFFFFF] border border-[#CCD5AE] hover:border-[#D4A373] hover:bg-[#E9EDC9]/60 shadow-sm transition-all duration-200 cursor-pointer ${className}`}
     >
-      <ArrowLeft className="w-4 h-4 group-hover/back:-translate-x-1 transition-transform duration-200 text-[#22D3EE]" />
+      <ArrowLeft className="w-4 h-4 group-hover/back:-translate-x-1 transition-transform duration-200 text-[#24211D] group-hover/back:text-[#D4A373]" />
       <span>{label}</span>
     </button>
   );

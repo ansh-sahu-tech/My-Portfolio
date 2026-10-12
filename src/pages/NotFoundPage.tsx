@@ -20,26 +20,26 @@ export const NotFoundPage: React.FC = () => {
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4">
-      <GlassCard className="p-8 sm:p-12 max-w-lg w-full text-center space-y-6 border-[#263342]" glowColor="cyan">
-        <div className="w-16 h-16 rounded-2xl bg-[#1A2430] border border-[#22D3EE]/40 text-[#22D3EE] flex items-center justify-center mx-auto shadow-lg shadow-black/50">
-          <Terminal className="w-8 h-8" />
+      <GlassCard className="p-8 sm:p-12 max-w-lg w-full text-center space-y-6 border-[#CCD5AE] bg-[#FFFFFF]">
+        <div className="w-16 h-16 rounded-2xl bg-[#E9EDC9] border border-[#CCD5AE] text-[#24211D] flex items-center justify-center mx-auto shadow-sm">
+          <Terminal className="w-8 h-8 text-[#D4A373]" />
         </div>
 
         <div>
-          <span className="text-xs font-mono text-[#22D3EE] font-bold tracking-widest uppercase">
-            Error 404 // Node Not Found
+          <span className="text-xs font-mono text-[#D4A373] font-bold tracking-widest uppercase">
+            Error 404 // Page Not Found
           </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] mt-2">
-            Lost in the Neural Network
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#24211D] mt-2">
+            Page Not Located
           </h1>
-          <p className="text-xs sm:text-sm text-[#94A3B8] mt-2 leading-relaxed">
-            The route you navigated to does not exist in the active telemetry registry.
+          <p className="text-xs sm:text-sm text-[#575249] mt-2 leading-relaxed">
+            The page you requested does not exist or may have been relocated.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link to="/">
-            <Button variant="gradient" size="md" icon={<Home className="w-4 h-4" />}>
+            <Button variant="primary" size="md" icon={<Home className="w-4 h-4" />}>
               Return to Home
             </Button>
           </Link>

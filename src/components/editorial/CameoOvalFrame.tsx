@@ -39,20 +39,20 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
 
 
         {/* Outer concentric architectural frame */}
-        <div className="relative z-10 w-full p-2.5 sm:p-3 rounded-2xl sm:rounded-[26px] border border-[#263342] shadow-[0_10px_35px_-5px_rgba(0,0,0,0.5)] bg-[#1A2430]/80 backdrop-blur-[3px] transition-all duration-500 hover:scale-[1.02] hover:border-[#22D3EE]/50 hover:shadow-[0_14px_40px_-5px_rgba(0,0,0,0.6)]">
+        <div className="relative z-10 w-full p-2.5 sm:p-3 rounded-2xl sm:rounded-[26px] border border-[#CCD5AE] shadow-sm bg-[#FFFFFF] backdrop-blur-[3px] transition-all duration-500 hover:scale-[1.02] hover:border-[#D4A373] hover:shadow-md">
           {/* Architectural plaque header */}
-          <div className="flex items-center justify-between px-2 pb-2 text-[10px] font-bold uppercase tracking-wider text-[#22D3EE]">
+          <div className="flex items-center justify-between px-2 pb-2 text-[10px] font-bold uppercase tracking-wider text-[#D4A373]">
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4A373]" />
               {badgeText || 'Overview'}
             </span>
             {subBadgeText && (
-              <span className="text-[#94A3B8] font-serif italic lowercase text-[11px]">{subBadgeText}</span>
+              <span className="text-[#575249] font-serif italic lowercase text-[11px]">{subBadgeText}</span>
             )}
           </div>
 
           {/* Inner solid border containing image */}
-          <div className={`w-full ${currentAspect} rounded-xl sm:rounded-[18px] overflow-hidden border-[2px] border-[#263342] shadow-md bg-[#0B0F14] relative group`}>
+          <div className={`w-full ${currentAspect} rounded-xl sm:rounded-[18px] overflow-hidden border-[2px] border-[#CCD5AE] shadow-md bg-[#FAEDCD] relative group`}>
             <img
               src={imageSrc}
               alt={imageAlt}
@@ -67,19 +67,19 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
             />
             {/* Subtle soft gradient sheen only for non-profile graphics */}
             {!imageSrc.includes('ansh-profile') && (
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14]/40 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/30 via-transparent to-transparent pointer-events-none" />
             )}
           </div>
 
           {/* Bottom Location Caption Tag */}
           {caption && (
-            <div className="mt-2.5 pt-2 border-t border-[#263342] flex items-center justify-between text-[11px] text-[#94A3B8] font-medium px-1">
-              <div className="flex items-center gap-1.5 text-[#22D3EE] font-semibold text-xs truncate mr-2">
-                <MapPin className="w-3.5 h-3.5 text-[#22D3EE] shrink-0" />
+            <div className="mt-2.5 pt-2 border-t border-[#CCD5AE] flex items-center justify-between text-[11px] text-[#575249] font-medium px-1">
+              <div className="flex items-center gap-1.5 text-[#D4A373] font-semibold text-xs truncate mr-2">
+                <MapPin className="w-3.5 h-3.5 text-[#D4A373] shrink-0" />
                 <span className="truncate">{caption}</span>
               </div>
               {tagText && (
-                <span className="text-[10px] text-[#94A3B8] font-mono font-medium shrink-0">{tagText}</span>
+                <span className="text-[10px] text-[#575249] font-mono font-medium shrink-0">{tagText}</span>
               )}
             </div>
           )}
@@ -99,9 +99,9 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
 
 
       {/* Outer concentric thin ring */}
-      <div className={`relative z-10 w-full ${ovalAspect} p-2 rounded-[130px] border border-[#263342] shadow-sm bg-[#1A2430]/40 backdrop-blur-[2px] transition-transform duration-500 hover:scale-[1.02]`}>
+      <div className={`relative z-10 w-full ${ovalAspect} p-2 rounded-[130px] border border-[#CCD5AE] shadow-sm bg-[#FFFFFF] backdrop-blur-[2px] transition-transform duration-500 hover:scale-[1.02]`}>
         {/* Inner solid border containing image */}
-        <div className="w-full h-full rounded-[120px] overflow-hidden border-[2.5px] border-[#22D3EE] shadow-md bg-[#0B0F14] relative group">
+        <div className="w-full h-full rounded-[120px] overflow-hidden border-[2.5px] border-[#D4A373] shadow-md bg-[#FAEDCD] relative group">
           <img
             src={imageSrc}
             alt={imageAlt}
@@ -110,7 +110,7 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
           />
           {/* Subtle soft gradient sheen only for non-profile graphics */}
           {!imageSrc.includes('ansh-profile') && (
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14]/30 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/20 via-transparent to-transparent pointer-events-none" />
           )}
         </div>
       </div>

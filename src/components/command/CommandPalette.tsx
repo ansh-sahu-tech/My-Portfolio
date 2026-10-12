@@ -41,63 +41,63 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       id: 'home',
       name: 'Go to Home',
       category: 'Navigation',
-      icon: <Home className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Home className="w-4 h-4 text-[#D4A373]" />,
       perform: () => navigate('/'),
     },
     {
       id: 'about',
       name: 'About Ansh',
       category: 'Navigation',
-      icon: <User className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <User className="w-4 h-4 text-[#D4A373]" />,
       perform: () => navigate('/about'),
     },
     {
       id: 'skills',
       name: 'Technical Skills Matrix',
       category: 'Navigation',
-      icon: <Code className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Code className="w-4 h-4 text-[#D4A373]" />,
       perform: () => navigate('/skills'),
     },
     {
       id: 'projects',
       name: 'View Projects & Case Studies',
       category: 'Navigation',
-      icon: <FolderGit2 className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <FolderGit2 className="w-4 h-4 text-[#D4A373]" />,
       perform: () => navigate('/projects'),
     },
     {
       id: 'experience',
       name: 'Experience & Education',
       category: 'Navigation',
-      icon: <Briefcase className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Briefcase className="w-4 h-4 text-[#D4A373]" />,
       perform: () => navigate('/experience'),
     },
     {
       id: 'certificates',
       name: 'Certificates & Credentials',
       category: 'Navigation',
-      icon: <Award className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Award className="w-4 h-4 text-[#D4A373]" />,
       perform: () => navigate('/certificates'),
     },
     {
       id: 'resume',
       name: 'View / Download Resume',
       category: 'Action',
-      icon: <FileDown className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <FileDown className="w-4 h-4 text-[#D4A373]" />,
       perform: () => navigate('/resume'),
     },
     {
       id: 'contact',
       name: 'Contact & Inquiries',
       category: 'Navigation',
-      icon: <Mail className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Mail className="w-4 h-4 text-[#D4A373]" />,
       perform: () => navigate('/contact'),
     },
     {
       id: 'github',
       name: 'Open GitHub Profile (@ansh-sahu-tech)',
       category: 'External',
-      icon: <GithubIcon size={16} className="text-[#94A3B8]" />,
+      icon: <GithubIcon size={16} className="text-[#575249]" />,
       perform: () => {
         window.open(settings.githubUrl, '_blank');
       },
@@ -106,7 +106,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       id: 'linkedin',
       name: 'Open LinkedIn Profile',
       category: 'External',
-      icon: <LinkedinIcon size={16} className="text-[#22D3EE]" />,
+      icon: <LinkedinIcon size={16} className="text-[#D4A373]" />,
       perform: () => {
         window.open(settings.linkedinUrl, '_blank');
       },
@@ -115,7 +115,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       id: 'email',
       name: `Send Email (${settings.email})`,
       category: 'Action',
-      icon: <Mail className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Mail className="w-4 h-4 text-[#D4A373]" />,
       perform: () => {
         window.location.href = `mailto:${settings.email}`;
       },
@@ -124,7 +124,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       id: 'phone',
       name: `Call Phone (${settings.phone})`,
       category: 'Action',
-      icon: <Phone className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Phone className="w-4 h-4 text-[#D4A373]" />,
       perform: () => {
         window.location.href = `tel:${settings.phone}`;
       },
@@ -133,28 +133,28 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       id: 'admin',
       name: 'Admin Dashboard / CMS',
       category: 'Administration',
-      icon: <ShieldAlert className="w-4 h-4 text-rose-400" />,
+      icon: <ShieldAlert className="w-4 h-4 text-rose-500" />,
       perform: () => navigate('/admin'),
     },
     {
       id: 'theme-dark',
       name: 'Set Theme: Dark Mode',
       category: 'Preferences',
-      icon: <Moon className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Moon className="w-4 h-4 text-[#D4A373]" />,
       perform: () => setTheme('dark'),
     },
     {
       id: 'theme-light',
       name: 'Set Theme: Light Mode',
       category: 'Preferences',
-      icon: <Sun className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Sun className="w-4 h-4 text-[#D4A373]" />,
       perform: () => setTheme('light'),
     },
     {
       id: 'theme-system',
       name: 'Set Theme: System Preference',
       category: 'Preferences',
-      icon: <Laptop className="w-4 h-4 text-[#22D3EE]" />,
+      icon: <Laptop className="w-4 h-4 text-[#D4A373]" />,
       perform: () => setTheme('system'),
     },
   ];
@@ -216,10 +216,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-xl bg-[#121923] border border-[#263342] rounded-2xl shadow-2xl overflow-hidden z-10 font-sans"
+            className="relative w-full max-w-xl bg-[#FEFAE0] border border-[#CCD5AE] rounded-2xl shadow-2xl overflow-hidden z-10 font-sans"
           >
-            <div className="p-4 border-b border-[#263342] flex items-center gap-3 bg-[#0B0F14]">
-              <Search className="w-5 h-5 text-[#22D3EE] shrink-0" />
+            <div className="p-4 border-b border-[#CCD5AE] flex items-center gap-3 bg-[#FAEDCD]">
+              <Search className="w-5 h-5 text-[#D4A373] shrink-0" />
               <input
                 ref={inputRef}
                 type="text"
@@ -229,16 +229,16 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                   setSelectedIndex(0);
                 }}
                 placeholder="Type a command, navigate, or search..."
-                className="w-full bg-transparent text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none text-sm"
+                className="w-full bg-transparent text-[#24211D] placeholder-[#575249] focus:outline-none text-sm"
               />
-              <span className="hidden sm:flex items-center gap-1 text-[10px] font-mono bg-[#1A2430] text-[#94A3B8] px-2 py-0.5 rounded border border-[#263342]">
-                <Command className="w-3 h-3 text-[#22D3EE]" /> ESC to exit
+              <span className="hidden sm:flex items-center gap-1 text-[10px] font-mono bg-[#E9EDC9] text-[#24211D] px-2 py-0.5 rounded border border-[#CCD5AE]">
+                <Command className="w-3 h-3 text-[#D4A373]" /> ESC to exit
               </span>
             </div>
 
-            <div className="p-2 max-h-[380px] overflow-y-auto divide-y divide-[#263342]/40">
+            <div className="p-2 max-h-[380px] overflow-y-auto divide-y divide-[#CCD5AE]/30">
               {filtered.length === 0 ? (
-                <div className="py-8 text-center text-[#94A3B8] text-xs font-mono">
+                <div className="py-8 text-center text-[#575249] text-xs font-mono">
                   No commands matching "{query}"
                 </div>
               ) : (
@@ -254,22 +254,22 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                       onMouseEnter={() => setSelectedIndex(idx)}
                       className={`w-full px-3 py-2.5 rounded-xl text-left flex items-center justify-between transition-all ${
                         isSelected
-                          ? 'bg-[#22D3EE]/15 text-[#22D3EE] border border-[#22D3EE]/30'
-                          : 'text-[#94A3B8] hover:bg-[#1A2430] hover:text-[#F8FAFC] border border-transparent'
+                          ? 'bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE]'
+                          : 'text-[#575249] hover:bg-[#E9EDC9]/50 hover:text-[#24211D] border border-transparent'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`p-1.5 rounded-lg ${isSelected ? 'bg-[#22D3EE]/20 text-[#22D3EE]' : 'bg-[#1A2430] text-[#94A3B8]'}`}>
+                        <div className={`p-1.5 rounded-lg ${isSelected ? 'bg-[#CCD5AE] text-[#24211D]' : 'bg-[#FAEDCD] text-[#575249]'}`}>
                           {action.icon}
                         </div>
                         <div>
-                          <p className="text-xs font-medium text-[#F8FAFC]">{action.name}</p>
-                          <p className="text-[10px] text-[#94A3B8] font-mono">{action.category}</p>
+                          <p className="text-xs font-semibold text-[#24211D]">{action.name}</p>
+                          <p className="text-[10px] text-[#575249] font-mono">{action.category}</p>
                         </div>
                       </div>
 
                       {isSelected && (
-                        <div className="flex items-center gap-1 text-xs text-[#22D3EE] font-mono">
+                        <div className="flex items-center gap-1 text-xs text-[#D4A373] font-mono font-bold">
                           <span>Enter</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </div>
@@ -280,7 +280,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
               )}
             </div>
 
-            <div className="px-4 py-2 bg-[#0B0F14] border-t border-[#263342] flex flex-wrap items-center justify-between gap-1 text-[10px] sm:text-[11px] text-[#94A3B8] font-mono">
+            <div className="px-4 py-2 bg-[#FAEDCD] border-t border-[#CCD5AE] flex flex-wrap items-center justify-between gap-1 text-[10px] sm:text-[11px] text-[#575249] font-mono">
               <span>Navigate: ↑ ↓</span>
               <span>Execute: Enter</span>
               <span>Dismiss: Esc</span>
