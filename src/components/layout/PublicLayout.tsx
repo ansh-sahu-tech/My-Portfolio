@@ -21,7 +21,7 @@ const routeMeta: Record<string, { title: string; desc: string }> = {
   },
   '/projects': {
     title: 'Projects & Engineering Work | Ansh Sahu — Frontend Developer',
-    desc: 'Explore frontend engineering and web development projects built by Ansh Sahu, including Sacha Sauda, AI Driver Awareness System, Student Performance Prediction, and responsive web apps.'
+    desc: 'Explore frontend engineering and web development projects built by Ansh Sahu, including Geo Build Mart, AI Driver Awareness System, Student Performance Prediction, and responsive web apps.'
   },
   '/experience': {
     title: 'Experience & Milestones | Ansh Sahu — Frontend Developer',

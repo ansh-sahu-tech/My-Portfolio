@@ -249,7 +249,7 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
                   2024–2026 PROJECT
                 </h4>
                 <p className="text-[10px] sm:text-xs text-[#94A3B8] line-clamp-2 mt-1">
-                  AI Driver Awareness, Sacha Sauda, Predictive ML models.
+                  AI Driver Awareness, Geo Build Mart, Predictive ML models.
                 </p>
               </div>
               <div className="flex justify-end pt-1 border-t border-[#263342] text-[10px] font-serif italic text-[#F8FAFC]">

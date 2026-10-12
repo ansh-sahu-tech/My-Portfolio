@@ -45,8 +45,13 @@ export const storageService = {
             imageUrl = '/bakery-project.png';
             liveUrl = 'https://bakery-taupe-six.vercel.app/';
           }
+          let title = p.title;
+          if (p.id === 'proj-2' && (p.title === 'Sacha Sauda' || p.title === 'Sacha Sauda (2025)')) {
+            title = 'Geo Build Mart';
+          }
           return {
             ...p,
+            title,
             liveUrl: liveUrl || p.liveUrl,
             githubUrl: !githubUrl || githubUrl === 'YOUR_GITHUB_URL' || githubUrl.includes('Anshsahu275-max') ? 'https://github.com/ansh-sahu-tech' : githubUrl,
             imageUrl: imageUrl || '/ai-driver-awareness.png',

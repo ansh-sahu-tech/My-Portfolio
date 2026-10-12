@@ -245,7 +245,7 @@ function generateResume() {
   );
 
   renderProject(
-    'Sacha Sauda - Home & Construction Marketplace',
+    'Geo Build Mart - Home & Construction Marketplace',
     'React, JavaScript, Tailwind CSS, REST APIs, Responsive Design',
     [
       'Architected a modern marketplace for home and construction needs to explore properties, building materials, home products, and services.',

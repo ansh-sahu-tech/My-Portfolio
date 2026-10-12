@@ -35,7 +35,7 @@ export const initialProjects: Project[] = [
   },
   {
     id: 'proj-2',
-    title: 'Sacha Sauda',
+    title: 'Geo Build Mart',
     slug: 'sacha-sauda',
     category: 'Home & Construction Marketplace',
     filterCategory: 'Frontend',

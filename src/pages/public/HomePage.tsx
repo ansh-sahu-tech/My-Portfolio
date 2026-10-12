@@ -156,7 +156,7 @@ export const HomePage: React.FC = () => {
       badge: 'Edge AI System'
     },
     {
-      title: 'Sacha Sauda (2025)',
+      title: 'Geo Build Mart (2026)',
       category: 'Marketplace Platform',
       slug: 'sacha-sauda',
       tech: ['React', 'JavaScript', 'Tailwind CSS', 'REST APIs'],
