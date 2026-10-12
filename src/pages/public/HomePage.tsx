@@ -294,12 +294,6 @@ export const HomePage: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7 flex flex-col items-center lg:items-start lg:ml-auto max-w-2xl w-full space-y-4 sm:space-y-5 lg:space-y-6 text-center lg:text-left order-2 lg:order-2"
             >
-              {/* Status Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#E9EDC9] border border-[#CCD5AE] text-[11px] sm:text-xs font-semibold text-[#24211D] shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#D4A373] animate-pulse" />
-                <span>Available for Frontend &amp; React Roles</span>
-              </div>
-
               {/* Greeting & Headline */}
               <div className="space-y-1 sm:space-y-2">
                 <p className="text-base sm:text-xl lg:text-2xl font-medium text-[#575249]">
