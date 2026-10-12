@@ -289,23 +289,23 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           1. HERO SECTION (SPLIT HERO MATCHING SCREENSHOT 1)
           ======================================================== */}
-      <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center pt-8 pb-16 lg:py-20 bg-[#FEFAE0] overflow-hidden border-b border-[#CCD5AE]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <section className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-center py-10 sm:py-14 lg:py-16 bg-[#FEFAE0] overflow-hidden border-b border-[#CCD5AE]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
             
             {/* Left Column: Circular Portrait */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 flex items-center justify-center relative py-4 sm:py-6 order-1 lg:order-1"
+              className="lg:col-span-5 flex items-center justify-center relative py-2 sm:py-4 order-1 lg:order-1"
             >
               <div className="relative flex items-center justify-center">
                 {/* Subtle outer concentric framing ring */}
-                <div className="absolute -inset-3 sm:-inset-4 md:-inset-5 rounded-full border border-[#CCD5AE]/60 pointer-events-none" />
+                <div className="absolute -inset-3 sm:-inset-4 md:-inset-5 rounded-full border border-[#CCD5AE]/70 pointer-events-none" />
 
-                {/* Main Profile Image Circle */}
-                <div className="relative w-[250px] h-[250px] sm:w-[310px] sm:h-[310px] md:w-[365px] md:h-[365px] rounded-full overflow-hidden hero-portrait-ring bg-[#E9EDC9]">
+                {/* Main Profile Image Circle (Proportionate, impactful size) */}
+                <div className="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[370px] md:h-[370px] lg:w-[400px] lg:h-[400px] xl:w-[440px] xl:h-[440px] rounded-full overflow-hidden hero-portrait-ring bg-[#E9EDC9] shadow-md">
                   <img
                     src="/ansh-profile.jpg?v=2"
                     alt="Ansh Sahu - Frontend Developer"
@@ -321,7 +321,7 @@ export const HomePage: React.FC = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-2 lg:pl-6"
+              className="lg:col-span-7 space-y-5 lg:space-y-6 text-center lg:text-left order-2 lg:order-2 lg:pl-2 xl:pl-4"
             >
               {/* Status Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9EDC9] border border-[#CCD5AE] text-xs font-semibold text-[#24211D] shadow-sm">
@@ -330,11 +330,11 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Greeting & Headline */}
-              <div className="space-y-2">
-                <p className="text-xl sm:text-2xl font-medium text-[#575249]">
+              <div className="space-y-1.5 sm:space-y-2">
+                <p className="text-lg sm:text-xl lg:text-2xl font-medium text-[#575249]">
                   Hi, I'm
                 </p>
-                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#24211D] leading-[1.08]">
+                <h1 className="text-4xl sm:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-[#24211D] leading-[1.08]">
                   Ansh <span className="text-[#D4A373]">Sahu</span>
                 </h1>
               </div>
@@ -348,21 +348,21 @@ export const HomePage: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -12 }}
                     transition={{ duration: 0.3 }}
-                    className="inline-flex items-center gap-2 text-xl sm:text-2xl font-bold text-[#24211D]"
+                    className="inline-flex items-center gap-2.5 text-xl sm:text-2xl lg:text-3xl font-bold text-[#24211D]"
                   >
-                    <span className="w-2 h-2 rounded-full bg-[#D4A373]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#D4A373]" />
                     <span>{roles[currentRoleIndex]}</span>
                   </motion.div>
                 </AnimatePresence>
               </div>
 
-              {/* Subheading / Bio */}
-              <p className="text-base sm:text-lg text-[#575249] max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              {/* Subheading / Bio (Expanded max-w-2xl to utilize width elegantly) */}
+              <p className="text-base sm:text-lg text-[#575249] max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 I build scalable web applications and high-performance user interfaces using React, Next.js, and TypeScript. Dedicated to clean code, responsive UX, and applied AI/ML at Sanskriti University.
               </p>
 
               {/* CTA Action Buttons matching Screenshot 1 */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2">
                 <a
                   href="#projects"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold text-sm shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
@@ -390,7 +390,7 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Social Link Quick Badges */}
-              <div className="pt-4 flex items-center justify-center lg:justify-start gap-4 text-xs text-[#575249]">
+              <div className="pt-2 sm:pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-xs text-[#575249]">
                 <span className="font-semibold text-[#24211D]">Connect:</span>
                 <a
                   href={settings.githubUrl}
@@ -421,12 +421,12 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           2. SKILLS & TECHNOLOGIES SECTION (GRID MATCHING SCREENSHOT 1)
           ======================================================== */}
-      <section id="skills" className="py-20 lg:py-24 bg-[#FEFAE0] border-b border-[#CCD5AE]">
+      <section id="skills" className="py-16 lg:py-20 bg-[#FEFAE0] border-b border-[#CCD5AE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
           <ScrollReveal>
-            <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-14 space-y-2">
               <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
                 Technical Stack
               </span>
@@ -483,12 +483,12 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           3. SERVICES I PROVIDE SECTION (GRID MATCHING SCREENSHOT 1 & 2)
           ======================================================== */}
-      <section id="services" className="py-20 lg:py-24 bg-[#FAEDCD] border-b border-[#CCD5AE]">
+      <section id="services" className="py-16 lg:py-20 bg-[#FAEDCD] border-b border-[#CCD5AE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
           <ScrollReveal>
-            <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-14 space-y-2">
               <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
                 What I Deliver
               </span>
@@ -532,12 +532,12 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           4. RECENT PROJECTS SECTION (2-COL CARDS MATCHING SCREENSHOT 2)
           ======================================================== */}
-      <section id="projects" className="py-20 lg:py-24 bg-[#FEFAE0] border-b border-[#CCD5AE]">
+      <section id="projects" className="py-16 lg:py-20 bg-[#FEFAE0] border-b border-[#CCD5AE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
           <ScrollReveal>
-            <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-14 space-y-2">
               <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
                 Portfolio Work
               </span>
@@ -642,12 +642,12 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           5. CONTACT US SECTION (SPLIT FORM & DETAILS - SCREENSHOT 2)
           ======================================================== */}
-      <section id="contact" className="py-20 lg:py-24 bg-[#FAEDCD]">
+      <section id="contact" className="py-16 lg:py-20 bg-[#FAEDCD]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header */}
           <ScrollReveal>
-            <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+            <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-14 space-y-2">
               <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
                 Let's Connect
               </span>
