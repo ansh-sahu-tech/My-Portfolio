@@ -28,7 +28,6 @@ import {
 import { useData } from '../../context/DataContext';
 import { useToast } from '../../context/ToastContext';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '../../components/common/SocialIcons';
-import { getRealisticSkillIcon } from '../../components/skills/RealisticSkillIcons';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '../../components/common/ScrollReveal';
 
 export const HomePage: React.FC = () => {
@@ -392,21 +391,19 @@ export const HomePage: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Right Column: Circular Portrait with Orbiting Satellite Badges */}
+            {/* Right Column: Circular Portrait (Skills Removed, 20% Enlarged Image) */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 flex items-center justify-center relative"
+              className="lg:col-span-5 flex items-center justify-center relative py-4 sm:py-6"
             >
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center">
-                
-                {/* Concentric Glow Rings */}
-                <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#CCD5AE] animate-[spin_60s_linear_infinite]" />
-                <div className="absolute inset-4 rounded-full border border-[#CCD5AE]/60" />
+              <div className="relative flex items-center justify-center">
+                {/* Subtle outer concentric framing ring */}
+                <div className="absolute -inset-3 sm:-inset-4 md:-inset-5 rounded-full border border-[#CCD5AE]/60 pointer-events-none" />
 
-                {/* Main Profile Image Circle */}
-                <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-76 md:h-76 rounded-full overflow-hidden hero-portrait-ring bg-[#E9EDC9]">
+                {/* Main Profile Image Circle (Enlarged by 20%) */}
+                <div className="relative w-[250px] h-[250px] sm:w-[310px] sm:h-[310px] md:w-[365px] md:h-[365px] rounded-full overflow-hidden hero-portrait-ring bg-[#E9EDC9]">
                   <img
                     src="/ansh-profile.jpg?v=2"
                     alt="Ansh Sahu - Frontend Developer"
@@ -414,49 +411,6 @@ export const HomePage: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/30 via-transparent to-transparent pointer-events-none" />
                 </div>
-
-                {/* Satellite Orbit Badge 1: React (Top Right) */}
-                <div className="absolute top-2 right-4 sm:top-4 sm:right-6 orbit-float">
-                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
-                    {getRealisticSkillIcon('React', undefined, 26)}
-                  </div>
-                </div>
-
-                {/* Satellite Orbit Badge 2: Next.js (Middle Right) */}
-                <div className="absolute top-1/2 -right-3 sm:-right-4 -translate-y-1/2 orbit-float-delayed">
-                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
-                    {getRealisticSkillIcon('Next.js', undefined, 26)}
-                  </div>
-                </div>
-
-                {/* Satellite Orbit Badge 3: JavaScript (Middle Left) */}
-                <div className="absolute top-1/2 -left-3 sm:-left-4 -translate-y-1/2 orbit-float-slow">
-                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
-                    {getRealisticSkillIcon('JavaScript', undefined, 26)}
-                  </div>
-                </div>
-
-                {/* Satellite Orbit Badge 4: Tailwind CSS (Top Left) */}
-                <div className="absolute top-2 left-4 sm:top-4 sm:left-6 orbit-float-delayed">
-                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
-                    {getRealisticSkillIcon('Tailwind CSS', undefined, 26)}
-                  </div>
-                </div>
-
-                {/* Satellite Orbit Badge 5: Python (Bottom Left) */}
-                <div className="absolute bottom-3 left-6 sm:bottom-4 sm:left-8 orbit-float">
-                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
-                    {getRealisticSkillIcon('Python', undefined, 26)}
-                  </div>
-                </div>
-
-                {/* Satellite Orbit Badge 6: Computer Vision / AI (Bottom Right) */}
-                <div className="absolute bottom-3 right-6 sm:bottom-4 sm:right-8 orbit-float-slow">
-                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-md flex items-center justify-center p-2 hover:scale-110 hover:border-[#D4A373] transition-all">
-                    {getRealisticSkillIcon('Computer Vision', undefined, 26)}
-                  </div>
-                </div>
-
               </div>
             </motion.div>
 
