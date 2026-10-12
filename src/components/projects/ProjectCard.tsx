@@ -12,15 +12,18 @@ export interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails }) => {
   const { settings } = useData();
 
+  if (!project) return null;
+
   const githubHref = project.githubUrl && project.githubUrl !== 'YOUR_GITHUB_URL'
     ? project.githubUrl
-    : (settings.githubUrl || 'https://github.com/ansh-sahu-tech');
+    : (settings?.githubUrl || 'https://github.com/ansh-sahu-tech');
 
   const liveHref = project.liveUrl && project.liveUrl !== '#'
     ? project.liveUrl
     : undefined;
 
-  const displayTitle = project.title.replace(/\s*\(\d{4}\)/g, '').trim();
+  const displayTitle = (project.title || '').replace(/\s*\(\d{4}\)/g, '').trim();
+  const technologies = Array.isArray(project.technologies) ? project.technologies : [];
 
   return (
     <article className="group bg-[#FFFFFF] border-2 border-[#CCD5AE] hover:border-[#D4A373] rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-card-hover transition-all duration-300 ease-out flex flex-col h-full overflow-hidden hover:-translate-y-1">
@@ -79,7 +82,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
 
           {/* Tech Stack Pills */}
           <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
-            {project.technologies.map((tech) => (
+            {technologies.map((tech) => (
               <span
                 key={tech}
                 className="px-2.5 py-0.5 sm:py-1 rounded-lg text-[11px] sm:text-xs font-semibold bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE] transition-colors"

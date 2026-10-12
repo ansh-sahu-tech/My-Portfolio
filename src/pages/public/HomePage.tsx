@@ -47,7 +47,8 @@ export const HomePage: React.FC = () => {
 
   const featuredProjects = React.useMemo(() => {
     if (projects && projects.length > 0) {
-      return projects.filter((p) => p.published).slice(0, 4);
+      const active = projects.filter((p) => p.published !== false);
+      if (active.length > 0) return active.slice(0, 4);
     }
     return initialProjects.slice(0, 4);
   }, [projects]);
@@ -259,7 +260,7 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           1. HERO SECTION (SPLIT HERO MATCHING SCREENSHOT 1)
           ======================================================== */}
-      <section className="relative w-full min-h-[60vh] sm:min-h-[68vh] lg:min-h-[78vh] flex items-center justify-center py-10 sm:py-16 lg:py-20 bg-[#FEFAE0] overflow-hidden border-b border-[#CCD5AE]">
+      <section className="relative w-full min-h-[60vh] sm:min-h-[68vh] lg:min-h-[78vh] flex items-center justify-center py-10 sm:py-16 lg:py-20 bg-[#FEFAE0] overflow-hidden">
         <div className="max-w-[1440px] 2xl:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 items-center w-full">
             
@@ -391,10 +392,7 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           2. SKILLS & TECHNOLOGIES SECTION (GRID MATCHING SCREENSHOT 1)
           ======================================================== */}
-      {/* ========================================================
-          2. SKILLS & TECHNOLOGIES SECTION (GRID MATCHING SCREENSHOT 1)
-          ======================================================== */}
-      <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-[#FEFAE0] border-b border-[#CCD5AE]">
+      <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-[#FEFAE0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
@@ -456,7 +454,7 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           3. SERVICES I PROVIDE SECTION (GRID MATCHING SCREENSHOT 1 & 2)
           ======================================================== */}
-      <section id="services" className="py-12 sm:py-16 lg:py-20 bg-[#FAEDCD] border-b border-[#CCD5AE]">
+      <section id="services" className="py-12 sm:py-16 lg:py-20 bg-[#FAEDCD]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
@@ -505,7 +503,7 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           4. RECENT PROJECTS SECTION (2-COL CARDS MATCHING SCREENSHOT 2)
           ======================================================== */}
-      <section id="projects" className="py-12 sm:py-16 lg:py-20 bg-[#FEFAE0] border-b border-[#CCD5AE]">
+      <section id="projects" className="py-12 sm:py-16 lg:py-20 bg-[#FEFAE0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
