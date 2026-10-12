@@ -46,20 +46,23 @@ export const storageService = {
             imageUrl = '/bakery-project.png';
             liveUrl = 'https://bakery-taupe-six.vercel.app/';
           }
-          let title = p.title;
+          let title = (p.title || '').replace(/\s*\(\d{4}\)/g, '').trim();
           let slug = p.slug;
           let category = p.category;
           let filterCategory = p.filterCategory;
-          if (p.id === 'proj-2' && (p.title === 'Sacha Sauda' || p.title === 'Sacha Sauda (2025)')) {
+          if (p.id === 'proj-2' && (title === 'Sacha Sauda' || p.title === 'Sacha Sauda' || p.title === 'Sacha Sauda (2025)')) {
             title = 'Geo Build Mart';
           }
-          if (p.id === 'proj-3' && (p.title === 'Student Performance Prediction' || p.title === 'Student Performance Prediction (2024)' || p.description?.includes('predictive analytical') || p.technologies?.includes('Scikit-learn'))) {
+          if (p.id === 'proj-3' && (title === 'Student Performance Prediction' || p.title === 'Student Performance Prediction' || p.title === 'Student Performance Prediction (2024)' || p.description?.includes('predictive analytical') || p.technologies?.includes('Scikit-learn'))) {
             title = 'Sanskar Katha';
             slug = 'sanskar-katha';
             category = 'Cultural & Storytelling Platform';
             filterCategory = 'Frontend';
           }
           const initMatch = initialProjects.find((ip) => ip.id === p.id || ip.slug === slug || ip.slug === p.slug);
+          if (initMatch?.title) {
+            title = initMatch.title.replace(/\s*\(\d{4}\)/g, '').trim();
+          }
           const isLegacySanskar = p.id === 'proj-3' && (p.description?.includes('predictive analytical') || p.technologies?.includes('Scikit-learn'));
           return {
             ...initMatch,

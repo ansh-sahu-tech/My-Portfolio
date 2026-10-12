@@ -20,10 +20,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
     ? project.liveUrl
     : undefined;
 
-  const yearText = project.year || (project.createdAt ? new Date(project.createdAt).getFullYear().toString() : '');
-  const displayTitle = yearText && !project.title.includes(yearText)
-    ? `${project.title} (${yearText})`
-    : project.title;
+  const displayTitle = project.title.replace(/\s*\(\d{4}\)/g, '').trim();
 
   return (
     <article className="group bg-[#FFFFFF] border-2 border-[#CCD5AE] hover:border-[#D4A373] rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-card-hover transition-all duration-300 ease-out flex flex-col h-full overflow-hidden hover:-translate-y-1">
