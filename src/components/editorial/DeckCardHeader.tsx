@@ -33,7 +33,7 @@ export const DeckCardHeader: React.FC<DeckCardHeaderProps> = ({
       prevSlideBtn.click();
       return;
     }
-    const sectionOrder = ['hero', 'about', 'vision', 'education', 'skills', 'experience', 'projects', 'contact', 'thanks'];
+    const sectionOrder = ['hero', 'about', 'education', 'skills', 'experience', 'projects', 'contact', 'thanks'];
     const currentIndex = sectionOrder.indexOf(activeSection || 'hero');
     if (currentIndex > 0) {
       const prevId = sectionOrder[currentIndex - 1];

@@ -44,7 +44,7 @@ export const CameoOvalFrame: React.FC<CameoOvalFrameProps> = ({
           <div className="flex items-center justify-between px-2 pb-2 text-[10px] font-bold uppercase tracking-wider text-[#22D3EE]">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE]" />
-              {badgeText || 'Philosophy & Future'}
+              {badgeText || 'Overview'}
             </span>
             {subBadgeText && (
               <span className="text-[#94A3B8] font-serif italic lowercase text-[11px]">{subBadgeText}</span>

@@ -104,43 +104,6 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
           </div>
         </div>
 
-        {/* Card 3: VISION & MISSION */}
-        <div
-          onClick={() => onSelectCard('vision')}
-          className="cursor-pointer group relative rounded-2xl overflow-hidden bg-[#121923] border border-[#263342] shadow-md transition-all duration-300 hover:scale-[1.015] hover:border-[#22D3EE]/50 hover:shadow-xl"
-        >
-          <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
-            <div className="col-span-5 min-w-0 editorial-marble-panel border-r border-[#263342] flex items-center justify-center p-2.5 sm:p-3 relative">
-              <div className="w-20 sm:w-24 p-1 rounded-xl border border-[#263342] bg-[#1A2430]/60 shadow-xs">
-                <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border-[1.5px] border-[#263342] bg-[#0B0F14]">
-                  <img
-                    src="/vision-mission.png"
-                    alt="Ansh Sahu - Vision and Engineering Mission"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-span-7 min-w-0 p-3 sm:p-4 flex flex-col justify-between">
-              <div className="flex justify-end text-[8px] sm:text-[10px] uppercase font-semibold text-[#94A3B8] gap-2">
-                <span>Vision</span>
-              </div>
-              <div className="space-y-0.5 sm:space-y-1">
-                <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-[#F8FAFC] break-words">
-                  VISION
-                </h4>
-                <h4 className="font-display font-bold uppercase tracking-tight text-base sm:text-lg text-[#22D3EE] break-words">
-                  MISSION
-                </h4>
-              </div>
-              <div className="flex justify-end pt-1 border-t border-[#263342] text-[10px] font-serif italic text-[#F8FAFC]">
-                By Ansh Sahu
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Card 4: EDUCATION */}
         <div
@@ -334,10 +297,10 @@ export const DeckGridCollage: React.FC<DeckGridCollageProps> = ({ onSelectCard }
           </div>
         </div>
 
-        {/* Card 9: THANKS YOU */}
+        {/* Card 8: THANKS YOU */}
         <div
           onClick={() => onSelectCard('thanks')}
-          className="cursor-pointer group relative rounded-2xl overflow-hidden bg-[#121923] border border-[#263342] shadow-md transition-all duration-300 hover:scale-[1.015] hover:border-[#22D3EE]/50 hover:shadow-xl"
+          className="cursor-pointer group relative rounded-2xl overflow-hidden bg-[#121923] border border-[#263342] shadow-md transition-all duration-300 hover:scale-[1.015] hover:border-[#22D3EE]/50 hover:shadow-xl md:col-span-2"
         >
           <div className="grid grid-cols-12 min-h-[170px] sm:min-h-[190px]">
             <div className="col-span-5 min-w-0 editorial-marble-panel border-r border-[#263342] flex items-center justify-center p-2.5 sm:p-3 relative">

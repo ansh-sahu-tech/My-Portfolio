@@ -22,8 +22,7 @@ import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
 import { getRealisticSkillIcon } from '../../components/skills/RealisticSkillIcons';
 import { 
   RealisticGradCapIcon, 
-  RealisticArrowRightIcon, 
-  RealisticCheckBadgeIcon 
+  RealisticArrowRightIcon 
 } from '../../components/common/RealisticAboutIcons';
 import { RealFrontendIcon } from '../../components/common/RealisticIcons';
 
@@ -96,7 +95,6 @@ export const HomePage: React.FC = () => {
   const slideIds = [
     'hero',
     'about',
-    'vision',
     'education',
     'skills',
     'experience',
@@ -346,62 +344,9 @@ export const HomePage: React.FC = () => {
           )}
 
           {/* ----------------------------------------------------
-              CARD 3: VISION & MISSION
+              CARD 3: EDUCATION
               ---------------------------------------------------- */}
           {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 2)) && (
-            <EditorialSlideCard
-              id="vision"
-              imageSrc="/vision-mission.png"
-              imageAlt="Mission, Vision & Core Value Wooden Blocks"
-              categoryTitle="Philosophy & Future"
-              titleRust="VISION"
-              titleBlack="MISSION"
-              activeSection="about"
-              signature="By Ansh Sahu"
-              frameShape="architectural"
-              aspectClass="aspect-[4/3]"
-              badgeText="Core Philosophy"
-              subBadgeText="guiding principles"
-              caption="Vision • Mission • Core Values"
-              tagText="Engineering Ethos"
-            >
-              <div className="space-y-4">
-                {/* Vision Block */}
-                <div className="space-y-1 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342]">
-                  <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#F8FAFC]">
-                    <span>VISION</span>
-                  </h4>
-                  <p className="text-xs sm:text-[13.5px] text-[#94A3B8] leading-relaxed">
-                    To engineer scalable, human-centered web experiences where elegant aesthetic precision seamlessly merges with high-speed computational intelligence and zero-latency user flows.
-                  </p>
-                </div>
-
-                {/* Mission Block */}
-                <div className="space-y-1 p-3.5 rounded-xl bg-[#1A2430] border border-[#263342]">
-                  <h4 className="font-display font-bold uppercase tracking-wider text-sm sm:text-base text-[#22D3EE]">
-                    <span>MISSION</span>
-                  </h4>
-                  <p className="text-xs sm:text-[13.5px] text-[#94A3B8] leading-relaxed">
-                    Bridging the divide between modern frontend engineering and applied artificial intelligence—crafting modular, accessible applications that solve real-world problems with clarity, speed, and clean code standards.
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-4 text-xs text-[#94A3B8] pt-1 font-medium">
-                  <span className="flex items-center gap-1.5 text-[#22D3EE]">
-                    <RealisticCheckBadgeIcon size={14} /> Clean Code Pragmatism
-                  </span>
-                  <span className="flex items-center gap-1.5 text-[#22D3EE]">
-                    <RealisticCheckBadgeIcon size={14} /> Mobile-First Fluidity
-                  </span>
-                </div>
-              </div>
-            </EditorialSlideCard>
-          )}
-
-          {/* ----------------------------------------------------
-              CARD 4: EDUCATION
-              ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 3)) && (
             <EditorialSlideCard
               id="education"
               imageSrc="/sanskriti-university.png"
@@ -482,9 +427,9 @@ export const HomePage: React.FC = () => {
           )}
 
           {/* ----------------------------------------------------
-              CARD 5: SKILL
+              CARD 4: SKILL
               ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 4)) && (
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 3)) && (
             <EditorialSlideCard
               id="skills"
               imageSrc="/skills.png"
@@ -563,9 +508,9 @@ export const HomePage: React.FC = () => {
           )}
 
           {/* ----------------------------------------------------
-              CARD 6: EXPERIENCE
+              CARD 5: EXPERIENCE
               ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 5)) && (
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 4)) && (
             <EditorialSlideCard
               id="experience"
               imageSrc="/experience.png"
@@ -631,9 +576,9 @@ export const HomePage: React.FC = () => {
           )}
 
           {/* ----------------------------------------------------
-              CARD 7: 2024–2026 PROJECTS
+              CARD 6: 2024–2026 PROJECTS
               ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 6)) && (
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 5)) && (
             <EditorialSlideCard
               id="projects"
               imageSrc={featuredProjects[activeProjectTab]?.image || '/ai-driver-awareness.png'}
@@ -752,9 +697,9 @@ export const HomePage: React.FC = () => {
           )}
 
           {/* ----------------------------------------------------
-              CARD 8: LET'S COLLABORATE (CONTACT)
+              CARD 7: LET'S COLLABORATE (CONTACT)
               ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 7)) && (
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 6)) && (
             <EditorialSlideCard
               id="contact"
               imageSrc="/collaborate.png"
@@ -866,9 +811,9 @@ export const HomePage: React.FC = () => {
           )}
 
           {/* ----------------------------------------------------
-              CARD 9: THANKS YOU
+              CARD 8: THANKS YOU
               ---------------------------------------------------- */}
-          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 8)) && (
+          {(viewMode === 'stream' || (viewMode === 'slide' && activeSlideIndex === 7)) && (
             <EditorialSlideCard
               id="thanks"
               imageSrc="/ansh-profile.jpg?v=2"
