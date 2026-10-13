@@ -11,8 +11,10 @@ import {
   Check, 
   Send,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Sparkles
 } from 'lucide-react';
+import confetti from 'canvas-confetti';
 import { useData } from '../../context/DataContext';
 import { useToast } from '../../context/ToastContext';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '../../components/common/SocialIcons';
@@ -21,6 +23,10 @@ import { ProjectCard } from '../../components/projects/ProjectCard';
 import { ProjectDetailModal } from '../../components/projects/ProjectDetailModal';
 import { initialProjects } from '../../data/initialProjects';
 import type { Project } from '../../types';
+import { HeroPortrait } from '../../components/home/HeroPortrait';
+import { DeveloperTerminal } from '../../components/home/DeveloperTerminal';
+import { TechMarquee } from '../../components/home/TechMarquee';
+import { InteractiveSpotlightCard } from '../../components/home/InteractiveSpotlightCard';
 import {
   RealisticTailwindIcon,
   RealisticJsIcon,
@@ -161,50 +167,59 @@ export const HomePage: React.FC = () => {
     }
   };
 
-  // Technical Skills (matching Screenshot 1 Grid with Realistic Tech Icons)
+  // Technical Skills (enhanced with categories & realistic icons)
   const skillsList = [
     {
       name: 'Tailwind CSS',
+      category: 'Styling & Design System',
       icon: <RealisticTailwindIcon size={32} />,
       desc: 'Creating responsive, modern, and clean layouts quickly using utility-first styling and fluid breakpoints.'
     },
     {
-      name: 'JavaScript',
+      name: 'JavaScript (ES6+)',
+      category: 'Core Programming',
       icon: <RealisticJsIcon size={32} />,
       desc: 'Writing efficient, modern ES6+, and optimized code for both complex frontend interactions and async logic.'
     },
     {
-      name: 'React',
+      name: 'React 19',
+      category: 'Frontend Framework',
       icon: <RealisticReactIcon size={32} />,
       desc: 'Building fast, interactive, and component-based user interfaces with state management and custom hooks.'
     },
     {
-      name: 'Next.js',
+      name: 'Next.js 15',
+      category: 'Full-Stack & SSR',
       icon: <RealisticNextjsIcon size={32} />,
       desc: 'Developing high-performance applications with server and client components, SSR, and SEO-first routing.'
     },
     {
       name: 'Python & AI/ML',
+      category: 'Machine Learning',
       icon: <RealisticPythonIcon size={32} />,
       desc: 'Applied machine learning architectures, statistical model training, and data manipulation pipelines.'
     },
     {
       name: 'Computer Vision',
+      category: 'OpenCV & Edge Inference',
       icon: <RealisticComputerVisionIcon size={32} />,
       desc: 'OpenCV image processing, facial landmark tracking (EAR/MAR), and edge-ready real-time video inference.'
     },
     {
       name: 'REST APIs',
+      category: 'Backend Integration',
       icon: <RealisticRestApisIcon size={32} />,
       desc: 'Connecting frontend clients to RESTful endpoints with robust error handling and asynchronous payload parsing.'
     },
     {
       name: 'HTML5 & CSS3',
+      category: 'Semantic Web',
       icon: <RealisticHtmlCssIcon size={32} />,
       desc: 'Clean, semantic page structure with accessible DOM hierarchies, WCAG compliance, and modern CSS properties.'
     },
     {
       name: 'Git & GitHub',
+      category: 'DevOps & Version Control',
       icon: <RealisticGitGithubIcon size={32} />,
       desc: 'Disciplined version control workflows, atomic commits, pull request management, and collaborative git practices.'
     }
@@ -258,98 +273,181 @@ export const HomePage: React.FC = () => {
     <div className="w-full min-h-screen bg-[#FEFAE0] text-[#24211D] font-sans selection:bg-[#CCD5AE] selection:text-[#24211D]">
 
       {/* ========================================================
-          1. HERO SECTION (SPLIT HERO MATCHING SCREENSHOT 1)
+          1. UPGRADED DEVELOPER HERO SECTION
           ======================================================== */}
-      <section className="relative w-full min-h-[60vh] sm:min-h-[68vh] lg:min-h-[78vh] flex items-center justify-center py-10 sm:py-16 lg:py-20 bg-[#FEFAE0] overflow-hidden">
-        <div className="max-w-[1440px] 2xl:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 items-center w-full">
+      <section className="relative w-full min-h-[70vh] sm:min-h-[75vh] lg:min-h-[82vh] flex items-center justify-center py-12 sm:py-16 lg:py-20 bg-[#FEFAE0] tech-grid-bg overflow-hidden border-b border-[#CCD5AE]/60">
+        
+        {/* Ambient Glowing Gradient Orbs */}
+        <div className="absolute top-1/4 -left-24 w-80 sm:w-96 h-80 sm:h-96 bg-[#CCD5AE]/35 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-1/3 -right-24 w-80 sm:w-96 h-80 sm:h-96 bg-[#D4A373]/25 rounded-full blur-3xl pointer-events-none -z-10" />
+
+        {/* Floating Decorative Code Tokens for Developer Atmosphere */}
+        <div className="absolute top-10 left-8 sm:left-14 text-xs font-mono text-[#D4A373]/40 select-none pointer-events-none hidden lg:block orbit-float">
+          &lt;SoftwareEngineer /&gt;
+        </div>
+        <div className="absolute bottom-16 left-12 sm:left-20 text-[11px] font-mono text-[#575249]/35 select-none pointer-events-none hidden lg:block orbit-float-delayed">
+          &#123; status: 200, cleanCode: true &#125;
+        </div>
+        <div className="absolute top-16 right-10 sm:right-16 text-xs font-mono text-[#CCD5AE] font-semibold select-none pointer-events-none hidden lg:block orbit-float-reverse">
+          git: main* [clean]
+        </div>
+        <div className="absolute bottom-20 right-14 sm:right-24 text-[11px] font-mono text-[#D4A373]/40 select-none pointer-events-none hidden lg:block orbit-float-slow">
+          console.log(&quot;Ready to build&quot;);
+        </div>
+
+        <div className="max-w-[1440px] 2xl:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-14 xl:gap-20 items-center w-full">
             
-            {/* Left Column: Circular Portrait (Pushed to Left on Desktop, Centered on Mobile/Tablet) */}
+            {/* Left Column: 3D Interactive Portrait Experience */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 flex items-center justify-center lg:justify-start relative py-2 sm:py-4 order-1 lg:order-1"
+              className="lg:col-span-5 flex items-center justify-center lg:justify-start relative py-4 sm:py-6 order-1 lg:order-1"
             >
-              <div className="relative flex items-center justify-center">
-                {/* Subtle outer concentric framing ring */}
-                <div className="absolute -inset-3 sm:-inset-4.5 md:-inset-5.5 rounded-full border border-[#CCD5AE]/75 pointer-events-none" />
-
-                {/* Main Profile Image Circle (Fluid, responsive sizing) */}
-                <div className="relative w-[210px] h-[210px] xs:w-[250px] xs:h-[250px] sm:w-[310px] sm:h-[310px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] xl:w-[440px] xl:h-[440px] rounded-full overflow-hidden hero-portrait-ring bg-[#E9EDC9] shadow-md">
-                  <img
-                    src="/ansh-profile.jpg?v=2"
-                    alt="Ansh Sahu - Frontend Developer"
-                    className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/30 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
+              <HeroPortrait />
             </motion.div>
 
-            {/* Right Column: Hero Content (Pushed to Right) */}
+            {/* Right Column: Hero Content & Developer Identity */}
             <motion.div 
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7 flex flex-col items-center lg:items-start lg:ml-auto max-w-2xl w-full space-y-4 sm:space-y-5 lg:space-y-6 text-center lg:text-left order-2 lg:order-2"
             >
+              
+              {/* Interactive CLI Badge / Terminal Pill */}
+              <div 
+                onClick={() => {
+                  navigator.clipboard.writeText('npx ansh-sahu');
+                  setCopiedField('CLI command');
+                  showInfo('Copied "npx ansh-sahu" to clipboard!');
+                  confetti({
+                    particleCount: 30,
+                    spread: 60,
+                    origin: { y: 0.65 },
+                    colors: ['#D4A373', '#CCD5AE', '#24211D']
+                  });
+                  setTimeout(() => setCopiedField(null), 2000);
+                }}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm text-xs font-mono text-[#24211D] hover:border-[#D4A373] hover:shadow-sm transition-all cursor-pointer group active:scale-95"
+                title="Click to copy CLI command"
+              >
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span className="text-[#575249] font-medium">terminal:</span>
+                <span className="font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors">npx ansh-sahu</span>
+                <span className="p-0.5 rounded text-[#D4A373] group-hover:scale-110 transition-transform">
+                  {copiedField === 'CLI command' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                </span>
+              </div>
+
               {/* Greeting & Headline */}
               <div className="space-y-1 sm:space-y-2">
-                <p className="text-base sm:text-xl lg:text-2xl font-medium text-[#575249]">
-                  Hi, I'm
-                </p>
-                <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-[#24211D] leading-[1.1]">
-                  Ansh <span className="text-[#D4A373]">Sahu</span>
+                <div className="flex items-center justify-center lg:justify-start gap-2">
+                  <p className="text-base sm:text-xl lg:text-2xl font-medium text-[#575249]">
+                    Hi, I&apos;m
+                  </p>
+                  <span className="text-xl sm:text-2xl animate-bounce">👋</span>
+                </div>
+                <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-[#24211D] leading-[1.1]">
+                  Ansh <span className="bg-gradient-to-r from-[#24211D] via-[#BD8C5C] to-[#D4A373] bg-clip-text text-transparent hover:brightness-110 transition-all">Sahu</span>
                 </h1>
               </div>
 
-              {/* Animated Cycling Role with stable height */}
-              <div className="h-9 sm:h-12 flex items-center justify-center lg:justify-start">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={roles[currentRoleIndex]}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.28 }}
-                    className="inline-flex items-center gap-2 sm:gap-2.5 text-lg xs:text-xl sm:text-2xl lg:text-3xl font-bold text-[#24211D]"
-                  >
-                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#D4A373] shrink-0" />
-                    <span>{roles[currentRoleIndex]}</span>
-                  </motion.div>
-                </AnimatePresence>
+              {/* Animated Cycling Role styled as Code Token */}
+              <div className="h-10 sm:h-12 flex items-center justify-center lg:justify-start">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm font-mono text-sm sm:text-base md:text-lg">
+                  <span className="text-[#D4A373] font-bold">&gt;</span>
+                  <span className="text-[#575249] text-xs sm:text-sm font-mono font-medium">const role =</span>
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={roles[currentRoleIndex]}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25 }}
+                      className="font-bold text-[#24211D] text-xs sm:text-sm md:text-base font-sans"
+                    >
+                      &quot;{roles[currentRoleIndex]}&quot;
+                    </motion.span>
+                  </AnimatePresence>
+                  <span className="w-1.5 h-4 bg-[#D4A373] animate-pulse inline-block" />
+                </div>
               </div>
 
-              {/* Subheading / Bio */}
+              {/* Subheading / Bio with Highlighted Technology Pills */}
               <p className="text-sm sm:text-base lg:text-lg text-[#575249] max-w-2xl mx-auto lg:mx-0 leading-relaxed px-1 sm:px-0">
-                I build scalable web applications and high-performance user interfaces using React, Next.js, and TypeScript. Dedicated to clean code, responsive UX, and applied AI/ML at Sanskriti University.
+                I build scalable web applications and high-performance user interfaces using{' '}
+                <span className="font-bold text-[#24211D] bg-[#E9EDC9] px-1.5 py-0.5 rounded border border-[#CCD5AE]">
+                  React 19
+                </span>
+                ,{' '}
+                <span className="font-bold text-[#24211D] bg-[#E9EDC9] px-1.5 py-0.5 rounded border border-[#CCD5AE]">
+                  Next.js
+                </span>
+                , and{' '}
+                <span className="font-bold text-[#24211D] bg-[#E9EDC9] px-1.5 py-0.5 rounded border border-[#CCD5AE]">
+                  TypeScript
+                </span>
+                . Dedicated to clean code architecture, responsive UX, and applied AI/ML at Sanskriti University.
               </p>
 
-              {/* CTA Action Buttons matching Screenshot 1 */}
+              {/* Developer Quick Stats Strip (Metrics) */}
+              <div className="grid grid-cols-2 xs:grid-cols-4 gap-2.5 sm:gap-3 py-1 w-full">
+                <div className="p-2.5 sm:p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:-translate-y-0.5 transition-all flex flex-col text-center">
+                  <span className="text-base sm:text-xl font-extrabold text-[#24211D]">10+</span>
+                  <span className="text-[10px] sm:text-[11px] text-[#575249] font-medium leading-tight">Projects Built</span>
+                </div>
+                <div className="p-2.5 sm:p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:-translate-y-0.5 transition-all flex flex-col text-center">
+                  <span className="text-base sm:text-xl font-extrabold text-[#24211D]">3+ Yrs</span>
+                  <span className="text-[10px] sm:text-[11px] text-[#575249] font-medium leading-tight">Coding Journey</span>
+                </div>
+                <div className="p-2.5 sm:p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:-translate-y-0.5 transition-all flex flex-col text-center">
+                  <span className="text-base sm:text-xl font-extrabold text-[#24211D]">B.Tech</span>
+                  <span className="text-[10px] sm:text-[11px] text-[#575249] font-medium leading-tight">CSE (AI &amp; ML)</span>
+                </div>
+                <div className="p-2.5 sm:p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:-translate-y-0.5 transition-all flex flex-col text-center">
+                  <span className="text-base sm:text-xl font-extrabold text-emerald-700">100%</span>
+                  <span className="text-[10px] sm:text-[11px] text-[#575249] font-medium leading-tight">Responsive &amp; UX</span>
+                </div>
+              </div>
+
+              {/* CTA Action Buttons with Interactive Feedback */}
               <div className="flex flex-col xs:flex-row items-stretch xs:items-center justify-center lg:justify-start gap-2.5 sm:gap-4 pt-1 sm:pt-2 w-full xs:w-auto">
                 <a
                   href="#projects"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold text-xs sm:text-sm shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 min-h-[44px]"
+                  className="shimmer-sweep group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold text-xs sm:text-sm shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 min-h-[44px]"
                 >
                   <span>View Projects</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
 
                 <a
                   href="#contact"
+                  onClick={() => {
+                    confetti({
+                      particleCount: 40,
+                      spread: 60,
+                      origin: { y: 0.65 },
+                      colors: ['#D4A373', '#CCD5AE', '#24211D']
+                    });
+                  }}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] hover:border-[#D4A373] hover:bg-[#E9EDC9] text-[#24211D] font-semibold text-xs sm:text-sm shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 min-h-[44px]"
                 >
-                  <span>Let's Collaborate</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <Sparkles className="w-4 h-4 text-[#D4A373]" />
+                  <span>Let&apos;s Collaborate</span>
                 </a>
 
                 <a
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-full text-xs font-semibold text-[#575249] hover:text-[#24211D] hover:bg-[#E9EDC9]/60 transition-colors min-h-[44px]"
+                  className="group inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-full text-xs font-semibold text-[#575249] hover:text-[#24211D] hover:bg-[#E9EDC9]/60 transition-colors min-h-[44px]"
                 >
-                  <FileDown className="w-4 h-4 text-[#D4A373]" />
+                  <FileDown className="w-4 h-4 text-[#D4A373] group-hover:translate-y-0.5 transition-transform" />
                   <span>Resume PDF</span>
                 </a>
               </div>
@@ -384,9 +482,37 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================
-          2. SKILLS & TECHNOLOGIES SECTION (GRID MATCHING SCREENSHOT 1)
+          2. CONTINUOUS TECH ARSENAL MARQUEE
           ======================================================== */}
-      <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-[#FEFAE0]">
+      <TechMarquee />
+
+      {/* ========================================================
+          3. INTERACTIVE DEVELOPER TERMINAL / CODE SANDBOX
+          ======================================================== */}
+      <section className="py-10 sm:py-14 bg-[#FEFAE0]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-1.5">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
+                Developer Console
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#24211D]">
+                Interactive Code Sandbox
+              </h2>
+              <p className="text-xs sm:text-sm text-[#575249]">
+                Explore my technical configuration, principles, and runnable profile environment.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <DeveloperTerminal />
+        </div>
+      </section>
+
+      {/* ========================================================
+          4. SKILLS & TECHNOLOGIES SECTION (SPOTLIGHT CARDS)
+          ======================================================== */}
+      <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-[#FAEDCD]/40 border-t border-[#CCD5AE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
@@ -404,16 +530,22 @@ export const HomePage: React.FC = () => {
             </div>
           </ScrollReveal>
 
-          {/* Technical Grid (Fluid: 1 col on mobile, 2 cols on tablet, 3 cols on desktop) */}
+          {/* Technical Grid with Cursor Spotlight Effect */}
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" staggerDelay={0.05}>
             {skillsList.map((skill, index) => (
               <StaggerItem key={skill.name} index={index} className="h-full flex flex-col">
-                <div
-                  className="group p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 h-full"
+                <InteractiveSpotlightCard
+                  className="p-5 sm:p-6 group flex flex-col justify-between h-full bg-[#FFFFFF]"
+                  spotlightColor="rgba(212, 163, 115, 0.2)"
                 >
                   <div className="space-y-3.5 sm:space-y-4">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform shrink-0">
-                      {skill.icon}
+                    <div className="flex items-center justify-between">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:rotate-2 transition-transform shrink-0">
+                        {skill.icon}
+                      </div>
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#E9EDC9] text-[#24211D] border border-[#CCD5AE]">
+                        {skill.category}
+                      </span>
                     </div>
                     <div>
                       <h3 className="text-base sm:text-lg font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors">
@@ -424,7 +556,7 @@ export const HomePage: React.FC = () => {
                       </p>
                     </div>
                   </div>
-                </div>
+                </InteractiveSpotlightCard>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -446,7 +578,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================
-          3. SERVICES I PROVIDE SECTION (GRID MATCHING SCREENSHOT 1 & 2)
+          5. SERVICES I PROVIDE SECTION (SPOTLIGHT CARDS)
           ======================================================== */}
       <section id="services" className="py-12 sm:py-16 lg:py-20 bg-[#FAEDCD]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -466,15 +598,16 @@ export const HomePage: React.FC = () => {
             </div>
           </ScrollReveal>
 
-          {/* 4-column responsive grid matching screenshot services */}
+          {/* 4-column responsive grid with Spotlight Cards */}
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" staggerDelay={0.04}>
             {servicesList.map((service, index) => (
               <StaggerItem key={service.title} index={index} className="h-full flex flex-col">
-                <div
-                  className="group p-4 sm:p-5 lg:p-5 xl:p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 h-full"
+                <InteractiveSpotlightCard
+                  className="p-4 sm:p-5 lg:p-5 xl:p-6 group flex flex-col justify-between h-full bg-[#FFFFFF]"
+                  spotlightColor="rgba(212, 163, 115, 0.2)"
                 >
                   <div className="space-y-3 sm:space-y-4">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform shrink-0">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#FEFAE0] border border-[#CCD5AE] flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:rotate-2 transition-transform shrink-0">
                       {service.icon}
                     </div>
                     <div>
@@ -486,7 +619,7 @@ export const HomePage: React.FC = () => {
                       </p>
                     </div>
                   </div>
-                </div>
+                </InteractiveSpotlightCard>
               </StaggerItem>
             ))}
           </StaggerContainer>

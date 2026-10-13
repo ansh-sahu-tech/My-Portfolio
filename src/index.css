@@ -111,7 +111,58 @@
       transform: translateY(0px) scale(1);
     }
     50% {
-      transform: translateY(-6px) scale(1.03);
+      transform: translateY(-8px) scale(1.02);
+    }
+  }
+
+  @keyframes orbit-float-reverse {
+    0%, 100% {
+      transform: translateY(0px) scale(1);
+    }
+    50% {
+      transform: translateY(8px) scale(0.98);
+    }
+  }
+
+  @keyframes radar-pulse {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes shimmer-sweep {
+    0% {
+      transform: translateX(-150%) skewX(-20deg);
+    }
+    100% {
+      transform: translateX(250%) skewX(-20deg);
     }
   }
 
@@ -125,15 +176,57 @@
   }
 
   .orbit-float-slow {
-    animation: orbit-float 5s ease-in-out infinite;
+    animation: orbit-float 5.5s ease-in-out infinite;
     animation-delay: -1s;
+  }
+
+  .orbit-float-reverse {
+    animation: orbit-float-reverse 4.8s ease-in-out infinite;
+    animation-delay: -2.5s;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 28s linear infinite;
+  }
+
+  .animate-spin-slow-reverse {
+    animation: spin-slow 35s linear infinite reverse;
+  }
+
+  .animate-radar {
+    animation: radar-pulse 2.2s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 32s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .shimmer-sweep {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-sweep::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    animation: shimmer-sweep 3.5s infinite;
+    pointer-events: none;
   }
 
   /* Hero circular portrait frame */
   .hero-portrait-ring {
     border-radius: 9999px;
     border: 3px solid #CCD5AE;
-    box-shadow: 0 0 0 8px rgba(233, 237, 201, 0.6), 0 16px 36px -6px rgba(36, 33, 29, 0.15);
+    box-shadow: 0 0 0 8px rgba(233, 237, 201, 0.7), 0 20px 40px -8px rgba(36, 33, 29, 0.2);
   }
 }
 
