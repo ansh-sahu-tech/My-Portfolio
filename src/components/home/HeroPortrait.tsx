@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { RealisticReactIcon } from '../skills/RealisticSkillIcons';
 
 export const HeroPortrait: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -73,44 +72,6 @@ export const HeroPortrait: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/20 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
-
-        {/* Single Tasteful Floating Tech Chip (Top-Right) */}
-        <motion.div
-          className="absolute -top-1 -right-2 sm:-top-2 sm:-right-4 z-20 orbit-float"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-        >
-          <div className="flex items-center gap-2 px-3 py-2 rounded-2xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-[0_8px_20px_-4px_rgba(36,33,29,0.12)] hover:border-[#D4A373] transition-colors">
-            <div className="w-6 h-6 rounded-lg bg-[#FEFAE0] flex items-center justify-center p-0.5 border border-[#CCD5AE]/60 shadow-xs">
-              <RealisticReactIcon size={18} />
-            </div>
-            <div className="flex flex-col text-left">
-              <span className="text-[11px] font-bold text-[#24211D] leading-tight">
-                React &amp; Next.js
-              </span>
-              <span className="text-[9px] font-medium text-[#575249] leading-tight">
-                Frontend Specialist
-              </span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Clean Natural Status Badge (Bottom-Center) */}
-        <motion.div
-          className="absolute -bottom-4 sm:-bottom-5 left-1/2 -translate-x-1/2 z-20"
-          whileHover={{ scale: 1.04 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-        >
-          <div className="flex items-center gap-2 px-4 py-1.5 sm:py-2 rounded-full bg-[#FFFFFF] text-[#24211D] shadow-[0_10px_25px_-5px_rgba(36,33,29,0.15)] border border-[#CCD5AE] hover:border-[#D4A373] transition-colors">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="text-xs font-bold tracking-tight text-[#24211D]">
-              Open for Opportunities
-            </span>
-          </div>
-        </motion.div>
 
       </motion.div>
     </div>

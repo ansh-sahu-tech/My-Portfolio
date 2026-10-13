@@ -22,7 +22,6 @@ import { ProjectDetailModal } from '../../components/projects/ProjectDetailModal
 import { initialProjects } from '../../data/initialProjects';
 import type { Project } from '../../types';
 import { HeroPortrait } from '../../components/home/HeroPortrait';
-import { DeveloperTerminal } from '../../components/home/DeveloperTerminal';
 import { TechMarquee } from '../../components/home/TechMarquee';
 import { InteractiveSpotlightCard } from '../../components/home/InteractiveSpotlightCard';
 import {
@@ -299,13 +298,6 @@ export const HomePage: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7 flex flex-col items-center lg:items-start lg:ml-auto max-w-2xl w-full space-y-4 sm:space-y-5 lg:space-y-6 text-center lg:text-left order-2 lg:order-2"
             >
-              
-              {/* Subtle Natural Status Tag */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#CCD5AE] shadow-xs text-xs font-medium text-[#24211D]">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Frontend Developer &bull; AI &amp; ML</span>
-              </div>
-
               {/* Greeting & Name Headline */}
               <div className="space-y-1.5 sm:space-y-2">
                 <p className="text-base sm:text-lg lg:text-xl font-medium text-[#575249]">
@@ -426,30 +418,7 @@ export const HomePage: React.FC = () => {
       <TechMarquee />
 
       {/* ========================================================
-          3. INTERACTIVE DEVELOPER TERMINAL / CODE SANDBOX
-          ======================================================== */}
-      <section className="py-10 sm:py-14 bg-[#FEFAE0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-1.5">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#D4A373]">
-                Developer Console
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#24211D]">
-                Interactive Code Sandbox
-              </h2>
-              <p className="text-xs sm:text-sm text-[#575249]">
-                Explore my technical configuration, principles, and runnable profile environment.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <DeveloperTerminal />
-        </div>
-      </section>
-
-      {/* ========================================================
-          4. SKILLS & TECHNOLOGIES SECTION (SPOTLIGHT CARDS)
+          3. SKILLS & TECHNOLOGIES SECTION (SPOTLIGHT CARDS)
           ======================================================== */}
       <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-[#FAEDCD]/40 border-t border-[#CCD5AE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
