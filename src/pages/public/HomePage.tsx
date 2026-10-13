@@ -272,7 +272,7 @@ export const HomePage: React.FC = () => {
       {/* ========================================================
           1. ELEGANT REALISTIC HERO SECTION (CLEAN & PROFESSIONAL)
           ======================================================== */}
-      <section className="relative w-full min-h-[70vh] sm:min-h-[75vh] lg:min-h-[80vh] flex items-center justify-center py-12 sm:py-16 lg:py-20 bg-[#FEFAE0] overflow-hidden border-b border-[#CCD5AE]/60">
+      <section className="relative w-full min-h-[60vh] sm:min-h-[68vh] lg:min-h-[75vh] flex items-center justify-center pt-4 pb-12 sm:pt-6 sm:pb-14 lg:pt-8 lg:pb-16 bg-[#FEFAE0] overflow-hidden border-b border-[#CCD5AE]/60">
         
         {/* Soft Natural Ambient Light (No squares, no lines) */}
         <div className="absolute top-1/4 -left-20 w-80 sm:w-96 h-80 sm:h-96 bg-[#CCD5AE]/30 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -286,7 +286,7 @@ export const HomePage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 flex items-center justify-center lg:justify-start relative py-4 sm:py-6 order-1 lg:order-1"
+              className="lg:col-span-5 flex items-center justify-center lg:justify-start relative pt-0 pb-2 sm:pb-4 order-1 lg:order-1"
             >
               <HeroPortrait />
             </motion.div>

@@ -89,7 +89,7 @@ export const HeroPortrait: React.FC = () => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className="relative flex items-center justify-center p-2 sm:p-4 select-none cursor-pointer group w-full"
+      className="relative flex items-center justify-center px-2 sm:px-4 pt-0 pb-2 select-none cursor-pointer group w-full"
       style={{ perspective: 1200 }}
     >
       {/* Pure Frameless Subject with 3D Tilt - 100% Free of cards and background shapes */}
@@ -104,7 +104,7 @@ export const HeroPortrait: React.FC = () => {
       >
         {/* Natural subtle drop shadow - Zero background glow spillover */}
         <div 
-          className="relative w-full aspect-square transition-transform duration-500 ease-out group-hover:scale-104 drop-shadow-[0_20px_35px_rgba(36,33,29,0.18)]"
+          className="relative w-full aspect-[1024/956] transition-transform duration-500 ease-out group-hover:scale-104 drop-shadow-[0_20px_35px_rgba(36,33,29,0.18)]"
         >
           {/* Bottom Fade Mask Container */}
           <div
@@ -116,7 +116,7 @@ export const HeroPortrait: React.FC = () => {
           >
             {/* Cutout Image - Natural, crisp, professional enhancement on hover */}
             <img
-              src="/ansh-cutout.png?v=1"
+              src="/ansh-cutout.png?v=2"
               alt="Ansh Sahu - Frontend Developer"
               className="w-full h-full object-contain object-bottom transition-all duration-300"
               style={{
@@ -133,8 +133,8 @@ export const HeroPortrait: React.FC = () => {
                 opacity: isHovered ? 0.45 : 0,
                 background: `radial-gradient(circle 260px at ${cursorPos.x}% ${cursorPos.y}%, ${currentLight.primary} 0%, ${currentLight.secondary} 50%, transparent 80%)`,
                 mixBlendMode: 'soft-light',
-                maskImage: 'url(/ansh-cutout.png?v=1)',
-                WebkitMaskImage: 'url(/ansh-cutout.png?v=1)',
+                maskImage: 'url(/ansh-cutout.png?v=2)',
+                WebkitMaskImage: 'url(/ansh-cutout.png?v=2)',
                 maskSize: 'contain',
                 WebkitMaskSize: 'contain',
                 maskRepeat: 'no-repeat',
@@ -151,8 +151,8 @@ export const HeroPortrait: React.FC = () => {
                 opacity: isHovered ? 0.22 : 0,
                 background: `radial-gradient(circle 180px at ${cursorPos.x}% ${cursorPos.y}%, ${currentLight.highlight} 0%, transparent 75%)`,
                 mixBlendMode: 'overlay',
-                maskImage: 'url(/ansh-cutout.png?v=1)',
-                WebkitMaskImage: 'url(/ansh-cutout.png?v=1)',
+                maskImage: 'url(/ansh-cutout.png?v=2)',
+                WebkitMaskImage: 'url(/ansh-cutout.png?v=2)',
                 maskSize: 'contain',
                 WebkitMaskSize: 'contain',
                 maskRepeat: 'no-repeat',
