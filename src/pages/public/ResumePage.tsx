@@ -7,8 +7,10 @@ import {
   Layers, 
   MapPin,
   ExternalLink,
-  Award
+  Award,
+  CheckCircle2
 } from 'lucide-react';
+import { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { Button } from '../../components/common/Button';
 import { Badge } from '../../components/common/Badge';
@@ -18,14 +20,51 @@ import { GithubIcon, LinkedinIcon } from '../../components/common/SocialIcons';
 
 export const ResumePage: React.FC = () => {
   const { settings, projects, certificates } = useData();
+  const [downloadStatus, setDownloadStatus] = useState<'idle' | 'downloading' | 'success'>('idle');
 
-  const handleDownloadPdf = () => {
-    const link = document.createElement('a');
-    link.href = settings.resumeUrl || '/resume.pdf';
-    link.download = 'Ansh_Sahu_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const resumeUrl = settings.resumeUrl || '/resume.pdf';
+
+  const handleDownloadPdf = async () => {
+    if (downloadStatus === 'downloading') return;
+    setDownloadStatus('downloading');
+
+    try {
+      // 1. Fetch binary blob to guarantee the browser saves as file instead of viewing inline
+      const response = await fetch(resumeUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = 'Ansh_Sahu_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setTimeout(() => {
+        window.URL.revokeObjectURL(blobUrl);
+      }, 1000);
+
+      setDownloadStatus('success');
+      setTimeout(() => {
+        setDownloadStatus('idle');
+      }, 2500);
+    } catch {
+      // 2. Resilient fallback: direct programmatic anchor click
+      const link = document.createElement('a');
+      link.href = resumeUrl;
+      link.download = 'Ansh_Sahu_Resume.pdf';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setDownloadStatus('idle');
+    }
   };
 
   return (
@@ -53,14 +92,37 @@ export const ResumePage: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-              <Button size="sm" variant="outline" icon={<ExternalLink className="w-3.5 h-3.5" />}>
-                View PDF
-              </Button>
-            </a>
+            <Button
+              size="sm"
+              variant="outline"
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              icon={<ExternalLink className="w-3.5 h-3.5" />}
+              aria-label="View Ansh Sahu Resume PDF in new tab"
+            >
+              View PDF
+            </Button>
 
-            <Button size="sm" variant="primary" onClick={handleDownloadPdf} icon={<FileDown className="w-3.5 h-3.5" />}>
-              Download PDF
+            <Button
+              size="sm"
+              variant="primary"
+              onClick={handleDownloadPdf}
+              isLoading={downloadStatus === 'downloading'}
+              icon={
+                downloadStatus === 'success' ? (
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
+                ) : (
+                  <FileDown className="w-3.5 h-3.5" />
+                )
+              }
+              aria-label="Download Ansh Sahu Resume PDF"
+            >
+              {downloadStatus === 'downloading'
+                ? 'Downloading...'
+                : downloadStatus === 'success'
+                ? 'Downloaded!'
+                : 'Download PDF'}
             </Button>
           </div>
         </div>

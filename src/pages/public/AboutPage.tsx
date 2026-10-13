@@ -208,11 +208,17 @@ export const AboutPage: React.FC = () => {
                     Get in Touch
                   </Button>
                 </Link>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full xs:w-auto">
-                  <Button size="md" variant="secondary" icon={<RealisticDownloadDocIcon size={16} />} className="w-full justify-center">
-                    Download Resume
-                  </Button>
-                </a>
+                <Button
+                  href={settings.resumeUrl || '/resume.pdf'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="md"
+                  variant="secondary"
+                  icon={<RealisticDownloadDocIcon size={16} />}
+                  className="w-full xs:w-auto justify-center"
+                >
+                  Download Resume
+                </Button>
               </div>
             </div>
           </div>

@@ -182,11 +182,17 @@ export const EducationPage: React.FC = () => {
               </Button>
             </Link>
 
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full xs:w-auto">
-              <Button size="md" variant="secondary" icon={<FileDown className="w-4 h-4" />} className="w-full justify-center">
-                Download Resume PDF
-              </Button>
-            </a>
+            <Button
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              size="md"
+              variant="secondary"
+              icon={<FileDown className="w-4 h-4" />}
+              className="w-full xs:w-auto justify-center"
+            >
+              Download Resume PDF
+            </Button>
           </div>
         </div>
       </ScrollReveal>

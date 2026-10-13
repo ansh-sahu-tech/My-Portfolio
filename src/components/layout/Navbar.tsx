@@ -140,16 +140,17 @@ export const Navbar: React.FC<NavbarProps> = () => {
             </div>
 
             {/* Resume Action */}
-            <a
+            <Button
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex"
+              size="sm"
+              variant="secondary"
+              className="hidden sm:inline-flex font-semibold text-xs rounded-full border border-[#CCD5AE] bg-[#E9EDC9] hover:bg-[#CCD5AE] text-[#24211D] px-2.5 py-1.5"
+              icon={<FileDown className="w-3.5 h-3.5 text-[#24211D]" />}
             >
-              <Button size="sm" variant="secondary" className="font-semibold text-xs rounded-full border border-[#CCD5AE] bg-[#E9EDC9] hover:bg-[#CCD5AE] text-[#24211D] px-2.5 py-1.5" icon={<FileDown className="w-3.5 h-3.5 text-[#24211D]" />}>
-                CV
-              </Button>
-            </a>
+              CV
+            </Button>
 
             {/* Hire Me CTA Button */}
             <Link to="/contact" className="hidden xs:inline-flex">
@@ -231,16 +232,17 @@ export const Navbar: React.FC<NavbarProps> = () => {
                 >
                   <LinkedinIcon size={14} /> <span>LinkedIn</span>
                 </a>
-                <a
+                <Button
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full"
+                  size="sm"
+                  variant="secondary"
+                  className="w-full text-[11px] sm:text-xs bg-[#E9EDC9] hover:bg-[#CCD5AE] text-[#24211D] font-semibold min-h-[40px] justify-center px-1.5 rounded-xl border border-[#CCD5AE]"
+                  icon={<FileDown className="w-3.5 h-3.5 text-[#24211D]" />}
                 >
-                  <Button size="sm" variant="secondary" className="w-full text-[11px] sm:text-xs bg-[#E9EDC9] hover:bg-[#CCD5AE] text-[#24211D] font-semibold min-h-[40px] justify-center px-1.5 rounded-xl border border-[#CCD5AE]" icon={<FileDown className="w-3.5 h-3.5 text-[#24211D]" />}>
-                    CV
-                  </Button>
-                </a>
+                  CV
+                </Button>
               </div>
             </div>
           </motion.div>

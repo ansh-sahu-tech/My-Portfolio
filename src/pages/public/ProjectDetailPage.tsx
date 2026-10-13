@@ -107,23 +107,30 @@ export const ProjectDetailPage: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2.5 w-full sm:w-auto">
-              <a
+              <Button
                 href={githubHref}
                 target="_blank"
                 rel="noreferrer"
-                className="flex-1 sm:flex-initial"
+                size="md"
+                variant="secondary"
+                icon={<GithubIcon size={16} />}
+                className="w-full justify-center flex-1 sm:flex-initial"
               >
-                <Button size="md" variant="secondary" icon={<GithubIcon size={16} />} className="w-full justify-center">
-                  View GitHub
-                </Button>
-              </a>
+                View GitHub
+              </Button>
 
               {liveHref && (
-                <a href={liveHref} target="_blank" rel="noreferrer" className="flex-1 sm:flex-initial">
-                  <Button size="md" variant="primary" icon={<ExternalLink className="w-4 h-4" />} className="w-full justify-center">
-                    Live Demo
-                  </Button>
-                </a>
+                <Button
+                  href={liveHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  size="md"
+                  variant="primary"
+                  icon={<ExternalLink className="w-4 h-4" />}
+                  className="w-full justify-center flex-1 sm:flex-initial"
+                >
+                  Live Demo
+                </Button>
               )}
             </div>
           </div>
