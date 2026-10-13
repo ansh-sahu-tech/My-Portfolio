@@ -11,10 +11,8 @@ import {
   Check, 
   Send,
   CheckCircle2,
-  AlertCircle,
-  Sparkles
+  AlertCircle
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
 import { useData } from '../../context/DataContext';
 import { useToast } from '../../context/ToastContext';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '../../components/common/SocialIcons';
@@ -273,34 +271,20 @@ export const HomePage: React.FC = () => {
     <div className="w-full min-h-screen bg-[#FEFAE0] text-[#24211D] font-sans selection:bg-[#CCD5AE] selection:text-[#24211D]">
 
       {/* ========================================================
-          1. UPGRADED DEVELOPER HERO SECTION
+          1. ELEGANT REALISTIC HERO SECTION (CLEAN & PROFESSIONAL)
           ======================================================== */}
-      <section className="relative w-full min-h-[70vh] sm:min-h-[75vh] lg:min-h-[82vh] flex items-center justify-center py-12 sm:py-16 lg:py-20 bg-[#FEFAE0] tech-grid-bg overflow-hidden border-b border-[#CCD5AE]/60">
+      <section className="relative w-full min-h-[70vh] sm:min-h-[75vh] lg:min-h-[80vh] flex items-center justify-center py-12 sm:py-16 lg:py-20 bg-[#FEFAE0] overflow-hidden border-b border-[#CCD5AE]/60">
         
-        {/* Ambient Glowing Gradient Orbs */}
-        <div className="absolute top-1/4 -left-24 w-80 sm:w-96 h-80 sm:h-96 bg-[#CCD5AE]/35 rounded-full blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-1/3 -right-24 w-80 sm:w-96 h-80 sm:h-96 bg-[#D4A373]/25 rounded-full blur-3xl pointer-events-none -z-10" />
-
-        {/* Floating Decorative Code Tokens for Developer Atmosphere */}
-        <div className="absolute top-10 left-8 sm:left-14 text-xs font-mono text-[#D4A373]/40 select-none pointer-events-none hidden lg:block orbit-float">
-          &lt;SoftwareEngineer /&gt;
-        </div>
-        <div className="absolute bottom-16 left-12 sm:left-20 text-[11px] font-mono text-[#575249]/35 select-none pointer-events-none hidden lg:block orbit-float-delayed">
-          &#123; status: 200, cleanCode: true &#125;
-        </div>
-        <div className="absolute top-16 right-10 sm:right-16 text-xs font-mono text-[#CCD5AE] font-semibold select-none pointer-events-none hidden lg:block orbit-float-reverse">
-          git: main* [clean]
-        </div>
-        <div className="absolute bottom-20 right-14 sm:right-24 text-[11px] font-mono text-[#D4A373]/40 select-none pointer-events-none hidden lg:block orbit-float-slow">
-          console.log(&quot;Ready to build&quot;);
-        </div>
+        {/* Soft Natural Ambient Light (No squares, no lines) */}
+        <div className="absolute top-1/4 -left-20 w-80 sm:w-96 h-80 sm:h-96 bg-[#CCD5AE]/30 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-1/3 -right-20 w-80 sm:w-96 h-80 sm:h-96 bg-[#D4A373]/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
         <div className="max-w-[1440px] 2xl:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-14 xl:gap-20 items-center w-full">
             
-            {/* Left Column: 3D Interactive Portrait Experience */}
+            {/* Left Column: Natural Framed Portrait */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.92 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-5 flex items-center justify-center lg:justify-start relative py-4 sm:py-6 order-1 lg:order-1"
@@ -308,136 +292,91 @@ export const HomePage: React.FC = () => {
               <HeroPortrait />
             </motion.div>
 
-            {/* Right Column: Hero Content & Developer Identity */}
+            {/* Right Column: Hero Content (Clean & Authentic) */}
             <motion.div 
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7 flex flex-col items-center lg:items-start lg:ml-auto max-w-2xl w-full space-y-4 sm:space-y-5 lg:space-y-6 text-center lg:text-left order-2 lg:order-2"
             >
               
-              {/* Interactive CLI Badge / Terminal Pill */}
-              <div 
-                onClick={() => {
-                  navigator.clipboard.writeText('npx ansh-sahu');
-                  setCopiedField('CLI command');
-                  showInfo('Copied "npx ansh-sahu" to clipboard!');
-                  confetti({
-                    particleCount: 30,
-                    spread: 60,
-                    origin: { y: 0.65 },
-                    colors: ['#D4A373', '#CCD5AE', '#24211D']
-                  });
-                  setTimeout(() => setCopiedField(null), 2000);
-                }}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm text-xs font-mono text-[#24211D] hover:border-[#D4A373] hover:shadow-sm transition-all cursor-pointer group active:scale-95"
-                title="Click to copy CLI command"
-              >
-                <span className="flex h-2 w-2 relative">
-                  <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                </span>
-                <span className="text-[#575249] font-medium">terminal:</span>
-                <span className="font-bold text-[#24211D] group-hover:text-[#D4A373] transition-colors">npx ansh-sahu</span>
-                <span className="p-0.5 rounded text-[#D4A373] group-hover:scale-110 transition-transform">
-                  {copiedField === 'CLI command' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                </span>
+              {/* Subtle Natural Status Tag */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#CCD5AE] shadow-xs text-xs font-medium text-[#24211D]">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Frontend Developer &bull; AI &amp; ML</span>
               </div>
 
-              {/* Greeting & Headline */}
-              <div className="space-y-1 sm:space-y-2">
-                <div className="flex items-center justify-center lg:justify-start gap-2">
-                  <p className="text-base sm:text-xl lg:text-2xl font-medium text-[#575249]">
-                    Hi, I&apos;m
-                  </p>
-                  <span className="text-xl sm:text-2xl animate-bounce">👋</span>
-                </div>
-                <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-[#24211D] leading-[1.1]">
-                  Ansh <span className="bg-gradient-to-r from-[#24211D] via-[#BD8C5C] to-[#D4A373] bg-clip-text text-transparent hover:brightness-110 transition-all">Sahu</span>
+              {/* Greeting & Name Headline */}
+              <div className="space-y-1.5 sm:space-y-2">
+                <p className="text-base sm:text-lg lg:text-xl font-medium text-[#575249]">
+                  Hi, I&apos;m
+                </p>
+                <h1 className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#24211D] leading-[1.08]">
+                  Ansh <span className="text-[#D4A373]">Sahu</span>
                 </h1>
               </div>
 
-              {/* Animated Cycling Role styled as Code Token */}
-              <div className="h-10 sm:h-12 flex items-center justify-center lg:justify-start">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#FFFFFF] border-2 border-[#CCD5AE] shadow-sm font-mono text-sm sm:text-base md:text-lg">
-                  <span className="text-[#D4A373] font-bold">&gt;</span>
-                  <span className="text-[#575249] text-xs sm:text-sm font-mono font-medium">const role =</span>
+              {/* Clean, Natural Role Cycler */}
+              <div className="h-9 sm:h-11 flex items-center justify-center lg:justify-start">
+                <div className="inline-flex items-center gap-2.5 text-lg xs:text-xl sm:text-2xl lg:text-3xl font-bold text-[#24211D]">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#D4A373] shrink-0" />
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={roles[currentRoleIndex]}
-                      initial={{ opacity: 0, y: 8 }}
+                      initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
+                      exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.25 }}
-                      className="font-bold text-[#24211D] text-xs sm:text-sm md:text-base font-sans"
+                      className="text-[#D4A373]"
                     >
-                      &quot;{roles[currentRoleIndex]}&quot;
+                      {roles[currentRoleIndex]}
                     </motion.span>
                   </AnimatePresence>
-                  <span className="w-1.5 h-4 bg-[#D4A373] animate-pulse inline-block" />
                 </div>
               </div>
 
-              {/* Subheading / Bio with Highlighted Technology Pills */}
-              <p className="text-sm sm:text-base lg:text-lg text-[#575249] max-w-2xl mx-auto lg:mx-0 leading-relaxed px-1 sm:px-0">
+              {/* Natural Bio Copy (No chunky border pills) */}
+              <p className="text-sm sm:text-base lg:text-lg text-[#575249] max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
                 I build scalable web applications and high-performance user interfaces using{' '}
-                <span className="font-bold text-[#24211D] bg-[#E9EDC9] px-1.5 py-0.5 rounded border border-[#CCD5AE]">
-                  React 19
-                </span>
-                ,{' '}
-                <span className="font-bold text-[#24211D] bg-[#E9EDC9] px-1.5 py-0.5 rounded border border-[#CCD5AE]">
-                  Next.js
-                </span>
-                , and{' '}
-                <span className="font-bold text-[#24211D] bg-[#E9EDC9] px-1.5 py-0.5 rounded border border-[#CCD5AE]">
-                  TypeScript
-                </span>
-                . Dedicated to clean code architecture, responsive UX, and applied AI/ML at Sanskriti University.
+                <strong className="font-semibold text-[#24211D]">React</strong>,{' '}
+                <strong className="font-semibold text-[#24211D]">Next.js</strong>, and{' '}
+                <strong className="font-semibold text-[#24211D]">TypeScript</strong>. Dedicated to clean code, responsive UX, and applied AI/ML at Sanskriti University.
               </p>
 
-              {/* Developer Quick Stats Strip (Metrics) */}
-              <div className="grid grid-cols-2 xs:grid-cols-4 gap-2.5 sm:gap-3 py-1 w-full">
-                <div className="p-2.5 sm:p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:-translate-y-0.5 transition-all flex flex-col text-center">
-                  <span className="text-base sm:text-xl font-extrabold text-[#24211D]">10+</span>
-                  <span className="text-[10px] sm:text-[11px] text-[#575249] font-medium leading-tight">Projects Built</span>
+              {/* Quick Metrics Strip */}
+              <div className="grid grid-cols-2 xs:grid-cols-4 gap-3 sm:gap-4 py-1 w-full">
+                <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-xs hover:border-[#D4A373] hover:shadow-sm transition-all flex flex-col text-center">
+                  <span className="text-lg sm:text-2xl font-extrabold text-[#24211D]">10+</span>
+                  <span className="text-[11px] text-[#575249] font-medium mt-0.5">Projects Built</span>
                 </div>
-                <div className="p-2.5 sm:p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:-translate-y-0.5 transition-all flex flex-col text-center">
-                  <span className="text-base sm:text-xl font-extrabold text-[#24211D]">3+ Yrs</span>
-                  <span className="text-[10px] sm:text-[11px] text-[#575249] font-medium leading-tight">Coding Journey</span>
+                <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-xs hover:border-[#D4A373] hover:shadow-sm transition-all flex flex-col text-center">
+                  <span className="text-lg sm:text-2xl font-extrabold text-[#24211D]">3+ Yrs</span>
+                  <span className="text-[11px] text-[#575249] font-medium mt-0.5">Coding Experience</span>
                 </div>
-                <div className="p-2.5 sm:p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:-translate-y-0.5 transition-all flex flex-col text-center">
-                  <span className="text-base sm:text-xl font-extrabold text-[#24211D]">B.Tech</span>
-                  <span className="text-[10px] sm:text-[11px] text-[#575249] font-medium leading-tight">CSE (AI &amp; ML)</span>
+                <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-xs hover:border-[#D4A373] hover:shadow-sm transition-all flex flex-col text-center">
+                  <span className="text-lg sm:text-2xl font-extrabold text-[#24211D]">B.Tech</span>
+                  <span className="text-[11px] text-[#575249] font-medium mt-0.5">CSE (AI &amp; ML)</span>
                 </div>
-                <div className="p-2.5 sm:p-3 rounded-xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-sm hover:border-[#D4A373] hover:-translate-y-0.5 transition-all flex flex-col text-center">
-                  <span className="text-base sm:text-xl font-extrabold text-emerald-700">100%</span>
-                  <span className="text-[10px] sm:text-[11px] text-[#575249] font-medium leading-tight">Responsive &amp; UX</span>
+                <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FFFFFF] border border-[#CCD5AE] shadow-xs hover:border-[#D4A373] hover:shadow-sm transition-all flex flex-col text-center">
+                  <span className="text-lg sm:text-2xl font-extrabold text-[#24211D]">100%</span>
+                  <span className="text-[11px] text-[#575249] font-medium mt-0.5">Responsive UX</span>
                 </div>
               </div>
 
-              {/* CTA Action Buttons with Interactive Feedback */}
-              <div className="flex flex-col xs:flex-row items-stretch xs:items-center justify-center lg:justify-start gap-2.5 sm:gap-4 pt-1 sm:pt-2 w-full xs:w-auto">
+              {/* Clean, Tactile Action Buttons */}
+              <div className="flex flex-col xs:flex-row items-stretch xs:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2 w-full xs:w-auto">
                 <a
                   href="#projects"
-                  className="shimmer-sweep group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold text-xs sm:text-sm shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 min-h-[44px]"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#24211D] hover:bg-[#D4A373] text-[#FFFFFF] font-semibold text-xs sm:text-sm shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 min-h-[44px]"
                 >
                   <span>View Projects</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4" />
                 </a>
 
                 <a
                   href="#contact"
-                  onClick={() => {
-                    confetti({
-                      particleCount: 40,
-                      spread: 60,
-                      origin: { y: 0.65 },
-                      colors: ['#D4A373', '#CCD5AE', '#24211D']
-                    });
-                  }}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] hover:border-[#D4A373] hover:bg-[#E9EDC9] text-[#24211D] font-semibold text-xs sm:text-sm shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 min-h-[44px]"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#FFFFFF] border-2 border-[#CCD5AE] hover:border-[#D4A373] hover:bg-[#E9EDC9]/50 text-[#24211D] font-semibold text-xs sm:text-sm shadow-xs transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 min-h-[44px]"
                 >
-                  <Sparkles className="w-4 h-4 text-[#D4A373]" />
                   <span>Let&apos;s Collaborate</span>
                 </a>
 
@@ -445,9 +384,9 @@ export const HomePage: React.FC = () => {
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-full text-xs font-semibold text-[#575249] hover:text-[#24211D] hover:bg-[#E9EDC9]/60 transition-colors min-h-[44px]"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-3.5 rounded-full text-xs font-semibold text-[#575249] hover:text-[#24211D] hover:bg-[#E9EDC9]/50 transition-colors min-h-[44px]"
                 >
-                  <FileDown className="w-4 h-4 text-[#D4A373] group-hover:translate-y-0.5 transition-transform" />
+                  <FileDown className="w-4 h-4 text-[#D4A373]" />
                   <span>Resume PDF</span>
                 </a>
               </div>
