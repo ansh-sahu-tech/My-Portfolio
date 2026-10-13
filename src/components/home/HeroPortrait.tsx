@@ -5,15 +5,15 @@ export const HeroPortrait: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Subtle 3D perspective tilt
+  // Smooth 3D perspective tilt
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const mouseX = useSpring(x, { stiffness: 150, damping: 20 });
-  const mouseY = useSpring(y, { stiffness: 150, damping: 20 });
+  const mouseX = useSpring(x, { stiffness: 160, damping: 22 });
+  const mouseY = useSpring(y, { stiffness: 160, damping: 22 });
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [6, -6]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-6, 6]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -36,43 +36,41 @@ export const HeroPortrait: React.FC = () => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className="relative flex items-center justify-center p-2 sm:p-4 select-none cursor-pointer group"
+      className="relative flex items-center justify-center p-2 sm:p-4 select-none cursor-pointer group w-full"
       style={{ perspective: 1000 }}
     >
-      {/* Soft warm ambient backlight (no artificial lines or shapes) */}
+      {/* Soft natural ambient lighting aura behind subject */}
       <div 
-        className="absolute w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[400px] lg:h-[400px] rounded-full blur-3xl pointer-events-none -z-10 transition-opacity duration-500"
+        className="absolute w-[280px] h-[300px] sm:w-[360px] sm:h-[380px] lg:w-[420px] lg:h-[440px] rounded-full blur-3xl pointer-events-none -z-10 transition-all duration-500"
         style={{
-          background: 'radial-gradient(circle, rgba(212, 163, 115, 0.28) 0%, rgba(204, 213, 174, 0.2) 60%, transparent 75%)',
-          opacity: isHovered ? 0.85 : 0.5,
+          background: 'radial-gradient(circle, rgba(212, 163, 115, 0.35) 0%, rgba(204, 213, 174, 0.25) 50%, transparent 75%)',
+          transform: isHovered ? 'scale(1.08)' : 'scale(1)',
         }}
       />
 
-      {/* Main 3D Framed Portrait */}
+      {/* Pure Open Subject (No cards, no frames, no circles) */}
       <motion.div
         style={{
           rotateX,
           rotateY,
           transformStyle: 'preserve-3d',
         }}
-        transition={{ type: 'spring', damping: 20, stiffness: 150 }}
-        className="relative z-10"
+        transition={{ type: 'spring', damping: 22, stiffness: 160 }}
+        className="relative z-10 w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[420px] lg:max-w-[460px] flex items-center justify-center"
       >
-        {/* Outer natural frame ring */}
-        <div className="relative w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] rounded-full p-2.5 sm:p-3 bg-gradient-to-b from-[#FFFFFF] to-[#E9EDC9] shadow-[0_16px_40px_-8px_rgba(36,33,29,0.14)] border border-[#CCD5AE] transition-all duration-500 group-hover:shadow-[0_22px_50px_-8px_rgba(36,33,29,0.2)] group-hover:border-[#D4A373]">
-          
-          {/* Inner image container */}
-          <div className="w-full h-full rounded-full overflow-hidden bg-[#FEFAE0] relative shadow-inner">
-            <img
-              src="/ansh-profile.jpg?v=2"
-              alt="Ansh Sahu - Frontend Developer"
-              className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-            {/* Subtle natural vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/20 via-transparent to-transparent pointer-events-none" />
-          </div>
+        <div 
+          className="relative w-full aspect-square transition-transform duration-700 ease-out group-hover:scale-104 drop-shadow-[0_20px_35px_rgba(36,33,29,0.18)]"
+          style={{
+            maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+          }}
+        >
+          <img
+            src="/ansh-cutout.png?v=1"
+            alt="Ansh Sahu - Frontend Developer"
+            className="w-full h-full object-contain object-bottom filter"
+          />
         </div>
-
       </motion.div>
     </div>
   );
