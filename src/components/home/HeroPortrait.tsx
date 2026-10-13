@@ -1,21 +1,45 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
-// Curated vibrant color spectrum for fluid chromatic shifting
-const COLOR_PRESETS = [
-  { name: 'Amber Gold', hex: '#F59E0B', hue: 38, secondary: '#EF4444' },
-  { name: 'Cyber Cyan', hex: '#06B6D4', hue: 188, secondary: '#3B82F6' },
-  { name: 'Neon Violet', hex: '#8B5CF6', hue: 262, secondary: '#EC4899' },
-  { name: 'Emerald Sage', hex: '#10B981', hue: 158, secondary: '#14B8A6' },
-  { name: 'Sunset Rose', hex: '#F43F5E', hue: 345, secondary: '#F59E0B' },
+// Curated professional executive light tones (subtle, warm, luxurious)
+const PROFESSIONAL_LIGHT_MODES = [
+  {
+    name: 'Champagne Gold',
+    primary: 'rgba(212, 163, 115, 0.45)', // Warm Amber / Champagne
+    secondary: 'rgba(250, 237, 205, 0.35)',
+    highlight: 'rgba(255, 252, 242, 0.65)',
+  },
+  {
+    name: 'Sage Mist',
+    primary: 'rgba(204, 213, 174, 0.42)', // Natural Soft Sage
+    secondary: 'rgba(233, 237, 201, 0.32)',
+    highlight: 'rgba(244, 251, 247, 0.65)',
+  },
+  {
+    name: 'Ice Blue',
+    primary: 'rgba(186, 230, 253, 0.45)', // Clean Executive Ice Blue
+    secondary: 'rgba(224, 242, 254, 0.32)',
+    highlight: 'rgba(240, 249, 255, 0.65)',
+  },
+  {
+    name: 'Pearl Warmth',
+    primary: 'rgba(254, 240, 138, 0.38)', // Gentle Pearl Ivory
+    secondary: 'rgba(254, 249, 195, 0.28)',
+    highlight: 'rgba(255, 255, 255, 0.70)',
+  },
+  {
+    name: 'Platinum Slate',
+    primary: 'rgba(203, 213, 225, 0.42)', // Crisp Modern Platinum
+    secondary: 'rgba(226, 232, 240, 0.30)',
+    highlight: 'rgba(248, 250, 252, 0.65)',
+  },
 ];
 
 export const HeroPortrait: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [activeHue, setActiveHue] = useState<number>(38); // Starts with signature amber gold
-  const [cursorPos, setCursorPos] = useState({ x: 50, y: 50 }); // percentages
-  const [cycleTime, setCycleTime] = useState(0);
+  const [cursorPos, setCursorPos] = useState({ x: 50, y: 50 });
+  const [activeModeIndex, setActiveModeIndex] = useState(0);
 
   // Smooth 3D perspective tilt
   const x = useMotionValue(0);
@@ -24,23 +48,14 @@ export const HeroPortrait: React.FC = () => {
   const mouseX = useSpring(x, { stiffness: 180, damping: 24 });
   const mouseY = useSpring(y, { stiffness: 180, damping: 24 });
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [7, -7]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-7, 7]);
-
-  // Gentle autonomous color cycling while hovered
-  useEffect(() => {
-    if (!isHovered) return;
-    const interval = setInterval(() => {
-      setCycleTime((prev) => (prev + 1) % 360);
-    }, 40);
-    return () => clearInterval(interval);
-  }, [isHovered]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [6, -6]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-6, 6]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const xPos = (e.clientX - rect.left) / rect.width; // 0 to 1
-    const yPos = (e.clientY - rect.top) / rect.height; // 0 to 1
+    const xPos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const yPos = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
 
     x.set(xPos - 0.5);
     y.set(yPos - 0.5);
@@ -50,29 +65,23 @@ export const HeroPortrait: React.FC = () => {
       y: Math.round(yPos * 100),
     });
 
-    // Dynamic color shift mapped to cursor horizontal and vertical movement
-    // Smoothly traverses across the 360-degree color spectrum
-    const computedHue = Math.round((xPos * 300 + yPos * 60 + cycleTime * 0.5) % 360);
-    setActiveHue(computedHue);
+    // Smoothly selects between curated professional light tones based on horizontal cursor glide
+    const modeIdx = Math.min(
+      Math.floor(xPos * PROFESSIONAL_LIGHT_MODES.length),
+      PROFESSIONAL_LIGHT_MODES.length - 1
+    );
+    setActiveModeIndex(modeIdx);
   };
 
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
     setIsHovered(false);
-    setActiveHue(38); // Reset smoothly to default warm amber
+    setActiveModeIndex(0); // Reset smoothly to signature Champagne Gold
     setCursorPos({ x: 50, y: 50 });
   };
 
-  // Complementary secondary hue for rich two-tone gradient lighting
-  const secondaryHue = (activeHue + 55) % 360;
-  const tertiaryHue = (activeHue + 140) % 360;
-
-  // Primary dynamic colors
-  const primaryColor = `hsl(${activeHue}, 88%, 56%)`;
-  const primaryGlow = `hsla(${activeHue}, 88%, 56%, 0.45)`;
-  const secondaryGlow = `hsla(${secondaryHue}, 85%, 60%, 0.35)`;
-  const tertiaryGlow = `hsla(${tertiaryHue}, 80%, 55%, 0.25)`;
+  const currentLight = PROFESSIONAL_LIGHT_MODES[activeModeIndex] ?? PROFESSIONAL_LIGHT_MODES[0];
 
   return (
     <div 
@@ -80,35 +89,10 @@ export const HeroPortrait: React.FC = () => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className="relative flex flex-col items-center justify-center p-2 sm:p-4 select-none cursor-pointer group w-full"
+      className="relative flex items-center justify-center p-2 sm:p-4 select-none cursor-pointer group w-full"
       style={{ perspective: 1200 }}
     >
-      {/* Dynamic Multi-Color Ambient Backlight Aura */}
-      <div 
-        className="absolute w-[290px] h-[310px] sm:w-[380px] sm:h-[400px] lg:w-[460px] lg:h-[480px] rounded-full blur-[70px] pointer-events-none -z-10 transition-all duration-300"
-        style={{
-          background: isHovered
-            ? `radial-gradient(circle at ${cursorPos.x}% ${cursorPos.y}%, ${primaryGlow} 0%, ${secondaryGlow} 45%, ${tertiaryGlow} 70%, transparent 85%)`
-            : 'radial-gradient(circle, rgba(212, 163, 115, 0.38) 0%, rgba(204, 213, 174, 0.25) 50%, transparent 75%)',
-          transform: isHovered ? 'scale(1.15)' : 'scale(1)',
-          filter: isHovered ? 'saturate(1.4) brightness(1.1)' : 'none',
-        }}
-      />
-
-      {/* Secondary Dynamic Color Light Orb that follows cursor motion */}
-      {isHovered && (
-        <div 
-          className="absolute w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] rounded-full blur-[50px] pointer-events-none -z-10 transition-all duration-150 ease-out"
-          style={{
-            left: `calc(${cursorPos.x}% - 90px)`,
-            top: `calc(${cursorPos.y}% - 90px)`,
-            background: `radial-gradient(circle, ${primaryGlow} 0%, transparent 70%)`,
-            mixBlendMode: 'screen',
-          }}
-        />
-      )}
-
-      {/* Pure Frameless Subject with 3D Tilt and Dynamic Color Reaction */}
+      {/* Pure Frameless Subject with 3D Tilt - 100% Free of cards and background shapes */}
       <motion.div
         style={{
           rotateX,
@@ -118,14 +102,9 @@ export const HeroPortrait: React.FC = () => {
         transition={{ type: 'spring', damping: 24, stiffness: 180 }}
         className="relative z-10 w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[420px] lg:max-w-[460px] flex items-center justify-center"
       >
-        {/* Cutout Container with Silhouette Colored Rim-Glow */}
+        {/* Natural subtle drop shadow - Zero background glow spillover */}
         <div 
-          className="relative w-full aspect-square transition-all duration-300 ease-out group-hover:scale-104"
-          style={{
-            filter: isHovered
-              ? `drop-shadow(0 20px 40px ${primaryGlow}) drop-shadow(0 0 25px ${secondaryGlow}) drop-shadow(0 4px 12px rgba(0,0,0,0.15))`
-              : 'drop-shadow(0 20px 35px rgba(36,33,29,0.18))',
-          }}
+          className="relative w-full aspect-square transition-transform duration-500 ease-out group-hover:scale-104 drop-shadow-[0_20px_35px_rgba(36,33,29,0.18)]"
         >
           {/* Bottom Fade Mask Container */}
           <div
@@ -135,24 +114,24 @@ export const HeroPortrait: React.FC = () => {
               WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
             }}
           >
-            {/* Cutout Image */}
+            {/* Cutout Image - Natural, crisp, professional enhancement on hover */}
             <img
               src="/ansh-cutout.png?v=1"
               alt="Ansh Sahu - Frontend Developer"
               className="w-full h-full object-contain object-bottom transition-all duration-300"
               style={{
                 filter: isHovered
-                  ? `brightness(1.04) contrast(1.03) saturate(1.18) hue-rotate(${(activeHue - 38) * 0.12}deg)`
+                  ? 'brightness(1.03) contrast(1.02) saturate(1.06)'
                   : 'none',
               }}
             />
 
-            {/* Silhouette-Clipped Interactive Studio Light / Color Sheen */}
+            {/* Silhouette-Clipped Soft Studio Light - Follows cursor over suit & contours */}
             <div 
               className="absolute inset-0 pointer-events-none transition-opacity duration-300"
               style={{
-                opacity: isHovered ? 0.32 : 0,
-                background: `radial-gradient(circle at ${cursorPos.x}% ${cursorPos.y}%, ${primaryColor} 0%, hsla(${secondaryHue}, 90%, 60%, 0.6) 45%, transparent 75%)`,
+                opacity: isHovered ? 0.45 : 0,
+                background: `radial-gradient(circle 260px at ${cursorPos.x}% ${cursorPos.y}%, ${currentLight.primary} 0%, ${currentLight.secondary} 50%, transparent 80%)`,
                 mixBlendMode: 'soft-light',
                 maskImage: 'url(/ansh-cutout.png?v=1)',
                 WebkitMaskImage: 'url(/ansh-cutout.png?v=1)',
@@ -165,13 +144,13 @@ export const HeroPortrait: React.FC = () => {
               }}
             />
 
-            {/* Subtle Iridescent Color Grade for Cinematic Depth */}
+            {/* Silhouette-Clipped Specular Sheen - Gives high-end editorial clarity & depth */}
             <div 
-              className="absolute inset-0 pointer-events-none transition-opacity duration-400"
+              className="absolute inset-0 pointer-events-none transition-opacity duration-300"
               style={{
-                opacity: isHovered ? 0.18 : 0,
-                background: `linear-gradient(${cursorPos.x * 2}deg, hsla(${activeHue}, 90%, 65%, 0.8) 0%, hsla(${secondaryHue}, 85%, 60%, 0.4) 50%, hsla(${tertiaryHue}, 80%, 55%, 0.6) 100%)`,
-                mixBlendMode: 'color',
+                opacity: isHovered ? 0.22 : 0,
+                background: `radial-gradient(circle 180px at ${cursorPos.x}% ${cursorPos.y}%, ${currentLight.highlight} 0%, transparent 75%)`,
+                mixBlendMode: 'overlay',
                 maskImage: 'url(/ansh-cutout.png?v=1)',
                 WebkitMaskImage: 'url(/ansh-cutout.png?v=1)',
                 maskSize: 'contain',
@@ -184,45 +163,6 @@ export const HeroPortrait: React.FC = () => {
             />
           </div>
         </div>
-      </motion.div>
-
-      {/* Floating Interactive Chroma Indicator Pill (Subtle & Elegant) */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ 
-          opacity: isHovered ? 1 : 0, 
-          y: isHovered ? 0 : 10,
-          scale: isHovered ? 1 : 0.95
-        }}
-        transition={{ duration: 0.25 }}
-        className="z-20 mt-3 sm:mt-4 flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/85 dark:bg-[#1A1816]/85 backdrop-blur-md border border-[#E9EDC9]/80 shadow-md"
-      >
-        <div className="flex items-center gap-1.5">
-          {COLOR_PRESETS.map((preset) => {
-            const isNear = Math.abs(activeHue - preset.hue) < 30 || Math.abs(activeHue - preset.hue) > 330;
-            return (
-              <button
-                key={preset.name}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActiveHue(preset.hue);
-                }}
-                title={preset.name}
-                className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-transform duration-200 cursor-pointer"
-                style={{
-                  backgroundColor: preset.hex,
-                  transform: isNear ? 'scale(1.35)' : 'scale(1)',
-                  boxShadow: isNear ? `0 0 8px ${preset.hex}` : 'none',
-                }}
-              />
-            );
-          })}
-        </div>
-        <div className="h-3 w-px bg-[#E9EDC9]" />
-        <span className="text-[11px] sm:text-xs font-semibold tracking-wide text-[#575249]">
-          <span style={{ color: primaryColor }} className="font-bold">Color Shift</span> Active
-        </span>
       </motion.div>
     </div>
   );
