@@ -8,7 +8,8 @@ import {
   Award, 
   CheckCircle2, 
   ArrowRight, 
-  FileDown 
+  FileDown,
+  ExternalLink 
 } from 'lucide-react';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { Button } from '../../components/common/Button';
@@ -96,23 +97,39 @@ export const EducationPage: React.FC = () => {
           </div>
 
           {/* University Campus Architectural Feature */}
-          <div className="relative rounded-2xl overflow-hidden border border-[#CCD5AE] bg-[#FAEDCD]/60 p-2 sm:p-2.5 shadow-sm group">
+          <a
+            href="https://www.sanskriti.edu.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Sanskriti University Official Website (opens in a new tab)"
+            title="Visit Sanskriti University Official Website — https://www.sanskriti.edu.in/"
+            className="block relative rounded-2xl overflow-hidden border border-[#CCD5AE] bg-[#FAEDCD]/60 p-2 sm:p-2.5 shadow-sm group hover:border-[#D4A373] hover:shadow-md transition-all duration-300 cursor-pointer"
+          >
             <div className="w-full aspect-[738/294] max-h-[340px] rounded-xl overflow-hidden relative shadow-inner bg-[#E9EDC9]">
               <img
                 src="/sanskriti-university.png"
                 alt="Sanskriti University Main Campus Facade, Mathura"
                 loading="lazy"
-                className="w-full h-full object-cover object-center filter contrast-[1.03] brightness-[1.01] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                className="w-full h-full object-cover object-center filter contrast-[1.03] brightness-[1.01] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/40 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#24211D]/45 via-transparent to-transparent pointer-events-none group-hover:from-[#24211D]/60 transition-colors" />
 
               {/* Campus Location Tag Overlay */}
-              <div className="absolute bottom-2 left-2 right-2 sm:right-auto sm:bottom-4 sm:left-4 z-10 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl sm:rounded-full bg-[#FFFFFF]/95 backdrop-blur-md border border-[#CCD5AE] text-[#24211D] text-[10px] sm:text-xs font-semibold shadow-md max-w-[calc(100%-16px)]">
-                <MapPin className="w-3.5 h-3.5 text-[#D4A373] shrink-0" />
-                <span className="truncate">Sanskriti University — Main Campus Facade, Mathura, UP</span>
+              <div className="absolute bottom-2 left-2 right-2 sm:right-auto sm:bottom-4 sm:left-4 z-10 flex items-center justify-between sm:justify-start gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl sm:rounded-full bg-[#FFFFFF]/95 backdrop-blur-md border border-[#CCD5AE] text-[#24211D] text-[10px] sm:text-xs font-semibold shadow-md max-w-[calc(100%-16px)] group-hover:border-[#D4A373] transition-colors">
+                <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                  <MapPin className="w-3.5 h-3.5 text-[#D4A373] shrink-0" />
+                  <span className="truncate">Sanskriti University — Main Campus Facade, Mathura, UP</span>
+                </div>
+                <ExternalLink className="w-3.5 h-3.5 text-[#575249] group-hover:text-[#D4A373] shrink-0 transition-colors ml-1" />
+              </div>
+
+              {/* Visit Official Site Tag Overlay */}
+              <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-[#24211D]/80 backdrop-blur-md text-[#FEFAE0] text-[10px] sm:text-xs font-medium border border-[#CCD5AE]/40 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 shadow-md">
+                <span>Visit Official Site</span>
+                <ExternalLink className="w-3 h-3 text-[#D4A373]" />
               </div>
             </div>
-          </div>
+          </a>
 
           {/* Academic Overview & Core Coursework */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
